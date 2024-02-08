@@ -1,0 +1,62 @@
+name: bdp_payment_app
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+
+
+#--------------- PACKAGES ------------------#
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Utility Packages
+  intl: ^0.19.0
+  url_launcher: ^6.1.12
+  flutter_native_splash: ^2.3.9
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+
+
+  # Icons
+  iconsax: ^0.0.8
+  cupertino_icons: ^1.0.2
+
+  # State Management
+  get: ^4.6.5
+
+  # Product Specific
+
+
+
+  #--------------- ./ PACKAGES END ------------------#
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.1
+
+
+flutter:
+  uses-material-design: true
+
+  #--------------- LOCAL ASSETS ------------------#
+  assets:
+    - assets/logos/
+    - assets/images/animations/
+    - assets/images/on_boarding_images/
+    - assets/images/successcreenimage/
+    - assets/images/profile_image/
+    - assets/images/banners/
+    - assets/icons/
+
+  #--------------- LOCAL FONTS ------------------#
+  fonts:
+    - family: IBMPlexSans
+      fonts:
+        - asset: fonts/IBMPlexSans-Regular.ttf
+
