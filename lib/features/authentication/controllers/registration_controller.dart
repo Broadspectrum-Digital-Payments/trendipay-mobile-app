@@ -100,6 +100,8 @@ class RegistrationController {
         var data = apiResponse.mappedObjects;
         var sessionId = data['sessionId'];
         await GlobalConstants.storageService.setString(GeneralRepository.sessionKey, sessionId);
+        await GlobalConstants.storageService.setString(GeneralRepository.mobileNumber, state.phoneNumber);
+        await GlobalConstants.storageService.setString(GeneralRepository.pin, state.pin);
         var documentSubmitted = GlobalConstants.storageService.getString(GeneralRepository.documentSubmitted);
         if (documentSubmitted.isNotEmpty) {
           Get.offAll(const NavigationMenu());

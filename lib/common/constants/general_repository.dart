@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GeneralRepository {
 
@@ -51,5 +52,7 @@ class GeneralRepository {
       ),
     );
   }
+
+  static formatNumber({num? value}) => NumberFormat("#,##0.00##").format(value).toString();
 
 }

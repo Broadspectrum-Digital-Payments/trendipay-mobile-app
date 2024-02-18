@@ -29,7 +29,7 @@ class ResendOTPText extends StatelessWidget {
         Row(
           children: [
             Text(
-              "in $currentTime",
+              "$currentTime ",
               style: TextStyle(
                 color: BDPColors.primary,
                 fontWeight: FontWeight.w500,

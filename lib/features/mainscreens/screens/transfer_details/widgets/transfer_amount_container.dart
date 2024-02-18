@@ -1,4 +1,8 @@
+import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_blocs.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -11,38 +15,42 @@ class TransferAmoutContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 140,
-      decoration: const BoxDecoration(
-        color: BDPColors.primary,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(24),
-          bottomRight: Radius.circular(24),
-        ),
-      ),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Enter Amount',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-                color: BDPColors.white),
+    return BlocBuilder<TransferBloc, TransferStates>(
+      builder: (context, state) {
+        return Container(
+          width: double.infinity,
+          height: 140,
+          decoration:  BoxDecoration(
+            color: BDPColors.primary,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(24.r),
+              bottomRight: Radius.circular(24.r),
+            ),
           ),
-          SizedBox(
-            height: BDPSizes.spaceBtwItems,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Enter Amount',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20.sp,
+                    color: BDPColors.white),
+              ),
+              const SizedBox(
+                height: BDPSizes.spaceBtwItems,
+              ),
+              Text(
+                state.amount!,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20.sp,
+                    color: BDPColors.white),
+              ),
+            ],
           ),
-          Text(
-            '0.00',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-                color: BDPColors.white),
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 }

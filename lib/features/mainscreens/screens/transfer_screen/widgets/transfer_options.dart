@@ -1,7 +1,12 @@
+import 'package:bdp_payment_app/features/mainscreens/screens/transfer_details/transfer_details.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../saved_beneficiary/saved_beneficiary.dart';
+import '../transaction_blos/transfer_blocs.dart';
 
 
 class TransferOption extends StatelessWidget {
@@ -12,8 +17,12 @@ class TransferOption extends StatelessWidget {
   final String transferLogo;
   @override
   Widget build(BuildContext context) {
+    final transferBloc  = context.read<TransferBloc>();
     return GestureDetector(
-      onTap: () => Get.to(const SavedBeneficiaryScreen()),
+      onTap: () {
+        transferBloc.add(TransferIdEvent(id: "30"));
+        Get.to(()=> const TransferDetailsScreen());
+      },
       child: Container(
         width: double.infinity, // Adjust width as needed
         height: 40, // Adjust height as needed

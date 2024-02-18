@@ -32,7 +32,6 @@ class _VerifyOTPState extends State<VerifyOTP> {
   TextEditingController codeCtrl = TextEditingController();
   StreamSubscription? _streamSubscription;
   StreamController<ErrorAnimationType>? errorController;
-  String inputtedCode = "";
   FocusNode focusNode = FocusNode();
   Timer? _timer;
   int start = 150;
