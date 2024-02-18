@@ -1,9 +1,15 @@
+import 'package:bdp_payment_app/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
 
 class ResendOTPText extends StatelessWidget {
-  const ResendOTPText({
+  final VoidCallback? resendOtp;
+  int? currentTime;
+  ResendOTPText({
+    this.resendOtp,
+    this.currentTime,
     super.key,
   });
 
@@ -20,17 +26,29 @@ class ResendOTPText extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        GestureDetector(
-          onTap:() {
-          },
-          child: const Text(
-            "10s Resend OTP",
-            style: TextStyle(
-              color: BDPColors.primary,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
+        Row(
+          children: [
+            Text(
+              "in $currentTime",
+              style: TextStyle(
+                color: BDPColors.primary,
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+              ),
             ),
-          ),
+            SizedBox(width: 3.w,),
+            GestureDetector(
+              onTap: currentTime == 0 ? resendOtp : null,
+              child: Text(
+                "Resend OTP",
+                style: TextStyle(
+                  color: BDPColors.primary,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

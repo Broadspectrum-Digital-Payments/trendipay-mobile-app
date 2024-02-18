@@ -5,10 +5,18 @@ import '../../../../common/widgets/authHeader/authheaders.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
+import '../../controllers/registration_controller.dart';
 
 
-class PinSetup extends StatelessWidget {
+class PinSetup extends StatefulWidget {
   const PinSetup({super.key});
+
+  @override
+  State<PinSetup> createState() => _PinSetupState();
+}
+
+class _PinSetupState extends State<PinSetup> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -6,8 +6,12 @@ import '../../../../../utils/constants/text_strings.dart';
 import '../../account_registration/account_registration_screen.dart';
 
 class VerifyOTPButton extends StatelessWidget {
+  final VoidCallback? onTap;
+  final bool? isLoading;
   const VerifyOTPButton({
     super.key,
+    this.onTap,
+    this.isLoading = false
   });
 
   @override
@@ -15,7 +19,11 @@ class VerifyOTPButton extends StatelessWidget {
     return SizedBox(
         width: 149,
         height: 50,
-        child: Buttons(buttonName: BDPTexts.verifyOtp, image: BDPImages.rightArrow, onPressed: () { Get.off(const AccountRegistration()); },)
+        child: Buttons(
+          buttonName: BDPTexts.verifyOtp,
+          image: BDPImages.rightArrow,
+          isLoading: isLoading,
+          onPressed: onTap!)
     );
   }
 }

@@ -6,8 +6,14 @@ import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/text_strings.dart';
 
 
-class AccountRegistration extends StatelessWidget {
+class AccountRegistration extends StatefulWidget {
   const AccountRegistration({super.key});
+
+  @override
+  State<AccountRegistration> createState() => _AccountRegistrationState();
+}
+
+class _AccountRegistrationState extends State<AccountRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

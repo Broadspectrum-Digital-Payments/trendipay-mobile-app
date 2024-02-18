@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
 import 'package:bdp_payment_app/utils/constants/colors.dart';
 import 'package:bdp_payment_app/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,13 @@ class SuccessScreen extends StatelessWidget {
       {super.key,
       required this.image,
       required this.title,
-      required this.onPressed, required this.buttonName, required this.imageButton});
+      required this.onPressed,
+        required this.buttonName,
+         this.isLoading = false,
+        required this.imageButton, });
 
   final String image, title,buttonName, imageButton;
+  final bool? isLoading;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,11 @@ class SuccessScreen extends StatelessWidget {
                     backgroundColor: BDPColors.primary,
                     padding: const EdgeInsets.only(left: 26),
                   ),
-                  child: Row(
+                  child: isLoading!
+                      ? Center(
+                    child: loader(),
+                  )
+                      : Row(
                     children: [
                       Text(
                         buttonName,

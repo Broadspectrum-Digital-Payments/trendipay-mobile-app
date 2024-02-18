@@ -1,14 +1,53 @@
+import 'dart:async';
+
+import 'package:bdp_payment_app/common/constants/general_repository.dart';
+import 'package:bdp_payment_app/common/constants/global_constants.dart';
+import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
 import 'package:bdp_payment_app/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
 import 'package:bdp_payment_app/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
+import 'package:bdp_payment_app/navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/text_strings.dart';
 import '../../controllers/onboarding_controller.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key});
 
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+
+  String sessionId = "";
+  String documentSubmitted = "";
+  String name = "";
+
+  @override
+  void initState() {
+    super.initState();
+    handleLoginProcess();
+  }
+
+  //handle login
+
+  handleLoginProcess() {
+    Timer(Duration(seconds: 2), skipScreen);
+  }
+
+  skipScreen() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    sessionId = _prefs.getString(GeneralRepository.sessionKey) ?? "";
+    name = _prefs.getString(GeneralRepository.name) ?? "";
+    if (name.isNotEmpty && sessionId.isEmpty) {
+      return Get.to(()=> const LoginScreen());
+    }else if(sessionId.isNotEmpty) {
+      return Get.offAll(()=> const NavigationMenu());
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(OnBoardingController());

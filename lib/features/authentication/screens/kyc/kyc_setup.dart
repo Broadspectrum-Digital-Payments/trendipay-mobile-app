@@ -6,9 +6,14 @@ import 'package:flutter/material.dart';
 import '../../../../common/widgets/authHeader/authheaders.dart';
 import '../../../../utils/constants/text_strings.dart';
 
-class KYCSetup extends StatelessWidget {
+class KYCSetup extends StatefulWidget {
   const KYCSetup({super.key});
 
+  @override
+  State<KYCSetup> createState() => _KYCSetupState();
+}
+
+class _KYCSetupState extends State<KYCSetup> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
