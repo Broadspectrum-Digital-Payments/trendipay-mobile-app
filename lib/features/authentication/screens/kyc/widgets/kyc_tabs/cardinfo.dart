@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_states.dart';
@@ -21,8 +23,13 @@ class _CardInfoState extends State<CardInfo> {
 
   late KYCController controller;
 
+  AuthenticationBloc? bloc;
+  File? backDocumentImage;
+
+  File? fromDocumentImage;
   @override
   void initState() {
+    bloc = context.read<AuthenticationBloc>();
     controller = KYCController(context: context);
     super.initState();
   }
@@ -59,10 +66,11 @@ class _CardInfoState extends State<CardInfo> {
                 )),
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
             GestureDetector(
-              onTap: (){
-                controller.selectAnImage("document-front-image").then((value) {
-                  context.read<AuthenticationBloc>().add(DocumentFrontEvent(file: value));
-                });
+              onTap: () async {
+                var image = await controller.selectAnImage("document-front-image");
+                bloc!.add(DocumentFrontFileEvent(file: image));
+                var multipartImg = await controller.getMultiPartFile(image);
+                bloc!.add(DocumentFrontEvent(file: multipartImg));
               },
               child: Container(
                 width: 600, // Adjust width as needed
@@ -73,7 +81,7 @@ class _CardInfoState extends State<CardInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.documentFrontPic == null
+                child: state.documentFrontFile == null
                     ? const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -92,7 +100,7 @@ class _CardInfoState extends State<CardInfo> {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(12.r),
                         child: Image.file(
-                          state.documentFrontPic!,
+                          state.documentFrontFile!,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -106,10 +114,11 @@ class _CardInfoState extends State<CardInfo> {
                 )),
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
             GestureDetector(
-              onTap: (){
-                controller.selectAnImage("document-back-image").then((value) {
-                  context.read<AuthenticationBloc>().add(DocumentBackEvent(file: value));
-                });
+              onTap: () async{
+                var image = await controller.selectAnImage("document-back-image");
+                bloc!.add(DocumentBackFileEvent(file: image));
+                var multipartImg = await controller.getMultiPartFile(image);
+                bloc!.add(DocumentBackEvent(file: multipartImg));
               },
               child: Container(
                 width: 600, // Adjust width as needed
@@ -120,7 +129,7 @@ class _CardInfoState extends State<CardInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.documentBackPic == null
+                child: state.documentBackFile == null
                     ? const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -139,7 +148,7 @@ class _CardInfoState extends State<CardInfo> {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(12.r),
                         child: Image.file(
-                          state.documentBackPic!,
+                          state.documentBackFile!,
                           fit: BoxFit.cover,
                         ),
                       ),

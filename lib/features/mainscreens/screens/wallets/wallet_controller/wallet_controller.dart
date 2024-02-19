@@ -24,8 +24,7 @@ class WalletTopUpController {
 
   final _apis = WalletRepository();
 
-
-  init(){
+  init() {
     getAllWallets();
   }
 
@@ -60,7 +59,7 @@ class WalletTopUpController {
       log("code ${apiResponse.code}");
       if (apiResponse.allGood!) {
         //TODO: Move Screen to the topUp Confirmation
-        Get.to(()=> const TopupConfirmTransaction());
+        Get.to(() => const TopupConfirmTransaction());
       } else {
         GeneralRepository.showSnackBar("Error", apiResponse.message!);
       }
@@ -90,7 +89,7 @@ class WalletTopUpController {
       var apiResponse = ApiResponse.parse(response);
       if (apiResponse.allGood!) {
         //TODO: move to the confirmation screen
-        Get.off(()=> const TransactionConfirmedScreen());
+        Get.off(() => const TransactionConfirmedScreen());
         bloc.add(ResetDataEvent());
       } else {
         GeneralRepository.showSnackBar("Error", apiResponse.message!);
@@ -109,19 +108,23 @@ class WalletTopUpController {
     if (value.isNotEmpty) {
       List<dynamic> decodedValue = json.decode(value);
       decodedValue.add(model.toJson());
-      List<WalletModel> savedWallets =
-      decodedValue.map<WalletModel>((e) => WalletModel.fromJson(e)).toList();
+      List<WalletModel> savedWallets = decodedValue
+          .map<WalletModel>((e) => WalletModel.fromJson(e))
+          .toList();
       context.read<WalletBloc>().add(GetWalletsEvent(wallets: savedWallets));
       var encodedValue = json.encode(decodedValue);
-      await GlobalConstants.storageService.setString(GeneralRepository.walletScreenKey, encodedValue);
+      await GlobalConstants.storageService
+          .setString(GeneralRepository.walletScreenKey, encodedValue);
     } else {
       List<dynamic> decodedValue = [];
-      List<WalletModel> savedWallets =
-      decodedValue.map<WalletModel>((e) => WalletModel.fromJson(e)).toList();
+      decodedValue.add(model.toJson());
+      List<WalletModel> savedWallets = decodedValue
+          .map<WalletModel>((e) => WalletModel.fromJson(e))
+          .toList();
       context.read<WalletBloc>().add(GetWalletsEvent(wallets: savedWallets));
       var encodedValue = json.encode(decodedValue);
-      await GlobalConstants.storageService.setString(GeneralRepository.walletScreenKey, encodedValue);
-
+      await GlobalConstants.storageService
+          .setString(GeneralRepository.walletScreenKey, encodedValue);
     }
   }
 
@@ -131,8 +134,9 @@ class WalletTopUpController {
         .getString(GeneralRepository.walletScreenKey);
     if (value.isNotEmpty) {
       List<dynamic> decodedValue = json.decode(value);
-      List<WalletModel> savedWallets =
-      decodedValue.map<WalletModel>((e) => WalletModel.fromJson(e)).toList();
+      List<WalletModel> savedWallets = decodedValue
+          .map<WalletModel>((e) => WalletModel.fromJson(e))
+          .toList();
       context.read<WalletBloc>().add(GetWalletsEvent(wallets: savedWallets));
     }
   }

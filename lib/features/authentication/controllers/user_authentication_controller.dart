@@ -21,10 +21,22 @@ class UserAuthController {
     bool exists = false;
     var sessionId = _prefs.getString(GeneralRepository.sessionKey) ?? "";
     var name = _prefs.getString(GeneralRepository.name) ?? "";
-    if (name.isNotEmpty && sessionId.isEmpty) {
+    if (name.isNotEmpty && sessionId.isEmpty ) {
       exists = false;
     }else if(sessionId.isNotEmpty) {
      exists = true;
+    }
+    return exists;
+  }
+
+  Future<bool> hasOnboardingBeenCompleted() async{
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    bool exists = false;
+    var name = _prefs.getString(GeneralRepository.onboardingCompleted) ?? "";
+    if (name.isNotEmpty) {
+      exists = true;
+    }else {
+      exists = false;
     }
     return exists;
   }

@@ -21,6 +21,7 @@ class GeneralRepository {
   static const pin = "pinKey";
 
   static const documentSubmitted = "document-submitted";
+  static const onboardingCompleted = "onboarding-completed";
 
 
   static showSnackBar(String title, String message) {

@@ -1,6 +1,7 @@
 
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/common/models/api_response.dart';
@@ -9,7 +10,9 @@ import 'package:bdp_payment_app/features/authentication/authentication_repositor
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
+import 'package:image/image.dart' as img;
 import 'package:get/get_core/src/get_main.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -49,25 +52,32 @@ class KYCController {
     }
     try {
       bloc.add(SubmittingDataEvent(value: true));
-      Future.wait([
-        uploadImageToServer(),
-        uploadDocumentOneToServer(),
-        uploadDocumentTwoToServer(),
-      ]).then((apiResponses) async {
-        bloc.add(SubmittingDataEvent(value: false));
-        // bool anyFail = apiResponses.any((apiResponse) => apiResponse.failedStatus!);
-        // if (anyFail) {
-        //   GeneralRepository.showSnackBar("Error", "Something went wrong during submission, please try again");
-        // }else {
-          Get.offAll(()=> const NavigationMenu());
-          GeneralRepository.showSnackBar("Success", "your Documents have been saved successfully");
-          await GlobalConstants.storageService.setString(GeneralRepository.documentSubmitted, "Yes");
-        //}
-      })
-          .onError((error, stackTrace) {
-        bloc.add(SubmittingDataEvent(value: false));
-        GeneralRepository.showSnackBar("Error", error.toString());
+      uploadImageToServer().then((value) {
+        uploadDocumentOneToServer().then((value) {
+          uploadDocumentTwoToServer().then((value) async {
+            bloc.add(SubmittingDataEvent(value: false));
+            Get.offAll(()=> const NavigationMenu());
+            GeneralRepository.showSnackBar("Success", "your Documents have been saved successfully");
+            await GlobalConstants.storageService.setString(GeneralRepository.documentSubmitted, "Yes");
+          });
+        });
       });
+      // Future.wait([
+      //   uploadImageToServer(),
+      //   uploadDocumentOneToServer(),
+      //   uploadDocumentTwoToServer(),
+      // ]).then((apiResponses) async {
+      //   bloc.add(SubmittingDataEvent(value: false));
+      //   // bool anyFail = apiResponses.any((apiResponse) => apiResponse.failedStatus!);
+      //   // if (anyFail) {
+      //   //   GeneralRepository.showSnackBar("Error", "Something went wrong during submission, please try again");
+      //   // }else {
+      //
+      //   //}
+      // }).onError((error, stackTrace) {
+      //   bloc.add(SubmittingDataEvent(value: false));
+      //   GeneralRepository.showSnackBar("Error", error.toString());
+      // });
     } on dio.DioException catch(e) {
       bloc.add(SubmittingDataEvent(value: false));
       GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
@@ -119,4 +129,24 @@ class KYCController {
     bloc.add(SubmittingDataEvent(value: false));
    return newFile;
   }
+
+  //get the multipartFile
+  Future<dio.MultipartFile> getMultiPartFile(File? file) async {
+    var selectedFile;
+    var directory = await getApplicationDocumentsDirectory();
+    var newFilePath = await file!.copy("${directory.path}${DateTime.now().millisecondsSinceEpoch}.jpg");
+    String targetPath = newFilePath.path;
+    var result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path, targetPath,
+      quality: 70,
+    );
+    List<int> bytes = await result!.readAsBytes();
+    var decodedImage = img.decodeImage(Uint8List.fromList(bytes));
+    var encodedImage = img.encodeJpg(decodedImage!);
+    selectedFile = dio.MultipartFile.fromBytes(encodedImage,
+        filename: "image_$file.jpg");
+    return selectedFile;
+  }
+
+  //this code should save the image in a multipartFile
 }

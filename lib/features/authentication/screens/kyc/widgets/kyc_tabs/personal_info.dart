@@ -1,3 +1,6 @@
+
+import 'dart:io';
+
 import 'package:bdp_payment_app/common/widgets/button/button.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
@@ -21,9 +24,10 @@ class PersonalInfo extends StatefulWidget {
 
 class _PersonalInfoState extends State<PersonalInfo> {
   late KYCController controller;
-
+  AuthenticationBloc? bloc;
   @override
   void initState() {
+    bloc = context.read<AuthenticationBloc>();
     controller = KYCController(context: context);
     super.initState();
   }
@@ -53,10 +57,12 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 )),
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
             GestureDetector(
-              onTap: () {
-                controller.selectAnImage("profile-image").then((value) {
-                  context.read<AuthenticationBloc>().add(ProfilePicEvent(file: value));
-                });
+              onTap: () async {
+                var image = await controller.selectAnImage("profile-image");
+                bloc!.add(ProfileFileEvent(file: image));
+                var multipartImg = await controller.getMultiPartFile(image);
+                bloc!.add(ProfilePicEvent(file: multipartImg));
+
               },
               child: Container(
                 width: 600, // Adjust width as needed
@@ -67,7 +73,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.profilePic == null ? const Column(
+                child: state.profileFile == null ? const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.file_upload_outlined), // Icon
@@ -83,7 +89,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   ],
                 ) : ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
-                  child: Image.file(state.profilePic!,
+                  child: Image.file(state.profileFile!,
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -40,14 +40,21 @@ class _SplashScreenState extends State<SplashScreen>
   _handleSplashScreen() {
     Timer(const Duration(seconds: 3), (){
       //Get.offAll(const Welcome(), );
-      controller.isUserExists().then((value) {
+      controller.hasOnboardingBeenCompleted().then((value) {
         if (value) {
-          return Get.offAll(()=> const NavigationMenu(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 800));
-        }
-        if (!value) {
-          return Get.offAll(()=> const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 800));
+          controller.isUserExists().then((value) {
+            if (value) {
+              return Get.offAll(()=> const NavigationMenu(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 800));
+            }
+            if (!value) {
+              return Get.offAll(()=> const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 800));
+            }
+          });
+        }else {
+          return Get.offAll(()=> const OnboardingScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 800));
         }
       });
+
     });
   }
 

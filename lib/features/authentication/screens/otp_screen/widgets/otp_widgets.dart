@@ -20,6 +20,7 @@ Widget reusableOtpWidget(BuildContext context,
       keyboardType: TextInputType.number,
       autoDisposeControllers: true,
       autoFocus: true,
+      obscureText: true,
       enabled: enabled,
       textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
           color: Colors.black.withOpacity(0.8),

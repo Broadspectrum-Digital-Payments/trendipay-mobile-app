@@ -10,18 +10,33 @@ abstract class AuthenticationEvents {
 //multipart file data
 
 class ProfilePicEvent extends AuthenticationEvents {
-  final File file;
+  final MultipartFile file;
   ProfilePicEvent({required this.file});
 }
 
 class DocumentFrontEvent extends AuthenticationEvents {
-  final File file;
+  final MultipartFile file;
   DocumentFrontEvent({required this.file});
 }
 
 class DocumentBackEvent extends AuthenticationEvents {
-  final File file;
+  final MultipartFile file;
   DocumentBackEvent({required this.file});
+}
+
+class ProfileFileEvent extends AuthenticationEvents {
+  final File file;
+  ProfileFileEvent({required this.file});
+}
+
+class DocumentFrontFileEvent extends AuthenticationEvents {
+  final File file;
+  DocumentFrontFileEvent({required this.file});
+}
+
+class DocumentBackFileEvent extends AuthenticationEvents {
+  final File file;
+  DocumentBackFileEvent({required this.file});
 }
 
 class NameEvent extends AuthenticationEvents {

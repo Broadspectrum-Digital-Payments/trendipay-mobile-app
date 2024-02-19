@@ -1,5 +1,7 @@
+import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../../../common/constants/global_constants.dart';
 import '../screens/login/login.dart';
 
 
@@ -15,6 +17,7 @@ class OnBoardingController extends GetxController{
   void nextPage(){
     if(currentPageIndex.value == 1 || currentPageIndex.value ==0 ){
       Get.offAll(const LoginScreen());
+      GlobalConstants.storageService.setString(GeneralRepository.onboardingCompleted, "Yes");
 
     }
   }

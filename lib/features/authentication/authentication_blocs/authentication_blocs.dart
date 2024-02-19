@@ -19,6 +19,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
     on<SubmittingDataEvent>(_submittingEvent);
     on<MobileMoneyEvent>(_mobileMoneyEvent);
     on<ResetAuthenticationData>(_resetAuthenticationData);
+    on<DocumentBackFileEvent>(_documentBackFileEvent);
+    on<DocumentFrontFileEvent>(_documentFrontFileEvent);
+    on<ProfileFileEvent>(_profileFileEvent);
   }
 
 
@@ -68,7 +71,25 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
       phoneNumber: "",
       emailAddress: "",
       pin: "",
-      confirmPin: ""
+      confirmPin: "",
+      documentBackFile: null,
+      documentFrontFile: null,
+      documentFrontPic: null,
+      documentBackPic: null,
+      profileFile: null,
+      profilePic: null,
     ));
+  }
+
+  FutureOr<void> _documentBackFileEvent(DocumentBackFileEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(documentBackFile: event.file));
+  }
+
+  FutureOr<void> _documentFrontFileEvent(DocumentFrontFileEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(documentFrontFile: event.file));
+  }
+
+  FutureOr<void> _profileFileEvent(ProfileFileEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(profileFile: event.file));
   }
 }

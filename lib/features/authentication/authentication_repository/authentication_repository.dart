@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 import 'dart:io';
 
@@ -16,30 +14,30 @@ class AuthenticationRepository {
   ImagePicker imagePicker = ImagePicker();
 
   //registration
-  userRegistration(Map<String, dynamic> body)  async {
-    var response = await httpService.postWithNoAuth(ApiConstants.registration, body);
+  userRegistration(Map<String, dynamic> body) async {
+    var response =
+        await httpService.postWithNoAuth(ApiConstants.registration, body);
     return response;
   }
 
   userLogin(String username, String password) async {
-    var body = {"authType" : "SESSION"};
-    var response = await httpService.postWithBasicAuth(ApiConstants.login, body, username, password);
+    var body = {"authType": "SESSION"};
+    var response = await httpService.postWithBasicAuth(
+        ApiConstants.login, body, username, password);
     return response;
   }
 
   //this saves the documents
-  Future<ApiResponse> uploadKycDocuments({File? file, String? description, String? category}) async {
-    var decodedImage = img.decodeImage(file!.readAsBytesSync());
-    var encodedImage = img.encodeJpg(decodedImage!);
-    var selectedFile = MultipartFile.fromBytes(encodedImage,
-        filename: "image_$file.jpg");
+  Future<ApiResponse> uploadKycDocuments(
+      {MultipartFile? file, String? description, String? category}) async {
     var body = FormData.fromMap({
-      "file" : selectedFile,
+      "file": file,
       "category": category,
       "description": description,
     });
     log("category is $category");
-    var response = await httpService.postWithAuth(ApiConstants.submitDocuments, body);
+    var response =
+        await httpService.postWithAuth(ApiConstants.submitDocuments, body);
     log("response of $category is ${response.toString()}");
     var apiResponse = ApiResponse.parse(response);
     return apiResponse;
@@ -47,7 +45,7 @@ class AuthenticationRepository {
 
   //selectImage
   selectAnImage() async {
-    var pickedImage =  await imagePicker.pickImage(source: ImageSource.camera);
+    var pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
     return pickedImage;
   }
 }
