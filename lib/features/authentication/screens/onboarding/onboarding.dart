@@ -26,28 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   String documentSubmitted = "";
   String name = "";
 
-  @override
-  void initState() {
-    super.initState();
-    handleLoginProcess();
-  }
-
   //handle login
-
-  handleLoginProcess() {
-    Timer(Duration(seconds: 2), skipScreen);
-  }
-
-  skipScreen() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    sessionId = _prefs.getString(GeneralRepository.sessionKey) ?? "";
-    name = _prefs.getString(GeneralRepository.name) ?? "";
-    if (name.isNotEmpty && sessionId.isEmpty) {
-      return Get.to(()=> const LoginScreen());
-    }else if(sessionId.isNotEmpty) {
-      return Get.offAll(()=> const NavigationMenu());
-    }
-  }
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(OnBoardingController());

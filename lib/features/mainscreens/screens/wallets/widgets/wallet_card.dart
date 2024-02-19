@@ -114,7 +114,7 @@ class WalletCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 9),
                   ),
                   child: GestureDetector(
-                    onTap: () {Get.to(const TopUpScreen());},
+                    onTap: () {Get.to(()=> const TopUpScreen());},
                     child: Row(
                       children: [
                         const Text(

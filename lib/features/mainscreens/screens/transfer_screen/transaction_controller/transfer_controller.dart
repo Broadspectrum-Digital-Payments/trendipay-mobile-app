@@ -54,6 +54,7 @@ class TransFerController {
       log("initiate transfer Response ====> ${response.toString()}");
       bloc.add(CompletingTransferEvent(completingTransfer: false));
       var apiResponse = ApiResponse.parse(response);
+      log("code ${apiResponse.code}");
       if (apiResponse.allGood!) {
        sendOtp();
       }else {

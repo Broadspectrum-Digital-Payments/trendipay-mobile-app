@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ARCheckbox extends StatelessWidget {
-  final bool? value;
+  bool? value;
   final Function(bool?)? onChanged;
-  const ARCheckbox({
+  ARCheckbox({
     this.value,
     this.onChanged,
     super.key,

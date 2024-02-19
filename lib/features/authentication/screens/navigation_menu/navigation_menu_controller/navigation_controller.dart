@@ -27,7 +27,7 @@ class NavigationMenuController {
   String pin = GlobalConstants.storageService.getString(GeneralRepository.pin);
 
   init(){
-
+    loadTransactionHistory();
   }
 
   loadTransactionHistory() async {
@@ -36,7 +36,7 @@ class NavigationMenuController {
     try {
       if (!state.firstLoad) bloc.add(LoadingTransactionEvent(loading: true));
       var response = await _apis.getTransactionHistory();
-      bloc.add(LoadingTransactionEvent(loading: true));
+      bloc.add(LoadingTransactionEvent(loading: false));
       var apiResponse = ApiResponse.parse(response);
       if (apiResponse.allGood!) {
         Map<dynamic, dynamic> accountHistory = apiResponse.mappedData?['AccountHistoryResultPage'];

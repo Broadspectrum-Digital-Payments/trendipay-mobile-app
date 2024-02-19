@@ -23,12 +23,7 @@ class TransferBloc extends Bloc<TransferEvents, TransferStates> {
   }
 
   FutureOr<void> _amountEvent(AmountEvent event, Emitter<TransferStates> emit) {
-    var editedAmount = "";
-    if (event.amount!.isNotEmpty) {
-      editedAmount = GeneralRepository.formatNumber(value: num.parse(event.amount!));
-    }
-
-    emit(state.copyWith(amount: editedAmount));
+    emit(state.copyWith(amount: event.amount));
   }
 
   FutureOr<void> _descriptionEvent(DescriptionEvent event, Emitter<TransferStates> emit) {

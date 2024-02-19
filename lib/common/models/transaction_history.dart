@@ -6,7 +6,7 @@ class TransactionHistory {
   String? formattedDate;
   DateTime? processDate;
   String? formattedProcessDate;
-  int? amount;
+  num? amount;
   String? formattedAmount;
   String? status;
   TransferType? transferType;

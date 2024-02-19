@@ -13,6 +13,8 @@ class GeneralRepository {
   static const resourceId = "resourceId-key";
   static const phoneMedium = "phoneMedium-key";
 
+  static const walletScreenKey = "wallet-screen-key";
+
   static const name = "nameKey";
   static const email = "emailKey";
   static const mobileNumber = "mobileNumberKey";

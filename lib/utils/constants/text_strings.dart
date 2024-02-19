@@ -31,7 +31,7 @@ class BDPTexts {
   //Label Text
   static const String email = "Enter your email-address or username";
   static const String password = "Enter your password";
-  static const String phoneNo= "+233 Enter your phone Number";
+  static const String phoneNo= "Enter your phone Number";
   static const String fullName = "Enter your full name";
   static const String emails= "Enter your email-address";
   static const String pin = " Enter you pin";

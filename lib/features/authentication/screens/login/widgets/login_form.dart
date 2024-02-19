@@ -47,6 +47,7 @@ class _BDPLoginFormState extends State<BDPLoginForm> {
             children: [
               TextFormField(
                 controller: phoneCtrl,
+                keyboardType: TextInputType.phone,
                 validator: (value){
                   if (value == null || value.isEmpty) {
                     return "Phone field must not be empty";

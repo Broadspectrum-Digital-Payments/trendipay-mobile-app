@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../common/constants/general_repository.dart';
 import '../../../../common/widgets/button/button.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -255,7 +256,7 @@ class _TransferDetailsScreenState extends State<TransferDetailsScreen> {
                             MainAxisAlignment.center,
                             children: [
                               Text(
-                                'GHC ${state.amount}',
+                                'GHC ${GeneralRepository.formatNumber(value: num.tryParse(state.amount!))}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 20,

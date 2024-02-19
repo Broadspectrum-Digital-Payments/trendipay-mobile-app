@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
+import 'package:bdp_payment_app/common/models/api_response.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_repository/authentication_repository.dart';
 import 'package:dio/dio.dart' as dio;
@@ -49,9 +50,9 @@ class KYCController {
     try {
       bloc.add(SubmittingDataEvent(value: true));
       Future.wait([
-        _apis.uploadKycDocuments(file: state.profilePic, category: "KYC_DOC_ONE", description: "Selfie"),
-        _apis.uploadKycDocuments(file: state.documentFrontPic, category: "KYC_DOC_TWO", description: "Document"),
-        _apis.uploadKycDocuments(file: state.documentBackPic, category: "KYC_DOC_THREE", description: "Document"),
+        uploadImageToServer(),
+        uploadDocumentOneToServer(),
+        uploadDocumentTwoToServer(),
       ]).then((apiResponses) async {
         bloc.add(SubmittingDataEvent(value: false));
         // bool anyFail = apiResponses.any((apiResponse) => apiResponse.failedStatus!);
@@ -73,16 +74,43 @@ class KYCController {
     }
   }
 
+  Future<ApiResponse> uploadImageToServer() async {
+    var bloc = context.read<AuthenticationBloc>();
+    var state = bloc.state;
+    bloc.add(SubmittingDataEvent(value: true));
+    var file = await _apis.uploadKycDocuments(file: state.profilePic, category: "KYC_DOC_ONE", description: "Selfie");
+    bloc.add(SubmittingDataEvent(value: false));
+    return file;
+  }
+
+  Future<ApiResponse> uploadDocumentOneToServer() async {
+    var bloc = context.read<AuthenticationBloc>();
+    var state = bloc.state;
+    bloc.add(SubmittingDataEvent(value: true));
+    var response = await _apis.uploadKycDocuments(file: state.documentFrontPic, category: "KYC_DOC_TWO", description: "Document");
+    bloc.add(SubmittingDataEvent(value: false));
+    return response;
+  }
+
+  Future<ApiResponse> uploadDocumentTwoToServer() async {
+    var bloc = context.read<AuthenticationBloc>();
+    var state = bloc.state;
+    bloc.add(SubmittingDataEvent(value: true));
+    var response = await _apis.uploadKycDocuments(file: state.documentBackPic, category: "KYC_DOC_THREE", description: "Document");
+    bloc.add(SubmittingDataEvent(value: false));
+    return response;
+  }
+
+
   //select the image
   Future<File> selectAnImage(String? imageCategory) async {
     var bloc = context.read<AuthenticationBloc>();
-    var state = bloc.state;
     var newFile;
     bloc.add(SubmittingDataEvent(value: true));
     var pickedImage = await _apis.selectAnImage();
     if (pickedImage != null) {
       var file = File(pickedImage!.path);
-      var directory = await getTemporaryDirectory();
+      var directory = await getApplicationDocumentsDirectory();
       var path = directory.path;
       newFile = await file.copy("$path$imageCategory.jpg");
     } else {

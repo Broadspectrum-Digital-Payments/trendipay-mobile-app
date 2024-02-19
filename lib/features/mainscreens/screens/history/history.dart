@@ -3,6 +3,7 @@ import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../common/widgets/common_widgets.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -34,13 +35,16 @@ class HistoryScreen extends StatelessWidget {
                       itemCount: state.allTransactions.length,
                       itemBuilder: (context, index) {
                         var item = state.allTransactions[index];
-                        return TransactionItem(
-                            title: item.transferType?.name ?? "",
-                            description: item.description ?? "",
-                            date: item.formattedProcessDate ?? "",
-                            time: formatTime(item.processDate),
-                            amount: item.formattedAmount ?? "",
-                            isSuccess: item.status == "PROCESSED");
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.h),
+                          child: TransactionItem(
+                              title: item.transferType?.name ?? "",
+                              description: item.description ?? "",
+                              date: item.formattedProcessDate ?? "",
+                              time: formatTime(item.processDate),
+                              amount: item.formattedAmount ?? "",
+                              isSuccess: item.status == "PROCESSED"),
+                        );
                       }, separatorBuilder: (BuildContext context, int index) {
                         return _buildDivider();
           },);

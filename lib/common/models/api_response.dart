@@ -1,10 +1,14 @@
 
 
+import 'package:bdp_payment_app/common/constants/general_repository.dart';
+import 'package:bdp_payment_app/common/constants/global_constants.dart';
+import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
+import 'package:get/get.dart';
+
 class ApiResponse {
   int? code;
   String? message;
   bool? status;
-  bool? sessionExpired;
   dynamic body;
   List? errors;
 
@@ -22,6 +26,8 @@ class ApiResponse {
 
   bool? get allGood => body['status'] == true;
   bool? get failedStatus => body['status'] == false;
+
+  bool? get sessionExpired => body['sessionExpired'] = true;
 
   bool? get noBody => errors?.isEmpty;
 
@@ -126,6 +132,15 @@ class ApiResponse {
             message = bodyErrors[0]['longMessage'];
           }
           errors.add(message);
+          if (body is Map){
+            if (body.containsKey("sessionExpired")) {
+              if (body['sessionExpired'] == true) {
+                GlobalConstants.storageService.removeKey(GeneralRepository.sessionKey);
+                Get.offAll(()=> const LoginScreen());
+                GeneralRepository.showSnackBar("Error", "Session Expired");
+              }
+            }
+          }
           break;
         case 404:
           if (body["message"] != null) {
@@ -135,6 +150,15 @@ class ApiResponse {
             message = "Not found";
           }
           errors.add(message);
+          if (body is Map){
+            if (body.containsKey("sessionExpired")) {
+              if (body['sessionExpired'] == true) {
+                GlobalConstants.storageService.removeKey(GeneralRepository.sessionKey);
+                Get.offAll(()=> const LoginScreen());
+                GeneralRepository.showSnackBar("Error", "Session Expired");
+              }
+            }
+          }
           break;
         // case 422:
         //   body["errors"].forEach((final String key, final value) {

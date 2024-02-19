@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../common/constants/general_repository.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 
@@ -41,7 +42,7 @@ class TransferAmoutContainer extends StatelessWidget {
                 height: BDPSizes.spaceBtwItems,
               ),
               Text(
-                state.amount!,
+                GeneralRepository.formatNumber(value: num.tryParse(state.amount!)),
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20.sp,

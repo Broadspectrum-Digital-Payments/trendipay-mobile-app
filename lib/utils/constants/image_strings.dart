@@ -7,6 +7,8 @@ class BDPImages {
   // -- App Logos
   static const String darkAppLogo = "assets/logos/t-BDP-splash-logo-black.png";
   static const String lightAppLogo = "assets/logos/t-BDP-splash-logo-white.png";
+
+  static const String bdpSplashScreen = "assets/logos/bdp_logo.png";
   static const String bdpIcon = "assets/logos/bdp_icon.png";
 
   // --Icons

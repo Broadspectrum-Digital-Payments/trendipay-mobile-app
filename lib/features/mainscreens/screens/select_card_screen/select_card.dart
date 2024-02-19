@@ -115,10 +115,15 @@ void _showAddWalletModal() {
                     const SizedBox(
                       height: BDPSizes.spaceBtwSections,
                     ),
-                    const Row(
+                     Row(
                       children: [
-                        ARCheckbox(),
-                        Text(
+                        ARCheckbox(
+                          value: false,
+                          onChanged: (value){
+
+                          },
+                        ),
+                        const Text(
                           BDPTexts.allowWallets,
                           style: TextStyle(
                               fontSize: 12,

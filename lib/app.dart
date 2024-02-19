@@ -1,4 +1,5 @@
 import 'package:bdp_payment_app/common/config/providers.dart';
+import 'package:bdp_payment_app/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ return ScreenUtilInit(
         theme: ThemeData(
           fontFamily: 'IBMPlexSans',
         ),
-        home: const OnboardingScreen(),
+        home: SplashScreen(),
       ),
     );
   }
