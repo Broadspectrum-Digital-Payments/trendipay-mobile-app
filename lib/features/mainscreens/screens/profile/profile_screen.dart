@@ -104,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: BDPSizes.spaceBtwSections * 3,
               ),
               SizedBox(
-                  width: 137,
+                  width: 140.w,
                   height: 40,
                   child: Buttons(
                     buttonName: BDPTexts.signOut,
