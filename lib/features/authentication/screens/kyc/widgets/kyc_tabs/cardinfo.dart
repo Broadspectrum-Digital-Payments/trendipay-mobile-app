@@ -9,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../common/widgets/common_widgets.dart';
+import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
 import '../../../../controllers/kyc_controller.dart';
@@ -20,7 +22,6 @@ class CardInfo extends StatefulWidget {
 }
 
 class _CardInfoState extends State<CardInfo> {
-
   late KYCController controller;
 
   AuthenticationBloc? bloc;
@@ -67,7 +68,8 @@ class _CardInfoState extends State<CardInfo> {
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
             GestureDetector(
               onTap: () async {
-                var image = await controller.selectAnImage("document-front-image");
+                var image =
+                    await controller.selectAnImage("document-front-image");
                 bloc!.add(DocumentFrontFileEvent(file: image));
                 var multipartImg = await controller.getMultiPartFile(image);
                 bloc!.add(DocumentFrontEvent(file: multipartImg));
@@ -81,29 +83,34 @@ class _CardInfoState extends State<CardInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.documentFrontFile == null
-                    ? const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.file_upload_outlined), // Icon
-                          SizedBox(height: 8), // Spacer between icon and text
-                          Text(
-                            'Upload a clear image of the front of your card',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                                color: Colors.grey),
-                          )
-                        ],
+                child: state.submittingData
+                    ? Center(
+                        child: loader(loaderColor: BDPColors.primary),
                       )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: Image.file(
-                          state.documentFrontFile!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    : state.documentFrontFile == null
+                        ? const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.file_upload_outlined), // Icon
+                              SizedBox(
+                                  height: 8), // Spacer between icon and text
+                              Text(
+                                'Upload a clear image of the front of your card',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              )
+                            ],
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(12.r),
+                            child: Image.file(
+                              state.documentFrontFile!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
               ),
             ),
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
@@ -114,8 +121,9 @@ class _CardInfoState extends State<CardInfo> {
                 )),
             const SizedBox(height: BDPSizes.spaceBtwInputFields),
             GestureDetector(
-              onTap: () async{
-                var image = await controller.selectAnImage("document-back-image");
+              onTap: () async {
+                var image =
+                    await controller.selectAnImage("document-back-image");
                 bloc!.add(DocumentBackFileEvent(file: image));
                 var multipartImg = await controller.getMultiPartFile(image);
                 bloc!.add(DocumentBackEvent(file: multipartImg));
@@ -129,29 +137,34 @@ class _CardInfoState extends State<CardInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.documentBackFile == null
-                    ? const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.file_upload_outlined), // Icon
-                          SizedBox(height: 8), // Spacer between icon and text
-                          Text(
-                            'Upload a clear image of the back of your card',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                                color: Colors.grey),
-                          )
-                        ],
+                child: state.submittingData
+                    ? Center(
+                        child: loader(loaderColor: BDPColors.primary),
                       )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: Image.file(
-                          state.documentBackFile!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    : state.documentBackFile == null
+                        ? const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.file_upload_outlined), // Icon
+                              SizedBox(
+                                  height: 8), // Spacer between icon and text
+                              Text(
+                                'Upload a clear image of the back of your card',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              )
+                            ],
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(12.r),
+                            child: Image.file(
+                              state.documentBackFile!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
               ),
             ),
           ],

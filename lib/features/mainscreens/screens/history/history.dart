@@ -1,6 +1,10 @@
+import 'package:bdp_payment_app/common/models/transaction_history.dart';
 import 'package:bdp_payment_app/common/widgets/custom_appbar/custom_appbar.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/history/history_widgets/history_widgets.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
+import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,8 +14,22 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 import '../wallets/widgets/transaction_item.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
+
+  @override
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  late TransactionHistoryController controller;
+  TransactionBlocs blocs = TransactionBlocs();
+  @override
+  void initState() {
+    controller = TransactionHistoryController(context: context);
+    blocs = context.read<TransactionBlocs>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,27 +55,43 @@ class HistoryScreen extends StatelessWidget {
                         var item = state.allTransactions[index];
                         return Padding(
                           padding: EdgeInsets.symmetric(vertical: 8.h),
-                          child: TransactionItem(
-                              title: item.transferType?.name ?? "",
-                              description: item.description ?? "",
-                              date: item.formattedProcessDate ?? "",
-                              time: formatTime(item.processDate),
-                              amount: item.formattedAmount ?? "",
-                              isSuccess: item.status == "PROCESSED"),
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.loadTransactionById(item.id!);
+                              _showHistoryModal();
+                            },
+                            child: TransactionItem(
+                                title: item.transferType?.name ?? "",
+                                description: item.description ?? "",
+                                date: item.formattedProcessDate ?? "",
+                                time: formatTime(item.processDate),
+                                amount: item.formattedAmount ?? "",
+                                isSuccess: item.status == "PROCESSED"),
+                          ),
                         );
-                      }, separatorBuilder: (BuildContext context, int index) {
-                        return _buildDivider();
-          },);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return buildDivider();
+                      },
+                    );
         }),
       ),
     );
   }
+
+  void _showHistoryModal() {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) {
+          return BlocBuilder<TransactionBlocs, TransactionStates>(
+              builder: (context, state) {
+            return reusableHistoryData(
+                history: state.currentHistory,
+                loading: state.loadingTransactions == true);
+          });
+        });
+  }
 }
 
-Widget _buildDivider() {
-  return Divider(
-    color: Colors.grey[300],
-    thickness: 1,
-    height: 0,
-  );
-}
+

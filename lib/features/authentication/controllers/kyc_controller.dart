@@ -132,6 +132,8 @@ class KYCController {
 
   //get the multipartFile
   Future<dio.MultipartFile> getMultiPartFile(File? file) async {
+    final authBloc = context.read<AuthenticationBloc>();
+    authBloc.add(SubmittingDataEvent(value: true));
     var selectedFile;
     var directory = await getApplicationDocumentsDirectory();
     var newFilePath = await file!.copy("${directory.path}${DateTime.now().millisecondsSinceEpoch}.jpg");
@@ -145,6 +147,7 @@ class KYCController {
     var encodedImage = img.encodeJpg(decodedImage!);
     selectedFile = dio.MultipartFile.fromBytes(encodedImage,
         filename: "image_$file.jpg");
+    authBloc.add(SubmittingDataEvent(value: false));
     return selectedFile;
   }
 

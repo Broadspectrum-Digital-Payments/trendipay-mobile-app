@@ -17,11 +17,15 @@ class AuthenticationStates {
   final String emailAddress;
   final String phoneNumber;
   final String pin;
+  final String oldPin;
   final String confirmPin;
+  final String otp;
 
   final bool submittingData;
 
   final bool isMobileMoneyNumber;
+
+  final bool isPinChange;
 
   AuthenticationStates({
     this.profilePic,
@@ -31,12 +35,16 @@ class AuthenticationStates {
     this.documentFrontFile,
     this.documentBackFile,
     this.name = "",
+    this.otp = "",
     this.emailAddress = "",
     this.phoneNumber = "",
+    this.oldPin = "",
     this.pin = "",
     this.confirmPin = "",
     this.submittingData = false,
+    this.isPinChange = false,
     this.isMobileMoneyNumber = false,
+
   });
 
   AuthenticationStates copyWith(
@@ -49,9 +57,12 @@ class AuthenticationStates {
       String? name,
       String? phoneNumber,
       String? emailAddress,
+        String? oldPin,
+        String? otp,
       String? pin,
       String? confirmPin,
       bool? submittingData,
+        bool? isPinChange,
       bool? isMobileMoneyNumber}) {
     return AuthenticationStates(
       profilePic: profilePic ?? this.profilePic,
@@ -60,13 +71,17 @@ class AuthenticationStates {
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       emailAddress: emailAddress ?? this.emailAddress,
+      oldPin: oldPin ?? this.oldPin,
       pin: pin ?? this.pin,
       confirmPin: confirmPin ?? this.confirmPin,
       submittingData: submittingData ?? this.submittingData,
       isMobileMoneyNumber: isMobileMoneyNumber ?? this.isMobileMoneyNumber,
       profileFile: profileFile ?? this.profileFile,
       documentFrontFile: documentFrontFile ?? this.documentFrontFile,
-      documentBackFile: documentBackFile ?? this.documentBackFile
+      documentBackFile: documentBackFile ?? this.documentBackFile,
+      isPinChange: isPinChange ?? this.isPinChange,
+      otp: otp ?? this.otp
+
     );
   }
 }

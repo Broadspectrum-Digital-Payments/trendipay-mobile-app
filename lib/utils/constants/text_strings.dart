@@ -12,8 +12,10 @@ class BDPTexts {
   static const String loginTitle = "Log In";
   static const String phoneNumberTitle = "Phone Number";
   static const String otpTitle = "OTP";
+
   static const String  accountRegistration = "Account Registration";
   static const String pinSetupTitle= "Pin Setup";
+  static const String pinChangeTitle= "Pin Change";
   static const String kycSetup = "KYC Setup";
   static const String transfer= "Transfer";
   static const String transactionOTP = "Transaction OTP";
@@ -35,6 +37,9 @@ class BDPTexts {
   static const String fullName = "Enter your full name";
   static const String emails= "Enter your email-address";
   static const String pin = " Enter you pin";
+  static const String oldPin = " Old pin";
+  static const String newPin = " New pin";
+  static const String newPinConfirm = " Confirm new pin";
   static const String reEnterPin= "Re-enter your pin";
   static const String name = "Name";
   static const String emailAddress = "E-mail Address";
@@ -81,6 +86,7 @@ static const selectCardTitle = "You have not added any cards yet. Your wallets w
   static const String chat= "Chat with us";
   static const String signOut = "Sign Out";
   static const String confirm ="Confirm transaction with OTP";
+  static const String confirmPinChange ="Confirm pin change";
   static const String backHome = "Back to home";
 
 
@@ -98,7 +104,8 @@ static const selectCardTitle = "You have not added any cards yet. Your wallets w
   static const String pinRequirements1 = " Pin should not be less than 6 characters";
   static const String pinRequirements2 = " Pin should not include special characters like %,&,* ";
   static const String pinRequirements3 = " Pin should not include special characters like %,&,* ";
-  static const String pinSetSuccess = " Your pin has been successfully created";
+  static const String pinSetSuccess = " Confirm change of pin";
+  static const String pinChangeSuccess = " Your pin has been successfully changed";
   static const String transactionSuccessful = "Your payment was successful";
 
 
@@ -156,7 +163,9 @@ static const String userName= "Gbafa Wisdom";
 static const String userEmail= "elwisdom005@gmail.com";
 static const String accountPin = "Pin";
 static const String userPin = "****";
-static const String changePin = "Click here to chaneg pin";
+static const String changePin = "Click here to change pin";
+
+static const String changePinBtn = "Change Pin";
 
 
 static const String routineNotice = "Routine Notice";

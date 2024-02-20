@@ -2,11 +2,13 @@
 import 'dart:io';
 
 import 'package:bdp_payment_app/common/widgets/button/button.dart';
+import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_states.dart';
 import 'package:bdp_payment_app/features/authentication/controllers/kyc_controller.dart';
 import 'package:bdp_payment_app/navigation_menu.dart';
+import 'package:bdp_payment_app/utils/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,7 +75,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                       width: 1, // Width of the border
                     ),
                     borderRadius: BorderRadius.circular(12.r)),
-                child: state.profileFile == null ? const Column(
+                child: state.submittingData ? Center(child: loader(loaderColor: BDPColors.primary),) : state.profileFile == null ? const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.file_upload_outlined), // Icon

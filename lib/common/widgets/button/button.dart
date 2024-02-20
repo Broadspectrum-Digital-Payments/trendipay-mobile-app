@@ -1,5 +1,6 @@
 import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/authentication/controllers/onboarding_controller.dart';
 import '../../../utils/constants/colors.dart';
@@ -28,7 +29,7 @@ class Buttons extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         backgroundColor: BDPColors.primary,
-        padding: const EdgeInsets.only(left: 26),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
       ),
       child: isLoading! ?
           Center(

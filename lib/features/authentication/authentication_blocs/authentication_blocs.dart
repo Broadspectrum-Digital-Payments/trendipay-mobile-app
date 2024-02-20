@@ -15,6 +15,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
     on<PhoneEvent>(_phoneEvent);
     on<EmailEvent>(_emailEvent);
     on<PinEvent>(_pinEvent);
+    on<ChangePinOtpEvent>(_changePinOtpEvent);
+    on<OldPinEvent>(_oldPinEvent);
     on<ConfirmPinEvent>(_confirmPinEvent);
     on<SubmittingDataEvent>(_submittingEvent);
     on<MobileMoneyEvent>(_mobileMoneyEvent);
@@ -22,6 +24,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
     on<DocumentBackFileEvent>(_documentBackFileEvent);
     on<DocumentFrontFileEvent>(_documentFrontFileEvent);
     on<ProfileFileEvent>(_profileFileEvent);
+    on<PinChangeEvent>(_onPinChange);
   }
 
 
@@ -65,6 +68,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
     emit(state.copyWith(isMobileMoneyNumber: event.value));
   }
 
+
+
   FutureOr<void> _resetAuthenticationData(ResetAuthenticationData event, Emitter<AuthenticationStates> emit) {
     emit(state.copyWith(
       name: "",
@@ -72,12 +77,15 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
       emailAddress: "",
       pin: "",
       confirmPin: "",
+      oldPin: "",
       documentBackFile: null,
       documentFrontFile: null,
       documentFrontPic: null,
       documentBackPic: null,
       profileFile: null,
       profilePic: null,
+      isPinChange: false,
+      otp: ""
     ));
   }
 
@@ -91,5 +99,17 @@ class AuthenticationBloc extends Bloc<AuthenticationEvents, AuthenticationStates
 
   FutureOr<void> _profileFileEvent(ProfileFileEvent event, Emitter<AuthenticationStates> emit) {
     emit(state.copyWith(profileFile: event.file));
+  }
+
+  FutureOr<void> _onPinChange(PinChangeEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(isPinChange: event.value));
+  }
+
+  FutureOr<void> _oldPinEvent(OldPinEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(oldPin: event.value));
+  }
+
+  FutureOr<void> _changePinOtpEvent(ChangePinOtpEvent event, Emitter<AuthenticationStates> emit) {
+    emit(state.copyWith(otp: event.value));
   }
 }

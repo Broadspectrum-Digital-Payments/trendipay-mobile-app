@@ -20,6 +20,20 @@ class AuthenticationRepository {
     return response;
   }
 
+  //change the user pin
+  changeUserPin(Map<String, dynamic> body) async {
+    var response =
+    await httpService.put(ApiConstants.changePin, body: body);
+    return response;
+  }
+
+  confirmChangeUserPin(Map<String, dynamic> body) async {
+    var response =
+    await httpService.put(ApiConstants.changePin, body: body);
+    return response;
+  }
+
+
   userLogin(String username, String password) async {
     var body = {"authType": "SESSION"};
     var response = await httpService.postWithBasicAuth(

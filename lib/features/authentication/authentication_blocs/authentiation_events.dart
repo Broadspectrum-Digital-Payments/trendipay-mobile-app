@@ -59,6 +59,15 @@ class PinEvent extends AuthenticationEvents {
   PinEvent({required this. value});
 }
 
+class OldPinEvent extends AuthenticationEvents {
+  final String value;
+  OldPinEvent({required this. value});
+}
+
+class ChangePinOtpEvent extends AuthenticationEvents {
+  final String value;
+  ChangePinOtpEvent({required this. value});
+}
 class ConfirmPinEvent extends AuthenticationEvents {
   final String value;
   ConfirmPinEvent({required this. value});
@@ -72,7 +81,12 @@ class SubmittingDataEvent extends AuthenticationEvents {
 
 class MobileMoneyEvent extends AuthenticationEvents {
   final bool value;
-  MobileMoneyEvent({required this. value});
+  MobileMoneyEvent({required this.value});
+}
+
+class PinChangeEvent extends AuthenticationEvents {
+  final bool value;
+  PinChangeEvent({required this.value});
 }
 
 class ResetAuthenticationData extends AuthenticationEvents {

@@ -11,6 +11,7 @@ class TransactionHistory {
   String? status;
   TransferType? transferType;
   String? description;
+  Member? member;
   By? by;
   String? channel;
   String? transactionNumber;
@@ -26,6 +27,7 @@ class TransactionHistory {
     this.status,
     this.transferType,
     this.description,
+    this.member,
     this.by,
     this.channel,
     this.transactionNumber,
@@ -42,6 +44,7 @@ class TransactionHistory {
     status: json["status"],
     transferType: json["transferType"] == null ? null : TransferType.fromJson(json["transferType"]),
     description: json["description"],
+    member: json["member"] == null ? null : Member.fromJson(json["member"]),
     by: json["by"] == null ? null : By.fromJson(json["by"]),
     channel: json["channel"],
     transactionNumber: json["transactionNumber"],
@@ -58,6 +61,7 @@ class TransactionHistory {
     "status": status,
     "transferType": transferType?.toJson(),
     "description": description,
+    "member": member?.toJson(),
     "by": by?.toJson(),
     "channel": channel,
     "transactionNumber": transactionNumber,
@@ -89,6 +93,50 @@ class By {
     "name": name,
     "username": username,
     "email": email,
+  };
+}
+
+class Member {
+  int? id;
+  String? name;
+  String? username;
+  String? email;
+  int? groupId;
+  String? mobileNumber;
+  String? status;
+  String? notificationLanguage;
+
+  Member({
+    this.id,
+    this.name,
+    this.username,
+    this.email,
+    this.groupId,
+    this.mobileNumber,
+    this.status,
+    this.notificationLanguage,
+  });
+
+  factory Member.fromJson(Map<String, dynamic> json) => Member(
+    id: json["id"],
+    name: json["name"],
+    username: json["username"],
+    email: json["email"],
+    groupId: json["groupId"],
+    mobileNumber: json["mobileNumber"],
+    status: json["status"],
+    notificationLanguage: json["notificationLanguage"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "username": username,
+    "email": email,
+    "groupId": groupId,
+    "mobileNumber": mobileNumber,
+    "status": status,
+    "notificationLanguage": notificationLanguage,
   };
 }
 

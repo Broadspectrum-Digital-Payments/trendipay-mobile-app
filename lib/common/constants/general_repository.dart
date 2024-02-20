@@ -58,4 +58,14 @@ class GeneralRepository {
 
   static formatNumber({num? value}) => NumberFormat("#,##0.00##").format(value).toString();
 
+  static fullDate(date){
+    String formattedDate = DateFormat('dd MMMM yyyy').format(date);
+    return formattedDate;
+  }
+
+  static time(date){
+    String formattedDate = DateFormat('h:mm a').format(date);
+    return formattedDate;
+  }
+
 }

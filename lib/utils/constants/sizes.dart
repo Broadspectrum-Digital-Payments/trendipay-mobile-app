@@ -1,4 +1,6 @@
 
+import 'package:flutter/cupertino.dart';
+
 class BDPSizes {
   // Padding and margin sizes
   static const double xs = 4.0;
@@ -68,6 +70,10 @@ class BDPSizes {
 
   // Grid view spacing
   static const double gridViewSpacing = 16.0;
+
+
+  static verticalSpacer({double space = 16}) => SizedBox(height: space,);
+  static horizontal({double space = 16}) => SizedBox(width: space,);
 }
 
 

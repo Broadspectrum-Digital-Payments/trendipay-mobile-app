@@ -208,7 +208,6 @@ class _SelectWalletScreenState extends State<SelectWalletScreen> {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        bool useWalletForFuture = false;
         return BlocBuilder<WalletBloc, WalletState>(
             builder: (context, state) {
               return SingleChildScrollView(

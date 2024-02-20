@@ -19,6 +19,11 @@ class LoadingTransactionEvent extends TransactionEvents {
   LoadingTransactionEvent({required this.loading});
 }
 
+class GetCurrentTransactionHistory extends TransactionEvents {
+  TransactionHistory history;
+  GetCurrentTransactionHistory({required this.history});
+}
+
 class FirstLoadEvent extends TransactionEvents {
   bool eventLoaded;
   FirstLoadEvent({required this.eventLoaded});

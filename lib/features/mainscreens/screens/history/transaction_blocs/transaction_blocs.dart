@@ -10,6 +10,7 @@ class TransactionBlocs extends Bloc<TransactionEvents, TransactionStates> {
     on<LoadingTransactionEvent>(_loadingTransactions);
     on<GetAllTransactions>(_getAllTransactions);
     on<FirstLoadEvent>(_getFirstLoadEvent);
+    on<GetCurrentTransactionHistory>(_getCurrentTransactionHistory);
   }
 
   FutureOr<void> _loadingTransactions(
@@ -30,5 +31,9 @@ class TransactionBlocs extends Bloc<TransactionEvents, TransactionStates> {
   FutureOr<void> _getFirstLoadEvent(
       FirstLoadEvent event, Emitter<TransactionStates> emit) {
     emit(state.copyWith(firstLoad: event.eventLoaded));
+  }
+
+  FutureOr<void> _getCurrentTransactionHistory(GetCurrentTransactionHistory event, Emitter<TransactionStates> emit) {
+    emit(state.copyWith(currentHistory: event.history));
   }
 }

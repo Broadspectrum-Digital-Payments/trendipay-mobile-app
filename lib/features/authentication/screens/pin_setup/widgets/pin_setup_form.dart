@@ -4,6 +4,7 @@ import 'package:bdp_payment_app/features/authentication/screens/kyc/kyc_setup.da
 import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ class PinSetupForm extends StatefulWidget {
 class _PinSetupFormState extends State<PinSetupForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late RegistrationController controller;
+  TextEditingController oldCtrl = TextEditingController();
   TextEditingController pinCtrl = TextEditingController();
   TextEditingController confirmPinCtrl = TextEditingController();
 
@@ -47,8 +49,47 @@ class _PinSetupFormState extends State<PinSetupForm> {
           key: formKey,
           child: Column(
             children: [
+              Visibility(
+                visible: state.isPinChange == true,
+                child: const SizedBox(
+                  height: BDPSizes.spaceBtwInputFields,
+                ),
+              ),
+              Visibility(
+                visible: state.isPinChange == true,
+                child: TextFormField(
+                  controller: oldCtrl,
+                  keyboardType: TextInputType.number,
+                  validator: (value){
+                    if (value == null || value.isEmpty) {
+                      return "Old pin field must not be empty";
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    context.read<AuthenticationBloc>().add(OldPinEvent(value: value));
+                  },
+                  decoration: InputDecoration(
+                    enabled: state.submittingData == false,
+                    labelText: BDPTexts.oldPin,
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16.sp,
+                      color: Colors.grey,
+                    ),
+                    suffixIcon: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            password = !password;
+                          });
+                        },
+                        child: Icon(password ? Iconsax.eye_slash : Iconsax.eye)),
+                  ),
+                  obscureText: password,
+                ),
+              ),
               const SizedBox(
-                height: BDPSizes.spaceBtwItems,
+                height: BDPSizes.spaceBtwInputFields,
               ),
               TextFormField(
                 controller: pinCtrl,
@@ -64,7 +105,7 @@ class _PinSetupFormState extends State<PinSetupForm> {
                 },
                 decoration: InputDecoration(
                   enabled: state.submittingData == false,
-                  labelText: BDPTexts.pin,
+                  labelText: state.isPinChange ? BDPTexts.newPin : BDPTexts.pin,
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16.sp,
@@ -99,7 +140,7 @@ class _PinSetupFormState extends State<PinSetupForm> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   enabled: state.submittingData == false,
-                  labelText: BDPTexts.reEnterPin,
+                  labelText: state.isPinChange ? BDPTexts.newPinConfirm : BDPTexts.reEnterPin,
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16.sp,
@@ -158,15 +199,19 @@ class _PinSetupFormState extends State<PinSetupForm> {
                 height: BDPSizes.spaceBtwSections,
               ),
               SizedBox(
-                width: 125,
+                width: 156.w,
                 height: 50,
                 child: Buttons(
-                  buttonName: BDPTexts.setPin,
+                  buttonName: state.isPinChange ? BDPTexts.changePinBtn : BDPTexts.setPin,
                   image: BDPImages.rightArrow,
                   isLoading: state.submittingData == true,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      controller.registerTheUser();
+                      if (state.isPinChange) {
+                        controller.pinChange();
+                      }else {
+                        controller.registerTheUser();
+                      }
                     }
                   },
                 ),

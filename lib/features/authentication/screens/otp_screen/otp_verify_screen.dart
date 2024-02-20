@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
+import 'package:bdp_payment_app/features/authentication/controllers/registration_controller.dart';
 import 'package:bdp_payment_app/features/authentication/screens/otp_screen/widgets/otp_widgets.dart';
 import 'package:bdp_payment_app/features/authentication/screens/otp_screen/widgets/resend_otp_text.dart';
 import 'package:bdp_payment_app/features/authentication/screens/otp_screen/widgets/verify_otp_button.dart';
@@ -10,6 +13,7 @@ import 'package:bdp_payment_app/features/authentication/screens/phonenumber_auth
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_controller/phone_number_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -28,6 +32,8 @@ class VerifyOTP extends StatefulWidget {
 
 class _VerifyOTPState extends State<VerifyOTP> {
   late PhoneNumberController phoneNumberController;
+  late RegistrationController registrationController;
+  AuthenticationBloc? bloc;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController codeCtrl = TextEditingController();
   StreamSubscription? _streamSubscription;
@@ -39,7 +45,9 @@ class _VerifyOTPState extends State<VerifyOTP> {
 
   @override
   void initState() {
+    bloc = context.read<AuthenticationBloc>();
     phoneNumberController = PhoneNumberController(context: context);
+    registrationController = RegistrationController(context: context);
     _streamSubscription = errorController?.stream.listen((event) {
       errorController!.add(ErrorAnimationType.shake);
     });
@@ -102,7 +110,12 @@ class _VerifyOTPState extends State<VerifyOTP> {
                               errorAnimationController: errorController,
                               enabled: state.isSubmitting == false,
                               onCompleted: (code) {
-                                context.read<PhoneNumberBlocs>().add(AddOtpEvent(otp: code));
+                                if(bloc!.state.isPinChange){
+                                  bloc!.add(ChangePinOtpEvent(value: code));
+                                }else {
+                                  context.read<PhoneNumberBlocs>().add(AddOtpEvent(otp: code));
+                                }
+
                                 //focusNode.unfocus();
                               }
                             ),
@@ -113,22 +126,30 @@ class _VerifyOTPState extends State<VerifyOTP> {
                         height: BDPSizes.spaceBtwSections,
                       ),
                       VerifyOTPButton(
-                        isLoading: state.isSubmitting == true,
+                        isLoading: state.isSubmitting == true || bloc!.state.submittingData == true,
                         onTap: (){
                           if (formKey.currentState!.validate()) {
-                            phoneNumberController.otpVerify();
+                            if (bloc!.state.isPinChange) {
+                              registrationController.confirmPinChange();
+                            }else {
+                              phoneNumberController.otpVerify();
+                            }
+
                           }
                         },
                       ),
                       const SizedBox(
                         height: BDPSizes.spaceBtwItems,
                       ),
-                      ResendOTPText(
-                        currentTime: current,
-                        resendOtp: (){
-                          phoneNumberController.generateOtp(resendOtp: true);
-                          resetAndAddTime();
-                        },
+                      Visibility(
+                        visible: bloc!.state.isPinChange == false,
+                        child: ResendOTPText(
+                          currentTime: current,
+                          resendOtp: (){
+                            phoneNumberController.generateOtp(resendOtp: true);
+                            resetAndAddTime();
+                          },
+                        ),
                       )
                     ],
                   ),

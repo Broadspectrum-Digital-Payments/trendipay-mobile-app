@@ -1,4 +1,6 @@
 import 'package:bdp_payment_app/common/widgets/button/button.dart';
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_blocs/phone_number_bloc.dart';
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_blocs/phone_number_events.dart';
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_blocs/phone_number_state.dart';
@@ -6,17 +8,11 @@ import 'package:bdp_payment_app/features/authentication/screens/phonenumber_auth
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../common/styles/spacing_styles.dart';
 import '../../../../common/widgets/authHeader/authheaders.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
-import '../login/widgets/login_form.dart';
-import '../otp_screen/otp_verify_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -30,7 +26,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   late PhoneNumberController phoneNumberController;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController phoneCtrl = TextEditingController();
-
 
 
   @override

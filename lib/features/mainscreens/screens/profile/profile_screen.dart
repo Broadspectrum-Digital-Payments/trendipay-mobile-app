@@ -1,9 +1,15 @@
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/common/constants/global_constants.dart';
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
+import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
+import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number.dart';
+import 'package:bdp_payment_app/features/authentication/screens/pin_setup/pin_setup_screen.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/profile/widgets/profile_textfields.dart';
 import 'package:bdp_payment_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../common/widgets/authHeader/authheaders.dart';
 import '../../../../common/widgets/button/button.dart';
@@ -81,12 +87,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   TextButton(
                     onPressed: () {
                       // Code to handle PIN change
+                      context.read<AuthenticationBloc>().add(PinChangeEvent(value: true));
+                      Get.to(()=> const PinSetup());
                     },
-                    child: const Text(
+                    child: Text(
                       BDPTexts.changePin,
                       style: TextStyle(
                           color: BDPColors.primary,
-                          fontSize: 12,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500),
                     ),
                   ),

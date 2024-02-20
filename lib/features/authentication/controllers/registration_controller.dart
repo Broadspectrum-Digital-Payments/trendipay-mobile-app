@@ -10,6 +10,8 @@ import 'package:bdp_payment_app/features/authentication/authentication_blocs/aut
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_repository/authentication_repository.dart';
 import 'package:bdp_payment_app/features/authentication/screens/kyc/kyc_setup.dart';
+import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
+import 'package:bdp_payment_app/features/authentication/screens/otp_screen/otp_verify_screen.dart';
 import 'package:bdp_payment_app/navigation_menu.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -119,4 +121,74 @@ class RegistrationController {
     }
   }
 
+  pinChange() async {
+    var bloc = context.read<AuthenticationBloc>();
+    var state = bloc.state;
+    if (int.parse(state.pin) != int.parse(state.confirmPin)) {
+      GeneralRepository.showSnackBar("Pin Mismatch", "The pin and confirm pin values should match");
+      return;
+    }
+
+    var oldPin = state.oldPin;
+    var pin = state.pin;
+    var confirmPin = state.confirmPin;
+
+    var body = {
+      "oldPin" : oldPin,
+      "newPin": pin,
+      "confirmPin": confirmPin
+    };
+    try {
+      bloc.add(SubmittingDataEvent(value: true));
+      var response = await _authApis.changeUserPin(body);
+      log("change pin response =====> ${response.toString()}");
+      bloc.add(SubmittingDataEvent(value: false));
+      var apiResponse = ApiResponse.parse(response);
+      if (apiResponse.allGood!) {
+        Get.to(()=> const VerifyOTP());
+        GeneralRepository.showSnackBar("Success", apiResponse.message!);
+
+      } else {
+        GeneralRepository.showSnackBar("Error", apiResponse.message!);
+      }
+    } on DioException catch (e) {
+      bloc.add(SubmittingDataEvent(value: false));
+      GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
+    }
+  }
+
+  confirmPinChange() async {
+    var bloc = context.read<AuthenticationBloc>();
+    var state = bloc.state;
+
+    var oldPin = state.oldPin;
+    var pin = state.pin;
+    var confirmPin = state.confirmPin;
+    var otp = state.otp;
+
+    var body = {
+      "oldPin" : oldPin,
+      "newPin": pin,
+      "confirmPin": confirmPin,
+      "otp": otp
+    };
+    log(body.toString());
+    try {
+      bloc.add(SubmittingDataEvent(value: true));
+      var response = await _authApis.changeUserPin(body);
+      log("change pin response =====> ${response.toString()}");
+      bloc.add(SubmittingDataEvent(value: false));
+      var apiResponse = ApiResponse.parse(response);
+      if (apiResponse.allGood!) {
+        Get.offAll(()=> const LoginScreen());
+        bloc.add(ResetAuthenticationData());
+        GeneralRepository.showSnackBar("Success", apiResponse.message!);
+      } else {
+        GeneralRepository.showSnackBar("Error", apiResponse.message!);
+      }
+    } on DioException catch (e) {
+      bloc.add(SubmittingDataEvent(value: false));
+      GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
+    }
+  }
 }
