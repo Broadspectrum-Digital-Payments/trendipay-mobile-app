@@ -47,6 +47,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 )
               : state.recentTransactions.isEmpty
                   ? const Center(
+            // this allows you to have recent transactions
                       child: Text("you have no recent transactions"),
                     )
                   : ListView.separated(
