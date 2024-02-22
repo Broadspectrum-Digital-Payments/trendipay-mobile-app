@@ -4,7 +4,7 @@ import 'package:bdp_payment_app/features/mainscreens/screens/notification/notifi
 import 'package:bdp_payment_app/features/mainscreens/screens/settings/settings.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallets.dart';
 import 'package:flutter/material.dart';
-import '../../../../../features/mainscreens/screens/profile/profile_screen.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
 import '../view_models/bottom_nav_view_model.dart';
 
 class NavigationMenu extends StatefulWidget {

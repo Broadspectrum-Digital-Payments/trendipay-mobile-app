@@ -9,11 +9,11 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../src/shared_widgets/buttons/bdp_text_button.dart';
-import '../../../../src/shared_widgets/common/authheaders.dart';
-import '../../../../core/constants/image_strings.dart';
-import '../../../../core/constants/sizes.dart';
-import '../../../../core/constants/text_strings.dart';
+import '../../../../shared_widgets/buttons/bdp_text_button.dart';
+import '../../../../shared_widgets/common/authheaders.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/sizes.dart';
+import '../../../../../core/constants/text_strings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
