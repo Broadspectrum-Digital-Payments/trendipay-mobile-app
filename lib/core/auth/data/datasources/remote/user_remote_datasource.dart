@@ -10,6 +10,7 @@ abstract class UserRemoteDataSource{
   Future<UserModel> login({required Map<String, dynamic> requestBody});
   Future<String> sendOtp({required Map<String, dynamic> requestBody});
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
+  Future<String> changePin({required Map<String, dynamic> requestBody});
   Future<String> forgotPassword({required Map<String, dynamic> requestBody});
   Future<bool> resetPassword({ required Map<String, dynamic> requestBody });
   Future<bool> logout();
@@ -140,6 +141,21 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   Future<String> verifyOtp({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postRequest(
       endpoint: ApiRoutes.verifyOtp,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return (body['message']?? '').toString();
+  }
+
+  @override
+  Future<String> changePin({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.putRequest(
+      endpoint: ApiRoutes.changePin,
       requestBody: requestBody,
     );
 

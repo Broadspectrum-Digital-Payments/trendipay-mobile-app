@@ -57,7 +57,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
               Form(
                 key: formKey,
                 child: BaseView2<UserViewModel, OtpViewModel>(
-                  builder: (context, userConsumer, otpViewModel, child) {
+                  builder: (context, userConsumer, otpConsumer, child) {
                     return Column(
                       children: [
                         Visibility(
@@ -70,7 +70,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                             valueListenable: obscurePin,
                             builder: (context, obscurePinValue, child) {
                               return BDPInput(
-                                enabled: !userConsumer.isSubmitted,
+                                enabled: !userConsumer.isSubmitted && !otpConsumer.isSubmitted,
                                 controller: pinCtrl,
                                 labelText: BDPTexts.password,
                                 validator: (value){
@@ -99,7 +99,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                             valueListenable: obscureConfirmPin,
                             builder: (context, obscureConfirmPinValue, child) {
                               return BDPInput(
-                                enabled: !userConsumer.isSubmitted,
+                                enabled: !userConsumer.isSubmitted && !otpConsumer.isSubmitted,
                                 controller: confirmPinCtrl,
                                 validator: (value){
                                   if (value == null || value.isEmpty) {
@@ -168,7 +168,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                           children: [
                             BDPPrimaryButton(
                               buttonText: widget.pinChange == true ? BDPTexts.changePinBtn : BDPTexts.setPin,
-                              isLoading: userConsumer.isSubmitted,
+                              isLoading: userConsumer.isSubmitted || otpConsumer.isSubmitted,
                               onPressed: () async{
                                 if (formKey.currentState!.validate()) {
                                   if(widget.pinChange == true){

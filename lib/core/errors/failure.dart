@@ -123,7 +123,7 @@ class FailureToMessage {
         'Something went wrong, please try again later');
       }
 
-      return const ServerFailure();
+      return ServerFailure(message: e.response!.data?['message']?? '');
     }
 
     if (e is ServerException) {

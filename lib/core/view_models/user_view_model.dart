@@ -79,7 +79,7 @@ class UserViewModel extends BaseViewModel{
 
   Future<void> changePin(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
    setIsSubmitted(true);
-    final result = await _userRepository.forgotPassword(requestBody: requestBody);
+    final result = await _userRepository.changePin(requestBody: requestBody);
 
     result.fold((left) {
       setIsSubmitted(false);

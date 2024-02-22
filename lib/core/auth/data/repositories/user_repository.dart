@@ -12,11 +12,14 @@ abstract class UserRepository{
   Future<bool> isLoggedIn();
   Future<Either<Failure, String>> sendOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> forgotPassword({required Map<String, dynamic> requestBody});
   Future<Either<Failure, bool>> resetPassword({required Map<String, dynamic> requestBody});
   Future<Either<Failure, bool>> logout();
   Future<Either<Failure, bool>> deleteAccount({required Map<String, dynamic> requestBody});
   Future<Either<Failure, UserModel>> updateUser({ required Map<String, dynamic> requestBody });
+
+  ///LOCAL DB
   Future<Either<Failure, UserModel>> retrieveUser();
   Future<Either<Failure, bool>> persistUser(UserModel user);
 }
@@ -140,6 +143,16 @@ class UserRepositoryImpl extends UserRepository{
   Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody}) async{
     try {
       final response = await userRemoteDataSource.verifyOtp(requestBody: requestBody);
+      return Right(response);
+    } catch (e) {
+      return Left(FailureToMessage.returnLeftError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody}) async{
+    try {
+      final response = await userRemoteDataSource.changePin(requestBody: requestBody);
       return Right(response);
     } catch (e) {
       return Left(FailureToMessage.returnLeftError(e));

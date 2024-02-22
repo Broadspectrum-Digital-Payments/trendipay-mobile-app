@@ -10,6 +10,7 @@ class ApiRoutes{
   static get login => '$_baseUrl/v1/users/login';
   static get sendOtp => '$_baseUrl/v1/users/otp';
   static get verifyOtp => '$_baseUrl/v1/users/otp/verify';
+  static get changePin => '$_baseUrl/v1/users/change-pin';
   static get forgotPassword => '$_baseUrl/auth/api/user/';
   static get resetPassword => '$_baseUrl/auth/api/user/';
   static get logout => '$_baseUrl/auth/api/user/logout';

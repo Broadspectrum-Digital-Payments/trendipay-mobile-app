@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
-import 'package:bdp_payment_app/core/view_models/base_view.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/widgets/resend_otp_text.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
@@ -9,6 +9,7 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/otp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
+import '../../../../../../core/view_models/base_view2.dart';
 import '../../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../../core/constants/image_strings.dart';
 import '../../../../../../core/constants/sizes.dart';
@@ -28,6 +29,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   int start = 150;
   int current = 150;
   final inputOtpCode = ValueNotifier<String>('');
+  final otpController = TextEditingController();
 
   @override
   void initState() {
@@ -73,8 +75,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
             padding: EdgeInsets.only(top: AppThemeUtil.height(48.0)),
             child: Form(
               key: formKey,
-              child: BaseView<OtpViewModel>(
-                builder: (context, otpConsumer, child) {
+              child: BaseView2<OtpViewModel, UserViewModel>(
+                builder: (context, otpConsumer, userConsumer, child) {
                   return Column(
                     children: [
                       Center(
@@ -83,9 +85,9 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(20.0)),
                             child: OTPInput(
-                              enabled: !otpConsumer.isSubmitted,
+                              controller: otpController,
+                              enabled: !otpConsumer.isSubmitted && !userConsumer.isSubmitted,
                               onCompleted: (code) {
-                                print(code);
                                 inputOtpCode.value = code;
                               }
                             ),
@@ -99,7 +101,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           BDPPrimaryButton(
-                            isLoading: otpConsumer.isSubmitted,
+                            isLoading: otpConsumer.isSubmitted || userConsumer.isSubmitted,
                             buttonText: 'Verify OTP',
                             onPressed: () async{
                               if (formKey.currentState!.validate()) {
@@ -121,6 +123,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       ResendOTPText(
                         currentTime: current,
                         resendOtp: () async{
+                          otpController.clear();
                           await context.read<OtpViewModel>().sendOtp(
                             context,
                             resend: true,

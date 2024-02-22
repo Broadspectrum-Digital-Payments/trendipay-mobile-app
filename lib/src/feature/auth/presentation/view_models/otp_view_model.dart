@@ -77,7 +77,7 @@ class OtpViewModel extends BaseViewModel{
       }
       if(_otpRequestBody['action'] == kChangePin){
         if(context.mounted){
-          await context.read<UserViewModel>().changePin(context, requestBody: {...requestBody, 'otp': requestBody['otp']});
+          await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
         }
         return;
       }
