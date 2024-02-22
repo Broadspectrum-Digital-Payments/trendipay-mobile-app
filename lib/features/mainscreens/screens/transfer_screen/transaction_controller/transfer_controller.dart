@@ -18,7 +18,6 @@ import '../../../../../common/widgets/success_screen/success_screen.dart';
 import '../../../../../src/feature/home/presentation/screens/navigation_menu.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
-import '../../../../authentication/screens/phonenumber_authentication/phone_number_repository/phone_number_repository.dart';
 import '../transaction_repository/transfer_repository.dart';
 
 class TransFerController {
@@ -28,7 +27,7 @@ class TransFerController {
   TransFerController({required this.context});
 
   final _apis = TransferRepository();
-  final _phoneApis = PhoneNumberRepository();
+  // final _phoneApis = PhoneNumberRepository();
   //transfer the money
   initiatePtoPTransfer() async {
     var bloc = context.read<TransferBloc>();
@@ -56,7 +55,7 @@ class TransFerController {
       var apiResponse = ApiResponse.parse(response);
       log("code ${apiResponse.code}");
       if (apiResponse.allGood!) {
-       sendOtp();
+       // sendOtp();
       }else {
         GeneralRepository.showSnackBar("Error", apiResponse.message!);
       }
@@ -105,58 +104,58 @@ class TransFerController {
 
 
   //send otp
-  sendOtp({bool? resendOtp = false}) async {
-    var bloc = context.read<TransferBloc>();
-    var state = bloc.state;
-    var medium = GlobalConstants.storageService.getString(GeneralRepository.mobileNumber);
-    var body  = {
-      "medium" : medium,
-      "actionType" : "Verification",
-      "otpToMobile" : true
-    };
-    try {
-      bloc.add(CompletingTransferEvent(completingTransfer: true));
-      var response = await _phoneApis.sendOtp(body);
-      log("otp generation Response ====> ${response.toString()}");
-      bloc.add(CompletingTransferEvent(completingTransfer: false));
-      var apiResponse = ApiResponse.parse(response);
-      if(apiResponse.allGood!) {
-        if (resendOtp! == false) Get.to(()=> const TransactionVerifyOTP());
-        GeneralRepository.showSnackBar("Success", apiResponse.message!);
-      }else {
-        GeneralRepository.showSnackBar("Error", apiResponse.message!);
-      }
-    }on DioException catch (e) {
-      bloc.add(CompletingTransferEvent(completingTransfer: false));
-      GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
-    }
-  }
+  // sendOtp({bool? resendOtp = false}) async {
+  //   var bloc = context.read<TransferBloc>();
+  //   var state = bloc.state;
+  //   var medium = GlobalConstants.storageService.getString(GeneralRepository.mobileNumber);
+  //   var body  = {
+  //     "medium" : medium,
+  //     "actionType" : "Verification",
+  //     "otpToMobile" : true
+  //   };
+  //   try {
+  //     bloc.add(CompletingTransferEvent(completingTransfer: true));
+  //     var response = await _phoneApis.sendOtp(body);
+  //     log("otp generation Response ====> ${response.toString()}");
+  //     bloc.add(CompletingTransferEvent(completingTransfer: false));
+  //     var apiResponse = ApiResponse.parse(response);
+  //     if(apiResponse.allGood!) {
+  //       if (resendOtp! == false) Get.to(()=> const TransactionVerifyOTP());
+  //       GeneralRepository.showSnackBar("Success", apiResponse.message!);
+  //     }else {
+  //       GeneralRepository.showSnackBar("Error", apiResponse.message!);
+  //     }
+  //   }on DioException catch (e) {
+  //     bloc.add(CompletingTransferEvent(completingTransfer: false));
+  //     GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
+  //   }
+  // }
 
 
-  otpVerify() async {
-    var bloc = context.read<TransferBloc>();
-    var state = bloc.state;
-    var otp = state.otp;
-    var medium = state.accountNumber;
-    var body  = {
-      "medium" : medium,
-      "otp" : otp,
-    };
-    try {
-      bloc.add(CompletingTransferEvent(completingTransfer: true));
-      var response = await _phoneApis.verifyOtp(body);
-      log("otp verification Response ====> ${response.toString()}");
-      bloc.add(CompletingTransferEvent(completingTransfer: false));
-      var apiResponse = ApiResponse.parse(response);
-      if(apiResponse.allGood!) {
-        confirmPaymentTransfer();
-        GeneralRepository.showSnackBar("Success", apiResponse.message!);
-      }else {
-        GeneralRepository.showSnackBar("Error", apiResponse.message!);
-      }
-    }on DioException catch (e) {
-      bloc.add(CompletingTransferEvent(completingTransfer: false));
-      GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
-    }
-  }
+  // otpVerify() async {
+  //   var bloc = context.read<TransferBloc>();
+  //   var state = bloc.state;
+  //   var otp = state.otp;
+  //   var medium = state.accountNumber;
+  //   var body  = {
+  //     "medium" : medium,
+  //     "otp" : otp,
+  //   };
+  //   try {
+  //     bloc.add(CompletingTransferEvent(completingTransfer: true));
+  //     var response = await _phoneApis.verifyOtp(body);
+  //     log("otp verification Response ====> ${response.toString()}");
+  //     bloc.add(CompletingTransferEvent(completingTransfer: false));
+  //     var apiResponse = ApiResponse.parse(response);
+  //     if(apiResponse.allGood!) {
+  //       confirmPaymentTransfer();
+  //       GeneralRepository.showSnackBar("Success", apiResponse.message!);
+  //     }else {
+  //       GeneralRepository.showSnackBar("Error", apiResponse.message!);
+  //     }
+  //   }on DioException catch (e) {
+  //     bloc.add(CompletingTransferEvent(completingTransfer: false));
+  //     GeneralRepository.showSnackBar("Error", DioExceptionHandler.getMessage(e));
+  //   }
+  // }
 }

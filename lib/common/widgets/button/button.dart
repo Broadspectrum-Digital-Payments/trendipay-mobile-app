@@ -2,7 +2,6 @@ import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../features/authentication/controllers/onboarding_controller.dart';
 import '../../../core/constants/colors.dart';
 
 class Buttons extends StatelessWidget {

@@ -6,11 +6,27 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
+  const UserModel._();
   const factory UserModel({
-    final int? id,
     final String? externalId,
+    final String? name,
+    final String? ghanaCardNumber,
+    final String? phoneNumber,
+    final String? type,
+    final String? status,
+    final String? kycStatus,
+    final String? actualBalance,
+    final String? availableBalance,
   }) = _UserModel;
+
+
+  String get greetingName{
+    if((name?? '').isEmpty) return '';
+    final splitNameList = (name?? '').replaceAll('-', ' ').split(' ');
+    return splitNameList.first;
+  }
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+
 }

@@ -9,7 +9,7 @@ class AppRoute {
   static const pinSetupScreen = 'pin_setup_screen';
   static const forgotPasswordSuccessScreen = 'forgot_password_success_screen';
   static const homeScreen = 'home_screen';
-  static const seeAllCategoriesScreen = 'see_all_category_screen';
+  static const kycSetupScreen = 'kyc_setup_screen';
   static const listProductScreen = 'list_product_screen';
   static const accountSettingsScreen = 'account_settings_screen';
   static const seeAllRentalListeningScreen = 'see_all_rental_listening_screen';

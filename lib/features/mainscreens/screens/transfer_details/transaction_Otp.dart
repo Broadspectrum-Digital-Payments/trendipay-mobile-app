@@ -134,7 +134,7 @@ class _TransactionVerifyOTPState extends State<TransactionVerifyOTP> {
                         image: BDPImages.rightArrow,
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            controller.otpVerify();
+                            // controller.otpVerify();
                           }
                         },
                       ),
@@ -168,7 +168,7 @@ class _TransactionVerifyOTPState extends State<TransactionVerifyOTP> {
                             SizedBox(width: 3.w,),
                             GestureDetector(
                               onTap: current == 0 ? () {
-                                controller.sendOtp(resendOtp: true);
+                                // controller.sendOtp(resendOtp: true);
                                 resetAndAddTime();
                               } : null,
                               child: Text(

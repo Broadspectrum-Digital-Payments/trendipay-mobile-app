@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LocalStorageService{
@@ -63,6 +64,7 @@ class LocalStorageService{
 
   Future<void> clearOnLogout() async{
     await clearAll();
+    await write(kOnboardingCompleted, 'yes');
   }
 
 

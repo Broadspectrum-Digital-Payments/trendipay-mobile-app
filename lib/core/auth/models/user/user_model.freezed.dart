@@ -20,8 +20,15 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int? get id => throw _privateConstructorUsedError;
   String? get externalId => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get ghanaCardNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get kycStatus => throw _privateConstructorUsedError;
+  String? get actualBalance => throw _privateConstructorUsedError;
+  String? get availableBalance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +41,16 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({int? id, String? externalId});
+  $Res call(
+      {String? externalId,
+      String? name,
+      String? ghanaCardNumber,
+      String? phoneNumber,
+      String? type,
+      String? status,
+      String? kycStatus,
+      String? actualBalance,
+      String? availableBalance});
 }
 
 /// @nodoc
@@ -50,17 +66,52 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? externalId = freezed,
+    Object? name = freezed,
+    Object? ghanaCardNumber = freezed,
+    Object? phoneNumber = freezed,
+    Object? type = freezed,
+    Object? status = freezed,
+    Object? kycStatus = freezed,
+    Object? actualBalance = freezed,
+    Object? availableBalance = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ghanaCardNumber: freezed == ghanaCardNumber
+          ? _value.ghanaCardNumber
+          : ghanaCardNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      kycStatus: freezed == kycStatus
+          ? _value.kycStatus
+          : kycStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actualBalance: freezed == actualBalance
+          ? _value.actualBalance
+          : actualBalance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      availableBalance: freezed == availableBalance
+          ? _value.availableBalance
+          : availableBalance // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -74,7 +125,16 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? externalId});
+  $Res call(
+      {String? externalId,
+      String? name,
+      String? ghanaCardNumber,
+      String? phoneNumber,
+      String? type,
+      String? status,
+      String? kycStatus,
+      String? actualBalance,
+      String? availableBalance});
 }
 
 /// @nodoc
@@ -88,17 +148,52 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? externalId = freezed,
+    Object? name = freezed,
+    Object? ghanaCardNumber = freezed,
+    Object? phoneNumber = freezed,
+    Object? type = freezed,
+    Object? status = freezed,
+    Object? kycStatus = freezed,
+    Object? actualBalance = freezed,
+    Object? availableBalance = freezed,
   }) {
     return _then(_$UserModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ghanaCardNumber: freezed == ghanaCardNumber
+          ? _value.ghanaCardNumber
+          : ghanaCardNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      kycStatus: freezed == kycStatus
+          ? _value.kycStatus
+          : kycStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actualBalance: freezed == actualBalance
+          ? _value.actualBalance
+          : actualBalance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      availableBalance: freezed == availableBalance
+          ? _value.availableBalance
+          : availableBalance // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -106,20 +201,44 @@ class __$$UserModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserModelImpl implements _UserModel {
-  const _$UserModelImpl({this.id, this.externalId});
+class _$UserModelImpl extends _UserModel {
+  const _$UserModelImpl(
+      {this.externalId,
+      this.name,
+      this.ghanaCardNumber,
+      this.phoneNumber,
+      this.type,
+      this.status,
+      this.kycStatus,
+      this.actualBalance,
+      this.availableBalance})
+      : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  final int? id;
-  @override
   final String? externalId;
+  @override
+  final String? name;
+  @override
+  final String? ghanaCardNumber;
+  @override
+  final String? phoneNumber;
+  @override
+  final String? type;
+  @override
+  final String? status;
+  @override
+  final String? kycStatus;
+  @override
+  final String? actualBalance;
+  @override
+  final String? availableBalance;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, externalId: $externalId)';
+    return 'UserModel(externalId: $externalId, name: $name, ghanaCardNumber: $ghanaCardNumber, phoneNumber: $phoneNumber, type: $type, status: $status, kycStatus: $kycStatus, actualBalance: $actualBalance, availableBalance: $availableBalance)';
   }
 
   @override
@@ -127,14 +246,36 @@ class _$UserModelImpl implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.externalId, externalId) ||
-                other.externalId == externalId));
+                other.externalId == externalId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.ghanaCardNumber, ghanaCardNumber) ||
+                other.ghanaCardNumber == ghanaCardNumber) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.kycStatus, kycStatus) ||
+                other.kycStatus == kycStatus) &&
+            (identical(other.actualBalance, actualBalance) ||
+                other.actualBalance == actualBalance) &&
+            (identical(other.availableBalance, availableBalance) ||
+                other.availableBalance == availableBalance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, externalId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      externalId,
+      name,
+      ghanaCardNumber,
+      phoneNumber,
+      type,
+      status,
+      kycStatus,
+      actualBalance,
+      availableBalance);
 
   @JsonKey(ignore: true)
   @override
@@ -150,17 +291,40 @@ class _$UserModelImpl implements _UserModel {
   }
 }
 
-abstract class _UserModel implements UserModel {
-  const factory _UserModel({final int? id, final String? externalId}) =
-      _$UserModelImpl;
+abstract class _UserModel extends UserModel {
+  const factory _UserModel(
+      {final String? externalId,
+      final String? name,
+      final String? ghanaCardNumber,
+      final String? phoneNumber,
+      final String? type,
+      final String? status,
+      final String? kycStatus,
+      final String? actualBalance,
+      final String? availableBalance}) = _$UserModelImpl;
+  const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  int? get id;
-  @override
   String? get externalId;
+  @override
+  String? get name;
+  @override
+  String? get ghanaCardNumber;
+  @override
+  String? get phoneNumber;
+  @override
+  String? get type;
+  @override
+  String? get status;
+  @override
+  String? get kycStatus;
+  @override
+  String? get actualBalance;
+  @override
+  String? get availableBalance;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

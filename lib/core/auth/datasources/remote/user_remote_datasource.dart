@@ -35,8 +35,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    var token = body['data']['bearer']['token'];
-    await sl.get<LocalStorageService>().writeToken(token??'');
+    await sl.get<LocalStorageService>().writeToken(body['data']['bearerToken']??'');
     return UserModel.fromJson(response.data['data']?? {});
   }
 
@@ -52,8 +51,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    var token = body['data']['bearer']['token'];
-    await sl.get<LocalStorageService>().writeToken(token??'');
+    await sl.get<LocalStorageService>().writeToken(body['data']['bearerToken']??'');
     return UserModel.fromJson(response.data['data']?? {});
   }
 

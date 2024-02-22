@@ -96,9 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     BDPPrimaryButton(
                       buttonText: 'Login',
                       onPressed: (){
-                        if (formKey.currentState!.validate()) {
-
-                        }
+                        AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
+                        // if (formKey.currentState!.validate()) {
+                        //
+                        // }
                       },
                     ),
                   ],
@@ -108,7 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+                      },
                       child: const Text(
                         BDPTexts.forgetPassword,
                         textAlign: TextAlign.right,

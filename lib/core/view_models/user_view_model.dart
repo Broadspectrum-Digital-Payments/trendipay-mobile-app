@@ -23,6 +23,7 @@ import 'package:flutter/material.dart';
 import '../auth/models/user/user_model.dart';
 import '../auth/repositories/user_repository.dart';
 import '../services/git_it_service_locator.dart';
+import '../utils/helper_util.dart';
 
 class UserViewModel extends ChangeNotifier{
   final _userRepository = sl.get<UserRepository>();
@@ -225,22 +226,12 @@ class UserViewModel extends ChangeNotifier{
 //       _persistUser();
 //     });
 //   }
-//
-//   Future<void> logout(BuildContext context) async{
-//     AppDialogUtil.loadingDialog(context);
-//
-//     final result = await _userRepository.logout();
-//
-//     if(context.mounted) AppNavigator.pop(context);
-//
-//     result.fold((left) {
-//       HelperUtil.logOut(context);
-//
-//     }, (right) {
-//       HelperUtil.logOut(context);
-//     });
-//   }
-//
+
+  Future<void> logout(BuildContext context) async{
+    HelperUtil.onLogout(context);
+  }
+
+
   Future<void> _retrieveUser() async{
     final result = await _userRepository.retrieveUser();
     result.fold((l) => null, (user) => _user = user);

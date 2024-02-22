@@ -1,5 +1,6 @@
 import 'package:bdp_payment_app/src/feature/auth/presentation/signup/phone_number_screen.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/signup/pin_setup_screen.dart';
+import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../src/feature/auth/presentation/login/login_screen.dart';
@@ -63,14 +64,12 @@ class AppNavigator {
       case AppRoute.pinSetupScreen:
         return MaterialPageRoute(builder: (context) => PinSetupScreen(pinChange: args as bool?,));
 
+      case AppRoute.kycSetupScreen:
+        return MaterialPageRoute(builder: (context) => const KYCSetupScreen());
+
       // case AppRoute.forgotPasswordSuccessScreen:
       //   return MaterialPageRoute(builder: (context) => const ForgotPasswordSuccessScreen());
-      //
-      // case AppRoute.homeScreen:
-      //   return MaterialPageRoute(builder: (context) => ChangeNotifierProvider<BottomNavViewModel>(
-      //     create: (context) => BottomNavViewModel(),
-      //     builder: (context, child) => const HomeScreen(),
-      //   ));
+
       // case AppRoute.seeAllCategoriesScreen:
       //   return MaterialPageRoute(builder: (context) => const SeeAllCategoriesScreen());
       //

@@ -1,4 +1,3 @@
-import 'package:bdp_payment_app/features/authentication/screens/navigation_menu/navigation_menu_controller/navigation_controller.dart';
 import 'package:flutter/material.dart';
 import '../../../features/mainscreens/screens/wallets/widgets/wallet_user.dart';
 import '../../../core/constants/image_strings.dart';
@@ -7,7 +6,7 @@ import '../../../src/shared_widgets/common/authheaders.dart';
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String appBarTitle;
 
-  const CustomAppBar({Key? key, required this.appBarTitle}) : super(key: key);
+  const CustomAppBar({super.key, required this.appBarTitle});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -18,13 +17,10 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.5);
  // Adjust the height as needed
-  late NavigationMenuController controller;
   @override
   void initState() {
-    controller = NavigationMenuController(context: context);
     super.initState();
   }
   @override
@@ -37,7 +33,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WalletUser(controller: controller,),
+            // WalletUser(controller: controller,),
             AuthHeader(icon: BDPImages.bdpIcon, title: widget.appBarTitle),
           ],
         ),

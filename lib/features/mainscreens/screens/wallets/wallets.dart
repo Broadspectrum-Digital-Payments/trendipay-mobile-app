@@ -16,7 +16,6 @@ import 'package:get/get.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../../core/constants/text_strings.dart';
-import '../../../authentication/screens/navigation_menu/navigation_menu_controller/navigation_controller.dart';
 import '../history/history_widgets/history_widgets.dart';
 import '../transfer_screen/transfer.dart';
 
@@ -28,11 +27,11 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
-  late NavigationMenuController controller;
+  // late NavigationMenuController controller;
   late TransactionHistoryController historyController;
   @override
   void initState() {
-    controller = NavigationMenuController(context: context);
+    // controller = NavigationMenuController(context: context);
     historyController = TransactionHistoryController(context: context);
     super.initState();
   }
@@ -42,7 +41,7 @@ class _WalletScreenState extends State<WalletScreen> {
     return Scaffold(
       appBar: AppBar(
         title: WalletUser(
-          controller: controller,
+          // controller: controller,
         ),
         automaticallyImplyLeading: false,
         backgroundColor: BDPColors.white,

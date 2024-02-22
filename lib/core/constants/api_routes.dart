@@ -6,8 +6,8 @@ class ApiRoutes{
   static final String _baseUrl = ApiConfigService.baseURL;
 
   // AUTH SERVICE
-  static get signup => '$_baseUrl/api/mobile/v1/user/register';
-  static get login => '$_baseUrl/api/mobile/v1/user/login';
+  static get signup => '$_baseUrl/v1/users/register';
+  static get login => '$_baseUrl/v1/users/login';
   static get forgotPassword => '$_baseUrl/auth/api/user/';
   static get resetPassword => '$_baseUrl/auth/api/user/';
   static get logout => '$_baseUrl/auth/api/user/logout';

@@ -1,22 +1,19 @@
-import 'package:bdp_payment_app/common/constants/general_repository.dart';
-import 'package:bdp_payment_app/common/constants/global_constants.dart';
-import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
-import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
-import 'package:bdp_payment_app/src/feature/auth/presentation/login/login_screen.dart';
-import 'package:bdp_payment_app/src/feature/auth/presentation/signup/phone_number_screen.dart';
-import 'package:bdp_payment_app/src/feature/auth/presentation/signup/pin_setup_screen.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/profile/widgets/profile_textfields.dart';
+
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
+import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
+import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import '../../../../src/shared_widgets/buttons/bdp_text_button.dart';
 import '../../../../src/shared_widgets/common/authheaders.dart';
-import '../../../../common/widgets/button/button.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../../core/constants/sizes.dart';
 import '../../../../core/constants/text_strings.dart';
-import '../../../authentication/screens/navigation_menu/navigation_menu_controller/navigation_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -26,18 +23,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late NavigationMenuController controller;
-  @override
-  void initState() {
-    controller = NavigationMenuController(context: context);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.profile),
+        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.profile),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -50,11 +41,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Image.asset(
                     BDPImages.userProfile,
                   ),
-                  const SizedBox(
+                  const VSpace(
                     height: 5,
                   ),
-                  Text(
-                    controller.name,
+                  const Text(
+                    'Pius',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -66,54 +57,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ProfileTextFields(
-                    textfieldName: BDPTexts.name,
-                    labelText: controller.name,
+                  const FormLabel(BDPTexts.name),
+                  const SizedBox(height: 2),
+                  const BDPInput(
+                    labelText: 'pius',
+                    enabled: false,
                   ),
-                  const SizedBox(
+                  const VSpace(
                     height: BDPSizes.spaceBtwInputFields,
                   ),
-                  ProfileTextFields(
-                    textfieldName: BDPTexts.emailAddress,
-                    labelText: controller.email,
+                  const FormLabel(BDPTexts.emailAddress),
+                  const SizedBox(height: 2),
+                  const BDPInput(
+                    labelText: 'fiifipius@gmail.com',
+                    enabled: false,
                   ),
-                  const SizedBox(
+
+                  const VSpace(
                     height: BDPSizes.spaceBtwInputFields,
                   ),
-                  const ProfileTextFields(
-                    textfieldName: BDPTexts.accountPin,
+
+                  const FormLabel(BDPTexts.accountPin),
+                  const SizedBox(height: 2),
+                  const BDPInput(
                     labelText: BDPTexts.userPin,
+                    enabled: false,
                   ),
-                  TextButton(
+
+                  BDPTextButton(
+                    text: BDPTexts.changePin,
                     onPressed: () {
-                      // Code to handle PIN change
-                      context.read<AuthenticationBloc>().add(PinChangeEvent(value: true));
-                      Get.to(()=> const PinSetupScreen());
+                      AppNavigator.pushNamed(context, AppRoute.pinSetupScreen, arguments: true);
                     },
-                    child: Text(
-                      BDPTexts.changePin,
-                      style: TextStyle(
-                          color: BDPColors.primary,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500),
-                    ),
                   ),
                 ],
               ),
-              const SizedBox(
+              const VSpace(
                 height: BDPSizes.spaceBtwSections * 3,
               ),
-              SizedBox(
-                  width: 140.w,
-                  height: 40,
-                  child: Buttons(
-                    buttonName: BDPTexts.signOut,
-                    image: BDPImages.signOut,
-                    onPressed: () {
-                      GlobalConstants.storageService.removeKey(GeneralRepository.sessionKey);
-                      Get.offAll(() => const LoginScreen());
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BDPPrimaryButton(
+                    buttonText: BDPTexts.signOut,
+                    onPressed: () async{
+                      await context.read<UserViewModel>().logout(context);
                     },
-                  ))
+                  ),
+                ],
+              )
             ],
           ),
         ),
