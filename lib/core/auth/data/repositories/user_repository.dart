@@ -13,7 +13,7 @@ abstract class UserRepository{
   Future<Either<Failure, String>> sendOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody});
-  Future<Either<Failure, bool>> uploadSelfie({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, bool>> uploadKYCFile({required Map<String, dynamic> requestBody});
 
   ///LOCAL DB
   Future<Either<Failure, UserModel>> retrieveUser();
@@ -106,9 +106,9 @@ class UserRepositoryImpl extends UserRepository{
   }
 
   @override
-  Future<Either<Failure, bool>> uploadSelfie({required Map<String, dynamic> requestBody}) async{
+  Future<Either<Failure, bool>> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
     try {
-      final response = await userRemoteDataSource.uploadSelfie(requestBody: requestBody);
+      final response = await userRemoteDataSource.uploadKYCFile(requestBody: requestBody);
       return Right(response);
     } catch (e) {
       return Left(FailureToMessage.returnLeftError(e));

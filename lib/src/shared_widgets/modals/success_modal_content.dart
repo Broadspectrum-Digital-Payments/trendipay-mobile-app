@@ -48,6 +48,7 @@ class SuccessModalContent extends StatelessWidget {
                 fontSize: AppThemeUtil.fontSize(20),
                 color: BDPColors.dark90,
               ),
+              textAlign: TextAlign.center,
             ),
           ]
         ],
@@ -57,6 +58,7 @@ class SuccessModalContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BDPPrimaryButton(
+              hasIcon: false,
               onPressed: onButtonPressed?? (){
                 AppNavigator.pop(context);
               },
@@ -66,11 +68,12 @@ class SuccessModalContent extends StatelessWidget {
         )
       ],
       child: message.isEmpty? const SizedBox.shrink() :  Text(
-        title,
+        message,
         style: kRegularFontStyle.copyWith(
           fontSize: AppThemeUtil.fontSize(16),
           color: BDPColors.dark90,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

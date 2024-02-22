@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
@@ -48,7 +49,7 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
           const VSpace(height: BDPSizes.spaceBtwInputFields),
           GestureDetector(
             onTap: () async {
-              if(await PermissionUtil.getCameraPermissions()){
+              if(await PermissionUtil.getStoragePermission()){
                 final croppedFile = await MediaFileUtil.getPickedSourceImage(
                   cameraFront: true,
                   cropped: false,
@@ -101,25 +102,30 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
           const VSpace(
             height: BDPSizes.spaceBtwSections,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                BDPPrimaryButton(
-                  buttonText: BDPTexts.saveAndContinue,
-                  imageIconFile: BDPImages.saveIcon,
-                  onPressed: () async{
-                    await context.read<UserViewModel>().uploadSelfie(
-                      context,
-                      requestBody: {
-                        'selfie': selfieFilePath.value,
+          BaseView<UserViewModel>(
+            builder: (context, userConsumer, child) {
+              if(userConsumer.selfieUploaded) return const SizedBox.shrink();
+              return Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    BDPPrimaryButton(
+                      buttonText: BDPTexts.saveAndContinue,
+                      imageIconFile: BDPImages.saveIcon,
+                      onPressed: () async{
+                        await context.read<UserViewModel>().uploadKYCFile(
+                          context,
+                          requestBody: {
+                            'selfie': selfieFilePath.value,
+                          },
+                        );
                       },
-                    );
-                  },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            }
           ),
         ],
       ),

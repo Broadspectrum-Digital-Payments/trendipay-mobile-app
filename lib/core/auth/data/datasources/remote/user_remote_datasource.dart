@@ -13,7 +13,7 @@ abstract class UserRemoteDataSource{
   Future<String> sendOtp({required Map<String, dynamic> requestBody});
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> changePin({required Map<String, dynamic> requestBody});
-  Future<bool> uploadSelfie({required Map<String, dynamic> requestBody});
+  Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody});
 }
 
 class UserRemoteDataSourceImpl extends UserRemoteDataSource{
@@ -102,7 +102,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   }
 
   @override
-  Future<bool> uploadSelfie({required Map<String, dynamic> requestBody}) async{
+  Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postFormDataRequest(
       endpoint: ApiRoutes.uploadSelfie,
       requestBody: FormData.fromMap(requestBody),

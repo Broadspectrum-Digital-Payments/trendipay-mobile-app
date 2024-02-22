@@ -100,12 +100,26 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-  Future<void> uploadSelfie(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+  bool _selfieUploaded = false;
+  bool get selfieUploaded => _selfieUploaded;
+
+  Future<void> uploadKYCFile(BuildContext context, {required Map<String, dynamic> requestBody}) async{
     AppDialogUtil.loadingDialog(context);
 
-    final imagePath = await MediaFileUtil.getMultipartFile(requestBody['selfie']?? '');
-    requestBody['selfie'] = imagePath;
-    final result = await _userRepository.uploadSelfie(requestBody: requestBody);
+    if(requestBody['selfie'] != null){
+      final imagePath = await MediaFileUtil.getMultipartFile(requestBody['selfie']?? '');
+      requestBody['selfie'] = imagePath;
+    }
+    if(requestBody['ghana-card-front'] != null){
+      final imagePath = await MediaFileUtil.getMultipartFile(requestBody['ghana-card-front']?? '');
+      requestBody['ghana-card-front'] = imagePath;
+    }
+    if(requestBody['ghana-card-back'] != null){
+      final imagePath = await MediaFileUtil.getMultipartFile(requestBody['ghana-card-back']?? '');
+      requestBody['ghana-card-back'] = imagePath;
+    }
+
+    final result = await _userRepository.uploadKYCFile(requestBody: requestBody);
 
     if(context.mounted) {AppNavigator.pop(context);}
 
@@ -120,6 +134,8 @@ class UserViewModel extends BaseViewModel{
       });
 
     }, (right) {
+      _selfieUploaded = true;
+      notifyListeners();
       AppDialogUtil.popUpModal(
         context,
         modalContent: const SuccessModalContent(
@@ -129,7 +145,6 @@ class UserViewModel extends BaseViewModel{
       );
     });
   }
-
 
 //   Future<void> forgotPassword(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
 //     if(!isResend) AppDialogUtil.loadingDialog(context);

@@ -29,9 +29,10 @@ class AppDialogUtil {
                 children: <Widget>[
                   AppLottie(
                     filePath: BDPImages.loading,
-                    height: AppThemeUtil.radius(32.0),
-                    width: AppThemeUtil.radius(32.0),
+                    height: AppThemeUtil.radius(120.0),
+                    width: AppThemeUtil.radius(120.0),
                     repeat: true,
+                    fit: BoxFit.contain,
                   ),
                 ],
               ),
