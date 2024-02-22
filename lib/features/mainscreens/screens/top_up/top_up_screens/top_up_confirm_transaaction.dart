@@ -1,5 +1,4 @@
 import 'package:bdp_payment_app/common/styles/spacing_styles.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -22,12 +21,10 @@ class TopupConfirmTransaction extends StatefulWidget {
 
 class _TopupConfirmTransactionState extends State<TopupConfirmTransaction> {
 
-  late WalletTopUpController controller;
 
   @override
   void initState() {
     // TODO: implement initState
-    controller = WalletTopUpController(context: context);
     super.initState();
   }
   @override
@@ -79,7 +76,7 @@ class _TopupConfirmTransactionState extends State<TopupConfirmTransaction> {
                             buttonName: BDPTexts.confirmTransactionButton,
                             image: BDPImages.rightArrow,
                             onPressed: () {
-                              controller.confirmTopUp();
+                              // controller.confirmTopUp();
                             }),
                       ),
                       const SizedBox(

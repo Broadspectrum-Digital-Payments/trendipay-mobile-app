@@ -1,17 +1,15 @@
-import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
+import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/quick_transaction.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/transaction_item.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/wallet_slider.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/wallet_user.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_slider.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_user.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
@@ -47,25 +45,24 @@ class _WalletScreenState extends State<WalletScreen> {
         child: Column(
           children: [
             const WalletSlider(),
-            const SizedBox(
+            const VSpace(
               height: BDPSizes.spaceBtwItems,
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         BDPTexts.quickTransaction,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: BDPColors.primary),
+                        style: kBoldFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(16),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  const VSpace(
                     height: BDPSizes.spaceBtwInputFields,
                   ),
                   Row(
@@ -94,67 +91,42 @@ class _WalletScreenState extends State<WalletScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  const VSpace(
                     height: BDPSizes.spaceBtwSections,
                   ),
                   Expanded(
                     child: Column(
                       children: [
-                        const Row(
+                        Row(
                           children: [
                             Text(
                               BDPTexts.recentTransaction,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16,
-                                  color: BDPColors.primary),
+                              style: kBoldFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(16),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
+                        const VSpace(
                           height: BDPSizes.spaceBtwItems,
                         ),
-                        Expanded(child:
-                            BlocBuilder<TransactionBlocs, TransactionStates>(
-                                builder: (context, state) {
-                          return state.loadingTransactions
-                              ? Center(
-                                  child: loader(loaderColor: BDPColors.primary),
-                                )
-                              : state.recentTransactions.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                          "you have no recent transactions"),
-                                    )
-                                  : ListView.separated(
-                                      itemCount:
-                                          state.recentTransactions.length,
-                                      itemBuilder: (context, index) {
-                                        var item =
-                                            state.recentTransactions[index];
-                                        return GestureDetector(
-                                          onTap: (){
-                                            historyController.loadTransactionById(item.id!);
-                                            _showHistoryModal();
-                                          },
-                                          child: TransactionItem(
-                                              title:
-                                                  item.transferType?.name ?? "",
-                                              description: item.description ?? "",
-                                              date:
-                                                  item.formattedProcessDate ?? "",
-                                              time: formatTime(item.processDate),
-                                              amount: item.formattedAmount ?? "",
-                                              isSuccess:
-                                                  item.status == "PROCESSED"),
-                                        );
-                                      }, separatorBuilder: (BuildContext context, int index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 8.0.h),
-                                          child: buildDivider(),
-                                        );
-                          },);
-                        })),
+                        // Expanded(child:
+                        //     BlocBuilder<TransactionBlocs, TransactionStates>(
+                        //         builder: (context, state) {
+                        //   return state.loadingTransactions
+                        //       ? Center(
+                        //           child: loader(loaderColor: BDPColors.primary),
+                        //         )
+                        //       : state.recentTransactions.isEmpty
+                        //           ? const Center(
+                        //               child: Text(
+                        //                   "you have no recent transactions"),
+                        //             )
+                        //           :
+                        //
+                        // }
+                        // ),
+                        // ),
                       ],
                     ),
                   )

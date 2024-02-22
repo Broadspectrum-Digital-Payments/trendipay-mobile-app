@@ -12,7 +12,6 @@ import '../../../../common/widgets/common_widgets.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/sizes.dart';
 import '../../../../core/constants/text_strings.dart';
-import '../wallets/widgets/transaction_item.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -37,46 +36,46 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBar: const CustomAppBar(
         appBarTitle: BDPTexts.transactionHistory,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(BDPSizes.defaultSpace),
-        child: BlocBuilder<TransactionBlocs, TransactionStates>(
-            builder: (context, state) {
-          return state.loadingTransactions == true
-              ? Center(
-                  child: loader(loaderColor: BDPColors.primary),
-                )
-              : state.recentTransactions.isEmpty
-                  ? const Center(
-            // this allows you to have recent transactions
-                      child: Text("you have no recent transactions"),
-                    )
-                  : ListView.separated(
-                      itemCount: state.allTransactions.length,
-                      itemBuilder: (context, index) {
-                        var item = state.allTransactions[index];
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.h),
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.loadTransactionById(item.id!);
-                              _showHistoryModal();
-                            },
-                            child: TransactionItem(
-                                title: item.transferType?.name ?? "",
-                                description: item.description ?? "",
-                                date: item.formattedProcessDate ?? "",
-                                time: formatTime(item.processDate),
-                                amount: item.formattedAmount ?? "",
-                                isSuccess: item.status == "PROCESSED"),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return buildDivider();
-                      },
-                    );
-        }),
-      ),
+      // body: Padding(
+      //   padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+      //   child: BlocBuilder<TransactionBlocs, TransactionStates>(
+      //       builder: (context, state) {
+      //     return state.loadingTransactions == true
+      //         ? Center(
+      //             child: loader(loaderColor: BDPColors.primary),
+      //           )
+      //         : state.recentTransactions.isEmpty
+      //             ? const Center(
+      //       // this allows you to have recent transactions
+      //                 child: Text("you have no recent transactions"),
+      //               )
+      //             : ListView.separated(
+      //                 itemCount: state.allTransactions.length,
+      //                 itemBuilder: (context, index) {
+      //                   var item = state.allTransactions[index];
+      //                   return Padding(
+      //                     padding: EdgeInsets.symmetric(vertical: 8.h),
+      //                     child: GestureDetector(
+      //                       onTap: () {
+      //                         controller.loadTransactionById(item.id!);
+      //                         _showHistoryModal();
+      //                       },
+      //                       child: TransactionItem(
+      //                           title: item.transferType?.name ?? "",
+      //                           description: item.description ?? "",
+      //                           date: item.formattedProcessDate ?? "",
+      //                           time: formatTime(item.processDate),
+      //                           amount: item.formattedAmount ?? "",
+      //                           isSuccess: item.status == "PROCESSED"),
+      //                     ),
+      //                   );
+      //                 },
+      //                 separatorBuilder: (BuildContext context, int index) {
+      //                   return buildDivider();
+      //                 },
+      //               );
+      //   }),
+      // ),
     );
   }
 

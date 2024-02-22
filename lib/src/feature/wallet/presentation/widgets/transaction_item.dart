@@ -12,6 +12,7 @@ class TransactionItem extends StatelessWidget {
   final bool isSuccess;
 
   const TransactionItem({
+    super.key,
     required this.title,
     required this.description,
     required this.date,

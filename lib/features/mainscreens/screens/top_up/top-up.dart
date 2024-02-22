@@ -2,7 +2,7 @@ import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/bank_
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_blocs.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_states.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/quick_transaction.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
 import 'package:bdp_payment_app/src/feature/home/presentation/screens/navigation_menu.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';

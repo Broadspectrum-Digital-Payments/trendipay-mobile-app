@@ -1,5 +1,5 @@
 import 'package:bdp_payment_app/features/mainscreens/controllers/wallet_controllers.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/widgets/wallet_card.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

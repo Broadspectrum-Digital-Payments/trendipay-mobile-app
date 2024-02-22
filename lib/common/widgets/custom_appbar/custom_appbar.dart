@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../features/mainscreens/screens/wallets/widgets/wallet_user.dart';
+import '../../../src/feature/wallet/presentation/widgets/wallet_user.dart';
 import '../../../core/constants/image_strings.dart';
 import '../../../src/shared_widgets/common/authheaders.dart';
 

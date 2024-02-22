@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
-import '../../top_up/top-up.dart';
+import '../../../../../features/mainscreens/screens/top_up/top-up.dart';
 
 class WalletCard extends StatelessWidget {
   const WalletCard({

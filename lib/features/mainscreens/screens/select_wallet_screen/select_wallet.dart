@@ -7,7 +7,6 @@ import 'package:bdp_payment_app/features/mainscreens/screens/top_up/top_up_scree
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_blocs.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_states.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,15 +40,12 @@ class _SelectWalletScreenState extends State<SelectWalletScreen> {
   String? selectedNetwork = "";
 
   bool useWallerForFuture = false;
-  
-  late WalletTopUpController controller;
+
 
   WalletBloc? bloc;
   @override
   void initState() {
     // TODO: implement initState
-    controller = WalletTopUpController(context: context);
-    controller.init();
     bloc = context.read<WalletBloc>();
     super.initState();
   }
@@ -304,7 +300,7 @@ class _SelectWalletScreenState extends State<SelectWalletScreen> {
                                         phoneNumber: phoneCtrl.text,
                                         futureUse: useWallerForFuture
                                       );
-                                      controller.addAWallet(wallet);
+                                      // controller.addAWallet(wallet);
                                       context.read<WalletBloc>().add(SaveWalletEvent(value: false!));
                                       phoneCtrl.text = "";
                                       walletNameCtrl.text = "";

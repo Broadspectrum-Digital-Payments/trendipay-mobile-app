@@ -1,7 +1,6 @@
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_blocs.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_blocs/wallet_states.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallet_controller/wallet_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,14 +23,7 @@ class TopUpWalletDetailsScreen extends StatefulWidget {
 }
 
 class _TopUpWalletDetailsScreenState extends State<TopUpWalletDetailsScreen> {
-  late WalletTopUpController controller;
 
-  @override
-  void initState() {
-    controller = WalletTopUpController(context: context);
-    // TODO: implement initState
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WalletBloc, WalletState>(
@@ -178,7 +170,7 @@ class _TopUpWalletDetailsScreenState extends State<TopUpWalletDetailsScreen> {
                         buttonName: BDPTexts.continueButtonText,
                         image: BDPImages.rightArrow,
                         onPressed: () {
-                        controller.initiateTopUpPayment();
+
                         }),
                   ),
                 ],
