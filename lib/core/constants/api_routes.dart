@@ -5,7 +5,7 @@ import '../services/api_config_service.dart';
 class ApiRoutes{
   static final String _baseUrl = ApiConfigService.baseURL;
 
-  // AUTH SERVICE
+  /// USER
   static get signup => '$_baseUrl/v1/users/register';
   static get login => '$_baseUrl/v1/users/login';
   static get sendOtp => '$_baseUrl/v1/users/otp';
@@ -15,4 +15,7 @@ class ApiRoutes{
   static get logout => '$_baseUrl/auth/api/user/logout';
   static get deleteAccount => '$_baseUrl/auth/api/user/deactivate-account';
   static get updateUser => '$_baseUrl/auth/api/user';
+
+  /// WALLET
+  static get walletTransaction => '$_baseUrl/v1/transactions';
 }

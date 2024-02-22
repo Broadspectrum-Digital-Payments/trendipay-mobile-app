@@ -1,9 +1,12 @@
 import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/view_models/wallet_view_model.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_recent_transactions.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_slider.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_user.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
@@ -109,6 +112,15 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                         const VSpace(
                           height: BDPSizes.spaceBtwItems,
+                        ),
+                        Expanded(
+                          child: BaseView<WalletViewModel>(
+                            builder: (context, walletConsumer, child){
+                              return WalletRecentTransactions(
+                                transactions: walletConsumer.getRecentTransactions,
+                              );
+                            },
+                          ),
                         ),
                         // Expanded(child:
                         //     BlocBuilder<TransactionBlocs, TransactionStates>(

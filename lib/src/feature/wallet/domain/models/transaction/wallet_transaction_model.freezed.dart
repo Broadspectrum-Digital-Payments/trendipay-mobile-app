@@ -22,11 +22,17 @@ WalletTransactionModel _$WalletTransactionModelFromJson(
 /// @nodoc
 mixin _$WalletTransactionModel {
   String? get externalId => throw _privateConstructorUsedError;
-  String? get amount => throw _privateConstructorUsedError;
+  String? get accountNumber => throw _privateConstructorUsedError;
+  num? get amount => throw _privateConstructorUsedError;
+  num? get balanceBefore => throw _privateConstructorUsedError;
+  num? get balanceAfter => throw _privateConstructorUsedError;
+  num? get fee => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
+  String? get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,11 +48,17 @@ abstract class $WalletTransactionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? externalId,
-      String? amount,
+      String? accountNumber,
+      num? amount,
+      num? balanceBefore,
+      num? balanceAfter,
+      num? fee,
+      String? type,
       String? description,
       String? date,
       String? time,
-      String? status});
+      String? status,
+      String? currency});
 }
 
 /// @nodoc
@@ -64,20 +76,46 @@ class _$WalletTransactionModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? externalId = freezed,
+    Object? accountNumber = freezed,
     Object? amount = freezed,
+    Object? balanceBefore = freezed,
+    Object? balanceAfter = freezed,
+    Object? fee = freezed,
+    Object? type = freezed,
     Object? description = freezed,
     Object? date = freezed,
     Object? time = freezed,
     Object? status = freezed,
+    Object? currency = freezed,
   }) {
     return _then(_value.copyWith(
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountNumber: freezed == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      balanceBefore: freezed == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as num?,
+      balanceAfter: freezed == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fee: freezed == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as num?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -94,6 +132,10 @@ class _$WalletTransactionModelCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currency: freezed == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -110,11 +152,17 @@ abstract class _$$WalletTransactionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? externalId,
-      String? amount,
+      String? accountNumber,
+      num? amount,
+      num? balanceBefore,
+      num? balanceAfter,
+      num? fee,
+      String? type,
       String? description,
       String? date,
       String? time,
-      String? status});
+      String? status,
+      String? currency});
 }
 
 /// @nodoc
@@ -131,20 +179,46 @@ class __$$WalletTransactionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? externalId = freezed,
+    Object? accountNumber = freezed,
     Object? amount = freezed,
+    Object? balanceBefore = freezed,
+    Object? balanceAfter = freezed,
+    Object? fee = freezed,
+    Object? type = freezed,
     Object? description = freezed,
     Object? date = freezed,
     Object? time = freezed,
     Object? status = freezed,
+    Object? currency = freezed,
   }) {
     return _then(_$WalletTransactionModelImpl(
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountNumber: freezed == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      balanceBefore: freezed == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as num?,
+      balanceAfter: freezed == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as num?,
+      fee: freezed == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as num?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -162,6 +236,10 @@ class __$$WalletTransactionModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      currency: freezed == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -171,11 +249,17 @@ class __$$WalletTransactionModelImplCopyWithImpl<$Res>
 class _$WalletTransactionModelImpl extends _WalletTransactionModel {
   const _$WalletTransactionModelImpl(
       {this.externalId,
+      this.accountNumber,
       this.amount,
+      this.balanceBefore,
+      this.balanceAfter,
+      this.fee,
+      this.type,
       this.description,
       this.date,
       this.time,
-      this.status})
+      this.status,
+      this.currency})
       : super._();
 
   factory _$WalletTransactionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -184,7 +268,17 @@ class _$WalletTransactionModelImpl extends _WalletTransactionModel {
   @override
   final String? externalId;
   @override
-  final String? amount;
+  final String? accountNumber;
+  @override
+  final num? amount;
+  @override
+  final num? balanceBefore;
+  @override
+  final num? balanceAfter;
+  @override
+  final num? fee;
+  @override
+  final String? type;
   @override
   final String? description;
   @override
@@ -193,10 +287,12 @@ class _$WalletTransactionModelImpl extends _WalletTransactionModel {
   final String? time;
   @override
   final String? status;
+  @override
+  final String? currency;
 
   @override
   String toString() {
-    return 'WalletTransactionModel(externalId: $externalId, amount: $amount, description: $description, date: $date, time: $time, status: $status)';
+    return 'WalletTransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, type: $type, description: $description, date: $date, time: $time, status: $status, currency: $currency)';
   }
 
   @override
@@ -206,18 +302,40 @@ class _$WalletTransactionModelImpl extends _WalletTransactionModel {
             other is _$WalletTransactionModelImpl &&
             (identical(other.externalId, externalId) ||
                 other.externalId == externalId) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter) &&
+            (identical(other.fee, fee) || other.fee == fee) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, externalId, amount, description, date, time, status);
+      runtimeType,
+      externalId,
+      accountNumber,
+      amount,
+      balanceBefore,
+      balanceAfter,
+      fee,
+      type,
+      description,
+      date,
+      time,
+      status,
+      currency);
 
   @JsonKey(ignore: true)
   @override
@@ -237,11 +355,17 @@ class _$WalletTransactionModelImpl extends _WalletTransactionModel {
 abstract class _WalletTransactionModel extends WalletTransactionModel {
   const factory _WalletTransactionModel(
       {final String? externalId,
-      final String? amount,
+      final String? accountNumber,
+      final num? amount,
+      final num? balanceBefore,
+      final num? balanceAfter,
+      final num? fee,
+      final String? type,
       final String? description,
       final String? date,
       final String? time,
-      final String? status}) = _$WalletTransactionModelImpl;
+      final String? status,
+      final String? currency}) = _$WalletTransactionModelImpl;
   const _WalletTransactionModel._() : super._();
 
   factory _WalletTransactionModel.fromJson(Map<String, dynamic> json) =
@@ -250,7 +374,17 @@ abstract class _WalletTransactionModel extends WalletTransactionModel {
   @override
   String? get externalId;
   @override
-  String? get amount;
+  String? get accountNumber;
+  @override
+  num? get amount;
+  @override
+  num? get balanceBefore;
+  @override
+  num? get balanceAfter;
+  @override
+  num? get fee;
+  @override
+  String? get type;
   @override
   String? get description;
   @override
@@ -259,6 +393,8 @@ abstract class _WalletTransactionModel extends WalletTransactionModel {
   String? get time;
   @override
   String? get status;
+  @override
+  String? get currency;
   @override
   @JsonKey(ignore: true)
   _$$WalletTransactionModelImplCopyWith<_$WalletTransactionModelImpl>

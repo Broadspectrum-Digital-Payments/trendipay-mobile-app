@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import '../../domain/models/transaction/wallet_transaction_model.dart';
 import 'transaction_item.dart';
 
-class RecentTransactions extends StatelessWidget {
-  const RecentTransactions({
+class WalletRecentTransactions extends StatelessWidget {
+  const WalletRecentTransactions({
     super.key,
     required this.transactions,
   });
@@ -32,11 +32,13 @@ class RecentTransactions extends StatelessWidget {
               amount: transaction.getAmount,
               isSuccess: transaction.status?.toLowerCase() == kProcessedStatus),
         );
-      }, separatorBuilder: (BuildContext context, int index) {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(8.0)),
-        child: const HDivider(),
-      );
-    },);
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(8.0)),
+          child: const HDivider(),
+        );
+      },
+    );
   }
 }
