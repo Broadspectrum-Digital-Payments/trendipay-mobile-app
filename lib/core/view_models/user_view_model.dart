@@ -20,6 +20,7 @@
 //
 import 'dart:collection';
 
+import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/modals/success_modal_content.dart';
@@ -136,11 +137,12 @@ class UserViewModel extends BaseViewModel{
     }, (right) {
       _selfieUploaded = true;
       notifyListeners();
+      final photoType = requestBody['selfie']!= null? 'Selfie': requestBody['ghana-card-front'] != null? 'Ghana Card Front':'Ghana Card Back';
       AppDialogUtil.popUpModal(
         context,
-        modalContent: const SuccessModalContent(
-          title: 'Selfie',
-          message: 'Selfie photo uploaded.',
+        modalContent: SuccessModalContent(
+          title: photoType,
+          message: '${photoType.toLowerCase().capitalize()} photo uploaded.',
         ),
       );
     });
