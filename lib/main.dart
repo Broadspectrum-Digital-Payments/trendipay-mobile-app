@@ -11,6 +11,7 @@ import 'core/routing/app_navigator.dart';
 import 'core/routing/app_route.dart';
 import 'core/services/git_it_service_locator.dart';
 import 'core/view_models/user_view_model.dart';
+import 'src/feature/wallet/presentation/view_models/wallet_view_model.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ void main() async{
     MultiProvider(
       providers: [
         ChangeNotifierProvider<UserViewModel>(create: (context) => UserViewModel()),
+        ChangeNotifierProvider<WalletViewModel>(create: (context) => WalletViewModel()),
       ],
       child: const BDPApp(),
     ),

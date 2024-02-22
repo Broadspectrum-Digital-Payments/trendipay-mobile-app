@@ -1,5 +1,5 @@
 import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallets.dart';
+import 'package:bdp_payment_app/src/feature/wallet/presentation/screens/wallet_screen.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/core/constants/text_strings.dart';

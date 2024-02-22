@@ -1,9 +1,9 @@
-import '../../../constants/api_routes.dart';
-import '../../../errors/error.dart';
-import '../../../services/git_it_service_locator.dart';
-import '../../../services/http_service_requester.dart';
-import '../../../services/local_storage_service.dart';
-import '../../models/user/user_model.dart';
+import '../../../../constants/api_routes.dart';
+import '../../../../errors/error.dart';
+import '../../../../services/git_it_service_locator.dart';
+import '../../../../services/http_service_requester.dart';
+import '../../../../services/local_storage_service.dart';
+import '../../../domain/models/user/user_model.dart';
 
 abstract class UserRemoteDataSource{
   Future<UserModel> signup({required Map<String, dynamic> requestBody});

@@ -1,10 +1,10 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../errors/failure.dart';
+import '../../../errors/failure.dart';
 import '../datasources/local/user_local_datasource.dart';
 import '../datasources/remote/user_remote_datasource.dart';
-import '../models/user/user_model.dart';
+import '../../domain/models/user/user_model.dart';
 
 abstract class UserRepository{
   Future<Either<Failure, UserModel>> signup({required Map<String, dynamic> requestBody});

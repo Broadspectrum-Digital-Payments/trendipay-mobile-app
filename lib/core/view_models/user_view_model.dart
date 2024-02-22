@@ -20,8 +20,8 @@
 //
 import 'package:flutter/material.dart';
 
-import '../auth/models/user/user_model.dart';
-import '../auth/repositories/user_repository.dart';
+import '../auth/domain/models/user/user_model.dart';
+import '../auth/data/repositories/user_repository.dart';
 import '../services/git_it_service_locator.dart';
 import '../utils/helper_util.dart';
 

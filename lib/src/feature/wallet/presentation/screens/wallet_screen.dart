@@ -13,11 +13,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../core/constants/colors.dart';
-import '../../../../core/constants/image_strings.dart';
-import '../../../../core/constants/text_strings.dart';
-import '../history/history_widgets/history_widgets.dart';
-import '../transfer_screen/transfer.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/text_strings.dart';
+import '../../../../../features/mainscreens/screens/history/history_widgets/history_widgets.dart';
+import '../../../../../features/mainscreens/screens/transfer_screen/transfer.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
