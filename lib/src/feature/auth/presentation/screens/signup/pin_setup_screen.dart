@@ -169,10 +169,10 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                             BDPPrimaryButton(
                               buttonText: widget.pinChange == true ? BDPTexts.changePinBtn : BDPTexts.setPin,
                               isLoading: userConsumer.isSubmitted,
-                              onPressed: () {
+                              onPressed: () async{
                                 if (formKey.currentState!.validate()) {
                                   if(widget.pinChange == true){
-                                    context.read<OtpViewModel>().sendOtp(
+                                    await context.read<OtpViewModel>().sendOtp(
                                       context,
                                       requestBody: {
                                         'action': kChangePin,
@@ -184,7 +184,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                     return;
                                   }
 
-                                  context.read<UserViewModel>().authentication(
+                                  await context.read<UserViewModel>().authentication(
                                     context,
                                     type: 'sign-up',
                                     requestBody: {

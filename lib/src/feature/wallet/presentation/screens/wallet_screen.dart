@@ -27,11 +27,9 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
-  // late NavigationMenuController controller;
   late TransactionHistoryController historyController;
   @override
   void initState() {
-    // controller = NavigationMenuController(context: context);
     historyController = TransactionHistoryController(context: context);
     super.initState();
   }
@@ -40,9 +38,7 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: WalletUser(
-          // controller: controller,
-        ),
+        title: const WalletUser(),
         automaticallyImplyLeading: false,
         backgroundColor: BDPColors.white,
       ),

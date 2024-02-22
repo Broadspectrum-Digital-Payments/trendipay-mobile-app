@@ -68,7 +68,7 @@ class OtpViewModel extends BaseViewModel{
           ),
         );
       });
-    }, (response){
+    }, (response) async{
       setIsSubmitted(false);
       if(_otpRequestBody['action'] == kSignupAction){
         setOtpRequestBody = {...requestBody, 'otp': requestBody['otp']};
@@ -77,7 +77,7 @@ class OtpViewModel extends BaseViewModel{
       }
       if(_otpRequestBody['action'] == kChangePin){
         if(context.mounted){
-          context.read<UserViewModel>().changePin(context, requestBody: {...requestBody, 'otp': requestBody['otp']});
+          await context.read<UserViewModel>().changePin(context, requestBody: {...requestBody, 'otp': requestBody['otp']});
         }
         return;
       }
