@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/utils/app_theme_util.dart';
 
@@ -17,6 +18,8 @@ class BDPInput extends StatelessWidget {
     this.obscureText = false,
     this.onTapOutside,
     this.focusNode,
+    this.textCapitalization = TextCapitalization.none,
+    this.inputFormatters,
   });
 
   final TextEditingController? controller;
@@ -30,6 +33,8 @@ class BDPInput extends StatelessWidget {
   final bool obscureText;
   final void Function(PointerDownEvent)? onTapOutside;
   final FocusNode? focusNode;
+  final TextCapitalization textCapitalization;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +46,8 @@ class BDPInput extends StatelessWidget {
       onChanged: onChanged,
       obscureText: obscureText,
       onTapOutside: onTapOutside,
+      textCapitalization: textCapitalization,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         enabled: enabled,

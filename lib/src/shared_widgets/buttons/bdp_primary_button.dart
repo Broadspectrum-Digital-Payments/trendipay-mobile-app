@@ -15,6 +15,7 @@ class BDPPrimaryButton extends StatelessWidget {
     required this.buttonText,
     this.imageIconFile,
     this.isLoading = false,
+    this.hasIcon = true,
   });
   
   final void Function()? onPressed;
@@ -22,6 +23,7 @@ class BDPPrimaryButton extends StatelessWidget {
   final String buttonText;
   final String? imageIconFile;
   final bool isLoading;
+  final bool hasIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +54,14 @@ class BDPPrimaryButton extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const HSpace(width: 8),
-          Image.asset(
-            imageIconFile?? BDPImages.rightArrow,
-            width: 24, // Adjust width as needed
-            height: 24, // Adjust height as needed
-          ),
+          if(hasIcon) ...[
+            const HSpace(width: 8),
+            Image.asset(
+              imageIconFile?? BDPImages.rightArrow,
+              width: 24, // Adjust width as needed
+              height: 24, // Adjust height as needed
+            ),
+          ],
         ],
       ),
     );

@@ -18,16 +18,24 @@
 // import '../auth/domain/models/user/user_model.dart';
 // import 'location_view_model.dart';
 //
+import 'dart:collection';
+
+import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
+import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../src/shared_widgets/modals/error_modal_content.dart';
 import '../auth/domain/models/user/user_model.dart';
 import '../auth/data/repositories/user_repository.dart';
+import '../errors/failure.dart';
+import '../routing/app_navigator.dart';
+import '../routing/app_route.dart';
 import '../services/git_it_service_locator.dart';
 import '../utils/helper_util.dart';
 
-class UserViewModel extends ChangeNotifier{
+class UserViewModel extends BaseViewModel{
   final _userRepository = sl.get<UserRepository>();
-  // Map<String, dynamic> _signupRequestBody = {};
+  Map<String, dynamic> _signupRequestBody = {};
 
   UserModel _user = const UserModel();
 
@@ -39,51 +47,57 @@ class UserViewModel extends ChangeNotifier{
 
   get getUser => _user;
 
-//   void setSignupRequestBody(Map<String, dynamic> request){
-//     _signupRequestBody = {..._signupRequestBody, ...request};
-//   }
-//
-//   UnmodifiableMapView<String, dynamic> get getSignupRequestBody => UnmodifiableMapView(_signupRequestBody);
-//
-//   Future<void> authentication(BuildContext context, {String type = 'login', required Map<String, dynamic> requestBody}) async{
-//     AppDialogUtil.loadingDialog(context);
-//
-//     if(type != 'login'){
-//       if(context.mounted && (requestBody['placeId'] != null && requestBody['placeId'].toString().isNotEmpty)){
-//         final locationDetails = await context.read<LocationViewModel>().fetchLocationDetails(requestBody['placeId']);
-//         final locality = HelperUtil.getLocalityFromAddressComponents(locationDetails?.addressComponents?? []);
-//         final address = {
-//           "latitude": locationDetails?.geometry?['location']['lat']?? 0,
-//           "longitude": locationDetails?.geometry?['location']['lng']?? 0,
-//           "country": "Nigeria",
-//           "countryCode": 'NG',
-//           "originName": requestBody['originName'],
-//           "city": locality.first.isEmpty ? requestBody['originName'] : locality.first
-//         };
-//         requestBody["address"] = address;
-//       }
-//     }
-//     final result = type == 'login'?
-//     await _userRepository.login(requestBody: requestBody)
-//         :
-//     await _userRepository.signup(requestBody: requestBody);
-//     if(context.mounted) {AppNavigator.pop(context);}
-//
-//     result.fold((failure){
-//       WidgetsBinding.instance.addPostFrameCallback((_) async{
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: ErrorModalContent(
-//             errorMessage: FailureToMessage.mapFailureToMessage(failure),
-//           ),
-//         );
-//       });
-//     }, (user){
-//       setUser = user;
-//       AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
-//     });
-//   }
-//
+  set setSignupRequestBody(Map<String, dynamic> request){
+    _signupRequestBody = {..._signupRequestBody, ...request};
+  }
+
+  UnmodifiableMapView<String, dynamic> get getSignupRequestBody => UnmodifiableMapView(_signupRequestBody);
+
+  Future<void> authentication(BuildContext context, {String type = 'login', required Map<String, dynamic> requestBody}) async{
+    setIsSubmitted(true);
+    final result = type == 'login'?
+    await _userRepository.login(requestBody: requestBody)
+        :
+    await _userRepository.signup(requestBody: requestBody);
+
+    result.fold((failure){
+      setIsSubmitted(false);
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(failure),
+          ),
+        );
+      });
+    }, (user){
+      setIsSubmitted(false, false);
+      setUser = user;
+      AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
+    });
+  }
+
+  Future<void> changePin(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
+   setIsSubmitted(true);
+    final result = await _userRepository.forgotPassword(requestBody: requestBody);
+
+    result.fold((left) {
+      setIsSubmitted(false);
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (right) {
+      setIsSubmitted(false);
+      AppNavigator.pushReplacementNamed(context, AppRoute.otpVerificationScreen);
+    });
+  }
+
 //   Future<void> forgotPassword(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
 //     if(!isResend) AppDialogUtil.loadingDialog(context);
 //

@@ -1,9 +1,10 @@
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/material.dart';
 
 class ARCheckbox extends StatelessWidget {
-  bool? value;
+  final bool? value;
   final Function(bool?)? onChanged;
-  ARCheckbox({
+  const ARCheckbox({
     this.value,
     this.onChanged,
     super.key,
@@ -13,8 +14,8 @@ class ARCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 24,
-      height: 24,
+      width: AppThemeUtil.radius(24),
+      height: AppThemeUtil.radius(24),
       child: Checkbox(value: value, onChanged: onChanged),
     );
   }

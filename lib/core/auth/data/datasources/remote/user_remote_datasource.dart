@@ -8,6 +8,8 @@ import '../../../domain/models/user/user_model.dart';
 abstract class UserRemoteDataSource{
   Future<UserModel> signup({required Map<String, dynamic> requestBody});
   Future<UserModel> login({required Map<String, dynamic> requestBody});
+  Future<String> sendOtp({required Map<String, dynamic> requestBody});
+  Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> forgotPassword({required Map<String, dynamic> requestBody});
   Future<bool> resetPassword({ required Map<String, dynamic> requestBody });
   Future<bool> logout();
@@ -117,6 +119,36 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
     }
 
     return UserModel.fromJson(body['data']?? {});
+  }
+
+  @override
+  Future<String> sendOtp({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.sendOtp,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return (body['message']?? '').toString();
+  }
+
+  @override
+  Future<String> verifyOtp({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.verifyOtp,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return (body['message']?? '').toString();
   }
 
 }

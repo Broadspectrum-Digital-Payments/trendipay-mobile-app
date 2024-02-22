@@ -26,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserViewModel>().getUser;
     return Scaffold(
       appBar: AppBar(
         title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.profile),
@@ -44,9 +45,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const VSpace(
                     height: 5,
                   ),
-                  const Text(
-                    'Pius',
-                    style: TextStyle(
+                  Text(
+                    user.name,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: BDPColors.primary,
@@ -58,18 +59,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const FormLabel(BDPTexts.name),
-                  const SizedBox(height: 2),
-                  const BDPInput(
-                    labelText: 'pius',
+                  const VSpace(height: 2),
+                  BDPInput(
+                    labelText: user.name,
                     enabled: false,
                   ),
                   const VSpace(
                     height: BDPSizes.spaceBtwInputFields,
                   ),
                   const FormLabel(BDPTexts.emailAddress),
-                  const SizedBox(height: 2),
+                  const VSpace(height: 2),
                   const BDPInput(
-                    labelText: 'fiifipius@gmail.com',
+                    labelText: 'example@gmail.com',
                     enabled: false,
                   ),
 

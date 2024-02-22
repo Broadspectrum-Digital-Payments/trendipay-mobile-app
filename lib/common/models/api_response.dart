@@ -2,7 +2,7 @@
 
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/common/constants/global_constants.dart';
-import 'package:bdp_payment_app/src/feature/auth/presentation/login/login_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/screens/login/login_screen.dart';
 import 'package:get/get.dart';
 
 class ApiResponse {

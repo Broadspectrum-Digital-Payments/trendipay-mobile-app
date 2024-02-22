@@ -1,14 +1,14 @@
-import 'package:bdp_payment_app/core/utils/device_utility.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/text_strings.dart';
 
 class ResendOTPText extends StatelessWidget {
   final VoidCallback? resendOtp;
-  int? currentTime;
-  ResendOTPText({
+  final int? currentTime;
+
+  const ResendOTPText({
     this.resendOtp,
     this.currentTime,
     super.key,
@@ -19,12 +19,12 @@ class ResendOTPText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           BDPTexts.noOtp,
           style: TextStyle(
-            color: Color(0xff332f2e),
+            color: const Color(0xff332f2e),
             fontWeight: FontWeight.w400,
-            fontSize: 16,
+            fontSize: AppThemeUtil.fontSize(16),
           ),
         ),
         Row(
@@ -34,7 +34,7 @@ class ResendOTPText extends StatelessWidget {
               style: TextStyle(
                 color: BDPColors.primary,
                 fontWeight: FontWeight.w500,
-                fontSize: 16.sp,
+                fontSize: AppThemeUtil.fontSize(16),
               ),
             ),
             const HSpace(width: 3,),
@@ -45,7 +45,7 @@ class ResendOTPText extends StatelessWidget {
                 style: TextStyle(
                   color: BDPColors.primary,
                   fontWeight: FontWeight.w500,
-                  fontSize: 16.sp,
+                  fontSize: AppThemeUtil.fontSize(16),
                 ),
               ),
             ),

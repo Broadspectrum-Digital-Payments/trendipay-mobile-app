@@ -10,6 +10,8 @@ abstract class UserRepository{
   Future<Either<Failure, UserModel>> signup({required Map<String, dynamic> requestBody});
   Future<Either<Failure, UserModel>> login({required Map<String, dynamic> requestBody});
   Future<bool> isLoggedIn();
+  Future<Either<Failure, String>> sendOtp({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> forgotPassword({required Map<String, dynamic> requestBody});
   Future<Either<Failure, bool>> resetPassword({required Map<String, dynamic> requestBody});
   Future<Either<Failure, bool>> logout();
@@ -121,6 +123,26 @@ class UserRepositoryImpl extends UserRepository{
       return const Right(true);
     } catch (e, s) {
       return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> sendOtp({required Map<String, dynamic> requestBody}) async{
+    try {
+      final response = await userRemoteDataSource.sendOtp(requestBody: requestBody);
+      return Right(response);
+    } catch (e) {
+      return Left(FailureToMessage.returnLeftError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody}) async{
+    try {
+      final response = await userRemoteDataSource.verifyOtp(requestBody: requestBody);
+      return Right(response);
+    } catch (e) {
+      return Left(FailureToMessage.returnLeftError(e));
     }
   }
 }

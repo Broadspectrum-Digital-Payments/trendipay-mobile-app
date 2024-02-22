@@ -6,6 +6,7 @@ class AppRoute {
   static const phoneNumberScreen = 'phone_number_screen';
   static const accountRegistrationScreen = 'account_registration_screen';
   static const otpVerificationScreen = 'otp_verification_screen';
+  static const otpSuccessScreen = 'otp_success_screen';
   static const pinSetupScreen = 'pin_setup_screen';
   static const forgotPasswordSuccessScreen = 'forgot_password_success_screen';
   static const homeScreen = 'home_screen';

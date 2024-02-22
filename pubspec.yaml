@@ -45,6 +45,7 @@ dependencies:
 
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
+  mask_text_input_formatter: ^2.9.0
 
   #--------------- ./ PACKAGES END ------------------#
 

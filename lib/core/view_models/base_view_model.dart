@@ -6,8 +6,8 @@ class BaseViewModel extends ChangeNotifier {
   String _component = '';
   Object? errorType;
   Map<String, dynamic>? componentErrorType;
+  bool _isSubmitting = false;
 
-  bool get isLoading => _isLoading;
   bool getComponentLoading(String component) => _isLoading && _component == component;
 
   void setLoading(bool value, {String component = '', bool notify = true,}) {
@@ -26,6 +26,13 @@ class BaseViewModel extends ChangeNotifier {
     componentErrorType = error;
   }
 
+
+  bool get isSubmitted => _isSubmitting;
+
+  void setIsSubmitted(bool value, [bool notify = true]){
+    _isSubmitting = value;
+    if(notify) notifyListeners();
+  }
 
 
 
