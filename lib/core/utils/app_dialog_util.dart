@@ -1,9 +1,8 @@
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../constants/colors.dart';
+import 'helper_util.dart';
 
 enum DialogAction { yes, abort }
 
@@ -33,27 +32,27 @@ class AppDialogUtil {
   //   );
   // }
   //
-  //
-  // static Future showScrollableBottomSheet( {
-  //   required BuildContext context,
-  //   bool? isDismissible,
-  //   bool useSafeArea = true,
-  //   required Widget Function(BuildContext) builder
-  // })
-  // {
-  //   return showModalBottomSheet(
-  //     context: context,
-  //     elevation: 0,
-  //     isScrollControlled: true,
-  //     backgroundColor: Colors.transparent,
-  //     enableDrag: false,
-  //     useSafeArea: HelperUtil.isIOS? false : useSafeArea,
-  //     isDismissible: isDismissible?? true,
-  //     barrierColor: AppThemeUtil.getThemeColor(kBlack70),
-  //     builder: builder,
-  //   );
-  // }
-  //
+
+  static Future showScrollableBottomSheet( {
+    required BuildContext context,
+    bool? isDismissible,
+    bool useSafeArea = true,
+    required Widget Function(BuildContext) builder
+  })
+  {
+    return showModalBottomSheet(
+      context: context,
+      elevation: 0,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      useSafeArea: HelperUtil.isIOS? false : useSafeArea,
+      isDismissible: isDismissible?? true,
+      barrierColor: AppThemeUtil.getThemeColor(BDPColors.kBlack70),
+      builder: builder,
+    );
+  }
+
   static Future<dynamic> popUpModal(BuildContext context,{
     bool willPop = true,
     bool barrierDismissible = false,

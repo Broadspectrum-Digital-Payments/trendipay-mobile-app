@@ -16,6 +16,7 @@ class ApiRoutes{
   static get deleteAccount => '$_baseUrl/auth/api/user/deactivate-account';
   static get updateUser => '$_baseUrl/auth/api/user';
 
-  /// WALLET
+  /// TRANSACTIONS
   static get walletTransaction => '$_baseUrl/v1/transactions';
+  static get walletNameEnquiry => '$_baseUrl/v1/users/name-enquiry';
 }

@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/features/mainscreens/screens/transfer_details/transfer_details.dart';
+import 'package:bdp_payment_app/src/feature/transaction/presentation/screens/transfer_info_screen.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class TransferOption extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         transferBloc.add(TransferIdEvent(id: "30"));
-        Get.to(()=> const TransferDetailsScreen());
+        Get.to(()=> const TransferInfoScreen());
       },
       child: Container(
         width: double.infinity, // Adjust width as needed

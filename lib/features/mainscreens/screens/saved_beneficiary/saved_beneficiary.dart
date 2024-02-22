@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/constants/sizes.dart';
-import '../transfer_details/transfer_details.dart';
+import '../../../../src/feature/transaction/presentation/screens/transfer_info_screen.dart';
 
 class SavedBeneficiaryScreen extends StatelessWidget {
   const SavedBeneficiaryScreen({Key? key});
@@ -86,7 +86,7 @@ class SavedBeneficiaryScreen extends StatelessWidget {
 
   Widget _buildBeneficiaryContainer(String name, String number) {
     return GestureDetector(
-      onTap: () => Get.to(const TransferDetailsScreen()),
+      onTap: () => Get.to(const TransferInfoScreen()),
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(

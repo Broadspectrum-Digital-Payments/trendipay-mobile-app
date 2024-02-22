@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/otp_success_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin_success_screen.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/phone_number_screen.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin_setup_screen.dart';
 import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
@@ -11,6 +11,7 @@ import '../../src/feature/home/presentation/view_models/bottom_nav_view_model.da
 import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
 import '../../src/feature/home/presentation/screens/navigation_menu.dart';
+import '../../src/feature/transaction/presentation/screens/transfer_info_screen.dart';
 import '../constants/colors.dart';
 import 'app_route.dart';
 
@@ -59,8 +60,8 @@ class AppNavigator {
       case AppRoute.otpVerificationScreen:
         return MaterialPageRoute(builder: (context) => const VerifyOTPScreen());
 
-      case AppRoute.otpSuccessScreen:
-        return MaterialPageRoute(builder: (context) => const OtpSuccessScreen());
+      case AppRoute.pinSuccessScreen:
+        return MaterialPageRoute(builder: (context) => const PinSuccessScreen());
 
       case AppRoute.accountRegistrationScreen:
         return MaterialPageRoute(builder: (context) => const AccountRegistrationScreen());
@@ -71,44 +72,8 @@ class AppNavigator {
       case AppRoute.kycSetupScreen:
         return MaterialPageRoute(builder: (context) => const KYCSetupScreen());
 
-      // case AppRoute.forgotPasswordSuccessScreen:
-      //   return MaterialPageRoute(builder: (context) => const ForgotPasswordSuccessScreen());
-
-      // case AppRoute.seeAllCategoriesScreen:
-      //   return MaterialPageRoute(builder: (context) => const SeeAllCategoriesScreen());
-      //
-      // case AppRoute.listProductScreen:
-      //   return MaterialPageRoute(builder: (context) => const ListProductScreen());
-      //
-      // case AppRoute.accountSettingsScreen:
-      //   return MaterialPageRoute(builder: (context) => const AccountSettingsScreen());
-      //
-      // case AppRoute.seeAllRentalListeningScreen:
-      //   return MaterialPageRoute(builder: (context) => const SeeAllRentalListeningScreen());
-      //
-      //   case AppRoute.productDescriptionScreen:
-      //   return MaterialPageRoute(builder: (context) => const ProductDescriptionScreen());
-      //
-      // case AppRoute.listedProductsScreen:
-      //   return MaterialPageRoute(builder: (context) => ListedProductsScreen(navigateFromListing: args as bool,));
-      //
-      // case AppRoute.changePassword:
-      //   return MaterialPageRoute(builder: (context) => const ChangePasswordScreen());
-      //
-      // case AppRoute.editProfile:
-      //   return MaterialPageRoute(builder: (context) => const EditUserProfile());
-      //
-      // case AppRoute.notificationScreen:
-      //   return MaterialPageRoute(builder: (context) => const NotificationScreen());
-      //
-      // case AppRoute.supportScreen:
-      //   return MaterialPageRoute(builder: (context) => const SupportScreen());
-      //
-      // case AppRoute.productDetailScreen:
-      //   return MaterialPageRoute(builder: (context) => ProductDetailScreen(product: args as ProductModel,));
-      //
-      // case AppRoute.editListedProductScreen:
-      //   return MaterialPageRoute(builder: (context) => EditListedProductScreen(product: args as ProductModel,));
+      case AppRoute.transactionInfoScreen:
+        return MaterialPageRoute(builder: (context) => const TransferInfoScreen());
 
       default:
         return _errorRoute();

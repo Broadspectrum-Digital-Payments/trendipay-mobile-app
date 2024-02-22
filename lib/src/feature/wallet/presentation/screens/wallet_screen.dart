@@ -1,24 +1,21 @@
 import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
-import 'package:bdp_payment_app/src/feature/wallet/presentation/view_models/wallet_view_model.dart';
+import 'package:bdp_payment_app/src/feature/transaction/presentation/view_models/transaction_view_model.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_recent_transactions.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_slider.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_user.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
-import '../../../../../features/mainscreens/screens/history/history_widgets/history_widgets.dart';
-import '../../../../../features/mainscreens/screens/transfer_screen/transfer.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -28,10 +25,16 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
-  late TransactionHistoryController historyController;
   @override
   void initState() {
-    historyController = TransactionHistoryController(context: context);
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      await context.read<TransactionViewModel>().fetchTransactions(
+        context,
+        queryParam: {
+          'pageSize': 10,
+        }
+      );
+    });
     super.initState();
   }
 
@@ -69,27 +72,27 @@ class _WalletScreenState extends State<WalletScreen> {
                     height: BDPSizes.spaceBtwInputFields,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       QuickTransactionContainer(
                         transactionName: BDPTexts.moneyTransfer,
                         image: BDPImages.moneyTransfer,
                         onPressed: () {
-                          Get.to(const TransferScreen());
+                          AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
                         },
                       ),
                       QuickTransactionContainer(
                         transactionName: BDPTexts.airtimeData,
                         image: BDPImages.airtimeData,
                         onPressed: () {
-                          Get.to(const TransferScreen());
+
                         },
                       ),
                       QuickTransactionContainer(
                         transactionName: BDPTexts.billPayment,
                         image: BDPImages.billPayment,
                         onPressed: () {
-                          Get.to(const TransferScreen());
+
                         },
                       ),
                     ],
@@ -114,31 +117,30 @@ class _WalletScreenState extends State<WalletScreen> {
                           height: BDPSizes.spaceBtwItems,
                         ),
                         Expanded(
-                          child: BaseView<WalletViewModel>(
-                            builder: (context, walletConsumer, child){
+                          child: BaseView<TransactionViewModel>(
+                            builder: (context, transactionConsumer, child){
+                              if(transactionConsumer.getComponentLoading('walletRecent')){
+                                return const Center(
+                                  child: ZLoader(loaderColor: BDPColors.primary),
+                                );
+                              }
+                              if(transactionConsumer.getRecentTransactions.isEmpty){
+                                return Center(
+                                  child: Text(
+                                    "You have no recent transactions",
+                                    style: kRegularFontStyle.copyWith(
+                                      fontSize: AppThemeUtil.fontSize(14.0),
+                                      color: BDPColors.dark90,
+                                    ),
+                                  ),
+                                );
+                              }
                               return WalletRecentTransactions(
-                                transactions: walletConsumer.getRecentTransactions,
+                                transactions: transactionConsumer.getRecentTransactions,
                               );
                             },
                           ),
                         ),
-                        // Expanded(child:
-                        //     BlocBuilder<TransactionBlocs, TransactionStates>(
-                        //         builder: (context, state) {
-                        //   return state.loadingTransactions
-                        //       ? Center(
-                        //           child: loader(loaderColor: BDPColors.primary),
-                        //         )
-                        //       : state.recentTransactions.isEmpty
-                        //           ? const Center(
-                        //               child: Text(
-                        //                   "you have no recent transactions"),
-                        //             )
-                        //           :
-                        //
-                        // }
-                        // ),
-                        // ),
                       ],
                     ),
                   )
@@ -151,17 +153,17 @@ class _WalletScreenState extends State<WalletScreen> {
     );
   }
 
-  void _showHistoryModal() {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return BlocBuilder<TransactionBlocs, TransactionStates>(
-              builder: (context, state) {
-                return reusableHistoryData(
-                    history: state.currentHistory,
-                    loading: state.loadingTransactions == true);
-              });
-        });
-  }
+  // void _showHistoryModal() {
+  //   showModalBottomSheet(
+  //       context: context,
+  //       isScrollControlled: true,
+  //       builder: (context) {
+  //         return BlocBuilder<TransactionBlocs, TransactionStates>(
+  //             builder: (context, state) {
+  //               return reusableHistoryData(
+  //                   history: state.currentHistory,
+  //                   loading: state.loadingTransactions == true);
+  //             });
+  //       });
+  // }
 }

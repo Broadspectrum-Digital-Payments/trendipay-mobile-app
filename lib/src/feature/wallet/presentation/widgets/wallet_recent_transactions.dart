@@ -3,7 +3,7 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/models/transaction/wallet_transaction_model.dart';
+import '../../../transaction/domain/models/transaction/wallet_transaction_model.dart';
 import 'transaction_item.dart';
 
 class WalletRecentTransactions extends StatelessWidget {

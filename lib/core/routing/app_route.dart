@@ -6,12 +6,12 @@ class AppRoute {
   static const phoneNumberScreen = 'phone_number_screen';
   static const accountRegistrationScreen = 'account_registration_screen';
   static const otpVerificationScreen = 'otp_verification_screen';
-  static const otpSuccessScreen = 'otp_success_screen';
   static const pinSetupScreen = 'pin_setup_screen';
+  static const pinSuccessScreen = 'pin_success_screen';
   static const forgotPasswordSuccessScreen = 'forgot_password_success_screen';
   static const homeScreen = 'home_screen';
   static const kycSetupScreen = 'kyc_setup_screen';
-  static const listProductScreen = 'list_product_screen';
+  static const transactionInfoScreen = 'transaction_info_screen';
   static const accountSettingsScreen = 'account_settings_screen';
   static const seeAllRentalListeningScreen = 'see_all_rental_listening_screen';
   static const productDescriptionScreen = 'product_description_screen';

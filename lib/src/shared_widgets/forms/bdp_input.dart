@@ -1,4 +1,5 @@
 
+import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,6 +16,7 @@ class BDPInput extends StatelessWidget {
     this.labelStyle,
     this.labelText,
     this.suffixIcon,
+    this.prefixIcon,
     this.obscureText = false,
     this.onTapOutside,
     this.focusNode,
@@ -30,6 +32,7 @@ class BDPInput extends StatelessWidget {
   final TextStyle? labelStyle;
   final String? labelText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final bool obscureText;
   final void Function(PointerDownEvent)? onTapOutside;
   final FocusNode? focusNode;
@@ -50,10 +53,10 @@ class BDPInput extends StatelessWidget {
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         enabled: enabled,
         labelText: labelText,
-        labelStyle: labelStyle?? TextStyle(
-          fontWeight: FontWeight.w400,
+        labelStyle: labelStyle?? kRegularFontStyle.copyWith(
           fontSize: AppThemeUtil.fontSize(16),
           color: Colors.grey,
         ),

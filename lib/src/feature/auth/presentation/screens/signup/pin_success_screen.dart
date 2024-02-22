@@ -7,14 +7,14 @@ import '../../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../../core/constants/image_strings.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
-class OtpSuccessScreen extends StatefulWidget {
-  const OtpSuccessScreen({super.key});
+class PinSuccessScreen extends StatefulWidget {
+  const PinSuccessScreen({super.key});
 
   @override
-  State<OtpSuccessScreen> createState() => _OtpSuccessScreenState();
+  State<PinSuccessScreen> createState() => _PinSuccessScreenState();
 }
 
-class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
+class _PinSuccessScreenState extends State<PinSuccessScreen> {
 
   @override
   Widget build(BuildContext context) {
