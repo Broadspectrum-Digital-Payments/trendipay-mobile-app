@@ -1,8 +1,10 @@
 import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/transaction/presentation/view_models/transaction_view_model.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_recent_transactions.dart';
@@ -16,6 +18,8 @@ import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
+import '../../../../../core/utils/app_dialog_util.dart';
+import '../../../../shared_widgets/modals/error_modal_content.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -40,6 +44,7 @@ class _WalletScreenState extends State<WalletScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserViewModel>().getUser;
     return Scaffold(
       appBar: AppBar(
         title: const WalletUser(),
@@ -78,6 +83,19 @@ class _WalletScreenState extends State<WalletScreen> {
                         transactionName: BDPTexts.moneyTransfer,
                         image: BDPImages.moneyTransfer,
                         onPressed: () {
+                          if(user.kycStatus == kQueuedStatus){
+                            AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+                            return;
+                          }
+                          if(user.kycStatus == kSubmittedStatus){
+                            AppDialogUtil.popUpModal(
+                              context,
+                              modalContent: const ErrorModalContent(
+                                errorMessage: 'Be patience, we\'re reviewing your KYC',
+                              ),
+                            );
+                            return;
+                          }
                           AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
                         },
                       ),

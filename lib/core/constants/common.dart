@@ -10,3 +10,6 @@ const kSignupAction = 'sign-up';
 const kChangePin = 'change-pin';
 
 const kProcessedStatus = 'processed';
+const kQueuedStatus = 'queued';
+const kSubmittedStatus = 'submitted';
+const kApprovedStatus = 'approved';

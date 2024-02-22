@@ -8,16 +8,20 @@ class ZLoader extends StatelessWidget {
     super.key,
     this.value,
     this.loaderColor,
+    this.height,
+    this.width,
   });
 
   final double? value;
   final Color? loaderColor;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppThemeUtil.radius(15.0),
-      width: AppThemeUtil.radius(15.0),
+      height: height?? AppThemeUtil.radius(15.0),
+      width: width?? AppThemeUtil.radius(15.0),
       child: CircularProgressIndicator(
         strokeWidth: 1.5,
         color: loaderColor ?? BDPColors.white,

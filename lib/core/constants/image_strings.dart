@@ -56,4 +56,8 @@ class BDPImages {
   static const String p2pTransfer = "assets/images/banners/p2ptransfer.png";
   static const String momoTransfer1 = "assets/images/banners/momo_transfer1.png";
 
+  /// ANIMATIONS
+  static const String check = "assets/animations/check.json";
+  static const String loading = "assets/animations/loader.json";
+
 }

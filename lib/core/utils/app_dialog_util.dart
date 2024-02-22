@@ -1,4 +1,8 @@
+import 'dart:ui';
+
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/app_lottie.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -7,31 +11,36 @@ import 'helper_util.dart';
 enum DialogAction { yes, abort }
 
 class AppDialogUtil {
-  // static Future<void> loadingDialog(BuildContext context) async {
-  //   return showDialog<void>(
-  //       context: context,
-  //       barrierDismissible: false,
-  //       barrierColor: AppThemeUtil.getThemeColor(kBlack70),
-  //       builder: (BuildContext context) {
-  //         return BackdropFilter(
-  //           filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-  //           child: const PopScope(
-  //             canPop: false,
-  //             child: SimpleDialog(
-  //               elevation: 0.0,
-  //               contentPadding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-  //               titlePadding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-  //               backgroundColor: Colors.transparent,
-  //               children: <Widget>[
-  //                 AppLoader(),
-  //               ],
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //   );
-  // }
-  //
+  static Future<void> loadingDialog(BuildContext context) async {
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        barrierColor: AppThemeUtil.getThemeColor(BDPColors.kBlack70),
+        builder: (BuildContext context) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            child: PopScope(
+              canPop: false,
+              child: SimpleDialog(
+                elevation: 0.0,
+                contentPadding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                titlePadding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                backgroundColor: Colors.transparent,
+                children: <Widget>[
+                  AppLottie(
+                    filePath: BDPImages.loading,
+                    height: AppThemeUtil.radius(32.0),
+                    width: AppThemeUtil.radius(32.0),
+                    repeat: true,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+    );
+  }
+
 
   static Future showScrollableBottomSheet( {
     required BuildContext context,

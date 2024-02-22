@@ -22,6 +22,7 @@ import 'dart:collection';
 
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
+import 'package:bdp_payment_app/src/shared_widgets/modals/success_modal_content.dart';
 import 'package:flutter/material.dart';
 
 import '../../src/shared_widgets/modals/error_modal_content.dart';
@@ -32,6 +33,7 @@ import '../routing/app_navigator.dart';
 import '../routing/app_route.dart';
 import '../services/git_it_service_locator.dart';
 import '../utils/helper_util.dart';
+import '../utils/media_file_util.dart';
 
 class UserViewModel extends BaseViewModel{
   final _userRepository = sl.get<UserRepository>();
@@ -97,6 +99,37 @@ class UserViewModel extends BaseViewModel{
       AppNavigator.pushReplacementNamed(context, AppRoute.otpVerificationScreen);
     });
   }
+
+  Future<void> uploadSelfie(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    AppDialogUtil.loadingDialog(context);
+
+    final imagePath = await MediaFileUtil.getMultipartFile(requestBody['selfie']?? '');
+    requestBody['selfie'] = imagePath;
+    final result = await _userRepository.uploadSelfie(requestBody: requestBody);
+
+    if(context.mounted) {AppNavigator.pop(context);}
+
+    result.fold((left) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (right) {
+      AppDialogUtil.popUpModal(
+        context,
+        modalContent: const SuccessModalContent(
+          title: 'Selfie',
+          message: 'Selfie photo uploaded.',
+        ),
+      );
+    });
+  }
+
 
 //   Future<void> forgotPassword(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
 //     if(!isResend) AppDialogUtil.loadingDialog(context);
