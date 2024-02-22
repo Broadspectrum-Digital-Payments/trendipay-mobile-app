@@ -18,7 +18,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../common/constants/global_constants.dart';
 import '../../../common/models/exception_handler.dart';
-import '../../../navigation_menu.dart';
+import '../../../src/feature/home/presentation/screens/navigation_menu.dart';
 import '../authentication_blocs/authentiation_events.dart';
 
 class KYCController {

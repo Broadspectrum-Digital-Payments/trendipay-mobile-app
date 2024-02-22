@@ -7,15 +7,15 @@ import 'package:bdp_payment_app/common/models/exception_handler.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_blocs/phone_number_bloc.dart';
 import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number_blocs/phone_number_events.dart';
-import 'package:bdp_payment_app/features/authentication/screens/pin_setup/pin_setup_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/signup/pin_setup_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../account_registration/account_registration_screen.dart';
-import '../../otp_screen/otp_verify_screen.dart';
+import '../../../../../src/feature/auth/presentation/signup/account_registration_screen.dart';
+import '../../../../../src/feature/auth/presentation/signup/otp_verify_screen.dart';
 import '../phone_number_repository/phone_number_repository.dart';
 
 class PhoneNumberController {
@@ -41,7 +41,7 @@ class PhoneNumberController {
       phoneNumberBloc.add(SubmittingPhoneEvent(submitting: false));
       var apiResponse = ApiResponse.parse(response);
       if (apiResponse.allGood!) {
-        if (!resendOtp!) Get.to(() => const VerifyOTP());
+        if (!resendOtp!) Get.to(() => const VerifyOTPScreen());
         GeneralRepository.showSnackBar("Success", apiResponse.message!);
       } else {
         GeneralRepository.showSnackBar("Error", apiResponse.message!);
@@ -76,7 +76,7 @@ class PhoneNumberController {
             .setString(GeneralRepository.phoneMedium, medium);
         await GlobalConstants.storageService
             .setString(GeneralRepository.resourceId, resourceId);
-        Get.off(() => const AccountRegistration());
+        Get.off(() => const AccountRegistrationScreen());
         GeneralRepository.showSnackBar("Success", apiResponse.message!);
       } else {
         GeneralRepository.showSnackBar("Error", apiResponse.message!);

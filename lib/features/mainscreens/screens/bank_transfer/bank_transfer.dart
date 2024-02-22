@@ -4,11 +4,11 @@ import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/widge
 import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../common/widgets/authHeader/authheaders.dart';
-import '../../../../navigation_menu.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
+import '../../../../src/feature/home/presentation/screens/navigation_menu.dart';
+import '../../../../core/constants/image_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 
 class BankTransferScreen extends StatelessWidget {
   const BankTransferScreen({super.key});

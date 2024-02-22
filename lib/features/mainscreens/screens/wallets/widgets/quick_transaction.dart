@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../../utils/constants/colors.dart';
+import '../../../../../core/constants/colors.dart';
 import '../../transfer_screen/transfer.dart';
 
 

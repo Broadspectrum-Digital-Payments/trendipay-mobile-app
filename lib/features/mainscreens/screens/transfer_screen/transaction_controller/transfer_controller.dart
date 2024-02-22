@@ -15,9 +15,9 @@ import '../../../../../common/constants/general_repository.dart';
 import '../../../../../common/models/api_response.dart';
 import '../../../../../common/models/exception_handler.dart';
 import '../../../../../common/widgets/success_screen/success_screen.dart';
-import '../../../../../navigation_menu.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../src/feature/home/presentation/screens/navigation_menu.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/text_strings.dart';
 import '../../../../authentication/screens/phonenumber_authentication/phone_number_repository/phone_number_repository.dart';
 import '../transaction_repository/transfer_repository.dart';
 

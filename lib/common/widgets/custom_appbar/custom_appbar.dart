@@ -1,8 +1,8 @@
 import 'package:bdp_payment_app/features/authentication/screens/navigation_menu/navigation_menu_controller/navigation_controller.dart';
 import 'package:flutter/material.dart';
 import '../../../features/mainscreens/screens/wallets/widgets/wallet_user.dart';
-import '../../../utils/constants/image_strings.dart';
-import '../authHeader/authheaders.dart';
+import '../../../core/constants/image_strings.dart';
+import '../../../src/shared_widgets/common/authheaders.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String appBarTitle;

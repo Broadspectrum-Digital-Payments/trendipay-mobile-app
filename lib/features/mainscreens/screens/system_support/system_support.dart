@@ -1,13 +1,13 @@
-import 'package:bdp_payment_app/common/widgets/authHeader/authheaders.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/system_support/widgets/customAppBar.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/system_support/widgets/custom_button.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/system_support/widgets/email_us.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/system_support/widgets/our_website.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 
 
 class SystemSupportScreen extends StatelessWidget {

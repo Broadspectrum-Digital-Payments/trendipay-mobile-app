@@ -1,7 +1,7 @@
 import 'package:bdp_payment_app/features/mainscreens/screens/notification/widgets/notification_item.dart';
 import 'package:flutter/material.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 import '../../../../common/widgets/custom_appbar/custom_appbar.dart';
 
 

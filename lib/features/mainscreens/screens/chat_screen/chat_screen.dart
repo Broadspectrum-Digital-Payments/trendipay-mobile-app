@@ -1,5 +1,5 @@
-import 'package:bdp_payment_app/utils/constants/colors.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {

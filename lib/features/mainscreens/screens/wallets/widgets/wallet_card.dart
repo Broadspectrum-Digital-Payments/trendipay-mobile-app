@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/text_strings.dart';
 import '../../top_up/top-up.dart';
 
 class WalletCard extends StatelessWidget {

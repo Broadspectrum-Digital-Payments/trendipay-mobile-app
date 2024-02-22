@@ -1,6 +1,6 @@
 import 'package:bdp_payment_app/common/widgets/button/button.dart';
 import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
-import 'package:bdp_payment_app/features/authentication/screens/account_registration/widgets/checkbox.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/widgets/checkbox.dart';
 import 'package:bdp_payment_app/features/mainscreens/controllers/wallet_controllers.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/top_up/top-up.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/top_up/top_up_screens/wallet_top_up_details.dart';
@@ -15,11 +15,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../common/models/wallet_model.dart';
-import '../../../../common/widgets/authHeader/authheaders.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/image_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 import '../select_card_screen/select_card.dart';
 import '../select_card_screen/widgets/add_card_textfields.dart';
 

@@ -7,8 +7,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/general_repository.dart';
-import '../../../navigation_menu.dart';
-import '../screens/login/login.dart';
+import '../../../src/feature/home/presentation/screens/navigation_menu.dart';
+import '../../../src/feature/auth/presentation/login/login_screen.dart';
 
 class UserAuthController {
 

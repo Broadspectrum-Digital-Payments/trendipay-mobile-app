@@ -1,9 +1,9 @@
 import 'package:bdp_payment_app/features/mainscreens/screens/settings/widgets/setting_items.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 import '../../../../common/widgets/custom_appbar/custom_appbar.dart';
 import '../system_support/system_support.dart';
 

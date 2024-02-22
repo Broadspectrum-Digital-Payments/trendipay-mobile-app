@@ -1,11 +1,11 @@
 import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
-import 'package:bdp_payment_app/utils/constants/colors.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
-import '../../../utils/constants/sizes.dart';
-import '../../../utils/constants/text_strings.dart';
+import '../../../src/feature/onboarding/presentation/widgets/onboarding_next_button.dart';
+import '../../../core/constants/sizes.dart';
+import '../../../core/constants/text_strings.dart';
 import '../../styles/spacing_styles.dart';
 import '../button/button.dart';
 

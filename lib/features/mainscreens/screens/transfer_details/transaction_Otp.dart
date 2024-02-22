@@ -5,7 +5,8 @@ import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/tra
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_controller/transfer_controller.dart';
-import 'package:bdp_payment_app/navigation_menu.dart';
+import 'package:bdp_payment_app/src/feature/home/presentation/screens/navigation_menu.dart';
+import 'package:bdp_payment_app/src/shared_widgets/forms/otp_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,13 +15,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../common/styles/spacing_styles.dart';
-import '../../../../common/widgets/authHeader/authheaders.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../common/widgets/button/button.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
-import '../../../authentication/screens/otp_screen/widgets/otp_widgets.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/image_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 
 class TransactionVerifyOTP extends StatefulWidget {
   const TransactionVerifyOTP({super.key});
@@ -110,8 +110,7 @@ class _TransactionVerifyOTPState extends State<TransactionVerifyOTP> {
                           height: 80,
                           child: Padding(
                             padding: EdgeInsets.only(left: 20.w, right: 20.w),
-                            child: reusableOtpWidget(
-                                context,
+                            child: OTPInput(
                                 controller: codeCtrl,
                                 errorAnimationController: errorController,
                                 enabled: state.completingTransfer == false,

@@ -1,12 +1,12 @@
 import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/common/models/transaction_history.dart';
 import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
-import 'package:bdp_payment_app/utils/constants/sizes.dart';
+import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../utils/constants/colors.dart';
+import '../../../../../core/constants/colors.dart';
 
 Widget reusableHistoryData(
     {TransactionHistory? history, bool loading = false}) {

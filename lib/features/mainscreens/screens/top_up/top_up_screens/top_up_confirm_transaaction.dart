@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../../common/widgets/authHeader/authheaders.dart';
+import '../../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../../common/widgets/button/button.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/sizes.dart';
+import '../../../../../core/constants/text_strings.dart';
 import '../../wallets/wallet_blocs/wallet_blocs.dart';
 import '../../wallets/wallet_blocs/wallet_states.dart';
 

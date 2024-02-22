@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/authentication/controllers/onboarding_controller.dart';
-import '../../../utils/constants/colors.dart';
+import '../../../core/constants/colors.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({

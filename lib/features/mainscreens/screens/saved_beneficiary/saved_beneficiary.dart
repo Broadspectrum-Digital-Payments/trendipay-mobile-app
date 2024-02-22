@@ -1,10 +1,10 @@
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transfer.dart';
-import 'package:bdp_payment_app/utils/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../utils/constants/sizes.dart';
+import '../../../../core/constants/sizes.dart';
 import '../transfer_details/transfer_details.dart';
 
 class SavedBeneficiaryScreen extends StatelessWidget {

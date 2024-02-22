@@ -4,7 +4,7 @@ import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/tra
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import '../../../../../utils/constants/colors.dart';
+import '../../../../../core/constants/colors.dart';
 import '../../saved_beneficiary/saved_beneficiary.dart';
 import '../transaction_blos/transfer_blocs.dart';
 

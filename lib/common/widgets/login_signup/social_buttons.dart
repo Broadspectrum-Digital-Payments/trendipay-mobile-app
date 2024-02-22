@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/image_strings.dart';
-import '../../../utils/constants/sizes.dart';
-import '../../../utils/constants/text_strings.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/image_strings.dart';
+import '../../../core/constants/sizes.dart';
+import '../../../core/constants/text_strings.dart';
 
 
 class BDPSocialButtons extends StatelessWidget {
@@ -67,7 +67,7 @@ class BDPSocialButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                BDPTexts.hasAccount,
+                'BDPTexts.hasAccount',
               style: TextStyle(
                 color: Color(0xff332f2e),
                 fontWeight: FontWeight.w400,

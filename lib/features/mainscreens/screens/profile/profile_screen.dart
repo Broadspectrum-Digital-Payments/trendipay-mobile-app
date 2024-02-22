@@ -2,20 +2,20 @@ import 'package:bdp_payment_app/common/constants/general_repository.dart';
 import 'package:bdp_payment_app/common/constants/global_constants.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentiation_events.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
-import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
-import 'package:bdp_payment_app/features/authentication/screens/phonenumber_authentication/phone_number.dart';
-import 'package:bdp_payment_app/features/authentication/screens/pin_setup/pin_setup_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/login/login_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/signup/phone_number_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/signup/pin_setup_screen.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/profile/widgets/profile_textfields.dart';
-import 'package:bdp_payment_app/utils/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../common/widgets/authHeader/authheaders.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../common/widgets/button/button.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../core/constants/image_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 import '../../../authentication/screens/navigation_menu/navigation_menu_controller/navigation_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       // Code to handle PIN change
                       context.read<AuthenticationBloc>().add(PinChangeEvent(value: true));
-                      Get.to(()=> const PinSetup());
+                      Get.to(()=> const PinSetupScreen());
                     },
                     child: Text(
                       BDPTexts.changePin,

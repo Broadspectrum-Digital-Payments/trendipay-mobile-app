@@ -1,6 +1,6 @@
 
-import 'package:bdp_payment_app/utils/constants/colors.dart';
-import 'package:bdp_payment_app/utils/constants/text_strings.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';

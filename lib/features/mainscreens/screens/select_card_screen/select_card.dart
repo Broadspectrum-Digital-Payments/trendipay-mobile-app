@@ -1,15 +1,15 @@
 import 'package:bdp_payment_app/common/widgets/button/button.dart';
-import 'package:bdp_payment_app/features/authentication/screens/account_registration/widgets/checkbox.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/widgets/checkbox.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/select_card_screen/widgets/add_card_textfields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../common/widgets/authHeader/authheaders.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/image_strings.dart';
+import '../../../../core/constants/sizes.dart';
+import '../../../../core/constants/text_strings.dart';
 import '../top_up/top-up.dart';
 
 class SelectCardScreen extends StatelessWidget {

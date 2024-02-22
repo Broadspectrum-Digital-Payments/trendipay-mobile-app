@@ -8,16 +8,16 @@ import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/tra
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_controller/transfer_controller.dart';
-import 'package:bdp_payment_app/utils/constants/colors.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
-import 'package:bdp_payment_app/utils/constants/text_strings.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../common/constants/general_repository.dart';
 import '../../../../common/widgets/button/button.dart';
-import '../../../../utils/constants/sizes.dart';
+import '../../../../core/constants/sizes.dart';
 
 class TransferDetailsScreen extends StatefulWidget {
   const TransferDetailsScreen({super.key});

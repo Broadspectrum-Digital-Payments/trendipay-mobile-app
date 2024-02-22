@@ -2,9 +2,9 @@ import 'package:bdp_payment_app/features/authentication/screens/navigation_menu/
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/text_strings.dart';
 
 class WalletUser extends StatelessWidget {
   final NavigationMenuController? controller;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/image_strings.dart';
 
 class TransactionItem extends StatelessWidget {
   final String title;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/text_strings.dart';
 
 class BankTransferTextfield extends StatelessWidget {
   const BankTransferTextfield({

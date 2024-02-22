@@ -10,9 +10,9 @@ import 'package:bdp_payment_app/features/authentication/authentication_blocs/aut
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_repository/authentication_repository.dart';
 import 'package:bdp_payment_app/features/authentication/screens/kyc/kyc_setup.dart';
-import 'package:bdp_payment_app/features/authentication/screens/login/login.dart';
-import 'package:bdp_payment_app/features/authentication/screens/otp_screen/otp_verify_screen.dart';
-import 'package:bdp_payment_app/navigation_menu.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/login/login_screen.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/signup/otp_verify_screen.dart';
+import 'package:bdp_payment_app/src/feature/home/presentation/screens/navigation_menu.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +20,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../common/widgets/success_screen/success_screen.dart';
-import '../../../utils/constants/image_strings.dart';
-import '../../../utils/constants/text_strings.dart';
+import '../../../core/constants/image_strings.dart';
+import '../../../core/constants/text_strings.dart';
 
 class RegistrationController {
   final BuildContext context;
@@ -145,7 +145,7 @@ class RegistrationController {
       bloc.add(SubmittingDataEvent(value: false));
       var apiResponse = ApiResponse.parse(response);
       if (apiResponse.allGood!) {
-        Get.to(()=> const VerifyOTP());
+        Get.to(()=> const VerifyOTPScreen());
         GeneralRepository.showSnackBar("Success", apiResponse.message!);
 
       } else {

@@ -7,16 +7,16 @@ import 'package:bdp_payment_app/features/authentication/authentication_blocs/aut
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_blocs.dart';
 import 'package:bdp_payment_app/features/authentication/authentication_blocs/authentication_states.dart';
 import 'package:bdp_payment_app/features/authentication/controllers/kyc_controller.dart';
-import 'package:bdp_payment_app/navigation_menu.dart';
-import 'package:bdp_payment_app/utils/constants/colors.dart';
+import 'package:bdp_payment_app/src/feature/home/presentation/screens/navigation_menu.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../../utils/constants/image_strings.dart';
-import '../../../../../../utils/constants/sizes.dart';
-import '../../../../../../utils/constants/text_strings.dart';
+import '../../../../../../core/constants/image_strings.dart';
+import '../../../../../../core/constants/sizes.dart';
+import '../../../../../../core/constants/text_strings.dart';
 import '../textformfield.dart';
 
 class PersonalInfo extends StatefulWidget {

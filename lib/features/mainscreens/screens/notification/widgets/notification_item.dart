@@ -1,8 +1,8 @@
 import 'package:bdp_payment_app/common/widgets/circular_navigation/circular_shape.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/image_strings.dart';
 
 class NotificationItem extends StatelessWidget {
   final String title;

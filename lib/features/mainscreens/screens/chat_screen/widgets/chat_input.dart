@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../core/constants/image_strings.dart';
 
 
 

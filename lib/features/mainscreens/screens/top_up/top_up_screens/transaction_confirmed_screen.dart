@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../common/styles/spacing_styles.dart';
-import '../../../../../common/widgets/authHeader/authheaders.dart';
+import '../../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../../common/widgets/button/button.dart';
-import '../../../../../navigation_menu.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../src/feature/home/presentation/screens/navigation_menu.dart';
+import '../../../../../core/constants/image_strings.dart';
+import '../../../../../core/constants/sizes.dart';
+import '../../../../../core/constants/text_strings.dart';
 
 
 class TransactionConfirmedScreen extends StatelessWidget {

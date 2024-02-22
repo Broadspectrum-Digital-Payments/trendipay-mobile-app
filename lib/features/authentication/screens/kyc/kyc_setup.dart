@@ -1,10 +1,10 @@
 import 'package:bdp_payment_app/features/authentication/screens/kyc/widgets/kyc_tabs/cardinfo.dart';
 import 'package:bdp_payment_app/features/authentication/screens/kyc/widgets/kyc_tabs/personal_info.dart';
-import 'package:bdp_payment_app/utils/constants/image_strings.dart';
-import 'package:bdp_payment_app/utils/constants/sizes.dart';
+import 'package:bdp_payment_app/core/constants/image_strings.dart';
+import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import '../../../../common/widgets/authHeader/authheaders.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../src/shared_widgets/common/authheaders.dart';
+import '../../../../core/constants/text_strings.dart';
 
 class KYCSetup extends StatefulWidget {
   const KYCSetup({super.key});
