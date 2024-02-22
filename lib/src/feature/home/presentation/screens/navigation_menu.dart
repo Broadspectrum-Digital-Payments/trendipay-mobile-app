@@ -1,13 +1,9 @@
-import 'package:bdp_payment_app/common/constants/global_constants.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/features/authentication/screens/kyc/kyc_setup.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/history.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/notification/notification.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/settings/settings.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/wallets/wallets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../../common/constants/general_repository.dart';
 import '../../../../../features/mainscreens/screens/profile/profile_screen.dart';
 import '../view_models/bottom_nav_view_model.dart';
 

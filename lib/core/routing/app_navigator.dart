@@ -1,9 +1,11 @@
 import 'package:bdp_payment_app/src/feature/auth/presentation/signup/phone_number_screen.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/signup/pin_setup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../src/feature/auth/presentation/login/login_screen.dart';
 import '../../src/feature/auth/presentation/signup/account_registration_screen.dart';
 import '../../src/feature/auth/presentation/signup/otp_verify_screen.dart';
+import '../../src/feature/home/presentation/view_models/bottom_nav_view_model.dart';
 import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
 import '../../src/feature/home/presentation/screens/navigation_menu.dart';
@@ -42,7 +44,10 @@ class AppNavigator {
         return PageRouteBuilder(
             settings: settings,
             transitionDuration: const Duration(milliseconds: 800),
-            pageBuilder: (_, __, ___) => const NavigationMenu(),
+            pageBuilder: (_, __, ___) => ChangeNotifierProvider<BottomNavViewModel>(
+              create: (context) => BottomNavViewModel(),
+              builder: (context, child) => const NavigationMenu(),
+            ),
             transitionsBuilder: (_, animation, __, child) => FadeTransition(opacity: animation, child: child)
         );
 
