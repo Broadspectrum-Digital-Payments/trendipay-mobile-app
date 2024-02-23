@@ -1,13 +1,18 @@
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
+import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../common/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../../core/utils/app_theme_util.dart';
+import '../../../../../core/utils/helper_util.dart';
 import '../../../../shared_widgets/base/draggable_bottom_sheet.dart';
 import '../../../../shared_widgets/buttons/bdp_primary_button.dart';
 import '../../../../shared_widgets/common/v_space.dart';
@@ -142,8 +147,21 @@ class TransferSummaryModalContent extends StatelessWidget {
                       children: [
                         BDPPrimaryButton(
                           buttonText: BDPTexts.confirm,
-                          onPressed: (){
-                            // AppNavigator.popAndPushNamed(context, AppRoute.otpVerificationScreen, arguments: 'Transaction ');
+                          onPressed: () async{
+                            AppNavigator.pop(context);
+                            await context.read<OtpViewModel>().sendOtp(
+                              context,
+                              requestBody: {
+                                'action': kPerformTransferAction,
+                                "phoneNumber": HelperUtil.getLocalPhoneNumber(context.read<UserViewModel>().getUser.phoneNumber?? ''),
+                                "amount": transferInfo['amount']?? '0',
+                                "accountNumber": transferInfo['accountNumber'],
+                                "accountIssuer": (transferInfo['accountIssuer']?? '').toString().toNetworkCode(),
+                                "accountName": transferInfo['accountName'],
+                                "description": transferInfo['description'],
+                                "type": transferInfo['type']
+                              },
+                            );
                           }
                         ),
                       ],

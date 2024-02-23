@@ -20,6 +20,7 @@
 //
 import 'dart:collection';
 
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
@@ -80,7 +81,7 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-  Future<void> changePin(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
+  Future<void> changePin(BuildContext context, {required Map<String, dynamic> requestBody}) async{
     final result = await _userRepository.changePin(requestBody: requestBody);
 
     if(context.mounted) AppNavigator.pop(context);
@@ -96,7 +97,7 @@ class UserViewModel extends BaseViewModel{
       });
 
     }, (right) {
-      AppNavigator.pushReplacementNamed(context, AppRoute.otpVerificationScreen);
+      AppNavigator.pushReplacementNamed(context, AppRoute.pinSuccessScreen);
     });
   }
 
@@ -131,13 +132,15 @@ class UserViewModel extends BaseViewModel{
       });
 
     }, (right) {
+      final photoType = requestBody['selfie']!= null? 'Selfie': requestBody['ghana-card-front'] != null? 'Ghana Card Front':'Ghana Card Back';
+
       if(right.isNotEmpty) {
         setUser = _user.copyWith(
+          kycStatus: (_user.selfieUploaded && _user.idCardFrontUploaded && _user.idCardFrontUploaded)? kSubmittedStatus : kStartedStatus,
           files: List.from(_user.files?? [])..add(right.first),
         );
       }
 
-      final photoType = requestBody['selfie']!= null? 'Selfie': requestBody['ghana-card-front'] != null? 'Ghana Card Front':'Ghana Card Back';
       AppDialogUtil.popUpModal(
         context,
         modalContent: SuccessModalContent(

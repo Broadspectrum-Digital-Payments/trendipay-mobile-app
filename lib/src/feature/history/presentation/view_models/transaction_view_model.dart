@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/view_models/base_view_model.dart';
 import '../../../../../core/errors/failure.dart';
+import '../../../../../core/routing/app_navigator.dart';
+import '../../../../../core/routing/app_route.dart';
 import '../../../../../core/services/git_it_service_locator.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
@@ -75,6 +77,32 @@ class TransactionViewModel extends BaseViewModel{
       setEnquiryResult = right;
     });
   }
+
+
+  Future<void> transferMoney(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    print('####TRANSFER: $requestBody####');
+    final result = await _transactionRepository.transferMoney(requestBody: requestBody);
+
+    if(context.mounted) AppNavigator.pop(context);
+
+    result.fold((left) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (transaction) {
+      setTransactionHistory = _transactionHistory.copyWith(
+        data: List.from(_transactionHistory.data?? [])..add(transaction),
+      );
+      AppNavigator.pushReplacementNamed(context, AppRoute.transferSuccessScreen);
+    });
+  }
+
 
 
 }

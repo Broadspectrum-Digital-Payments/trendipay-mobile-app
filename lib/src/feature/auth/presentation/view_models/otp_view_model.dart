@@ -6,6 +6,7 @@ import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,6 +55,7 @@ class OtpViewModel extends BaseViewModel{
         setOtpRequestBody = requestBody;
         String otpTitle = '';
         if(requestBody['action'] == kChangePinAction) otpTitle = 'Change Pin ';
+        if(requestBody['action'] == kPerformTransferAction) otpTitle = 'Transaction ';
         AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen, arguments: otpTitle);
       }
     });
@@ -78,6 +80,12 @@ class OtpViewModel extends BaseViewModel{
         if(context.mounted) AppNavigator.pop(context);
         setOtpRequestBody = {...requestBody, 'otp': requestBody['otp']};
         AppNavigator.pushReplacementNamed(context, AppRoute.accountRegistrationScreen);
+        return;
+      }
+      if(_otpRequestBody['action'] == kPerformTransferAction){
+        if(context.mounted){
+          await context.read<TransactionViewModel>().transferMoney(context, requestBody: _otpRequestBody);
+        }
         return;
       }
       if(_otpRequestBody['action'] == kChangePinAction){

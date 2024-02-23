@@ -33,12 +33,12 @@ extension StringExtension on String{
     return this;
   }
 
-  String fromNetworkNameToCode(){
-    if(toLowerCase() == 'vodafone') return 'VOD';
+  String toNetworkCode(){
+    if(toLowerCase() == 'vodafone') return 'vod';
 
-    if(toLowerCase() == 'airteltigo') return 'ATL';
+    if(toLowerCase() == 'airteltigo') return 'atl';
 
-    return this;
+    return toLowerCase();
   }
 
 }

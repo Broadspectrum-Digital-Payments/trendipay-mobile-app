@@ -46,7 +46,8 @@ class BDPImages {
   static const String addWallet= "assets/images/successcreenimage/add_wallet.png";
   static const String addCard= "assets/images/successcreenimage/add_card.png";
   static const String systemSupportImage = "assets/images/successcreenimage/systemsupport.png";
-  static const String otpSuccess = "assets/images/banners/otp_success.png";
+  static const String pinSuccess = "assets/images/banners/pin_success.png";
+  static const String transferSuccess = "assets/images/banners/transfer_success.png";
 
 
 

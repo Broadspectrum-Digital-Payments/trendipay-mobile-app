@@ -1,3 +1,5 @@
+import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
@@ -9,14 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/constants/image_strings.dart';
 
-class PinSuccessScreen extends StatefulWidget {
-  const PinSuccessScreen({super.key});
-
-  @override
-  State<PinSuccessScreen> createState() => _PinSuccessScreenState();
-}
-
-class _PinSuccessScreenState extends State<PinSuccessScreen> {
+class TransferSuccessScreen extends StatelessWidget {
+  const TransferSuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +26,15 @@ class _PinSuccessScreenState extends State<PinSuccessScreen> {
               padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),
               child: Column(
                 children: [
-                  Text('Your pin has been successfully created!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
+                  Text('Your payment was successful!',
+                    style: kMediumFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(20.0),
+                      color: BDPColors.primary,
                     ),
                   ),
 
                   Image.asset(
-                    BDPImages.pinSuccess,
+                    BDPImages.transferSuccess,
                     height: AppThemeUtil.height(291),
                   ),
                 ],

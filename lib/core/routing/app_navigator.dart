@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../src/feature/auth/presentation/screens/login/login_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/account_registration_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/otp_verify_screen.dart';
+import '../../src/feature/history/presentation/screens/transfer_success_screen.dart';
 import '../../src/feature/home/presentation/view_models/bottom_nav_view_model.dart';
 import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
@@ -74,6 +75,9 @@ class AppNavigator {
 
       case AppRoute.transactionInfoScreen:
         return MaterialPageRoute(builder: (context) => const TransferInfoScreen());
+
+      case AppRoute.transferSuccessScreen:
+        return MaterialPageRoute(builder: (context) => const TransferSuccessScreen());
 
       default:
         return _errorRoute();
