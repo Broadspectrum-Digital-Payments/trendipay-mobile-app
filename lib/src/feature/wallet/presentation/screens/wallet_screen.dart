@@ -94,19 +94,19 @@ class _WalletScreenState extends State<WalletScreen> {
                             transactionName: BDPTexts.moneyTransfer,
                             image: BDPImages.moneyTransfer,
                             onPressed: () {
-                              // if([kQueuedStatus, kStartedStatus].contains(user.getKycStatus)){
-                              //   AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
-                              //   return;
-                              // }
-                              // if(user.getKycStatus == kSubmittedStatus){
-                              //   AppDialogUtil.popUpModal(
-                              //     context,
-                              //     modalContent: const ErrorModalContent(
-                              //       errorMessage: 'Be patience, we\'re reviewing your KYC',
-                              //     ),
-                              //   );
-                              //   return;
-                              // }
+                              if([kQueuedStatus, kStartedStatus].contains(user.getKycStatus)){
+                                AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+                                return;
+                              }
+                              if(user.getKycStatus == kSubmittedStatus){
+                                AppDialogUtil.popUpModal(
+                                  context,
+                                  modalContent: const ErrorModalContent(
+                                    errorMessage: 'Be patience, we\'re reviewing your KYC',
+                                  ),
+                                );
+                                return;
+                              }
                               AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
                             },
                           ),
