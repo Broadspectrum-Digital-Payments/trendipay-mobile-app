@@ -79,6 +79,7 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
                           return null;
                         },
                         labelText: BDPTexts.fullName,
+                        textCapitalization: TextCapitalization.words,
                       ),
                       const VSpace(
                         height: BDPSizes.spaceBtwInputFields,

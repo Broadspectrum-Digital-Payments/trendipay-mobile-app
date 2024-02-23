@@ -54,15 +54,7 @@ class TransactionSummaryModalContent extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: TransactionSummaryItem(
                         title: 'Receiver',
-                        data: transaction.user?.name?? '',
-                      ),
-                    ),
-                    const VSpace(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TransactionSummaryItem(
-                        title: 'Phone Number',
-                        data: transaction.user?.phoneNumber?? '',
+                        data: transaction.accountName?? '',
                       ),
                     ),
                     const VSpace(height: 20),

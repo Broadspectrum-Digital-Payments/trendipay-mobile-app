@@ -21,6 +21,7 @@ TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionModel {
   String? get externalId => throw _privateConstructorUsedError;
+  String? get accountName => throw _privateConstructorUsedError;
   String? get accountNumber => throw _privateConstructorUsedError;
   num? get amount => throw _privateConstructorUsedError;
   num? get balanceBefore => throw _privateConstructorUsedError;
@@ -33,7 +34,6 @@ mixin _$TransactionModel {
   String? get status => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
-  UserModel? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,6 +49,7 @@ abstract class $TransactionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? externalId,
+      String? accountName,
       String? accountNumber,
       num? amount,
       num? balanceBefore,
@@ -60,10 +61,7 @@ abstract class $TransactionModelCopyWith<$Res> {
       String? description,
       String? status,
       String? currency,
-      String? createdAt,
-      UserModel? user});
-
-  $UserModelCopyWith<$Res>? get user;
+      String? createdAt});
 }
 
 /// @nodoc
@@ -80,6 +78,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   @override
   $Res call({
     Object? externalId = freezed,
+    Object? accountName = freezed,
     Object? accountNumber = freezed,
     Object? amount = freezed,
     Object? balanceBefore = freezed,
@@ -92,12 +91,15 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
-    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accountName: freezed == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
               as String?,
       accountNumber: freezed == accountNumber
           ? _value.accountNumber
@@ -147,23 +149,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -177,6 +163,7 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? externalId,
+      String? accountName,
       String? accountNumber,
       num? amount,
       num? balanceBefore,
@@ -188,11 +175,7 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
       String? description,
       String? status,
       String? currency,
-      String? createdAt,
-      UserModel? user});
-
-  @override
-  $UserModelCopyWith<$Res>? get user;
+      String? createdAt});
 }
 
 /// @nodoc
@@ -207,6 +190,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? externalId = freezed,
+    Object? accountName = freezed,
     Object? accountNumber = freezed,
     Object? amount = freezed,
     Object? balanceBefore = freezed,
@@ -219,12 +203,15 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
-    Object? user = freezed,
   }) {
     return _then(_$TransactionModelImpl(
       externalId: freezed == externalId
           ? _value.externalId
           : externalId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accountName: freezed == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
               as String?,
       accountNumber: freezed == accountNumber
           ? _value.accountNumber
@@ -274,10 +261,6 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
     ));
   }
 }
@@ -287,6 +270,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
 class _$TransactionModelImpl extends _TransactionModel {
   const _$TransactionModelImpl(
       {this.externalId,
+      this.accountName,
       this.accountNumber,
       this.amount,
       this.balanceBefore,
@@ -298,8 +282,7 @@ class _$TransactionModelImpl extends _TransactionModel {
       this.description,
       this.status,
       this.currency,
-      this.createdAt,
-      this.user})
+      this.createdAt})
       : super._();
 
   factory _$TransactionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -307,6 +290,8 @@ class _$TransactionModelImpl extends _TransactionModel {
 
   @override
   final String? externalId;
+  @override
+  final String? accountName;
   @override
   final String? accountNumber;
   @override
@@ -331,12 +316,10 @@ class _$TransactionModelImpl extends _TransactionModel {
   final String? currency;
   @override
   final String? createdAt;
-  @override
-  final UserModel? user;
 
   @override
   String toString() {
-    return 'TransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, status: $status, currency: $currency, createdAt: $createdAt, user: $user)';
+    return 'TransactionModel(externalId: $externalId, accountName: $accountName, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, status: $status, currency: $currency, createdAt: $createdAt)';
   }
 
   @override
@@ -346,6 +329,8 @@ class _$TransactionModelImpl extends _TransactionModel {
             other is _$TransactionModelImpl &&
             (identical(other.externalId, externalId) ||
                 other.externalId == externalId) &&
+            (identical(other.accountName, accountName) ||
+                other.accountName == accountName) &&
             (identical(other.accountNumber, accountNumber) ||
                 other.accountNumber == accountNumber) &&
             (identical(other.amount, amount) || other.amount == amount) &&
@@ -365,8 +350,7 @@ class _$TransactionModelImpl extends _TransactionModel {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.user, user) || other.user == user));
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -374,6 +358,7 @@ class _$TransactionModelImpl extends _TransactionModel {
   int get hashCode => Object.hash(
       runtimeType,
       externalId,
+      accountName,
       accountNumber,
       amount,
       balanceBefore,
@@ -385,8 +370,7 @@ class _$TransactionModelImpl extends _TransactionModel {
       description,
       status,
       currency,
-      createdAt,
-      user);
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -406,6 +390,7 @@ class _$TransactionModelImpl extends _TransactionModel {
 abstract class _TransactionModel extends TransactionModel {
   const factory _TransactionModel(
       {final String? externalId,
+      final String? accountName,
       final String? accountNumber,
       final num? amount,
       final num? balanceBefore,
@@ -417,8 +402,7 @@ abstract class _TransactionModel extends TransactionModel {
       final String? description,
       final String? status,
       final String? currency,
-      final String? createdAt,
-      final UserModel? user}) = _$TransactionModelImpl;
+      final String? createdAt}) = _$TransactionModelImpl;
   const _TransactionModel._() : super._();
 
   factory _TransactionModel.fromJson(Map<String, dynamic> json) =
@@ -426,6 +410,8 @@ abstract class _TransactionModel extends TransactionModel {
 
   @override
   String? get externalId;
+  @override
+  String? get accountName;
   @override
   String? get accountNumber;
   @override
@@ -450,8 +436,6 @@ abstract class _TransactionModel extends TransactionModel {
   String? get currency;
   @override
   String? get createdAt;
-  @override
-  UserModel? get user;
   @override
   @JsonKey(ignore: true)
   _$$TransactionModelImplCopyWith<_$TransactionModelImpl> get copyWith =>

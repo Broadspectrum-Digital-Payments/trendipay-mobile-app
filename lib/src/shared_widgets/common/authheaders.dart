@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
@@ -26,20 +27,24 @@ class AuthHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Image.asset(icon),
-            const HSpace(
-              width: BDPSizes.spaceBtwItems,
-            ),
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 24,
+        Flexible(
+          child: Row(
+            children: [
+              Image.asset(icon),
+              const HSpace(
+                width: BDPSizes.spaceBtwItems,
               ),
-            ),
-          ],
+              Flexible(
+                child: Text(
+                  title,
+                  style: kBoldFontStyle.copyWith(
+                    fontSize: AppThemeUtil.fontSize(24),
+                    color: BDPColors.dark90,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         if(showSettings) Icon(
           Icons.settings_outlined,

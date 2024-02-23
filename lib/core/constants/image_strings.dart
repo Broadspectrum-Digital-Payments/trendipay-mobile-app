@@ -26,6 +26,7 @@ class BDPImages {
   static const String loans = "assets/icons/loans.png";
   static const String loansWhite = "assets/icons/loans_white.png";
   static const String creditCard = "assets/icons/credit_card.png";
+  static const String home = "assets/icons/home.png";
 
   // -- OnBoarding Texts
   static const String onBoardingImage1 = "assets/images/on_boarding_images/on-boarding-image1.png";
@@ -52,6 +53,7 @@ class BDPImages {
   static const String pinSuccess = "assets/images/banners/pin_success.png";
   static const String transferSuccess = "assets/images/banners/transfer_success.png";
   static const String loanWelcome = "assets/images/banners/loan_welcome.png";
+  static const String loanReview = "assets/images/banners/loan_review.png";
 
 
 

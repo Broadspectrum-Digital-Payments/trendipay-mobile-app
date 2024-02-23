@@ -58,7 +58,7 @@ class _CardInfoTabState extends State<CardInfoTab> {
                     )),
                 const SizedBox(height: BDPSizes.spaceBtwInputFields),
                 GestureDetector(
-                  onTap: () async {
+                  onTap: userConsumer.getUser.idCardFrontUploaded? null : () async {
                     final croppedFile = await MediaFileUtil.getPickedSourceImage(
                       cropped: false,
                     );
@@ -132,7 +132,7 @@ class _CardInfoTabState extends State<CardInfoTab> {
                 ),
                 const SizedBox(height: BDPSizes.spaceBtwInputFields),
                 GestureDetector(
-                  onTap: () async {
+                  onTap: userConsumer.getUser.idCardBackUploaded? null : () async {
                     final croppedFile = await MediaFileUtil.getPickedSourceImage(
                       cropped: false,
                     );

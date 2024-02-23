@@ -18,7 +18,7 @@ class BDPPrimaryButton extends StatelessWidget {
     this.isLoading = false,
     this.hasIcon = true,
     this.textColor,
-    this.boderColor,
+    this.borderColor,
   });
   
   final void Function()? onPressed;
@@ -28,18 +28,17 @@ class BDPPrimaryButton extends StatelessWidget {
   final bool isLoading;
   final bool hasIcon;
   final Color? textColor;
-  final Color? boderColor;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppThemeUtil.radius(10.0)),
           side: BorderSide(
-            color: boderColor?? BDPColors.primary,
+            color: borderColor?? BDPColors.primary,
           ),
         ),
         backgroundColor: backgroundColor?? BDPColors.primary,
@@ -55,6 +54,7 @@ class BDPPrimaryButton extends StatelessWidget {
           :
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             buttonText,

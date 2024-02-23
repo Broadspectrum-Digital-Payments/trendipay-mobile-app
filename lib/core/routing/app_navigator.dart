@@ -5,6 +5,8 @@ import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_s
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../src/feature/loans/presentation/screens/apply_new_loan_screen.dart';
+import '../../src/feature/loans/presentation/screens/loan_review_screen.dart';
+import '../../src/feature/loans/presentation/screens/loan_summary_screen.dart';
 import '../../src/feature/profile/presentation/screens/settings_screen.dart';
 import '../../src/feature/auth/presentation/screens/login/login_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/account_registration_screen.dart';
@@ -86,6 +88,12 @@ class AppNavigator {
 
       case AppRoute.applyNewLoanScreen:
         return MaterialPageRoute(builder: (context) => const ApplyNewLoanScreen());
+
+      case AppRoute.loanSummaryScreen:
+        return MaterialPageRoute(builder: (context) => const LoanSummaryScreen());
+
+      case AppRoute.loanReviewScreen:
+        return MaterialPageRoute(builder: (context) => const LoanReviewScreen());
 
       default:
         return _errorRoute();

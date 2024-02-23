@@ -9,6 +9,7 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_vi
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
@@ -33,6 +34,8 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
   final formKey = GlobalKey<FormState>();
   final pinCtrl = TextEditingController();
   final confirmPinCtrl = TextEditingController();
+  final pinFocusNode = FocusNode();
+  final confirmFocusNode = FocusNode();
   final obscurePin = ValueNotifier<bool>(true);
   final obscureConfirmPin = ValueNotifier<bool>(true);
 
@@ -79,6 +82,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                 enabled: !userConsumer.isSubmitted && !otpConsumer.isSubmitted,
                                 controller: pinCtrl,
                                 labelText: BDPTexts.password,
+                                focusNode: pinFocusNode,
                                 validator: (value){
                                   if (value == null || value.isEmpty) {
                                     return "Pin field must not be empty";
@@ -93,7 +97,13 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                   child: Icon(obscurePinValue ? Iconsax.eye_slash : Iconsax.eye),
                                 ),
                                 obscureText: obscurePinValue,
-                                keyboardType: TextInputType.number,
+                                keyboardType: const TextInputType.numberWithOptions(decimal: false, signed: false),
+                                onTapOutside: (event){
+                                  pinFocusNode.unfocus();
+                                },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$'))
+                                ],
                               );
                             }
                         ),
@@ -108,6 +118,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                               return BDPInput(
                                 enabled: !userConsumer.isSubmitted && !otpConsumer.isSubmitted,
                                 controller: confirmPinCtrl,
+                                focusNode: confirmFocusNode,
                                 validator: (value){
                                   if (value == null || value.isEmpty) {
                                     return "confirm pin field must not be empty";
@@ -125,7 +136,13 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                   child: Icon(obscureConfirmPinValue ? Iconsax.eye_slash : Iconsax.eye),
                                 ),
                                 obscureText: obscureConfirmPinValue,
-                                keyboardType: TextInputType.number,
+                                keyboardType: const TextInputType.numberWithOptions(decimal: false, signed: false),
+                                onTapOutside: (event){
+                                  confirmFocusNode.unfocus();
+                                },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$'))
+                                ],
                               );
                             }
                         ),

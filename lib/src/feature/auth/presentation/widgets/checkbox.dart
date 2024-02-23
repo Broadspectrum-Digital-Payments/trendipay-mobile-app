@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,14 @@ class ARCheckbox extends StatelessWidget {
     return SizedBox(
       width: AppThemeUtil.radius(24),
       height: AppThemeUtil.radius(24),
-      child: Checkbox(value: value, onChanged: onChanged),
+      child: Checkbox(
+        value: value,
+        onChanged: onChanged,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppThemeUtil.radius(4.0)),
+          side: const BorderSide(color: BDPColors.grey)
+        ),
+      ),
     );
   }
 }

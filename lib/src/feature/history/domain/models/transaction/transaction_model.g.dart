@@ -10,6 +10,7 @@ _$TransactionModelImpl _$$TransactionModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionModelImpl(
       externalId: json['externalId'] as String?,
+      accountName: json['accountName'] as String?,
       accountNumber: json['accountNumber'] as String?,
       amount: json['amount'] as num?,
       balanceBefore: json['balanceBefore'] as num?,
@@ -22,15 +23,13 @@ _$TransactionModelImpl _$$TransactionModelImplFromJson(
       status: json['status'] as String?,
       currency: json['currency'] as String?,
       createdAt: json['createdAt'] as String?,
-      user: json['user'] == null
-          ? null
-          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TransactionModelImplToJson(
         _$TransactionModelImpl instance) =>
     <String, dynamic>{
       'externalId': instance.externalId,
+      'accountName': instance.accountName,
       'accountNumber': instance.accountNumber,
       'amount': instance.amount,
       'balanceBefore': instance.balanceBefore,
@@ -43,5 +42,4 @@ Map<String, dynamic> _$$TransactionModelImplToJson(
       'status': instance.status,
       'currency': instance.currency,
       'createdAt': instance.createdAt,
-      'user': instance.user,
     };

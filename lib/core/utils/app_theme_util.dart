@@ -15,15 +15,24 @@ class AppThemeUtil {
     colorScheme: const ColorScheme.light(),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    // textButtonTheme: TextButtonThemeData(
-    //   style: ButtonStyle(
-    //     overlayColor: MaterialStateProperty.all(Colors.transparent),
-    //   ),
-    // ),
-    // appBarTheme: const AppBarTheme(
-    //   backgroundColor: kPrimaryWhite,
-    //   elevation: 0,
-    // ),
+    splashFactory: NoSplash.splashFactory,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+    ),
   );
 
 

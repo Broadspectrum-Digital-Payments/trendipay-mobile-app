@@ -2,18 +2,18 @@ import 'dart:io';
 
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import '../../../../../common/constants/styles.dart';
+import '../../../../../core/routing/app_route.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/forms/bdp_input.dart';
 
@@ -53,9 +53,7 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 24),
-          onPressed: () {
-            Get.back();
-          },
+          onPressed: () => AppNavigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -199,7 +197,7 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                       BDPPrimaryButton(
                         buttonText: 'Proceed',
                         onPressed: (){
-
+                          AppNavigator.pushNamed(context, AppRoute.loanSummaryScreen);
                         },
                       ),
                     ],

@@ -53,7 +53,7 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                     )),
                 const VSpace(height: BDPSizes.spaceBtwInputFields),
                 GestureDetector(
-                  onTap: () async {
+                  onTap: userConsumer.getUser.selfieUploaded? null : () async {
                     if(await PermissionUtil.getStoragePermission()){
                       final croppedFile = await MediaFileUtil.getPickedSourceImage(
                         cameraFront: true,

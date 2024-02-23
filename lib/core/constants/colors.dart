@@ -16,6 +16,7 @@ class BDPColors {
  static const Color notification = Color(0xff7a0000);
  static const black70 = Color(0xB20C111D);
  static const brightPurple = Color(0xFF6801CB);
+ static const brightMain = Color(0xFFCC0066);
  static const successColor = Color(0xFF30A806);
 
  //gradients

@@ -15,6 +15,7 @@ class TransactionModel with _$TransactionModel {
   const TransactionModel._();
   const factory TransactionModel({
     final String? externalId,
+    final String? accountName,
     final String? accountNumber,
     final num? amount,
     final num? balanceBefore,
@@ -27,7 +28,6 @@ class TransactionModel with _$TransactionModel {
     final String? status,
     final String? currency,
     final String? createdAt,
-    final UserModel? user,
   }) = _TransactionModel;
 
   String get getAmount => '$currency ${(amountInMajorUnits?? '0').toString().toCurrencyFormat}';
