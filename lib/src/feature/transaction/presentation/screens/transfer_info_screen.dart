@@ -35,6 +35,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
   final accountNumberFocusNode = FocusNode();
 
   final transferAmount = ValueNotifier<String>('0.0');
+  final accountNetwork = ValueNotifier<String?>(null);
 
   @override
   void initState() {
@@ -93,7 +94,6 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                       labelText: 'Amount*',
                       controller: amntCtrl,
                       focusNode: amountFocusNode,
-                      // enabled: state.completingTransfer == false,
                       validator: (value){
                         if (value == null || value.isEmpty) {
                           return "Amount field must not be empty";
@@ -132,7 +132,6 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                           controller: accountNumberCtrl,
                           focusNode: accountNumberFocusNode,
                           keyboardType: TextInputType.number,
-                          // enabled: state.completingTransfer == false,
                           validator: (value){
                             if (value == null || value.isEmpty) {
                               return "Account number field must not be empty";
@@ -150,8 +149,10 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                     ),
                     BDPDropdown(
                       labelText: 'Account Network*',
-                      value: null,
-                      onChanged: (value){},
+                      value: accountNetwork.value,
+                      onChanged: (value){
+                        accountNetwork.value = value;
+                      },
                       items: const ['MTN', 'GMO', 'ATM', 'VODAFONE'],
                       validator: (value){
                         if (value == null || value.isEmpty) {
@@ -186,7 +187,6 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                     BDPInput(
                       labelText: 'Description*',
                       controller: descCtrl,
-                      // enabled: state.completingTransfer == false,
                       validator: (value){
                         if (value == null || value.isEmpty) {
                           return "Description field must not be empty";
@@ -205,11 +205,20 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                         children: [
                           BDPPrimaryButton(
                             buttonText: BDPTexts.continueButtonText,
-                            onPressed: (){
+                            onPressed: transactionConsumer.getComponentLoading('nameEnquiry')? null : (){
                               if(formKey.currentState!.validate()){
                                 AppDialogUtil.showScrollableBottomSheet(
                                   context: context,
-                                  builder: (context) => const TransferSummaryModalContent(),
+                                  builder: (context) => TransferSummaryModalContent(
+                                    transferInfo: {
+                                      "amount": amntCtrl.text,
+                                      "accountNumber": accountNumberCtrl.text,
+                                      "accountIssuer": accountNetwork.value,
+                                      "accountName": accNameCtrl.text,
+                                      "description": descCtrl.text,
+                                      "type": "transfer"
+                                    },
+                                  ),
                                 );
                               }
                             },

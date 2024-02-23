@@ -90,3 +90,15 @@ flutter:
     - family: IBMPlexSans
       fonts:
         - asset: assets/fonts/IBMPlexSans-Regular.ttf
+
+    - family: IBMPlexSans-Bold
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Bold.ttf
+
+    - family: IBMPlexSans-Medium
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Medium.ttf
+
+    - family: IBMPlexSans-SemiBold
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-SemiBold.ttf

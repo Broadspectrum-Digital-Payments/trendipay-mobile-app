@@ -5,25 +5,21 @@ import 'package:flutter/material.dart';
 import '../../core/constants/colors.dart';
 
 const kBoldFontStyle = TextStyle(
-  fontFamily: 'IBMPlexSans',
-  fontWeight: FontWeight.w700,
+  fontFamily: 'IBMPlexSans-Bold',
   color: BDPColors.primary,
 );
 
 const kRegularFontStyle = TextStyle(
   fontFamily: 'IBMPlexSans',
-  fontWeight: FontWeight.w400,
   color: BDPColors.primary,
 );
 
 const kSemiBoldFontStyle = TextStyle(
-  fontFamily: 'IBMPlexSans',
-  fontWeight: FontWeight.w600,
+  fontFamily: 'IBMPlexSans-SemiBold',
   color: BDPColors.primary,
 );
 
 const kMediumFontStyle = TextStyle(
-  fontFamily: 'IBMPlexSans',
-  fontWeight: FontWeight.w500,
+  fontFamily: 'IBMPlexSans-Medium',
   color: BDPColors.primary,
 );

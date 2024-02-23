@@ -44,7 +44,7 @@ class BDPDropdown extends StatelessWidget {
           child: Text(
             value,
             style: kMediumFontStyle.copyWith(
-              fontSize: AppThemeUtil.fontSize(16),
+              fontSize: AppThemeUtil.fontSize(14),
               color: BDPColors.dark90,
             ),
           ),

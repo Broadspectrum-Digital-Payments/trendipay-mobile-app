@@ -11,9 +11,11 @@ class BDPColors {
  static const Color grey = Color(0xff687078);
  static const Color white = Color(0xffffffff);
  static const Color dark90 = Color(0xff18181B);
+ static const Color black = Color(0xff000000);
  static const Color containerColor = Color(0xFFF0E4FC);
  static const Color notification = Color(0xff7a0000);
  static const kBlack70 = Color(0xB20C111D);
+ static const kBrightPurple = Color(0xFF6801CB);
 
  //gradients
   static const List<Color> walletGradients = [

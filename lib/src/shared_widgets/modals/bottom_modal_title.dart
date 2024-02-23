@@ -1,9 +1,12 @@
 
+import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../base/custom_scroll_behaviour.dart';
-import 'modal_grab_bar.dart';
 
 class BottomModalTitle extends StatelessWidget {
   const BottomModalTitle({
@@ -30,70 +33,39 @@ class BottomModalTitle extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         controller: scrollController,
         child: Container(
-          // decoration: BoxDecoration(
-          //   border: hasBottomBorder? Border(
-          //     bottom: BorderSide(width: 1, color: AppThemeUtil.getThemeColor(kGrey200)),
-          //   ) : null,
-          // ),
-          child: const Column(
+          height: AppThemeUtil.height(84.0),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: BDPColors.kBrightPurple,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(AppThemeUtil.radius(16))),
+          ),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _HeaderPill(),
-                ],
+              (modalHeaderContent != null)?
+              modalHeaderContent!
+                  :
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: AppThemeUtil.width(kWidthPadding),
+                    right: AppThemeUtil.width(kWidthPadding),
+                  ),
+                  child: Text(
+                    title?? '',
+                    style: kMediumFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(20.0),
+                      color: BDPColors.white,
+                    ),
+                  ),
+                ),
               ),
-
-              // (modalHeaderContent != null)?
-              // modalHeaderContent!
-              //     :
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     (goBack != null)?
-              //     Row(
-              //       children: [
-              //         Icon(
-              //           CupertinoIcons.arrow_left,
-              //           size: AppThemeUtil.radius(24.0),
-              //           color: AppThemeUtil.getThemeColor(Colors.black),
-              //         ).onPressed(goBack!),
-              //         Text(
-              //           title?? '',
-              //         ).extraBold().fontSize(16.0).color(Colors.black).overflowText(TextOverflow.ellipsis).paddingOnly(left: 16.0).flexible(),
-              //       ],
-              //     ).paddingOnly(right: 8.0).flexible()
-              //     :
-              //     Text(
-              //       title?? '',
-              //     ).extraBold().fontSize(16.0).color(kPrimaryBlack).overflowText(TextOverflow.ellipsis).paddingOnly(right: 8.0).flexible(),
-              //     Icon(
-              //       Icons.close,
-              //       size: AppThemeUtil.radius(24.0),
-              //       color: kGrey1200,
-              //     ).onPressed(() => AppNavigator.pop(context),),
-              //   ],
-              // ).paddingOnly(left: kWidthPadding, right: kWidthPadding, bottom: 18.0),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-
-
-class _HeaderPill extends StatelessWidget {
-  const _HeaderPill();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 16.0, bottom: 32.0),
-      child: ModalGrabBar(),
     );
   }
 }
