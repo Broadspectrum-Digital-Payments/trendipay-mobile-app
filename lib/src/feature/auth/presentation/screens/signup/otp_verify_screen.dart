@@ -15,7 +15,9 @@ import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
-  const VerifyOTPScreen({super.key});
+  const VerifyOTPScreen({super.key, this.otpType,});
+
+  final String? otpType;
 
   @override
   State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
@@ -64,7 +66,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.otpTitle),
+        title: AuthHeader(icon: BDPImages.bdpIcon, title: '${widget.otpType?? ''}${BDPTexts.otpTitle}'),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(

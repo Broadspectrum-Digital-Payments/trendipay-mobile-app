@@ -58,7 +58,7 @@ class AppNavigator {
         return MaterialPageRoute(builder: (context) => const PhoneNumberScreen());
 
       case AppRoute.otpVerificationScreen:
-        return MaterialPageRoute(builder: (context) => const VerifyOTPScreen());
+        return MaterialPageRoute(builder: (context) => VerifyOTPScreen(otpType: args as String?,));
 
       case AppRoute.pinSuccessScreen:
         return MaterialPageRoute(builder: (context) => const PinSuccessScreen());

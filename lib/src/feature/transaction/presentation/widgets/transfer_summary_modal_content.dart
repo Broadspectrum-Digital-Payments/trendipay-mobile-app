@@ -1,4 +1,5 @@
 import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'GHC 0',
+                      'GHC ${(transferInfo['amount']?? '0').toString().toCurrencyFormat}',
                       style: kBoldFontStyle.copyWith(
                         fontSize: AppThemeUtil.fontSize(20),
                         foreground: Paint()
@@ -140,11 +141,10 @@ class TransferSummaryModalContent extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         BDPPrimaryButton(
-                          // isLoading: state.completingTransfer == true,
-                            buttonText: BDPTexts.confirm,
-                            onPressed: (){
-                              // controller.initiatePtoPTransfer();
-                            }
+                          buttonText: BDPTexts.confirm,
+                          onPressed: (){
+                            // AppNavigator.popAndPushNamed(context, AppRoute.otpVerificationScreen, arguments: 'Transaction ');
+                          }
                         ),
                       ],
                     ),

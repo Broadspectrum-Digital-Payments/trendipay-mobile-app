@@ -6,8 +6,8 @@ const kAuthentication = '';
 const kWidthPadding = 24.0;
 
 const kSignupAction = 'sign-up';
-
-const kChangePin = 'change-pin';
+const kChangePinAction = 'change-pin';
+const kPerformTransferAction = 'perform-transfer';
 
 const kProcessedStatus = 'processed';
 const kQueuedStatus = 'queued';

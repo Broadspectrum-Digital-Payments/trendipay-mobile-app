@@ -78,7 +78,7 @@ class OtpViewModel extends BaseViewModel{
         AppNavigator.pushReplacementNamed(context, AppRoute.accountRegistrationScreen);
         return;
       }
-      if(_otpRequestBody['action'] == kChangePin){
+      if(_otpRequestBody['action'] == kChangePinAction){
         if(context.mounted){
           await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
         }

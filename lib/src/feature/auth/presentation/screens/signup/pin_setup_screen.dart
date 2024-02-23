@@ -177,7 +177,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                     await context.read<OtpViewModel>().sendOtp(
                                       context,
                                       requestBody: {
-                                        'action': kChangePin,
+                                        'action': kChangePinAction,
                                         "phoneNumber": userConsumer.getUser.phoneNumber,
                                         "pin": pinCtrl.text,
                                         "pinConfirmation": confirmPinCtrl.text
