@@ -15,3 +15,7 @@ const kSubmittedStatus = 'submitted';
 const kApprovedStatus = 'approved';
 const kStartedStatus = 'started';
 const kCompletedStatus = 'completed';
+const kSuccessStatus = 'success';
+const kInitiatedStatus = 'initiated';
+const kFailedStatus = 'failed';
+const kPendingStatus = 'pending';

@@ -7,7 +7,7 @@ import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/transaction/presentation/view_models/transaction_view_model.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/quick_transaction.dart';
-import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_recent_transactions.dart';
+import 'package:bdp_payment_app/src/feature/transaction/presentation/widgets/transaction_list_view.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/widgets/wallet_user.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
@@ -172,7 +172,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 ),
                               );
                             }
-                            return WalletRecentTransactions(
+                            return TransactionListView(
                               transactions: transactionConsumer.getRecentTransactions,
                               primary: false,
                             );
@@ -189,18 +189,4 @@ class _WalletScreenState extends State<WalletScreen> {
       ),
     );
   }
-
-  // void _showHistoryModal() {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       isScrollControlled: true,
-  //       builder: (context) {
-  //         return BlocBuilder<TransactionBlocs, TransactionStates>(
-  //             builder: (context, state) {
-  //               return reusableHistoryData(
-  //                   history: state.currentHistory,
-  //                   loading: state.loadingTransactions == true);
-  //             });
-  //       });
-  // }
 }

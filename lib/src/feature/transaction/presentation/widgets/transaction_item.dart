@@ -1,15 +1,16 @@
 import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
-import '../../../transaction/domain/models/transaction/wallet_transaction_model.dart';
+import '../../domain/models/transaction/transaction_model.dart';
 
 class TransactionItem extends StatelessWidget {
-  final WalletTransactionModel transaction;
+  final TransactionModel transaction;
 
   const TransactionItem({
     super.key,
@@ -41,13 +42,24 @@ class TransactionItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(transaction.getAmount, style: kBoldFontStyle.copyWith(fontSize: AppThemeUtil.fontSize(14), color: Colors.black),),
-                const Icon(Icons.keyboard_arrow_right),
+                Icon(
+                  Icons.keyboard_arrow_right,
+                  size: AppThemeUtil.radius(14.0),
+                  color: Colors.black,
+                ),
               ],
             ),
-            Text('Success', style: kMediumFontStyle.copyWith(fontSize: AppThemeUtil.fontSize(10), color: const Color(0xff30a806)),),
+            Text(
+              HelperUtil.getTransactionStatus((transaction.status?? '').toLowerCase()),
+              style: kMediumFontStyle.copyWith(
+                fontSize: AppThemeUtil.fontSize(10),
+                color: HelperUtil.getTransactionStatusTextColor(HelperUtil.getTransactionStatus((transaction.status?? '').toLowerCase())),
+              ),
+            ),
           ],
         ),
       ],

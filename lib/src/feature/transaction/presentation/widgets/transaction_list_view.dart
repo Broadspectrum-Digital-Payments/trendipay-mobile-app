@@ -2,17 +2,19 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../transaction/domain/models/transaction/wallet_transaction_model.dart';
+import '../../../../../core/utils/app_dialog_util.dart';
+import '../../domain/models/transaction/transaction_model.dart';
 import 'transaction_item.dart';
+import 'transaction_summary_modal_content.dart';
 
-class WalletRecentTransactions extends StatelessWidget {
-  const WalletRecentTransactions({
+class TransactionListView extends StatelessWidget {
+  const TransactionListView({
     super.key,
     required this.transactions,
     this.primary,
   });
 
-  final List<WalletTransactionModel> transactions;
+  final List<TransactionModel> transactions;
   final bool? primary;
 
   @override
@@ -25,14 +27,17 @@ class WalletRecentTransactions extends StatelessWidget {
         final transaction = transactions[index];
         return GestureDetector(
           onTap: (){
-
+            AppDialogUtil.showScrollableBottomSheet(
+              context: context,
+              builder: (context) => TransactionSummaryModalContent(transaction: transaction),
+            );
           },
           child: TransactionItem(transaction: transaction),
         );
       },
       separatorBuilder: (BuildContext context, int index) {
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(8.0)),
+          padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(10.0)),
           child: const HDivider(),
         );
       },

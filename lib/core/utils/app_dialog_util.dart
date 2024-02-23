@@ -15,7 +15,7 @@ class AppDialogUtil {
     return showDialog<void>(
         context: context,
         barrierDismissible: false,
-        barrierColor: AppThemeUtil.getThemeColor(BDPColors.kBlack70),
+        barrierColor: AppThemeUtil.getThemeColor(BDPColors.black70),
         builder: (BuildContext context) {
           return BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
@@ -58,7 +58,7 @@ class AppDialogUtil {
       enableDrag: false,
       useSafeArea: HelperUtil.isIOS? false : useSafeArea,
       isDismissible: isDismissible?? true,
-      barrierColor: AppThemeUtil.getThemeColor(BDPColors.kBlack70),
+      barrierColor: AppThemeUtil.getThemeColor(BDPColors.black70),
       builder: builder,
     );
   }
@@ -70,7 +70,7 @@ class AppDialogUtil {
   }) async {
     await showDialog(
       barrierDismissible: barrierDismissible,
-      barrierColor: AppThemeUtil.getThemeColor(BDPColors.kBlack70),
+      barrierColor: AppThemeUtil.getThemeColor(BDPColors.black70),
       context: context,
       builder: (BuildContext context) {
         return  PopScope(

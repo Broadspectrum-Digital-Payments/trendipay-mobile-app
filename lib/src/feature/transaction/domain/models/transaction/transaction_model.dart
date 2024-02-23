@@ -4,14 +4,14 @@ import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-part 'wallet_transaction_model.freezed.dart';
-part 'wallet_transaction_model.g.dart';
+part 'transaction_model.freezed.dart';
+part 'transaction_model.g.dart';
 
 
 @freezed
-class WalletTransactionModel with _$WalletTransactionModel {
-  const WalletTransactionModel._();
-  const factory WalletTransactionModel({
+class TransactionModel with _$TransactionModel {
+  const TransactionModel._();
+  const factory TransactionModel({
     final String? externalId,
     final String? accountNumber,
     final num? amount,
@@ -27,34 +27,34 @@ class WalletTransactionModel with _$WalletTransactionModel {
     final String? status,
     final String? currency,
     final String? createdAt,
-  }) = _WalletTransactionModel;
+  }) = _TransactionModel;
 
   String get getAmount => '$currency ${(amountInMajorUnits?? '0').toString().toCurrencyFormat}';
   String get getDate => (createdAt?? '').isEmpty? '' : DateFormat("d MMM y").format(DateTime.parse(createdAt?? '')).toString();
   String get getTime => (createdAt?? '').isEmpty? '' : DateFormat("jm").format(DateTime.parse(createdAt?? '')).toString();
 
-  factory WalletTransactionModel.fromJson(Map<String, dynamic> json) =>
-      _$WalletTransactionModelFromJson(json);
+  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
+      _$TransactionModelFromJson(json);
 
 
-  static String encode(List<WalletTransactionModel> objects) => json.encode(
+  static String encode(List<TransactionModel> objects) => json.encode(
     objects.map<Map<String, dynamic>>((obj) => obj.toJson()).toList(),
   );
 
-  static List<WalletTransactionModel> decode(String objects) => objects.isEmpty ? [] :
+  static List<TransactionModel> decode(String objects) => objects.isEmpty ? [] :
   (json.decode(objects) as List<dynamic>)
-      .map<WalletTransactionModel>((obj) => WalletTransactionModel.fromJson(obj)).toList();
+      .map<TransactionModel>((obj) => TransactionModel.fromJson(obj)).toList();
 }
 
 
 
-class WalletTransactionList {
-  WalletTransactionList({required this.list});
-  final List<WalletTransactionModel> list;
+class TransactionList {
+  TransactionList({required this.list});
+  final List<TransactionModel> list;
 
-  factory WalletTransactionList.fromJson(List parsedJson) {
-    final list = parsedJson.map((obj) => WalletTransactionModel.fromJson(obj) ).toList();
-    return WalletTransactionList(list: list);
+  factory TransactionList.fromJson(List parsedJson) {
+    final list = parsedJson.map((obj) => TransactionModel.fromJson(obj) ).toList();
+    return TransactionList(list: list);
   }
 
 }

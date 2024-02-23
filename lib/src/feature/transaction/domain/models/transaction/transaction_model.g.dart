@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'wallet_transaction_model.dart';
+part of 'transaction_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WalletTransactionModelImpl _$$WalletTransactionModelImplFromJson(
+_$TransactionModelImpl _$$TransactionModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$WalletTransactionModelImpl(
+    _$TransactionModelImpl(
       externalId: json['externalId'] as String?,
       accountNumber: json['accountNumber'] as String?,
       amount: json['amount'] as num?,
@@ -26,8 +26,8 @@ _$WalletTransactionModelImpl _$$WalletTransactionModelImplFromJson(
       createdAt: json['createdAt'] as String?,
     );
 
-Map<String, dynamic> _$$WalletTransactionModelImplToJson(
-        _$WalletTransactionModelImpl instance) =>
+Map<String, dynamic> _$$TransactionModelImplToJson(
+        _$TransactionModelImpl instance) =>
     <String, dynamic>{
       'externalId': instance.externalId,
       'accountNumber': instance.accountNumber,

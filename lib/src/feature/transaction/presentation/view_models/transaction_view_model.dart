@@ -11,20 +11,20 @@ import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
 import '../../../wallet/domain/models/wallet/wallet_model.dart';
 import '../../data/repositories/transaction_repository.dart';
-import '../../domain/models/transaction/wallet_transaction_model.dart';
+import '../../domain/models/transaction/transaction_model.dart';
 
 class TransactionViewModel extends BaseViewModel{
   final _transactionRepository = sl.get<TransactionRepository>();
 
-  List<WalletTransactionModel> _recentTransactions = [];
+  List<TransactionModel> _recentTransactions = [];
   WalletModel? _enquiryResult;
 
-  set setRecentTransaction(List<WalletTransactionModel> transactions){
+  set setRecentTransaction(List<TransactionModel> transactions){
     _recentTransactions = transactions;
     notifyListeners();
   }
 
-  UnmodifiableListView<WalletTransactionModel> get getRecentTransactions => UnmodifiableListView(_recentTransactions);
+  UnmodifiableListView<TransactionModel> get getRecentTransactions => UnmodifiableListView(_recentTransactions);
 
   Future<void> fetchTransactions(BuildContext context, {String loadingComponent = 'walletRecent', required Map<String, dynamic> queryParam}) async{
     setComponentErrorType = null;

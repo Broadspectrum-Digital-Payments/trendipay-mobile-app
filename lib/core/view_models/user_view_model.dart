@@ -81,7 +81,6 @@ class UserViewModel extends BaseViewModel{
   }
 
   Future<void> changePin(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
-    print('CHANGE PIN: ${requestBody}');
     final result = await _userRepository.changePin(requestBody: requestBody);
 
     if(context.mounted) AppNavigator.pop(context);

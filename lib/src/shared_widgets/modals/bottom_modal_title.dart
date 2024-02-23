@@ -36,7 +36,7 @@ class BottomModalTitle extends StatelessWidget {
           height: AppThemeUtil.height(84.0),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: BDPColors.kBrightPurple,
+            color: BDPColors.brightPurple,
             borderRadius: BorderRadius.vertical(top: Radius.circular(AppThemeUtil.radius(16))),
           ),
           child: Column(

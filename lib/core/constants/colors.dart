@@ -14,8 +14,9 @@ class BDPColors {
  static const Color black = Color(0xff000000);
  static const Color containerColor = Color(0xFFF0E4FC);
  static const Color notification = Color(0xff7a0000);
- static const kBlack70 = Color(0xB20C111D);
- static const kBrightPurple = Color(0xFF6801CB);
+ static const black70 = Color(0xB20C111D);
+ static const brightPurple = Color(0xFF6801CB);
+ static const successColor = Color(0xFF30A806);
 
  //gradients
   static const List<Color> walletGradients = [

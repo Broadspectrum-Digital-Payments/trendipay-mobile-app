@@ -1,6 +1,8 @@
 
 import 'dart:io';
 
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:flutter/material.dart';
 
 import '../routing/app_navigator.dart';
@@ -29,6 +31,18 @@ class HelperUtil{
   static String getLocalPhoneNumber(String intPhoneFormat){
     if(intPhoneFormat.isEmpty) return '';
     return intPhoneFormat.substring(intPhoneFormat.length-9).padLeft(10, '0');
+  }
+
+  static String getTransactionStatus(String status){
+    if([kCompletedStatus, kSuccessStatus].contains(status)) return kSuccessStatus;
+    if([kQueuedStatus, kInitiatedStatus, kStartedStatus].contains(status)) return kPendingStatus;
+    return status;
+  }
+
+  static Color getTransactionStatusTextColor(String status){
+    if(status.toLowerCase() == kSuccessStatus) return BDPColors.successColor;
+    if(status.toLowerCase() == kPendingStatus) return Colors.yellow.shade300;
+    return BDPColors.secondary;
   }
 
 }

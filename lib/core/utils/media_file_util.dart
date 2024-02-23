@@ -17,7 +17,7 @@ class MediaFileUtil{
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: title,
-          toolbarColor: BDPColors.kBlack70,
+          toolbarColor: BDPColors.black70,
           toolbarWidgetColor: BDPColors.white,
           hideBottomControls: hideBottomControls,
           lockAspectRatio: false,
