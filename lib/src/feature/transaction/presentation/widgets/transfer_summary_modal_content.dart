@@ -54,7 +54,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'GHC ${(transferInfo['amount']?? '0').toString().toCurrencyFormat}',
+                      'GHS ${(transferInfo['amount']?? '0').toString().toCurrencyFormat}',
                       style: kBoldFontStyle.copyWith(
                         fontSize: AppThemeUtil.fontSize(20),
                         foreground: Paint()

@@ -85,7 +85,7 @@ class WalletCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        userConsumer.getUser.getAvailableBalance,
+                        'GHS ${userConsumer.getUser.getAvailableBalance}',
                         style: kMediumFontStyle.copyWith(
                           fontSize: AppThemeUtil.fontSize(30.0),
                           color: BDPColors.white,
