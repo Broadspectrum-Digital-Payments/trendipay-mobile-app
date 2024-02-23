@@ -1,24 +1,29 @@
-import 'package:bdp_payment_app/features/mainscreens/screens/settings/widgets/setting_items.dart';
+import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/feature/profile/presentation/widgets/setting_items.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../core/constants/sizes.dart';
-import '../../../../core/constants/text_strings.dart';
-import '../../../../common/widgets/custom_appbar/custom_appbar.dart';
-import '../system_support/system_support.dart';
+import '../../../../../core/constants/text_strings.dart';
+import '../../../../shared_widgets/common/authheaders.dart';
 
 
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(appBarTitle: BDPTexts.settings,),
+      appBar: AppBar(
+        title: const AuthHeader(
+          icon: BDPImages.bdpIcon,
+          title: BDPTexts.settings,
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body:  SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+          padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left:28.0),
                 child: GestureDetector(
-                  onTap: () {Get.to(const SystemSupportScreen());},
+                  onTap: () {},
                   child: Row(
                     children: [
                       Image.asset(BDPImages.systemSupport),

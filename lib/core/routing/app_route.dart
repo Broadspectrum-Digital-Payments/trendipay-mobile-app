@@ -12,5 +12,6 @@ class AppRoute {
   static const kycSetupScreen = 'kyc_setup_screen';
   static const transactionInfoScreen = 'transaction_info_screen';
   static const transferSuccessScreen = 'transfer_success_screen';
+  static const accountSettingsScreen = 'account_settings_screen';
 
 }

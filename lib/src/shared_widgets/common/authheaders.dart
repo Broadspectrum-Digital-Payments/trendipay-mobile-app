@@ -1,3 +1,8 @@
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/material.dart';
 
@@ -9,26 +14,40 @@ class AuthHeader extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
+    this.showSettings = false,
   });
 
   final String icon;
   final String title;
+  final bool showSettings;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image.asset(icon),
-        const HSpace(
-          width: BDPSizes.spaceBtwItems,
+        Row(
+          children: [
+            Image.asset(icon),
+            const HSpace(
+              width: BDPSizes.spaceBtwItems,
+            ),
+            Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 24,
+              ),
+            ),
+          ],
         ),
-        Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 24,
-          ),
-        ),
+        if(showSettings) Icon(
+          Icons.settings_outlined,
+          size: AppThemeUtil.radius(24.0),
+          color: BDPColors.secondary2,
+        ).iconPressed((){
+          AppNavigator.pushNamed(context, AppRoute.accountSettingsScreen);
+        }),
       ],
     );
   }

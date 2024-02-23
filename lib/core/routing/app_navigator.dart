@@ -4,6 +4,7 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin
 import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../src/feature/profile/presentation/screens/settings_screen.dart';
 import '../../src/feature/auth/presentation/screens/login/login_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/account_registration_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/otp_verify_screen.dart';
@@ -78,6 +79,9 @@ class AppNavigator {
 
       case AppRoute.transferSuccessScreen:
         return MaterialPageRoute(builder: (context) => const TransferSuccessScreen());
+
+      case AppRoute.accountSettingsScreen:
+        return MaterialPageRoute(builder: (context) => const SettingsScreen());
 
       default:
         return _errorRoute();

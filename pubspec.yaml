@@ -103,3 +103,4 @@ flutter:
     - family: IBMPlexSans-SemiBold
       fonts:
         - asset: assets/fonts/IBMPlexSans-SemiBold.ttf
+

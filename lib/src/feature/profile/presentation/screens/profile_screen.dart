@@ -37,7 +37,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = context.read<UserViewModel>().getUser;
     return Scaffold(
       appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.profile),
+        title: const AuthHeader(
+          icon: BDPImages.bdpIcon,
+          title: BDPTexts.profile,
+          showSettings: true,
+        ),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
