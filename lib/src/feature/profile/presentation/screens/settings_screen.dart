@@ -4,6 +4,7 @@ import 'package:bdp_payment_app/src/feature/profile/presentation/widgets/setting
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/constants/text_strings.dart';
+import '../../../../../core/routing/app_navigator.dart';
 import '../../../../shared_widgets/common/authheaders.dart';
 
 
@@ -19,7 +20,10 @@ class SettingsScreen extends StatelessWidget {
           icon: BDPImages.bdpIcon,
           title: BDPTexts.settings,
         ),
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, size: 24),
+          onPressed: () => AppNavigator.pop(context),
+        ),
       ),
       body:  SingleChildScrollView(
         child: Padding(
