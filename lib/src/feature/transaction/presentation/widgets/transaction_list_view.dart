@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
@@ -25,15 +26,12 @@ class TransactionListView extends StatelessWidget {
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
-        return GestureDetector(
-          onTap: (){
-            AppDialogUtil.showScrollableBottomSheet(
-              context: context,
-              builder: (context) => TransactionSummaryModalContent(transaction: transaction),
-            );
-          },
-          child: TransactionItem(transaction: transaction),
-        );
+        return TransactionItem(transaction: transaction).onPressed((){
+          AppDialogUtil.showScrollableBottomSheet(
+            context: context,
+            builder: (context) => TransactionSummaryModalContent(transaction: transaction),
+          );
+        });
       },
       separatorBuilder: (BuildContext context, int index) {
         return Padding(

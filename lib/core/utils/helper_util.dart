@@ -34,8 +34,8 @@ class HelperUtil{
   }
 
   static String getTransactionStatus(String status){
-    if([kCompletedStatus, kSuccessStatus].contains(status)) return kSuccessStatus;
-    if([kQueuedStatus, kInitiatedStatus, kStartedStatus].contains(status)) return kPendingStatus;
+    if([kCompletedStatus, kSuccessStatus].contains(status.toLowerCase())) return kSuccessStatus;
+    if([kQueuedStatus, kInitiatedStatus, kStartedStatus].contains(status.toLowerCase())) return kPendingStatus;
     return status;
   }
 
