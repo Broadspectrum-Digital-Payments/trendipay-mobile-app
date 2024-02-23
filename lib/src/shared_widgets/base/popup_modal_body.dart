@@ -14,7 +14,6 @@ class PopupModalBody extends StatelessWidget {
     this.verticalPadding,
     this.horizontalPadding,
     this.actions,
-    this.alignment,
     this.insetPadding,
   });
 
@@ -23,13 +22,11 @@ class PopupModalBody extends StatelessWidget {
   final List<Widget>? actions;
   final double? verticalPadding;
   final double? horizontalPadding;
-  final AlignmentGeometry? alignment;
   final EdgeInsets? insetPadding;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      alignment: alignment,
       elevation: 0.0,
       insetPadding: insetPadding?? EdgeInsets.symmetric(horizontal: AppThemeUtil.width(32.0)),
       clipBehavior: Clip.antiAliasWithSaveLayer,

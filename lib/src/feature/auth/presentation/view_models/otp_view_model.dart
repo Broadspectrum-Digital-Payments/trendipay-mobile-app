@@ -32,11 +32,14 @@ class OtpViewModel extends BaseViewModel{
   }
 
   Future<void> sendOtp(BuildContext context, {bool resend = false, required Map<String, dynamic> requestBody}) async{
-    setIsSubmitted(true);
+    if(!resend) AppDialogUtil.loadingDialog(context);
+    if(resend) setIsSubmitted(false);
+
     final result = await _userRepository.sendOtp(requestBody: requestBody);
+    if(context.mounted && !resend) AppNavigator.pop(context);
 
     result.fold((failure){
-      setIsSubmitted(false);
+      if(resend) setIsSubmitted(false);
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -46,7 +49,7 @@ class OtpViewModel extends BaseViewModel{
         );
       });
     }, (response){
-      setIsSubmitted(false);
+      if(resend) setIsSubmitted(false);
       if(!resend){
         setOtpRequestBody = requestBody;
         AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen);
@@ -55,11 +58,11 @@ class OtpViewModel extends BaseViewModel{
   }
 
   Future<void> verifyOtp(BuildContext context, {required Map<String, dynamic> requestBody}) async{
-    setIsSubmitted(true);
+    AppDialogUtil.loadingDialog(context);
     final result = await _userRepository.verifyOtp(requestBody: requestBody);
 
     result.fold((failure){
-      setIsSubmitted(false);
+      if(context.mounted) AppNavigator.pop(context);
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -69,8 +72,8 @@ class OtpViewModel extends BaseViewModel{
         );
       });
     }, (response) async{
-      setIsSubmitted(false);
       if(_otpRequestBody['action'] == kSignupAction){
+        if(context.mounted) AppNavigator.pop(context);
         setOtpRequestBody = {...requestBody, 'otp': requestBody['otp']};
         AppNavigator.pushReplacementNamed(context, AppRoute.accountRegistrationScreen);
         return;

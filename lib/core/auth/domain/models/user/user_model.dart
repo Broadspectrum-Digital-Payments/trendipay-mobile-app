@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_model.freezed.dart';
@@ -25,6 +26,8 @@ class UserModel with _$UserModel {
     final splitNameList = (name?? '').replaceAll('-', ' ').split(' ');
     return splitNameList.first;
   }
+
+  String get getAvailableBalance => (availableBalance?? '0').toCurrencyFormat;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

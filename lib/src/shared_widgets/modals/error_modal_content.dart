@@ -26,6 +26,11 @@ class ErrorModalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupModalBody(
+      insetPadding: EdgeInsets.only(
+        left: AppThemeUtil.width(40.0),
+        right: AppThemeUtil.width(40.0),
+        bottom: MediaQuery.of(context).size.height * 0.2,
+      ),
       title: Column(
         children: [
           if(errorTitle.isNotEmpty) ...[

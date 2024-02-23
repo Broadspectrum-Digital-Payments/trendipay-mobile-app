@@ -1,6 +1,5 @@
 
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
-import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
@@ -49,125 +48,118 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: BDPSpacingStyle.paddingWithAppBarHeight,
-          child: BaseView<UserViewModel>(
-            builder: (context, userConsumer, child) {
-              return Form(
-                key: formKey,
-                child: Column(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                BDPInput(
+                  controller: phoneCtrl,
+                  focusNode: phoneFocusNode,
+                  keyboardType: TextInputType.phone,
+                  labelText: BDPTexts.phoneNo,
+                  validator: (value){
+                    if (value == null || value.isEmpty) {
+                      return "Phone field must not be empty";
+                    }
+                    return null;
+                  },
+                  onTapOutside: (event){
+                    phoneFocusNode.unfocus();
+                  },
+                ),
+                const VSpace(height: BDPSizes.spaceBtwInputFields),
+                ValueListenableBuilder<bool>(
+                    valueListenable: obscurePin,
+                    builder: (context, obscurePinValue, child) {
+                      return BDPInput(
+                        controller: pinCtrl,
+                        labelText: BDPTexts.password,
+                        focusNode: pinFocusNode,
+                        keyboardType: TextInputType.number,
+                        validator: (value){
+                          if (value == null || value.isEmpty) {
+                            return "Pin field must not be empty";
+                          }
+                          return null;
+                        },
+                        onTapOutside: (event){
+                          pinFocusNode.unfocus();
+                        },
+                        suffixIcon: GestureDetector(
+                          onTap: (){
+                            obscurePin.value = !obscurePin.value;
+                          },
+                          child: Icon(obscurePinValue ? Iconsax.eye_slash : Iconsax.eye),
+                        ),
+                        obscureText: obscurePinValue,
+                      );
+                    }
+                ),
+                const VSpace(
+                  height: BDPSizes.spaceBtwItems * 2,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    BDPInput(
-                      enabled: !userConsumer.isSubmitted,
-                      controller: phoneCtrl,
-                      focusNode: phoneFocusNode,
-                      keyboardType: TextInputType.phone,
-                      labelText: BDPTexts.phoneNo,
-                      validator: (value){
-                        if (value == null || value.isEmpty) {
-                          return "Phone field must not be empty";
-                        }
-                        return null;
-                      },
-                      onTapOutside: (event){
-                        phoneFocusNode.unfocus();
-                      },
-                    ),
-                    const VSpace(height: BDPSizes.spaceBtwInputFields),
-                    ValueListenableBuilder<bool>(
-                      valueListenable: obscurePin,
-                      builder: (context, obscurePinValue, child) {
-                        return BDPInput(
-                          enabled: !userConsumer.isSubmitted,
-                          controller: pinCtrl,
-                          labelText: BDPTexts.password,
-                          focusNode: pinFocusNode,
-                          keyboardType: TextInputType.number,
-                          validator: (value){
-                            if (value == null || value.isEmpty) {
-                              return "Pin field must not be empty";
-                            }
-                            return null;
-                          },
-                          onTapOutside: (event){
-                            pinFocusNode.unfocus();
-                          },
-                          suffixIcon: GestureDetector(
-                            onTap: (){
-                              obscurePin.value = !obscurePin.value;
+                    BDPPrimaryButton(
+                      buttonText: 'Login',
+                      onPressed: () async{
+                        if(formKey.currentState!.validate()){
+                          await context.read<UserViewModel>().authentication(
+                            context,
+                            requestBody: {
+                              "phoneNumber": phoneCtrl.text,
+                              "pin": pinCtrl.text,
                             },
-                            child: Icon(obscurePinValue ? Iconsax.eye_slash : Iconsax.eye),
-                          ),
-                          obscureText: obscurePinValue,
-                        );
-                      }
+                          );
+                        }
+                      },
                     ),
-                    const VSpace(
-                      height: BDPSizes.spaceBtwItems * 2,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        BDPPrimaryButton(
-                          buttonText: 'Login',
-                          isLoading: userConsumer.isSubmitted,
-                          onPressed: () async{
-                            if(formKey.currentState!.validate()){
-                              await context.read<UserViewModel>().authentication(
-                                context,
-                                requestBody: {
-                                  "phoneNumber": phoneCtrl.text,
-                                  "pin": pinCtrl.text,
-                                },
-                              );
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
-                          },
-                          child: const Text(
-                            BDPTexts.forgetPassword,
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Don\'t have an account? ',
-                          style: TextStyle(
-                            color: Color(0xff332f2e),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen);
-                          },
-                          child: const Text(
-                            BDPTexts.signup,
-                            style: TextStyle(
-                              color: BDPColors.primary,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
-              );
-            }
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+                      },
+                      child: const Text(
+                        BDPTexts.forgetPassword,
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Don\'t have an account? ',
+                      style: TextStyle(
+                        color: Color(0xff332f2e),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen);
+                      },
+                      child: const Text(
+                        BDPTexts.signup,
+                        style: TextStyle(
+                          color: BDPColors.primary,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

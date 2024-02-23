@@ -20,6 +20,7 @@ import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
+import '../widgets/wallet_card.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -55,7 +56,12 @@ class _WalletScreenState extends State<WalletScreen> {
         padding: const EdgeInsets.all(BDPSizes.defaultSpace),
         child: Column(
           children: [
-            const WalletSlider(),
+            const WalletCard(
+              accountNumber: BDPTexts.accountNumber,
+              date: BDPTexts.date,
+              accountBalance: BDPTexts.accountBalance,
+              gradients: [BDPColors.primary, BDPColors.secondary],
+            ),
             const VSpace(
               height: BDPSizes.spaceBtwItems,
             ),

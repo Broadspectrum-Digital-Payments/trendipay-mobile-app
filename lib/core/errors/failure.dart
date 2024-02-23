@@ -139,24 +139,23 @@ class FailureToMessage {
 
   static String getValidationMessageFromMap(var messages){
     if(messages.isEmpty) return  'All fields are required';
-
-    String message = '';
+    final message = StringBuffer();
     if(messages.runtimeType == List){
       for(int i=0; i< (messages as List).length; i++){
-        message+= '${messages[i]}\n';
+        message.write('${messages[i]}\n');
       }
     }else{
       messages.forEach((key, value){
         if(value.runtimeType == List){
-          for(String item in value){
-            message+= '$item\n';
+          for(var item in value){
+            message.write('$item\n');
           }
         }else{
-          message+= '$value\n';
+          message.write('$value\n');
         }
       });
     }
 
-    return message;
+    return message.toString();
   }
 }

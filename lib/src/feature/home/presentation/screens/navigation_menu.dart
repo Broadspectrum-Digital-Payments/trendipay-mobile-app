@@ -24,19 +24,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
     ProfileScreen(),
   ];
 
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  //handle login
-  checkIfKycHasBeenDone() {
-    // var submittedData = GlobalConstants.storageService.getString(GeneralRepository.documentSubmitted);
-    // if (submittedData.isEmpty) {
-    //   return Get.offAll(()=> const KYCSetup());
-    // }
-  }
   @override
   Widget build(BuildContext context) {
 

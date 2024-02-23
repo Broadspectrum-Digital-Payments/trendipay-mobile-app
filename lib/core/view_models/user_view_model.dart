@@ -57,14 +57,15 @@ class UserViewModel extends BaseViewModel{
   UnmodifiableMapView<String, dynamic> get getSignupRequestBody => UnmodifiableMapView(_signupRequestBody);
 
   Future<void> authentication(BuildContext context, {String type = 'login', required Map<String, dynamic> requestBody}) async{
-    setIsSubmitted(true);
+    AppDialogUtil.loadingDialog(context);
     final result = type == 'login'?
     await _userRepository.login(requestBody: requestBody)
         :
     await _userRepository.signup(requestBody: requestBody);
 
+    if(context.mounted) AppNavigator.pop(context);
+
     result.fold((failure){
-      setIsSubmitted(false);
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -74,18 +75,17 @@ class UserViewModel extends BaseViewModel{
         );
       });
     }, (user){
-      setIsSubmitted(false, false);
       setUser = user;
       AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
     });
   }
 
   Future<void> changePin(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
-   setIsSubmitted(true);
     final result = await _userRepository.changePin(requestBody: requestBody);
 
+    if(context.mounted) AppNavigator.pop(context);
+
     result.fold((left) {
-      setIsSubmitted(false);
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -96,7 +96,6 @@ class UserViewModel extends BaseViewModel{
       });
 
     }, (right) {
-      setIsSubmitted(false);
       AppNavigator.pushReplacementNamed(context, AppRoute.otpVerificationScreen);
     });
   }

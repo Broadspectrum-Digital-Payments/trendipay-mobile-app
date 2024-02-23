@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/constants/colors.dart';
 
 class CircularNavigator extends StatelessWidget {
   const CircularNavigator({
