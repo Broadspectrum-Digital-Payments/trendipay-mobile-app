@@ -1,6 +1,8 @@
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../file/file_model.dart';
+
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
@@ -18,6 +20,7 @@ class UserModel with _$UserModel {
     final String? kycStatus,
     final String? actualBalance,
     final String? availableBalance,
+    final List<FileModel>? files,
   }) = _UserModel;
 
 

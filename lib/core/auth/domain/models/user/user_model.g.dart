@@ -17,6 +17,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       kycStatus: json['kycStatus'] as String?,
       actualBalance: json['actualBalance'] as String?,
       availableBalance: json['availableBalance'] as String?,
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) => FileModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -30,4 +33,5 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'kycStatus': instance.kycStatus,
       'actualBalance': instance.actualBalance,
       'availableBalance': instance.availableBalance,
+      'files': instance.files,
     };

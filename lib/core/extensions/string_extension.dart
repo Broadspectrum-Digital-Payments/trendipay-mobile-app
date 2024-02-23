@@ -25,4 +25,20 @@ extension StringExtension on String{
     return trim().isEmpty? '' : length > value ? '${substring(0, value)}...' : this;
   }
 
+  String toNetworkName(){
+    if(toLowerCase() == 'vod') return 'Vodafone';
+
+    if(toLowerCase() == 'atl') return 'AirtelTigo';
+
+    return this;
+  }
+
+  String fromNetworkNameToCode(){
+    if(toLowerCase() == 'vodafone') return 'VOD';
+
+    if(toLowerCase() == 'airteltigo') return 'ATL';
+
+    return this;
+  }
+
 }

@@ -29,6 +29,7 @@ mixin _$UserModel {
   String? get kycStatus => throw _privateConstructorUsedError;
   String? get actualBalance => throw _privateConstructorUsedError;
   String? get availableBalance => throw _privateConstructorUsedError;
+  List<FileModel>? get files => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +51,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? status,
       String? kycStatus,
       String? actualBalance,
-      String? availableBalance});
+      String? availableBalance,
+      List<FileModel>? files});
 }
 
 /// @nodoc
@@ -75,6 +77,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? kycStatus = freezed,
     Object? actualBalance = freezed,
     Object? availableBalance = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
       externalId: freezed == externalId
@@ -113,6 +116,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.availableBalance
           : availableBalance // ignore: cast_nullable_to_non_nullable
               as String?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<FileModel>?,
     ) as $Val);
   }
 }
@@ -134,7 +141,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? status,
       String? kycStatus,
       String? actualBalance,
-      String? availableBalance});
+      String? availableBalance,
+      List<FileModel>? files});
 }
 
 /// @nodoc
@@ -157,6 +165,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? kycStatus = freezed,
     Object? actualBalance = freezed,
     Object? availableBalance = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$UserModelImpl(
       externalId: freezed == externalId
@@ -195,6 +204,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.availableBalance
           : availableBalance // ignore: cast_nullable_to_non_nullable
               as String?,
+      files: freezed == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<FileModel>?,
     ));
   }
 }
@@ -211,8 +224,10 @@ class _$UserModelImpl extends _UserModel {
       this.status,
       this.kycStatus,
       this.actualBalance,
-      this.availableBalance})
-      : super._();
+      this.availableBalance,
+      final List<FileModel>? files})
+      : _files = files,
+        super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -235,10 +250,19 @@ class _$UserModelImpl extends _UserModel {
   final String? actualBalance;
   @override
   final String? availableBalance;
+  final List<FileModel>? _files;
+  @override
+  List<FileModel>? get files {
+    final value = _files;
+    if (value == null) return null;
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'UserModel(externalId: $externalId, name: $name, ghanaCardNumber: $ghanaCardNumber, phoneNumber: $phoneNumber, type: $type, status: $status, kycStatus: $kycStatus, actualBalance: $actualBalance, availableBalance: $availableBalance)';
+    return 'UserModel(externalId: $externalId, name: $name, ghanaCardNumber: $ghanaCardNumber, phoneNumber: $phoneNumber, type: $type, status: $status, kycStatus: $kycStatus, actualBalance: $actualBalance, availableBalance: $availableBalance, files: $files)';
   }
 
   @override
@@ -260,7 +284,8 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.actualBalance, actualBalance) ||
                 other.actualBalance == actualBalance) &&
             (identical(other.availableBalance, availableBalance) ||
-                other.availableBalance == availableBalance));
+                other.availableBalance == availableBalance) &&
+            const DeepCollectionEquality().equals(other._files, _files));
   }
 
   @JsonKey(ignore: true)
@@ -275,7 +300,8 @@ class _$UserModelImpl extends _UserModel {
       status,
       kycStatus,
       actualBalance,
-      availableBalance);
+      availableBalance,
+      const DeepCollectionEquality().hash(_files));
 
   @JsonKey(ignore: true)
   @override
@@ -301,7 +327,8 @@ abstract class _UserModel extends UserModel {
       final String? status,
       final String? kycStatus,
       final String? actualBalance,
-      final String? availableBalance}) = _$UserModelImpl;
+      final String? availableBalance,
+      final List<FileModel>? files}) = _$UserModelImpl;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -325,6 +352,8 @@ abstract class _UserModel extends UserModel {
   String? get actualBalance;
   @override
   String? get availableBalance;
+  @override
+  List<FileModel>? get files;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

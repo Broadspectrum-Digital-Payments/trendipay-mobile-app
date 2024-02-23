@@ -26,4 +26,9 @@ class HelperUtil{
     return 'unknown';
   }
 
+  static String getLocalPhoneNumber(String intPhoneFormat){
+    if(intPhoneFormat.isEmpty) return '';
+    return intPhoneFormat.substring(intPhoneFormat.length-9).padLeft(10, '0');
+  }
+
 }

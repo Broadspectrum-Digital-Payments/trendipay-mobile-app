@@ -1,4 +1,3 @@
-import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +27,7 @@ class WalletRecentTransactions extends StatelessWidget {
           onTap: (){
 
           },
-          child: TransactionItem(
-              title: "",
-              description: transaction.description ?? "",
-              date: '',
-              time: '',
-              amount: transaction.getAmount,
-              isSuccess: transaction.status?.toLowerCase() == kProcessedStatus),
+          child: TransactionItem(transaction: transaction),
         );
       },
       separatorBuilder: (BuildContext context, int index) {

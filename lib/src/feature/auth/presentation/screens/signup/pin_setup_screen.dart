@@ -1,6 +1,9 @@
 
+import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
@@ -52,7 +55,10 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
           padding: BDPSpacingStyle.paddingWithAppBarHeight,
           child: Column(
             children: [
-              const Text(BDPTexts.pinSetupText , textAlign: TextAlign.center,),
+              Text(BDPTexts.pinSetupText , textAlign: TextAlign.center, style: kMediumFontStyle.copyWith(
+                fontSize: AppThemeUtil.fontSize(16.0),
+                color: BDPColors.grey,
+              ),),
 
               Form(
                 key: formKey,
@@ -134,35 +140,35 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                             ), //
                             Text(
                               BDPTexts.pinRequirements1,
-                              style: TextStyle(fontSize: AppThemeUtil.fontSize(12.0), fontWeight: FontWeight.w400),
+                              style: kRegularFontStyle.copyWith(fontSize: AppThemeUtil.fontSize(12.0), color: BDPColors.dark90),
                             )
                           ],
                         ),
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.check_circle,
                               size: 5,
                             ),
                             Text(
                               BDPTexts.pinRequirements2,
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                              style: kRegularFontStyle.copyWith(fontSize: AppThemeUtil.fontSize(12.0), color: BDPColors.dark90),
                             )
                           ],
                         ),
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.check_circle,
                               size: 5,
                             ),
                             Text(
                               BDPTexts.pinRequirements3,
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                              style: kRegularFontStyle.copyWith(fontSize: AppThemeUtil.fontSize(12.0), color: BDPColors.dark90),
                             ),
                           ],
                         ),
-                        const SizedBox(
+                        const VSpace(
                           height: BDPSizes.spaceBtwSections,
                         ),
                         Row(
@@ -178,7 +184,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                       context,
                                       requestBody: {
                                         'action': kChangePinAction,
-                                        "phoneNumber": userConsumer.getUser.phoneNumber,
+                                        "phoneNumber": HelperUtil.getLocalPhoneNumber(userConsumer.getUser.phoneNumber),
                                         "pin": pinCtrl.text,
                                         "pinConfirmation": confirmPinCtrl.text
                                       }

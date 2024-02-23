@@ -52,7 +52,9 @@ class OtpViewModel extends BaseViewModel{
       if(resend) setIsSubmitted(false);
       if(!resend){
         setOtpRequestBody = requestBody;
-        AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen);
+        String otpTitle = '';
+        if(requestBody['action'] == kChangePinAction) otpTitle = 'Change Pin ';
+        AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen, arguments: otpTitle);
       }
     });
   }

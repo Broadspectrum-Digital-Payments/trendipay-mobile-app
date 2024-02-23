@@ -29,7 +29,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserViewModel>().fetchUser();
+      // context.read<UserViewModel>().fetchUser();
     });
     super.initState();
   }

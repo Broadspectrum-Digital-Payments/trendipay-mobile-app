@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -23,8 +24,8 @@ class WalletUser extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Image.asset(BDPImages.user),
-              Text(BDPTexts.walletAppbarTitle,style: TextStyle(color: BDPColors.grey, fontWeight: FontWeight.w400, fontSize: AppThemeUtil.fontSize(12)),),
-              Text(userConsumer.getUser.greetingName,style: TextStyle(color: BDPColors.primary, fontWeight: FontWeight.w700, fontSize: AppThemeUtil.fontSize(12)),),
+              Text(BDPTexts.walletAppbarTitle,style: kRegularFontStyle.copyWith(color: BDPColors.grey, fontSize: AppThemeUtil.fontSize(12)),),
+              Text(userConsumer.getUser.greetingName,style: kBoldFontStyle.copyWith(color: BDPColors.primary, fontSize: AppThemeUtil.fontSize(12)),),
               const HSpace(width: 8.0),
               const Icon(Icons.notifications_none, color: BDPColors.grey,),
             ],

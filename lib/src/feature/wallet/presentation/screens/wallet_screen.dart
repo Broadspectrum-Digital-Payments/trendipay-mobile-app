@@ -13,9 +13,7 @@ import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
@@ -156,7 +154,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                         BaseView<TransactionViewModel>(
                           builder: (context, transactionConsumer, child){
-                            if(transactionConsumer.getComponentLoading('walletRecent')){
+                            if(transactionConsumer.getComponentLoading('walletRecent') && transactionConsumer.getRecentTransactions.isEmpty){
                               return Padding(
                                 padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
                                 child: const ZLoader(loaderColor: BDPColors.primary, size: 24),
