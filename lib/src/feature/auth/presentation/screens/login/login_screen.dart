@@ -80,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value == null || value.isEmpty) {
                             return "Pin field must not be empty";
                           }
+                          if(value.length != 6) return 'Pin field must be 6 digits';
                           return null;
                         },
                         onTapOutside: (event){

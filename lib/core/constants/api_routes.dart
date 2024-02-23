@@ -11,7 +11,8 @@ class ApiRoutes{
   static get sendOtp => '$_baseUrl/v1/users/otp';
   static get verifyOtp => '$_baseUrl/v1/users/otp/verify';
   static get changePin => '$_baseUrl/v1/users/change-pin';
-  static get uploadSelfie => '$_baseUrl/v1/users/kyc';
+  static get uploadKYCFile => '$_baseUrl/v1/users/kyc';
+  static get getUser => '$_baseUrl/v1/users/me';
 
   /// TRANSACTIONS
   static get walletTransaction => '$_baseUrl/v1/transactions';

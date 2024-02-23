@@ -147,148 +147,23 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-//   Future<void> forgotPassword(BuildContext context, {bool isResend = false, required Map<String, dynamic> requestBody}) async{
-//     if(!isResend) AppDialogUtil.loadingDialog(context);
-//
-//     final result = await _userRepository.forgotPassword(requestBody: requestBody);
-//
-//     if(context.mounted && !isResend) {AppNavigator.pop(context);}
-//
-//     result.fold((left) {
-//       WidgetsBinding.instance.addPostFrameCallback((_) async{
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: ErrorModalContent(
-//             errorMessage: FailureToMessage.mapFailureToMessage(left),
-//           ),
-//         );
-//       });
-//
-//     }, (right) {
-//       // setResendOtpCode = right;
-//       if(isResend) return;
-//       // AppNavigatorUtil.pushNamed(context, AppRoute.verifyForgotPasswordOtp, arguments: right);
-//     });
-//   }
-//
-//   Future<void> resetPassword(BuildContext context, {bool inApp = false, required Map<String, dynamic> requestBody}) async{
-//     AppDialogUtil.loadingDialog(context);
-//
-//     final result = await _userRepository.resetPassword(requestBody: requestBody);
-//
-//     if(context.mounted) {AppNavigator.pop(context);}
-//
-//     result.fold((left) {
-//       WidgetsBinding.instance.addPostFrameCallback((_) async{
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: ErrorModalContent(
-//             errorMessage: FailureToMessage.mapFailureToMessage(left),
-//           ),
-//         );
-//       });
-//
-//     }, (right) {
-//       if(right){
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: SuccessModalContent(
-//             title: 'Reset Password',
-//             message: inApp? 'Your password is reset':'Your password is reset. You can login now',
-//             onButtonPressed: (){
-//               if(inApp){
-//                 AppNavigator.pop(context);
-//                 AppNavigator.pop(context);
-//                 return;
-//               }
-//               AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.onboardingScreen, (p0) => false);
-//             },
-//           ),
-//         );
-//       }
-//     });
-//   }
-//
-//   Future<void> deleteAccount(BuildContext context, {required Map<String, dynamic> requestBody}) async{
-//     AppDialogUtil.loadingDialog(context);
-//
-//     final result = await _userRepository.deleteAccount(requestBody: requestBody);
-//
-//     if(context.mounted) {AppNavigator.pop(context);}
-//
-//     result.fold((left) {
-//       if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
-//         HelperUtil.logOut(context);
-//         return;
-//       }
-//
-//       WidgetsBinding.instance.addPostFrameCallback((_) async{
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: ErrorModalContent(
-//             errorMessage: FailureToMessage.mapFailureToMessage(left),
-//           ),
-//         );
-//       });
-//
-//     }, (right) {
-//       AppDialogUtil.popUpModal(
-//         context,
-//         modalContent: SuccessModalContent(
-//           title: 'Account deleted',
-//           message: '',
-//           onButtonPressed: (){
-//             HelperUtil.logOut(context);
-//           },
-//         ),
-//       );
-//     });
-//   }
-//
-//   Future<void> updateUser(BuildContext context, { required Map<String, dynamic> requestBody}) async{
-//     AppDialogUtil.loadingDialog(context);
-//
-//     if(context.mounted && (requestBody['placeId'] != null && requestBody['placeId'].toString().isNotEmpty)){
-//       final locationDetails = await context.read<LocationViewModel>().fetchLocationDetails(requestBody['placeId']);
-//       final locality = HelperUtil.getLocalityFromAddressComponents(locationDetails?.addressComponents?? []);
-//       final address = {
-//         "latitude": locationDetails?.geometry?['location']['lat']?? 0,
-//         "longitude": locationDetails?.geometry?['location']['lng']?? 0,
-//         "country": "Nigeria",
-//         "countryCode": 'NG',
-//         "originName": requestBody['originName'],
-//         "city": locality.first.isEmpty ? requestBody['originName'] : locality.first
-//       };
-//       requestBody["address"] = address;
-//     }
-//
-//     final result = await _userRepository.updateUser(requestBody: requestBody);
-//
-//     if(context.mounted) AppNavigator.pop(context);
-//
-//     result.fold((left) {
-//       WidgetsBinding.instance.addPostFrameCallback((_) async{
-//         AppDialogUtil.popUpModal(
-//           context,
-//           modalContent: ErrorModalContent(
-//             errorMessage: FailureToMessage.mapFailureToMessage(left),
-//           ),
-//         );
-//       });
-//
-//     }, (right) {
-//       AppDialogUtil.popUpModal(
-//         context,
-//         modalContent: const SuccessModalContent(
-//           title: 'Updated',
-//           message: 'User profile updated',
-//         ),
-//       );
-//       _user = right;
-//       notifyListeners();
-//       _persistUser();
-//     });
-//   }
+  Future<void> fetchUser() async{
+    setComponentErrorType = null;
+    setLoading(true, component: 'fetchUser');
+    final result = await _userRepository.fetchUser();
+
+    result.fold((left) {
+      setComponentErrorType = {
+        'error': FailureToMessage.mapFailureToMessage(left),
+        'component': 'fetchUser'
+      };
+      setLoading(false, component: 'fetchUser');
+
+    }, (user) {
+      setLoading(false, component: 'fetchUser', notify: false);
+      setUser = user;
+    });
+  }
 
   Future<void> logout(BuildContext context) async{
     HelperUtil.onLogout(context);

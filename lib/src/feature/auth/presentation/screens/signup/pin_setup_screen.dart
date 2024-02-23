@@ -77,6 +77,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                   if (value == null || value.isEmpty) {
                                     return "Pin field must not be empty";
                                   }
+                                  if(value.length != 6) return 'Pin field must be 6 digits';
                                   return null;
                                 },
                                 suffixIcon: GestureDetector(
@@ -107,6 +108,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                   }if (confirmPinCtrl.text != pinCtrl.text) {
                                     return "Your inputted pins do not match";
                                   }
+                                  if(value.length != 6) return 'Pin field must be 6 digits';
                                   return null;
                                 },
                                 labelText: widget.pinChange == true ? BDPTexts.newPinConfirm : BDPTexts.reEnterPin,

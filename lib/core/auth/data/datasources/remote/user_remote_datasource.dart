@@ -14,6 +14,7 @@ abstract class UserRemoteDataSource{
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> changePin({required Map<String, dynamic> requestBody});
   Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody});
+  Future<UserModel> fetchUser();
 }
 
 class UserRemoteDataSourceImpl extends UserRemoteDataSource{
@@ -104,7 +105,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   @override
   Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postFormDataRequest(
-      endpoint: ApiRoutes.uploadSelfie,
+      endpoint: ApiRoutes.uploadKYCFile,
       requestBody: FormData.fromMap(requestBody),
     );
 
@@ -114,6 +115,20 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
     }
 
     return body['success'] == true;
+  }
+
+  @override
+  Future<UserModel> fetchUser() async{
+    final response = await httpServiceRequester.getRequest(
+      endpoint: ApiRoutes.getUser,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return UserModel.fromJson(response.data['data']?? {});
   }
 
 }

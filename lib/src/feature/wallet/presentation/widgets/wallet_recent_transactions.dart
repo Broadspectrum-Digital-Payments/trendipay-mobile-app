@@ -10,13 +10,17 @@ class WalletRecentTransactions extends StatelessWidget {
   const WalletRecentTransactions({
     super.key,
     required this.transactions,
+    this.primary,
   });
 
   final List<WalletTransactionModel> transactions;
+  final bool? primary;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      primary: primary,
+      shrinkWrap: true,
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
