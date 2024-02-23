@@ -4,6 +4,7 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin
 import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../src/feature/history/presentation/screens/loan_transaction_detail_screen.dart';
 import '../../src/feature/loans/presentation/screens/apply_new_loan_screen.dart';
 import '../../src/feature/loans/presentation/screens/loan_review_screen.dart';
 import '../../src/feature/loans/presentation/screens/loan_summary_screen.dart';
@@ -94,6 +95,9 @@ class AppNavigator {
 
       case AppRoute.loanReviewScreen:
         return MaterialPageRoute(builder: (context) => const LoanReviewScreen());
+
+      case AppRoute.loanTransactionDetailScreen:
+        return MaterialPageRoute(builder: (context) => const LoanTransactionDetailScreen());
 
       default:
         return _errorRoute();

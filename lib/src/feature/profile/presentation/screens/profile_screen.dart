@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserViewModel>().fetchUser(context);
+      // context.read<UserViewModel>().fetchUser(context);
     });
     super.initState();
   }

@@ -16,5 +16,6 @@ class AppRoute {
   static const applyNewLoanScreen = 'apply_new_loan_screen';
   static const loanSummaryScreen = 'loan_summary_screen';
   static const loanReviewScreen = 'loan_review_screen';
+  static const loanTransactionDetailScreen = 'loan_transaction_detail_screen';
 
 }
