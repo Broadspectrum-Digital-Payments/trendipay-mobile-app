@@ -25,6 +25,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserViewModel>().fetchUser();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>().getUser;
     return Scaffold(
@@ -46,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 5,
                   ),
                   Text(
-                    user.name,
+                    user.name?? '',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

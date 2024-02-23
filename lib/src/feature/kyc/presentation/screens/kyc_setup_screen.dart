@@ -24,11 +24,11 @@ class _KYCSetupScreenState extends State<KYCSetupScreen> {
           title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.kycSetup),
           automaticallyImplyLeading: false,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(BDPSizes.defaultSpace),
-          child: Column(
-            children: [
-              Theme(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+              child: Theme(
                 data: ThemeData(
                   highlightColor: Colors.transparent,
                   splashFactory: NoSplash.splashFactory,
@@ -40,14 +40,14 @@ class _KYCSetupScreenState extends State<KYCSetupScreen> {
                   ],
                 ),
               ),
-              const VSpace(height: 16),
-              const Expanded(
-                child: TabBarView(
-                  children: [PersonalInfoTab(), CardInfoTab()],
-                ),
+            ),
+            const VSpace(height: 16),
+            const Expanded(
+              child: TabBarView(
+                children: [PersonalInfoTab(), CardInfoTab()],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

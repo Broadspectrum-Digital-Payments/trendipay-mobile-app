@@ -184,7 +184,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                       context,
                                       requestBody: {
                                         'action': kChangePinAction,
-                                        "phoneNumber": HelperUtil.getLocalPhoneNumber(userConsumer.getUser.phoneNumber),
+                                        "phoneNumber": HelperUtil.getLocalPhoneNumber(userConsumer.getUser.phoneNumber?? ''),
                                         "pin": pinCtrl.text,
                                         "pinConfirmation": confirmPinCtrl.text
                                       }

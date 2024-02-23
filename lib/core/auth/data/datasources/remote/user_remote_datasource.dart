@@ -5,6 +5,7 @@ import '../../../../errors/error.dart';
 import '../../../../services/git_it_service_locator.dart';
 import '../../../../services/http_service_requester.dart';
 import '../../../../services/local_storage_service.dart';
+import '../../../domain/models/file/file_model.dart';
 import '../../../domain/models/user/user_model.dart';
 
 abstract class UserRemoteDataSource{
@@ -13,7 +14,7 @@ abstract class UserRemoteDataSource{
   Future<String> sendOtp({required Map<String, dynamic> requestBody});
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> changePin({required Map<String, dynamic> requestBody});
-  Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody});
+  Future<List<FileModel>> uploadKYCFile({required Map<String, dynamic> requestBody});
   Future<UserModel> fetchUser();
 }
 
@@ -103,7 +104,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   }
 
   @override
-  Future<bool> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
+  Future<List<FileModel>> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postFormDataRequest(
       endpoint: ApiRoutes.uploadKYCFile,
       requestBody: FormData.fromMap(requestBody),
@@ -114,7 +115,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return body['success'] == true;
+    return FileList.fromJson(response.data['data']?? []).list;
   }
 
   @override

@@ -29,8 +29,17 @@ class UserModel with _$UserModel {
     final splitNameList = (name?? '').replaceAll('-', ' ').split(' ');
     return splitNameList.first;
   }
-
   String get getAvailableBalance => (availableBalance?? '0').toCurrencyFormat;
+  String get getKycStatus => (kycStatus?? '').toLowerCase();
+  bool get selfieUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'selfie');
+  FileModel get selfieFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'selfie', orElse: () => const FileModel());
+
+  bool get idCardFrontUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-front');
+  FileModel get idCardFrontFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-front', orElse: () => const FileModel());
+
+  bool get idCardBackUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-back');
+  FileModel get idCardBackFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-back', orElse: () => const FileModel());
+
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

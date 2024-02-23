@@ -2,6 +2,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../errors/failure.dart';
+import '../../domain/models/file/file_model.dart';
 import '../datasources/local/user_local_datasource.dart';
 import '../datasources/remote/user_remote_datasource.dart';
 import '../../domain/models/user/user_model.dart';
@@ -13,7 +14,7 @@ abstract class UserRepository{
   Future<Either<Failure, String>> sendOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody});
-  Future<Either<Failure, bool>> uploadKYCFile({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, List<FileModel>>> uploadKYCFile({required Map<String, dynamic> requestBody});
   Future<Either<Failure, UserModel>> fetchUser();
 
   ///LOCAL DB
@@ -107,7 +108,7 @@ class UserRepositoryImpl extends UserRepository{
   }
 
   @override
-  Future<Either<Failure, bool>> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
+  Future<Either<Failure, List<FileModel>>> uploadKYCFile({required Map<String, dynamic> requestBody}) async{
     try {
       final response = await userRemoteDataSource.uploadKYCFile(requestBody: requestBody);
       return Right(response);

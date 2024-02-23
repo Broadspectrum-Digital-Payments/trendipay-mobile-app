@@ -6,6 +6,7 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/network_image_view.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,106 +29,115 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // const BDPInput(
-          //   labelText: 'Pius',
-          //   enabled: false,
-          // ),
-          // const VSpace(height: BDPSizes.spaceBtwInputFields),
-          // const BDPInput(
-          //   labelText: 'fiifipius@gmail.com',
-          //   enabled: false,
-          // ),
-          // const VSpace(height: BDPSizes.spaceBtwInputFields),
-          const Text("Picture",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              )),
-          const VSpace(height: BDPSizes.spaceBtwInputFields),
-          GestureDetector(
-            onTap: () async {
-              if(await PermissionUtil.getStoragePermission()){
-                final croppedFile = await MediaFileUtil.getPickedSourceImage(
-                  cameraFront: true,
-                  cropped: false,
-                );
-                if(croppedFile != null){
-                  selfieFilePath.value = croppedFile;
-                }
-              }
-            },
-            child: Container(
-              width: double.infinity,
-              height: AppThemeUtil.height(200.0),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
-              ),
-              child: ValueListenableBuilder<String>(
-                valueListenable: selfieFilePath,
-                builder: (context, selfieFilePathValue, child) {
-                  return selfieFilePathValue.isEmpty?
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.file_upload_outlined), // Icon
-                      const VSpace(height: 8),
-                      Text(
-                        'Upload a clear selfie of yourself',
-                        textAlign: TextAlign.center,
-                        style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(16.0),
-                            color: Colors.grey,
-                        ),
-                      )
-                    ],
-                  )
-                      :
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
-                    child: Image.file(File(selfieFilePathValue),
-                      fit: BoxFit.cover,
+      child: Padding(
+        padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+        child: BaseView<UserViewModel>(
+          builder: (context, userConsumer, child) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // const BDPInput(
+                //   labelText: 'Pius',
+                //   enabled: false,
+                // ),
+                // const VSpace(height: BDPSizes.spaceBtwInputFields),
+                // const BDPInput(
+                //   labelText: 'fiifipius@gmail.com',
+                //   enabled: false,
+                // ),
+                // const VSpace(height: BDPSizes.spaceBtwInputFields),
+                const Text("Picture",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    )),
+                const VSpace(height: BDPSizes.spaceBtwInputFields),
+                GestureDetector(
+                  onTap: () async {
+                    if(await PermissionUtil.getStoragePermission()){
+                      final croppedFile = await MediaFileUtil.getPickedSourceImage(
+                        cameraFront: true,
+                        cropped: false,
+                      );
+                      if(croppedFile != null){
+                        selfieFilePath.value = croppedFile;
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: AppThemeUtil.height(200.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
                     ),
-                  );
-                }
-              ),
-            ),
-          ),
-          const VSpace(
-            height: BDPSizes.spaceBtwSections,
-          ),
-          BaseView<UserViewModel>(
-            builder: (context, userConsumer, child) {
-              if(userConsumer.selfieUploaded) return const SizedBox.shrink();
-              return Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    BDPPrimaryButton(
-                      buttonText: BDPTexts.saveAndContinue,
-                      imageIconFile: BDPImages.saveIcon,
-                      onPressed: () async{
-                        await context.read<UserViewModel>().uploadKYCFile(
-                          context,
-                          requestBody: {
-                            'selfie': selfieFilePath.value,
-                          },
+                    child: userConsumer.getUser.selfieUploaded?
+                     NetworkImageView(
+                       imageUrl: userConsumer.getUser.selfieFile.url?? '',
+                       radius: 12.0,
+                     )
+                    :
+                    ValueListenableBuilder<String>(
+                      valueListenable: selfieFilePath,
+                      builder: (context, selfieFilePathValue, child) {
+                        return selfieFilePathValue.isEmpty?
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.file_upload_outlined), // Icon
+                            const VSpace(height: 8),
+                            Text(
+                              'Upload a clear selfie of yourself',
+                              textAlign: TextAlign.center,
+                              style: kRegularFontStyle.copyWith(
+                                  fontSize: AppThemeUtil.fontSize(16.0),
+                                  color: Colors.grey,
+                              ),
+                            )
+                          ],
+                        )
+                            :
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
+                          child: Image.file(File(selfieFilePathValue),
+                            fit: BoxFit.cover,
+                          ),
                         );
-                      },
+                      }
                     ),
-                  ],
+                  ),
                 ),
-              );
-            }
-          ),
-        ],
+                const VSpace(
+                  height: BDPSizes.spaceBtwSections,
+                ),
+
+                if(!userConsumer.getUser.selfieUploaded) Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      BDPPrimaryButton(
+                        buttonText: BDPTexts.saveAndContinue,
+                        imageIconFile: BDPImages.saveIcon,
+                        onPressed: () async{
+                          await context.read<UserViewModel>().uploadKYCFile(
+                            context,
+                            requestBody: {
+                              'selfie': selfieFilePath.value,
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }
+        ),
       ),
     );
   }

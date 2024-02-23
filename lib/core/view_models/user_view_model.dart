@@ -48,7 +48,7 @@ class UserViewModel extends BaseViewModel{
     _persistUser();
   }
 
-  get getUser => _user;
+  UserModel get getUser => _user;
 
   set setSignupRequestBody(Map<String, dynamic> request){
     _signupRequestBody = {..._signupRequestBody, ...request};
@@ -100,9 +100,6 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-  bool _selfieUploaded = false;
-  bool get selfieUploaded => _selfieUploaded;
-
   Future<void> uploadKYCFile(BuildContext context, {required Map<String, dynamic> requestBody}) async{
     AppDialogUtil.loadingDialog(context);
 
@@ -134,8 +131,12 @@ class UserViewModel extends BaseViewModel{
       });
 
     }, (right) {
-      _selfieUploaded = true;
-      notifyListeners();
+      if(right.isNotEmpty) {
+        setUser = _user.copyWith(
+          files: List.from(_user.files?? [])..add(right.first),
+        );
+      }
+
       final photoType = requestBody['selfie']!= null? 'Selfie': requestBody['ghana-card-front'] != null? 'Ghana Card Front':'Ghana Card Back';
       AppDialogUtil.popUpModal(
         context,

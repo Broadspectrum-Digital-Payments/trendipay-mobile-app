@@ -94,11 +94,11 @@ class _WalletScreenState extends State<WalletScreen> {
                             transactionName: BDPTexts.moneyTransfer,
                             image: BDPImages.moneyTransfer,
                             onPressed: () {
-                              if(user.kycStatus == kQueuedStatus){
+                              if([kQueuedStatus, kStartedStatus].contains(user.getKycStatus)){
                                 AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
                                 return;
                               }
-                              if(user.kycStatus == kSubmittedStatus){
+                              if(user.getKycStatus == kSubmittedStatus){
                                 AppDialogUtil.popUpModal(
                                   context,
                                   modalContent: const ErrorModalContent(
