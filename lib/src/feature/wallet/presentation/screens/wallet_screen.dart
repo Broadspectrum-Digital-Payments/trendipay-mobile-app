@@ -54,7 +54,7 @@ class _WalletScreenState extends State<WalletScreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () async{
-          await context.read<UserViewModel>().fetchUser();
+          await context.read<UserViewModel>().fetchUser(context);
         },
         child: SingleChildScrollView(
           child: Padding(

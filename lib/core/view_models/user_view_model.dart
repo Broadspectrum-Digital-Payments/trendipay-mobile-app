@@ -1,23 +1,4 @@
-// import 'dart:collection';
-//
-// import 'package:aider_mobile_app/core/routing/app_navigator.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:provider/provider.dart';
-//
-// import '../../src/shared_widgets/modals/success_modal_content.dart';
-// import '../auth/data/repositories/user_repository.dart';
-// import '../constants/common.dart';
-// import '../errors/failure.dart';
-// import '../routing/app_route.dart';
-// import '../services/git_it_service_locator.dart';
-// import '../services/logger_service.dart';
-// import '../services/socket_service.dart';
-// import '../utils/app_dialog_util.dart';
-// import '../utils/helper_util.dart';
-// import '../../src/shared_widgets/modals/error_modal_content.dart';
-// import '../auth/domain/models/user/user_model.dart';
-// import 'location_view_model.dart';
-//
+
 import 'dart:collection';
 
 import 'package:bdp_payment_app/core/constants/common.dart';
@@ -87,6 +68,10 @@ class UserViewModel extends BaseViewModel{
     if(context.mounted) AppNavigator.pop(context);
 
     result.fold((left) {
+      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -122,6 +107,10 @@ class UserViewModel extends BaseViewModel{
     if(context.mounted) {AppNavigator.pop(context);}
 
     result.fold((left) {
+      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -151,12 +140,16 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-  Future<void> fetchUser() async{
+  Future<void> fetchUser(BuildContext context) async{
     setComponentErrorType = null;
     setLoading(true, component: 'fetchUser');
     final result = await _userRepository.fetchUser();
 
     result.fold((left) {
+      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
       setComponentErrorType = {
         'error': FailureToMessage.mapFailureToMessage(left),
         'component': 'fetchUser'

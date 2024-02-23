@@ -1,7 +1,7 @@
 
 const kOnboardingCompleted = "onboarding-completed";
 
-const kAuthentication = '';
+const kAuthentication = 'Unauthenticated.';
 
 const kWidthPadding = 24.0;
 

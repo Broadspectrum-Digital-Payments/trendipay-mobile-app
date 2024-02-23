@@ -2,10 +2,12 @@
 // import 'package:flutter/material.dart';
 import 'dart:collection';
 
+import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/src/feature/history/domain/models/pagination/pagination_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/view_models/base_view_model.dart';
+import '../../../../../core/constants/common.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/routing/app_route.dart';
@@ -38,6 +40,10 @@ class TransactionViewModel extends BaseViewModel{
     final result = await _transactionRepository.fetchTransactions(queryParam: queryParam);
 
     result.fold((left) {
+      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
       setComponentErrorType = {
         'error': FailureToMessage.mapFailureToMessage(left),
         'component': loadingComponent
@@ -63,6 +69,10 @@ class TransactionViewModel extends BaseViewModel{
     final result = await _transactionRepository.enquireWalletName(queryParam: queryParam);
 
     result.fold((failure) {
+      if(FailureToMessage.mapFailureToMessage(failure) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -85,6 +95,11 @@ class TransactionViewModel extends BaseViewModel{
     if(context.mounted) AppNavigator.pop(context);
 
     result.fold((left) {
+      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
+        HelperUtil.onLogout(context);
+        return;
+      }
+
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
