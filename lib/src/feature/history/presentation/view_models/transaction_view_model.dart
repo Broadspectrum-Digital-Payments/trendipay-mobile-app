@@ -10,8 +10,8 @@ import '../../../../../core/services/git_it_service_locator.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
 import '../../../wallet/domain/models/wallet/wallet_model.dart';
-import '../data/repositories/transaction_repository.dart';
-import '../domain/models/transaction/transaction_model.dart';
+import '../../data/repositories/transaction_repository.dart';
+import '../../domain/models/transaction/transaction_model.dart';
 
 class TransactionViewModel extends BaseViewModel{
   final _transactionRepository = sl.get<TransactionRepository>();

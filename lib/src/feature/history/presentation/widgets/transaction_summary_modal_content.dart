@@ -9,7 +9,7 @@ import '../../../../../core/constants/colors.dart';
 import '../../../../../core/utils/app_theme_util.dart';
 import '../../../../shared_widgets/base/draggable_bottom_sheet.dart';
 import '../../../../shared_widgets/modals/draggable_bottom_sheet_content.dart';
-import '../domain/models/transaction/transaction_model.dart';
+import '../../domain/models/transaction/transaction_model.dart';
 
 class TransactionSummaryModalContent extends StatelessWidget {
   const TransactionSummaryModalContent({super.key, required this.transaction,});

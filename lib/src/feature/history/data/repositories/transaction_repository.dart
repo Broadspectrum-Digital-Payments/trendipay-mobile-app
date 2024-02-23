@@ -1,8 +1,8 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../../../../../core/errors/failure.dart';
-import '../../../../wallet/domain/models/wallet/wallet_model.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../wallet/domain/models/wallet/wallet_model.dart';
 import '../../domain/models/transaction/transaction_model.dart';
 import '../datasources/local/transaction_local_datasource.dart';
 import '../datasources/remote/transaction_remote_datasource.dart';
