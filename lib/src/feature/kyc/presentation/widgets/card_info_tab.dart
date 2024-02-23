@@ -96,7 +96,10 @@ class _CardInfoTabState extends State<CardInfoTab> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.file_upload_outlined), // Icon
+                            const Icon(
+                              Icons.file_upload_outlined,
+                              color: Colors.grey,
+                            ), // Icon
                             const VSpace(height: 8), // Spacer between icon and text
                             Text(
                               'Upload a clear image of the front of your card',
@@ -167,7 +170,10 @@ class _CardInfoTabState extends State<CardInfoTab> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.file_upload_outlined), // Icon
+                            const Icon(
+                              Icons.file_upload_outlined,
+                              color: Colors.grey,
+                            ), // Icon
                             const VSpace(height: 8),
                             Text(
                               'Upload a clear image of the back of your card',

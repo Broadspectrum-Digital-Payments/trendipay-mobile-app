@@ -22,6 +22,9 @@ _$TransactionModelImpl _$$TransactionModelImplFromJson(
       status: json['status'] as String?,
       currency: json['currency'] as String?,
       createdAt: json['createdAt'] as String?,
+      user: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TransactionModelImplToJson(
@@ -40,4 +43,5 @@ Map<String, dynamic> _$$TransactionModelImplToJson(
       'status': instance.status,
       'currency': instance.currency,
       'createdAt': instance.createdAt,
+      'user': instance.user,
     };

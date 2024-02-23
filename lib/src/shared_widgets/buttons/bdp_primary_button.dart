@@ -1,4 +1,5 @@
 
+import 'package:bdp_payment_app/common/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class BDPPrimaryButton extends StatelessWidget {
     this.imageIconFile,
     this.isLoading = false,
     this.hasIcon = true,
+    this.textColor,
+    this.boderColor,
   });
   
   final void Function()? onPressed;
@@ -24,19 +27,25 @@ class BDPPrimaryButton extends StatelessWidget {
   final String? imageIconFile;
   final bool isLoading;
   final bool hasIcon;
+  final Color? textColor;
+  final Color? boderColor;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppThemeUtil.radius(10.0)),
+          side: BorderSide(
+            color: boderColor?? BDPColors.primary,
+          ),
         ),
         backgroundColor: backgroundColor?? BDPColors.primary,
         padding: EdgeInsets.symmetric(
-            horizontal: AppThemeUtil.width(24.0),
-            vertical: AppThemeUtil.height(9.0),
+          horizontal: AppThemeUtil.width(24.0),
+          vertical: AppThemeUtil.height(9.0),
         ),
       ),
       child:  isLoading ?
@@ -49,17 +58,17 @@ class BDPPrimaryButton extends StatelessWidget {
         children: [
           Text(
             buttonText,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.white,
+            style: kMediumFontStyle.copyWith(
+              fontSize: AppThemeUtil.fontSize(16),
+              color: textColor?? Colors.white,
             ),
           ),
           if(hasIcon) ...[
             const HSpace(width: 8),
             Image.asset(
               imageIconFile?? BDPImages.rightArrow,
-              width: 24, // Adjust width as needed
-              height: 24, // Adjust height as needed
+              width: AppThemeUtil.radius(16),
+              height: AppThemeUtil.radius(16),
             ),
           ],
         ],

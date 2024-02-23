@@ -6,7 +6,8 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_vi
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
+import '../../../../../../common/constants/styles.dart';
+import '../../../../../../core/constants/colors.dart';
 import '../../../../../../core/constants/image_strings.dart';
 
 class PinSuccessScreen extends StatefulWidget {
@@ -23,36 +24,39 @@ class _PinSuccessScreenState extends State<PinSuccessScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: BDPSpacingStyle.paddingWithAppBarHeight,
-            child: Padding(
-              padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),
-              child: Column(
-                children: [
-                  Text('Your pin has been successfully created!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: AppThemeUtil.fontSize(20.0),
-                    ),
-                  ),
+        body: Padding(
+          padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              Text('Your pin has been successfully created!',
+                style: kMediumFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(20.0),
+                  color: BDPColors.primary,
+                ),
+              ),
+              const Spacer(flex: 2),
 
-                  Image.asset(
-                    BDPImages.pinSuccess,
-                    height: AppThemeUtil.height(291),
-                  ),
-                ],
-              )
-            ),
-          ),
+              Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  BDPImages.pinSuccess,
+                  height: AppThemeUtil.height(291),
+                ),
+              ),
+              const Spacer(flex: 5),
+            ],
+          )
         ),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppThemeUtil.width(kWidthPadding),
-            vertical: AppThemeUtil.height(16),
+          padding: EdgeInsets.only(
+            left: AppThemeUtil.width(kWidthPadding),
+            right: AppThemeUtil.width(kWidthPadding),
+            bottom: AppThemeUtil.height(28),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BDPPrimaryButton(
                 buttonText: 'Go to Homepage',

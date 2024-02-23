@@ -7,11 +7,9 @@ class OnBoardingPage extends StatelessWidget {
     super.key,
     required this.image,
     required this.title,
-    required this.currentPageIndex,
   });
 
   final String image, title;
-  final int currentPageIndex;
 
   @override
   Widget build(BuildContext context) {

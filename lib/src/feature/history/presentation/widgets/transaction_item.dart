@@ -54,7 +54,7 @@ class TransactionItem extends StatelessWidget {
               ],
             ),
             Text(
-              HelperUtil.getTransactionStatus((transaction.status?? '')),
+              HelperUtil.getTransactionStatus((transaction.status?? '')).toUpperCase(),
               style: kMediumFontStyle.copyWith(
                 fontSize: AppThemeUtil.fontSize(10),
                 color: HelperUtil.getTransactionStatusTextColor(HelperUtil.getTransactionStatus((transaction.status?? ''))),

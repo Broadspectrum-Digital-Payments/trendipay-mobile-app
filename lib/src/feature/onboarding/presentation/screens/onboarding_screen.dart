@@ -16,25 +16,21 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  int currentPageIndex = 0;
 
-  //handle login
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           PageView(
-            children:  [
+            children:  const [
               OnBoardingPage(
                 image: BDPImages.onBoardingImage1,
                 title: BDPTexts.onBoardingTitle1,
-                currentPageIndex: currentPageIndex,
               ),
               OnBoardingPage(
                 image: BDPImages.onBoardingImage2,
                 title: BDPTexts.onBoardingTitle2,
-                currentPageIndex: currentPageIndex,
               ),
             ],
           ),

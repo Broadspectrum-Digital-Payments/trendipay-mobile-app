@@ -50,11 +50,19 @@ class TransactionSummaryModalContent extends StatelessWidget {
                       ),
                     ),
                     const VSpace(height: 20),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: TransactionSummaryItem(
                         title: 'Receiver',
-                        data: 'N/A',
+                        data: transaction.user?.name?? '',
+                      ),
+                    ),
+                    const VSpace(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TransactionSummaryItem(
+                        title: 'Phone Number',
+                        data: transaction.user?.phoneNumber?? '',
                       ),
                     ),
                     const VSpace(height: 20),
@@ -86,7 +94,7 @@ class TransactionSummaryModalContent extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: TransactionSummaryItem(
                         title: 'Status',
-                        data: HelperUtil.getTransactionStatus(transaction.status?? ''),
+                        data: HelperUtil.getTransactionStatus(transaction.status?? '').toUpperCase(),
                         isStatus: true,
                       ),
                     ),

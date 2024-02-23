@@ -8,7 +8,6 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_vi
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/constants/image_strings.dart';
 
 class TransferSuccessScreen extends StatelessWidget {
@@ -19,36 +18,39 @@ class TransferSuccessScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: BDPSpacingStyle.paddingWithAppBarHeight,
-            child: Padding(
-              padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),
-              child: Column(
-                children: [
-                  Text('Your payment was successful!',
-                    style: kMediumFontStyle.copyWith(
-                      fontSize: AppThemeUtil.fontSize(20.0),
-                      color: BDPColors.primary,
-                    ),
-                  ),
+        body: Padding(
+          padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              Text('Your payment was successful!',
+                style: kMediumFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(20.0),
+                  color: BDPColors.primary,
+                ),
+              ),
+              const Spacer(flex: 2),
 
-                  Image.asset(
-                    BDPImages.transferSuccess,
-                    height: AppThemeUtil.height(291),
-                  ),
-                ],
-              )
-            ),
-          ),
+              Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  BDPImages.transferSuccess,
+                  height: AppThemeUtil.height(291),
+                ),
+              ),
+              const Spacer(flex: 5),
+            ],
+          )
         ),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppThemeUtil.width(kWidthPadding),
-            vertical: AppThemeUtil.height(16),
+          padding: EdgeInsets.only(
+            left: AppThemeUtil.width(kWidthPadding),
+            right: AppThemeUtil.width(kWidthPadding),
+            bottom: AppThemeUtil.height(28),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BDPPrimaryButton(
                 buttonText: 'Go to Homepage',

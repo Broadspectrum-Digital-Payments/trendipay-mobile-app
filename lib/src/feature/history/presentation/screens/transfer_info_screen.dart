@@ -72,7 +72,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
           padding: const EdgeInsets.all(BDPSizes.defaultSpace),
           child: BaseView<TransactionViewModel>(
             builder: (context, transactionConsumer, child) {
-              accNameCtrl.text = transactionConsumer.getEnquiryResult?.name?? '';
+              accNameCtrl.text = transactionConsumer.getEnquiryResult?.name?? 'Fiifi Pius';
               return Form(
                 key: formKey,
                 child: Column(

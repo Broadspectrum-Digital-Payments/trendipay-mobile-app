@@ -4,6 +4,8 @@ import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../core/auth/domain/models/user/user_model.dart';
+
 part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';
 
@@ -25,6 +27,7 @@ class TransactionModel with _$TransactionModel {
     final String? status,
     final String? currency,
     final String? createdAt,
+    final UserModel? user,
   }) = _TransactionModel;
 
   String get getAmount => '$currency ${(amountInMajorUnits?? '0').toString().toCurrencyFormat}';

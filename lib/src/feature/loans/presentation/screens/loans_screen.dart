@@ -1,16 +1,14 @@
+import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
-import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transaction_list_view.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../../../common/constants/styles.dart';
-import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
-import '../../../../../core/constants/text_strings.dart';
-import '../../../../../core/utils/app_theme_util.dart';
 import '../../../../shared_widgets/common/authheaders.dart';
-import '../../../../shared_widgets/common/zloader.dart';
 
 class LoansScreen extends StatefulWidget {
   const LoansScreen({super.key});
@@ -24,13 +22,7 @@ class _LoansScreenState extends State<LoansScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async{
-      await context.read<TransactionViewModel>().fetchTransactions(
-        context,
-        loadingComponent: 'history',
-        queryParam: {
-          'pageSize': kPageSize,
-        },
-      );
+
     });
     super.initState();
   }
@@ -39,46 +31,64 @@ class _LoansScreenState extends State<LoansScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.transactionHistory),
+        title: const AuthHeader(icon: BDPImages.bdpIcon, title: 'Loans'),
         automaticallyImplyLeading: false,
       ),
-      body: BaseView<TransactionViewModel>(
-        builder: (context, transactionConsumer, child) {
-          if(transactionConsumer.getComponentLoading('history') && transactionConsumer.getTransactions.isEmpty){
-            return const Center(
-              child: ZLoader(loaderColor: BDPColors.primary, size: 32),
-            );
-          }
-          if(transactionConsumer.isComponentErrorType('history')){
-            return Center(
-              child: Text(
-                transactionConsumer.componentErrorType?['error']?? '',
-                style: kRegularFontStyle.copyWith(
-                  fontSize: AppThemeUtil.fontSize(14.0),
-                  color: BDPColors.dark90,
-                ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
+        child: Column(
+          children: [
+            const Spacer(flex: 2),
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                BDPImages.loanWelcome,
+                fit: BoxFit.cover,
               ),
-            );
-          }
-          if(transactionConsumer.getTransactions.isEmpty){
-            return Center(
-              child: Text(
-                "You have no recent transactions",
-                style: kRegularFontStyle.copyWith(
-                  fontSize: AppThemeUtil.fontSize(14.0),
-                  color: BDPColors.dark90,
-                ),
-              ),
-            );
-          }
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
-            child: TransactionListView(
-              transactions: transactionConsumer.getTransactions,
-              padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(24)),
             ),
-          );
-        }
+            const Spacer(flex: 1),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(32)),
+              child: Text(
+                'Easy, fast and accessible loans to help with emergency situations and businesses.',
+                style: kMediumFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(14.0),
+                  color: BDPColors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Spacer(flex: 5),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BDPPrimaryButton(
+                  buttonText: 'Apply for loan',
+                  imageIconFile: BDPImages.loansWhite,
+                  onPressed: (){
+                    AppNavigator.pushNamed(context, AppRoute.applyNewLoanScreen);
+                  },
+                ),
+              ],
+            ),
+            const VSpace(height: 10.0),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BDPPrimaryButton(
+                  buttonText: 'Check Credit Worthiness',
+                  backgroundColor: BDPColors.white,
+                  textColor: BDPColors.brightPurple,
+                  imageIconFile: BDPImages.creditCard,
+                  onPressed: (){
+
+                  },
+                ),
+              ],
+            ),
+            const VSpace(height: 18.0),
+          ],
+        ),
       ),
     );
   }

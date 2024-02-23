@@ -33,6 +33,7 @@ mixin _$TransactionModel {
   String? get status => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +60,10 @@ abstract class $TransactionModelCopyWith<$Res> {
       String? description,
       String? status,
       String? currency,
-      String? createdAt});
+      String? createdAt,
+      UserModel? user});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -88,6 +92,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       externalId: freezed == externalId
@@ -142,7 +147,23 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -167,7 +188,11 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
       String? description,
       String? status,
       String? currency,
-      String? createdAt});
+      String? createdAt,
+      UserModel? user});
+
+  @override
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -194,6 +219,7 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$TransactionModelImpl(
       externalId: freezed == externalId
@@ -248,6 +274,10 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ));
   }
 }
@@ -268,7 +298,8 @@ class _$TransactionModelImpl extends _TransactionModel {
       this.description,
       this.status,
       this.currency,
-      this.createdAt})
+      this.createdAt,
+      this.user})
       : super._();
 
   factory _$TransactionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -300,10 +331,12 @@ class _$TransactionModelImpl extends _TransactionModel {
   final String? currency;
   @override
   final String? createdAt;
+  @override
+  final UserModel? user;
 
   @override
   String toString() {
-    return 'TransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, status: $status, currency: $currency, createdAt: $createdAt)';
+    return 'TransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, status: $status, currency: $currency, createdAt: $createdAt, user: $user)';
   }
 
   @override
@@ -332,7 +365,8 @@ class _$TransactionModelImpl extends _TransactionModel {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
@@ -351,7 +385,8 @@ class _$TransactionModelImpl extends _TransactionModel {
       description,
       status,
       currency,
-      createdAt);
+      createdAt,
+      user);
 
   @JsonKey(ignore: true)
   @override
@@ -382,7 +417,8 @@ abstract class _TransactionModel extends TransactionModel {
       final String? description,
       final String? status,
       final String? currency,
-      final String? createdAt}) = _$TransactionModelImpl;
+      final String? createdAt,
+      final UserModel? user}) = _$TransactionModelImpl;
   const _TransactionModel._() : super._();
 
   factory _TransactionModel.fromJson(Map<String, dynamic> json) =
@@ -414,6 +450,8 @@ abstract class _TransactionModel extends TransactionModel {
   String? get currency;
   @override
   String? get createdAt;
+  @override
+  UserModel? get user;
   @override
   @JsonKey(ignore: true)
   _$$TransactionModelImplCopyWith<_$TransactionModelImpl> get copyWith =>

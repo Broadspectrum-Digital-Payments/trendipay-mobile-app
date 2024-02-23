@@ -1,6 +1,5 @@
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
-import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -148,13 +147,12 @@ class TransferSummaryModalContent extends StatelessWidget {
                         BDPPrimaryButton(
                           buttonText: BDPTexts.confirm,
                           onPressed: () async{
-                            AppNavigator.pop(context);
                             await context.read<OtpViewModel>().sendOtp(
                               context,
                               requestBody: {
                                 'action': kPerformTransferAction,
                                 "phoneNumber": HelperUtil.getLocalPhoneNumber(context.read<UserViewModel>().getUser.phoneNumber?? ''),
-                                "amount": transferInfo['amount']?? '0',
+                                "amount": double.parse(transferInfo['amount']?? '0') * 100,
                                 "accountNumber": transferInfo['accountNumber'],
                                 "accountIssuer": (transferInfo['accountIssuer']?? '').toString().toNetworkCode(),
                                 "accountName": transferInfo['accountName'],

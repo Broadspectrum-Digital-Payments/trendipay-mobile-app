@@ -13,5 +13,6 @@ class AppRoute {
   static const transactionInfoScreen = 'transaction_info_screen';
   static const transferSuccessScreen = 'transfer_success_screen';
   static const accountSettingsScreen = 'account_settings_screen';
+  static const applyNewLoanScreen = 'apply_new_loan_screen';
 
 }

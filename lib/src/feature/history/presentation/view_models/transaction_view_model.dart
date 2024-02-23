@@ -80,7 +80,6 @@ class TransactionViewModel extends BaseViewModel{
 
 
   Future<void> transferMoney(BuildContext context, {required Map<String, dynamic> requestBody}) async{
-    print('####TRANSFER: $requestBody####');
     final result = await _transactionRepository.transferMoney(requestBody: requestBody);
 
     if(context.mounted) AppNavigator.pop(context);

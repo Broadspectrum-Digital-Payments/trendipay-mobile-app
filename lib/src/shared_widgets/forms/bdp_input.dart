@@ -1,5 +1,6 @@
 
 import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,6 +23,7 @@ class BDPInput extends StatelessWidget {
     this.focusNode,
     this.textCapitalization = TextCapitalization.none,
     this.inputFormatters,
+    this.helperText,
   });
 
   final TextEditingController? controller;
@@ -38,6 +40,7 @@ class BDPInput extends StatelessWidget {
   final FocusNode? focusNode;
   final TextCapitalization textCapitalization;
   final List<TextInputFormatter>? inputFormatters;
+  final String? helperText;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,11 @@ class BDPInput extends StatelessWidget {
         prefixIcon: prefixIcon,
         enabled: enabled,
         labelText: labelText,
+        helperText: helperText,
+        helperStyle: kMediumFontStyle.copyWith(
+          fontSize: AppThemeUtil.fontSize(12.0),
+          color: BDPColors.brightPurple,
+        ),
         labelStyle: labelStyle?? kRegularFontStyle.copyWith(
           fontSize: AppThemeUtil.fontSize(16),
           color: Colors.grey,

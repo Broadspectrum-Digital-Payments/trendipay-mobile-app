@@ -82,8 +82,8 @@ class UserRepositoryImpl extends UserRepository{
     try {
       final response = await userRemoteDataSource.sendOtp(requestBody: requestBody);
       return Right(response);
-    } catch (e) {
-      return Left(FailureToMessage.returnLeftError(e));
+    } catch (e, s) {
+      return Left(FailureToMessage.returnLeftError(e, s));
     }
   }
 

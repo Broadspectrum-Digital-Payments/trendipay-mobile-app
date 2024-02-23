@@ -87,7 +87,10 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.file_upload_outlined), // Icon
+                            const Icon(
+                              Icons.file_upload_outlined,
+                              color: Colors.grey,
+                            ), // Icon
                             const VSpace(height: 8),
                             Text(
                               'Upload a clear selfie of yourself',

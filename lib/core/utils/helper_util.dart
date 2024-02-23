@@ -41,7 +41,7 @@ class HelperUtil{
 
   static Color getTransactionStatusTextColor(String status){
     if(status.toLowerCase() == kSuccessStatus) return BDPColors.successColor;
-    if(status.toLowerCase() == kPendingStatus) return Colors.yellow.shade300;
+    if(status.toLowerCase() == kPendingStatus) return Colors.orange;
     return BDPColors.secondary;
   }
 
