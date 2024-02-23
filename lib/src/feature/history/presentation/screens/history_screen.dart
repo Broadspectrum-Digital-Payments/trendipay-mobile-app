@@ -1,17 +1,11 @@
-import 'package:bdp_payment_app/common/models/transaction_history.dart';
 import 'package:bdp_payment_app/common/widgets/custom_appbar/custom_appbar.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/history_widgets/history_widgets.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../common/widgets/common_widgets.dart';
-import '../../../../core/constants/colors.dart';
-import '../../../../core/constants/sizes.dart';
-import '../../../../core/constants/text_strings.dart';
+import '../../../../../core/constants/text_strings.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});

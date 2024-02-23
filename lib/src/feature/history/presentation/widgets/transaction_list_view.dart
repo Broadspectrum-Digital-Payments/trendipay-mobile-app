@@ -4,7 +4,7 @@ import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_dialog_util.dart';
-import '../../domain/models/transaction/transaction_model.dart';
+import '../domain/models/transaction/transaction_model.dart';
 import 'transaction_item.dart';
 import 'transaction_summary_modal_content.dart';
 

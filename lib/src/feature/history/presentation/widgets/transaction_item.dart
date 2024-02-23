@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
-import '../../domain/models/transaction/transaction_model.dart';
+import '../domain/models/transaction/transaction_model.dart';
 
 class TransactionItem extends StatelessWidget {
   final TransactionModel transaction;

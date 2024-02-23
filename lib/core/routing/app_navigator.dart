@@ -11,7 +11,7 @@ import '../../src/feature/home/presentation/view_models/bottom_nav_view_model.da
 import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
 import '../../src/feature/home/presentation/screens/navigation_menu.dart';
-import '../../src/feature/transaction/presentation/screens/transfer_info_screen.dart';
+import '../../src/feature/history/presentation/screens/transfer_info_screen.dart';
 import '../constants/colors.dart';
 import 'app_route.dart';
 

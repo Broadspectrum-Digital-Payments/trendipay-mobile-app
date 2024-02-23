@@ -1,5 +1,5 @@
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/history.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/screens/history_screen.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/notification/notification.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/settings/settings.dart';
 import 'package:bdp_payment_app/src/feature/wallet/presentation/screens/wallet_screen.dart';

@@ -12,7 +12,7 @@ import 'core/routing/app_route.dart';
 import 'core/services/git_it_service_locator.dart';
 import 'core/view_models/user_view_model.dart';
 import 'src/feature/auth/presentation/view_models/otp_view_model.dart';
-import 'src/feature/transaction/presentation/view_models/transaction_view_model.dart';
+import 'src/feature/history/presentation/view_models/transaction_view_model.dart';
 import 'src/feature/wallet/presentation/view_models/wallet_view_model.dart';
 
 void main() async{

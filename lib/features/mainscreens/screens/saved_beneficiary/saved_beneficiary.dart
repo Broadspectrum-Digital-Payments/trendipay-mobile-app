@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/constants/sizes.dart';
-import '../../../../src/feature/transaction/presentation/screens/transfer_info_screen.dart';
+import '../../../../src/feature/history/presentation/screens/transfer_info_screen.dart';
 
 class SavedBeneficiaryScreen extends StatelessWidget {
   const SavedBeneficiaryScreen({Key? key});

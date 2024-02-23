@@ -2,10 +2,10 @@
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/src/feature/transaction/presentation/view_models/transaction_view_model.dart';
-import 'package:bdp_payment_app/src/feature/transaction/presentation/widgets/transfer_amount_container.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transfer_amount_container.dart';
 import 'package:bdp_payment_app/core/constants/text_strings.dart';
-import 'package:bdp_payment_app/src/feature/transaction/presentation/widgets/transfer_summary_modal_content.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transfer_summary_modal_content.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';

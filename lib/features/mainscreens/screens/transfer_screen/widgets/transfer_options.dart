@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/src/feature/transaction/presentation/screens/transfer_info_screen.dart';
+import 'package:bdp_payment_app/src/feature/history/presentation/screens/transfer_info_screen.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_events.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transaction_blos/transfer_states.dart';
 import 'package:flutter/material.dart';
