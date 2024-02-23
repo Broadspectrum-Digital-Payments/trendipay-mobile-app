@@ -13,14 +13,17 @@ class TransactionListView extends StatelessWidget {
     super.key,
     required this.transactions,
     this.primary,
+    this.padding,
   });
 
   final List<TransactionModel> transactions;
   final bool? primary;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: padding,
       primary: primary,
       shrinkWrap: true,
       itemCount: transactions.length,

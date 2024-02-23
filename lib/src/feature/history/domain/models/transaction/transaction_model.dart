@@ -22,8 +22,6 @@ class TransactionModel with _$TransactionModel {
     final String? amountInMajorUnits,
     final String? type,
     final String? description,
-    final String? date,
-    final String? time,
     final String? status,
     final String? currency,
     final String? createdAt,

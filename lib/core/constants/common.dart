@@ -19,3 +19,5 @@ const kSuccessStatus = 'success';
 const kInitiatedStatus = 'initiated';
 const kFailedStatus = 'failed';
 const kPendingStatus = 'pending';
+
+const kPageSize = 20;

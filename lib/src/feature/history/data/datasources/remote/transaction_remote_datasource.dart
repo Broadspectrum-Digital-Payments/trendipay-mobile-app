@@ -1,11 +1,12 @@
+
 import '../../../../../../core/constants/api_routes.dart';
 import '../../../../../../core/errors/error.dart';
 import '../../../../../../core/services/http_service_requester.dart';
 import '../../../../wallet/domain/models/wallet/wallet_model.dart';
-import '../../../domain/models/transaction/transaction_model.dart';
+import '../../../domain/models/history/transaction_history_model.dart';
 
 abstract class TransactionRemoteDataSource{
-  Future<List<TransactionModel>> fetchTransactions({required Map<String, dynamic> queryParam});
+  Future<TransactionHistoryModel> fetchTransactions({required Map<String, dynamic> queryParam});
   Future<WalletModel> enquireWalletName({required Map<String, dynamic> queryParam});
 }
 
@@ -16,7 +17,7 @@ class TransactionRemoteDataSourceImpl extends TransactionRemoteDataSource{
   final HttpServiceRequester httpServiceRequester;
 
   @override
-  Future<List<TransactionModel>> fetchTransactions({required Map<String, dynamic> queryParam}) async{
+  Future<TransactionHistoryModel> fetchTransactions({required Map<String, dynamic> queryParam}) async{
     final response = await httpServiceRequester.getRequest(
       endpoint: ApiRoutes.walletTransaction,
       queryParam: queryParam,
@@ -27,7 +28,11 @@ class TransactionRemoteDataSourceImpl extends TransactionRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return TransactionList.fromJson(response.data['data']?? {}).list;
+
+    return TransactionHistoryModel.fromJson({
+      'data': response.data['data'],
+      'meta': response.data['meta'],
+    });
   }
 
   @override

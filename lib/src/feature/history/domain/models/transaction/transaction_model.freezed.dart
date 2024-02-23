@@ -30,8 +30,6 @@ mixin _$TransactionModel {
   String? get amountInMajorUnits => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  String? get date => throw _privateConstructorUsedError;
-  String? get time => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
@@ -59,8 +57,6 @@ abstract class $TransactionModelCopyWith<$Res> {
       String? amountInMajorUnits,
       String? type,
       String? description,
-      String? date,
-      String? time,
       String? status,
       String? currency,
       String? createdAt});
@@ -89,8 +85,6 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? amountInMajorUnits = freezed,
     Object? type = freezed,
     Object? description = freezed,
-    Object? date = freezed,
-    Object? time = freezed,
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
@@ -136,14 +130,6 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -179,8 +165,6 @@ abstract class _$$TransactionModelImplCopyWith<$Res>
       String? amountInMajorUnits,
       String? type,
       String? description,
-      String? date,
-      String? time,
       String? status,
       String? currency,
       String? createdAt});
@@ -207,8 +191,6 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
     Object? amountInMajorUnits = freezed,
     Object? type = freezed,
     Object? description = freezed,
-    Object? date = freezed,
-    Object? time = freezed,
     Object? status = freezed,
     Object? currency = freezed,
     Object? createdAt = freezed,
@@ -254,14 +236,6 @@ class __$$TransactionModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -292,8 +266,6 @@ class _$TransactionModelImpl extends _TransactionModel {
       this.amountInMajorUnits,
       this.type,
       this.description,
-      this.date,
-      this.time,
       this.status,
       this.currency,
       this.createdAt})
@@ -323,10 +295,6 @@ class _$TransactionModelImpl extends _TransactionModel {
   @override
   final String? description;
   @override
-  final String? date;
-  @override
-  final String? time;
-  @override
   final String? status;
   @override
   final String? currency;
@@ -335,7 +303,7 @@ class _$TransactionModelImpl extends _TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, date: $date, time: $time, status: $status, currency: $currency, createdAt: $createdAt)';
+    return 'TransactionModel(externalId: $externalId, accountNumber: $accountNumber, amount: $amount, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, fee: $fee, feeInMajorUnits: $feeInMajorUnits, amountInMajorUnits: $amountInMajorUnits, type: $type, description: $description, status: $status, currency: $currency, createdAt: $createdAt)';
   }
 
   @override
@@ -360,8 +328,6 @@ class _$TransactionModelImpl extends _TransactionModel {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
@@ -383,8 +349,6 @@ class _$TransactionModelImpl extends _TransactionModel {
       amountInMajorUnits,
       type,
       description,
-      date,
-      time,
       status,
       currency,
       createdAt);
@@ -416,8 +380,6 @@ abstract class _TransactionModel extends TransactionModel {
       final String? amountInMajorUnits,
       final String? type,
       final String? description,
-      final String? date,
-      final String? time,
       final String? status,
       final String? currency,
       final String? createdAt}) = _$TransactionModelImpl;
@@ -446,10 +408,6 @@ abstract class _TransactionModel extends TransactionModel {
   String? get type;
   @override
   String? get description;
-  @override
-  String? get date;
-  @override
-  String? get time;
   @override
   String? get status;
   @override

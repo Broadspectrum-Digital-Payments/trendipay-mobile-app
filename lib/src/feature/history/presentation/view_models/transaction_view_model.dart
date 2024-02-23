@@ -2,6 +2,7 @@
 // import 'package:flutter/material.dart';
 import 'dart:collection';
 
+import 'package:bdp_payment_app/src/feature/history/domain/models/pagination/pagination_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/view_models/base_view_model.dart';
@@ -11,20 +12,22 @@ import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
 import '../../../wallet/domain/models/wallet/wallet_model.dart';
 import '../../data/repositories/transaction_repository.dart';
+import '../../domain/models/history/transaction_history_model.dart';
 import '../../domain/models/transaction/transaction_model.dart';
 
 class TransactionViewModel extends BaseViewModel{
   final _transactionRepository = sl.get<TransactionRepository>();
 
-  List<TransactionModel> _transactions = [];
+  TransactionHistoryModel _transactionHistory = const TransactionHistoryModel();
   WalletModel? _enquiryResult;
 
-  set setTransactions(List<TransactionModel> transactions){
-    _transactions = transactions;
+  set setTransactionHistory(TransactionHistoryModel history){
+    _transactionHistory = history;
     notifyListeners();
   }
 
-  UnmodifiableListView<TransactionModel> get getTransactions => UnmodifiableListView(_transactions);
+  UnmodifiableListView<TransactionModel> get getTransactions => UnmodifiableListView(_transactionHistory.data?? []);
+  PaginationModel? get getTransactionMeta => _transactionHistory.meta;
 
   Future<void> fetchTransactions(BuildContext context, {String loadingComponent = 'walletRecent', required Map<String, dynamic> queryParam}) async{
     setComponentErrorType = null;
@@ -38,9 +41,9 @@ class TransactionViewModel extends BaseViewModel{
         'component': loadingComponent
       };
       setLoading(false, component: loadingComponent);
-    }, (right) async{
+    }, (history){
       setLoading(false, component: loadingComponent, notify: false);
-      setTransactions = right;
+      setTransactionHistory = history;
     });
   }
 

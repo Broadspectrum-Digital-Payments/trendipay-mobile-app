@@ -24,7 +24,7 @@ class TransactionItem extends StatelessWidget {
       children: [
         Image.asset(BDPImages.momoTransfer),
         const HSpace(
-          width: 10,
+          width: 16,
         ),
 
         Expanded(

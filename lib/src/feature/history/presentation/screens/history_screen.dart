@@ -1,16 +1,16 @@
-import 'package:bdp_payment_app/common/widgets/custom_appbar/custom_appbar.dart';
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/history_widgets/history_widgets.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_blocs.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_blocs/transaction_states.dart';
-import 'package:bdp_payment_app/features/mainscreens/screens/history/transaction_controller/transaction_controller.dart';
 import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
 import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transaction_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
+import '../../../../../core/utils/app_theme_util.dart';
 import '../../../../shared_widgets/common/authheaders.dart';
+import '../../../../shared_widgets/common/zloader.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -20,12 +20,18 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  late TransactionHistoryController controller;
-  TransactionBlocs blocs = TransactionBlocs();
+
   @override
   void initState() {
-    controller = TransactionHistoryController(context: context);
-    blocs = context.read<TransactionBlocs>();
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      await context.read<TransactionViewModel>().fetchTransactions(
+        context,
+        loadingComponent: 'history',
+        queryParam: {
+          'pageSize': kPageSize,
+        },
+      );
+    });
     super.initState();
   }
 
@@ -38,66 +44,43 @@ class _HistoryScreenState extends State<HistoryScreen> {
       ),
       body: BaseView<TransactionViewModel>(
         builder: (context, transactionConsumer, child) {
-          return TransactionListView(
-            transactions: transactionConsumer.getTransactions,
+          if(transactionConsumer.getComponentLoading('history') && transactionConsumer.getTransactions.isEmpty){
+            return const Center(
+              child: ZLoader(loaderColor: BDPColors.primary, size: 32),
+            );
+          }
+          if(transactionConsumer.isComponentErrorType('history')){
+            return Center(
+              child: Text(
+                transactionConsumer.componentErrorType?['error']?? '',
+                style: kRegularFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(14.0),
+                  color: BDPColors.dark90,
+                ),
+              ),
+            );
+          }
+          if(transactionConsumer.getTransactions.isEmpty){
+            return Center(
+              child: Text(
+                "You have no recent transactions",
+                style: kRegularFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(14.0),
+                  color: BDPColors.dark90,
+                ),
+              ),
+            );
+          }
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
+            child: TransactionListView(
+              transactions: transactionConsumer.getTransactions,
+              padding: EdgeInsets.symmetric(vertical: AppThemeUtil.height(24)),
+            ),
           );
         }
       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(BDPSizes.defaultSpace),
-      //   child: BlocBuilder<TransactionBlocs, TransactionStates>(
-      //       builder: (context, state) {
-      //     return state.loadingTransactions == true
-      //         ? Center(
-      //             child: loader(loaderColor: BDPColors.primary),
-      //           )
-      //         : state.recentTransactions.isEmpty
-      //             ? const Center(
-      //       // this allows you to have recent transactions
-      //                 child: Text("you have no recent transactions"),
-      //               )
-      //             : ListView.separated(
-      //                 itemCount: state.allTransactions.length,
-      //                 itemBuilder: (context, index) {
-      //                   var item = state.allTransactions[index];
-      //                   return Padding(
-      //                     padding: EdgeInsets.symmetric(vertical: 8.h),
-      //                     child: GestureDetector(
-      //                       onTap: () {
-      //                         controller.loadTransactionById(item.id!);
-      //                         _showHistoryModal();
-      //                       },
-      //                       child: TransactionItem(
-      //                           title: item.transferType?.name ?? "",
-      //                           description: item.description ?? "",
-      //                           date: item.formattedProcessDate ?? "",
-      //                           time: formatTime(item.processDate),
-      //                           amount: item.formattedAmount ?? "",
-      //                           isSuccess: item.status == "PROCESSED"),
-      //                     ),
-      //                   );
-      //                 },
-      //                 separatorBuilder: (BuildContext context, int index) {
-      //                   return buildDivider();
-      //                 },
-      //               );
-      //   }),
-      // ),
     );
-  }
-
-  void _showHistoryModal() {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return BlocBuilder<TransactionBlocs, TransactionStates>(
-              builder: (context, state) {
-            return reusableHistoryData(
-                history: state.currentHistory,
-                loading: state.loadingTransactions == true);
-          });
-        });
   }
 }
 
