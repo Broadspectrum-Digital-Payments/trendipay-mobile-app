@@ -154,13 +154,13 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                         BaseView<TransactionViewModel>(
                           builder: (context, transactionConsumer, child){
-                            if(transactionConsumer.getComponentLoading('walletRecent') && transactionConsumer.getRecentTransactions.isEmpty){
+                            if(transactionConsumer.getComponentLoading('walletRecent') && transactionConsumer.getTransactions.isEmpty){
                               return Padding(
                                 padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
                                 child: const ZLoader(loaderColor: BDPColors.primary, size: 24),
                               );
                             }
-                            if(transactionConsumer.getRecentTransactions.isEmpty){
+                            if(transactionConsumer.getTransactions.isEmpty){
                               return Padding(
                                 padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
                                 child: Text(
@@ -173,7 +173,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               );
                             }
                             return TransactionListView(
-                              transactions: transactionConsumer.getRecentTransactions,
+                              transactions: transactionConsumer.getTransactions,
                               primary: false,
                             );
                           },

@@ -16,15 +16,15 @@ import '../../domain/models/transaction/transaction_model.dart';
 class TransactionViewModel extends BaseViewModel{
   final _transactionRepository = sl.get<TransactionRepository>();
 
-  List<TransactionModel> _recentTransactions = [];
+  List<TransactionModel> _transactions = [];
   WalletModel? _enquiryResult;
 
-  set setRecentTransaction(List<TransactionModel> transactions){
-    _recentTransactions = transactions;
+  set setTransactions(List<TransactionModel> transactions){
+    _transactions = transactions;
     notifyListeners();
   }
 
-  UnmodifiableListView<TransactionModel> get getRecentTransactions => UnmodifiableListView(_recentTransactions);
+  UnmodifiableListView<TransactionModel> get getTransactions => UnmodifiableListView(_transactions);
 
   Future<void> fetchTransactions(BuildContext context, {String loadingComponent = 'walletRecent', required Map<String, dynamic> queryParam}) async{
     setComponentErrorType = null;
@@ -40,7 +40,7 @@ class TransactionViewModel extends BaseViewModel{
       setLoading(false, component: loadingComponent);
     }, (right) async{
       setLoading(false, component: loadingComponent, notify: false);
-      setRecentTransaction = right;
+      setTransactions = right;
     });
   }
 
