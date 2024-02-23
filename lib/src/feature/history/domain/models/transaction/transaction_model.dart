@@ -4,8 +4,6 @@ import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../core/auth/domain/models/user/user_model.dart';
-
 part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';
 
