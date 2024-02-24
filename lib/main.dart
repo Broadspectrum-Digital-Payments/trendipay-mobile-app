@@ -2,7 +2,6 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'core/routing/app_navigator.dart';
 import 'core/routing/app_route.dart';
@@ -44,7 +43,7 @@ class BDPApp extends StatelessWidget {
         splitScreenMode: true,
         useInheritedMediaQuery: true,
         builder: (_, child) {
-          return GetMaterialApp(
+          return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemeUtil.lightTheme,
             initialRoute: AppRoute.splashScreen,

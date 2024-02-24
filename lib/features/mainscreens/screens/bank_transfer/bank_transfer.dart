@@ -3,7 +3,6 @@ import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/widge
 import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/widgets/bank_transfer_steps.dart';
 import 'package:bdp_payment_app/features/mainscreens/screens/bank_transfer/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../src/feature/home/presentation/screens/navigation_menu.dart';
 import '../../../../core/constants/image_strings.dart';
@@ -22,7 +21,7 @@ class BankTransferScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 24),
           onPressed: () {
-            Get.back();
+
           },
         ),
       ),
@@ -57,7 +56,7 @@ class BankTransferScreen extends StatelessWidget {
                     const SizedBox(
                       height: BDPSizes.spaceBtwItems,
                     ),
-                    SizedBox(width: 132, height:50,child: Buttons(buttonName: BDPTexts.proceed, image: BDPImages.rightArrow, onPressed: (){Get.to(const NavigationMenu());}))
+                    SizedBox(width: 132, height:50,child: Buttons(buttonName: BDPTexts.proceed, image: BDPImages.rightArrow, onPressed: (){}))
                   ],
                 ),
               ),

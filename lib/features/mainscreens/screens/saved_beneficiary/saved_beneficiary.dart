@@ -1,7 +1,5 @@
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/constants/sizes.dart';
 import '../../../../src/feature/history/presentation/screens/transfer_info_screen.dart';
@@ -18,7 +16,7 @@ class SavedBeneficiaryScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 24),
           onPressed: () {
-            Get.back();
+            // Get.back();
           },
         ),
       ),
@@ -85,7 +83,7 @@ class SavedBeneficiaryScreen extends StatelessWidget {
 
   Widget _buildBeneficiaryContainer(String name, String number) {
     return GestureDetector(
-      onTap: () => Get.to(const TransferInfoScreen()),
+      // onTap: () => Get.to(const TransferInfoScreen()),
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(

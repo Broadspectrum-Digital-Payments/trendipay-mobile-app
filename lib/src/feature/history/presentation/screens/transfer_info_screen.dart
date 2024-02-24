@@ -1,4 +1,5 @@
 
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
@@ -13,7 +14,6 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_dropdown.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/common.dart';
@@ -63,9 +63,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
         elevation: 0, // Removes the shadow
         leading: IconButton(
           icon: Icon(Icons.arrow_back, size: AppThemeUtil.radius(24.0)),
-          onPressed: () {
-            Get.back();
-          },
+          onPressed: () => AppNavigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(

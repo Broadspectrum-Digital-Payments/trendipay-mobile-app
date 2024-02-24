@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../src/shared_widgets/common/authheaders.dart';
 import '../../../../../core/constants/colors.dart';
@@ -26,7 +24,6 @@ class CustomAppBars extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
                 onPressed: () {
-                  Get.back();
                 },
               ),
               const SizedBox(

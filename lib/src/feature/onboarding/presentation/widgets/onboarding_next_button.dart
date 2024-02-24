@@ -1,7 +1,6 @@
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/constants/sizes.dart';
-import '../../../../../core/utils/device_utility.dart';
 
 class OnBoardingNextButton extends StatelessWidget {
   const OnBoardingNextButton({
@@ -19,7 +18,7 @@ class OnBoardingNextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       right: BDPSizes.defaultSpace,
-      bottom: BDPDeviceUtils.getBottomNavigationBarHeight(),
+      bottom: kBottomNavigationBarHeight,
       child:  BDPPrimaryButton(
         buttonText: 'Get Started',
         onPressed: onPressed,

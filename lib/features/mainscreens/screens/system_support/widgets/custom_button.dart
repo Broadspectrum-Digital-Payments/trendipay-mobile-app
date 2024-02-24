@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../common/widgets/button/button.dart';
 import '../../../../../core/constants/image_strings.dart';
@@ -22,7 +20,7 @@ class CustomButton extends StatelessWidget {
           buttonName: BDPTexts.chat,
           image: BDPImages.rightArrow,
           onPressed: () {
-            Get.to(ChatScreen());
+
           },
         ));
   }
