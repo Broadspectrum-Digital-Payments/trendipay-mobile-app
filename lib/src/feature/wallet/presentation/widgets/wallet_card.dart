@@ -35,7 +35,7 @@ class WalletCard extends StatelessWidget {
         vertical: AppThemeUtil.height(24.0),
       ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.0),
+          borderRadius: BorderRadius.circular(AppThemeUtil.radius(24.0)),
           border: Border.all(color: Colors.grey, width: 1.0),
           gradient:  LinearGradient(
             colors:gradients,
