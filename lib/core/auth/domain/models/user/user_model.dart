@@ -1,4 +1,3 @@
-import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
@@ -31,7 +30,7 @@ class UserModel with _$UserModel {
     final splitNameList = (name?? '').replaceAll('-', ' ').split(' ');
     return splitNameList.first;
   }
-  String get getAvailableBalance => (availableBalance?? '0').toCurrencyFormat;
+  String get getAvailableBalance => double.parse((availableBalance?? '0')).toStringAsFixed(2);
   String get getKycStatus => (kycStatus?? '').toLowerCase();
   bool get selfieUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'selfie');
   FileModel get selfieFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'selfie', orElse: () => const FileModel());

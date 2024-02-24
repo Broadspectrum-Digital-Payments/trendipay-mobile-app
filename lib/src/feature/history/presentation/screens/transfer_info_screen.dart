@@ -117,13 +117,8 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                     FocusScope(
                       child: Focus(
                         onFocusChange: (focus) async{
-                          if(!focus && (accountNumberCtrl.text.isNotEmpty && accountNumberCtrl.text.length == 10)){
-                            await context.read<TransactionViewModel>().enquireWalletName(
-                              context,
-                              queryParam: {
-                                'phoneNumber': accountNumberCtrl.text,
-                              },
-                            );
+                          if(!focus && (accountNumberCtrl.text.length == 10 && accountNetwork.value != null)){
+                            await enquireAccountName(accountNumberCtrl.text);
                           }
                         },
                         child: BDPInput(
@@ -150,10 +145,13 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                     BDPDropdown(
                       labelText: 'Account Network*',
                       value: accountNetwork.value,
-                      onChanged: (value){
+                      onChanged: (value) async{
                         accountNetwork.value = value;
+                        if(value != null && accountNumberCtrl.text.length == 10){
+                          await enquireAccountName(accountNumberCtrl.text);
+                        }
                       },
-                      items: kMobileNetworks,
+                      items: kTransactionNetworks,
                       validator: (value){
                         if (value == null || value.isEmpty) {
                           return "Account network field must not be empty";
@@ -235,4 +233,15 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
       ),
     );
   }
+
+  Future<void> enquireAccountName(String accountNumber) async{
+    if(!mounted) return;
+    await context.read<TransactionViewModel>().enquireWalletName(
+      context,
+      queryParam: {
+        'phoneNumber': accountNumber,
+      },
+    );
+  }
+
 }

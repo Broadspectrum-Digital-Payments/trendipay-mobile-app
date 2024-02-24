@@ -36,6 +36,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async{
+      if(!mounted) return;
       context.read<UserViewModel>().fetchUser(context);
       await context.read<TransactionViewModel>().fetchTransactions(
         context,

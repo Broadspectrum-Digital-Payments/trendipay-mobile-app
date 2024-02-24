@@ -1,5 +1,4 @@
 import 'package:bdp_payment_app/core/constants/styles.dart';
-import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +40,7 @@ class TransferAmountContainer extends StatelessWidget {
             height: BDPSizes.spaceBtwItems,
           ),
           Text(
-            (amount.isEmpty? '0.0' :amount).toCurrencyFormat,
+            double.parse((amount.isEmpty? '0.0' :amount)).toStringAsFixed(2),
             style: kMediumFontStyle.copyWith(
               fontSize: AppThemeUtil.fontSize(20),
               color: BDPColors.white,
