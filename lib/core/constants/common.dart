@@ -13,6 +13,7 @@ const kProcessedStatus = 'processed';
 const kQueuedStatus = 'queued';
 const kSubmittedStatus = 'submitted';
 const kApprovedStatus = 'approved';
+const kDeclinedStatus = 'declined';
 const kStartedStatus = 'started';
 const kCompletedStatus = 'completed';
 const kSuccessStatus = 'success';
@@ -21,3 +22,5 @@ const kFailedStatus = 'failed';
 const kPendingStatus = 'pending';
 
 const kPageSize = 20;
+
+const kMobileNetworks = ['MTN', 'GMO', 'ATM', 'VODAFONE'];

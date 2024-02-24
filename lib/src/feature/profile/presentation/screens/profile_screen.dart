@@ -25,14 +25,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // context.read<UserViewModel>().fetchUser(context);
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>().getUser;
     return Scaffold(

@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
@@ -30,9 +30,13 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+
+
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async{
+      context.read<UserViewModel>().fetchUser(context);
       await context.read<TransactionViewModel>().fetchTransactions(
         context,
         queryParam: {

@@ -1,5 +1,5 @@
 
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,6 +67,15 @@ class BDPInput extends StatelessWidget {
         labelStyle: labelStyle?? kRegularFontStyle.copyWith(
           fontSize: AppThemeUtil.fontSize(16),
           color: Colors.grey,
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
+        ),
+        disabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
         ),
       ),
     );

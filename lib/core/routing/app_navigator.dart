@@ -18,6 +18,10 @@ import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
 import '../../src/feature/home/presentation/screens/navigation_menu.dart';
 import '../../src/feature/history/presentation/screens/transfer_info_screen.dart';
+import '../../src/feature/wallet/presentation/screens/confirm_top_up_wallet_screen.dart';
+import '../../src/feature/wallet/presentation/screens/select_wallet_screen.dart';
+import '../../src/feature/wallet/presentation/screens/top-up_wallet_screen.dart';
+import '../../src/feature/wallet/presentation/screens/top_wallet_success_screen.dart';
 import '../constants/colors.dart';
 import 'app_route.dart';
 
@@ -98,6 +102,18 @@ class AppNavigator {
 
       case AppRoute.loanTransactionDetailScreen:
         return MaterialPageRoute(builder: (context) => const LoanTransactionDetailScreen());
+
+      case AppRoute.topUpWalletScreen:
+        return MaterialPageRoute(builder: (context) => const TopUpWalletScreen());
+
+      case AppRoute.selectWalletScreen:
+        return MaterialPageRoute(builder: (context) => const SelectWalletScreen());
+
+      case AppRoute.confirmTopUpWalletScreen:
+        return MaterialPageRoute(builder: (context) => const ConfirmTopUpWalletScreen());
+
+      case AppRoute.topUpWalletSuccessScreen:
+        return MaterialPageRoute(builder: (context) => const TopUpWalletSuccessScreen());
 
       default:
         return _errorRoute();

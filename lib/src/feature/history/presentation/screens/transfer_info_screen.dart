@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/common.dart';
 import '../../../../../core/constants/sizes.dart';
 
 class TransferInfoScreen extends StatefulWidget {
@@ -136,6 +137,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                             if (value == null || value.isEmpty) {
                               return "Account number field must not be empty";
                             }
+                            if(value.length != 10) return 'Phone number is invalid';
                             return null;
                           },
                           onTapOutside: (event){
@@ -153,7 +155,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                       onChanged: (value){
                         accountNetwork.value = value;
                       },
-                      items: const ['MTN', 'GMO', 'ATM', 'VODAFONE'],
+                      items: kMobileNetworks,
                       validator: (value){
                         if (value == null || value.isEmpty) {
                           return "Account network field must not be empty";

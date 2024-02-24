@@ -10,7 +10,7 @@ import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../../core/constants/sizes.dart';
 import '../../../../core/constants/text_strings.dart';
-import '../top_up/top-up.dart';
+import '../../../../src/feature/wallet/presentation/screens/top-up_wallet_screen.dart';
 
 class SelectCardScreen extends StatelessWidget {
   const SelectCardScreen({super.key});

@@ -1,4 +1,3 @@
-import 'package:bdp_payment_app/features/mainscreens/screens/transfer_screen/transfer.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

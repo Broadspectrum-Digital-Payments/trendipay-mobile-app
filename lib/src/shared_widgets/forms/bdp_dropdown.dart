@@ -2,7 +2,7 @@ import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/styles.dart';
+import '../../../core/constants/styles.dart';
 
 class BDPDropdown extends StatelessWidget {
   const BDPDropdown({
@@ -50,6 +50,17 @@ class BDPDropdown extends StatelessWidget {
           ),
         );
       }).toList(),
+      decoration: const InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
+        ),
+        disabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+        ),
+      ),
     );
   }
 }

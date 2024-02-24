@@ -5,8 +5,8 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../common/constants/styles.dart';
+import 'package:provider/provider.dart';
+import '../../../../../../core/constants/styles.dart';
 import '../../../../../../core/constants/colors.dart';
 import '../../../../../../core/constants/image_strings.dart';
 

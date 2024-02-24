@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_strings.dart';

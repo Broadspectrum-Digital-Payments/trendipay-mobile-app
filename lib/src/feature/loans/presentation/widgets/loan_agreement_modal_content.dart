@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/utils/app_theme_util.dart';
 import '../../../../shared_widgets/base/draggable_bottom_sheet.dart';

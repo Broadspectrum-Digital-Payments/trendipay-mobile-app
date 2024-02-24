@@ -6,7 +6,7 @@ import 'package:bdp_payment_app/core/services/local_storage_service.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import '../../../../../core/routing/app_route.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';

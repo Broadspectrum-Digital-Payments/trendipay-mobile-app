@@ -12,7 +12,7 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/routing/app_route.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/forms/bdp_input.dart';

@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';

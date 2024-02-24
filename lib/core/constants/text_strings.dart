@@ -55,7 +55,7 @@ class BDPTexts {
 
 
   static const String paymentMethod = "Payment Method";
-  static const String topupTitle= "Enter the details for your top - up";
+  static const String topupTitle= "Enter the details for your top-up";
 
 static const selectWalletTitle = "You have not added any wallets yet. Your wallets will appear here when you do";
 static const selectCardTitle = "You have not added any cards yet. Your wallets will appear here when you do";

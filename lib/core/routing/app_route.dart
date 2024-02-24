@@ -17,5 +17,9 @@ class AppRoute {
   static const loanSummaryScreen = 'loan_summary_screen';
   static const loanReviewScreen = 'loan_review_screen';
   static const loanTransactionDetailScreen = 'loan_transaction_detail_screen';
+  static const topUpWalletScreen = 'top_up_wallet_screen';
+  static const selectWalletScreen = 'select_wallet_screen';
+  static const confirmTopUpWalletScreen = 'confirm_top_up_wallet_screen';
+  static const topUpWalletSuccessScreen = 'top_up_wallet_success_screen';
 
 }

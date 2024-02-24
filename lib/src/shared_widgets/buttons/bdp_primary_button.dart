@@ -1,5 +1,5 @@
 
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class BDPPrimaryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppThemeUtil.radius(10.0)),
           side: BorderSide(
-            color: borderColor?? BDPColors.primary,
+            color: borderColor != null? borderColor! : onPressed == null ? Colors.transparent:BDPColors.primary,
           ),
         ),
         backgroundColor: backgroundColor?? BDPColors.primary,

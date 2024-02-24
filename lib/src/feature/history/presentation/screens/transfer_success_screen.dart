@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
@@ -7,7 +7,7 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import '../../../../../../core/constants/image_strings.dart';
 
 class TransferSuccessScreen extends StatelessWidget {

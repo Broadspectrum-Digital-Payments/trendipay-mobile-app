@@ -4,7 +4,7 @@ import '../../../../../common/widgets/button/button.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_strings.dart';
-import '../../top_up/top-up.dart';
+import '../../../../../src/feature/wallet/presentation/screens/top-up_wallet_screen.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({super.key});
@@ -48,7 +48,7 @@ class CardItem extends StatelessWidget {
                 _buildDivider(),
               ],
             ),
-            SizedBox(width:139, height:50, child: Buttons(buttonName: BDPTexts.continueButtonText, image: BDPImages.rightArrow, onPressed: () {Get.to;{const TopUpScreen();}}))
+            SizedBox(width:139, height:50, child: Buttons(buttonName: BDPTexts.continueButtonText, image: BDPImages.rightArrow, onPressed: () {Get.to;{const TopUpWalletScreen();}}))
           ],
         ),
       ),

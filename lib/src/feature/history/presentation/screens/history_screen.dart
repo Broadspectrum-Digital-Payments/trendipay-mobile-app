@@ -4,7 +4,7 @@ import 'package:bdp_payment_app/src/feature/history/presentation/view_models/tra
 import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transaction_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';

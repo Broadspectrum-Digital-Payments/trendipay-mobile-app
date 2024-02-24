@@ -1,4 +1,5 @@
-import 'package:bdp_payment_app/common/constants/styles.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
+import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
+import '../../../../../core/routing/app_route.dart';
 import '../../../../../core/view_models/base_view.dart';
 import '../../../../../core/view_models/user_view_model.dart';
 
@@ -121,7 +123,9 @@ class WalletCard extends StatelessWidget {
                         highlightColor: Colors.transparent,
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AppNavigator.pushNamed(context, AppRoute.selectWalletScreen);
+                        },
                         style: ElevatedButton.styleFrom(
                           splashFactory: NoSplash.splashFactory,
                           shape: RoundedRectangleBorder(

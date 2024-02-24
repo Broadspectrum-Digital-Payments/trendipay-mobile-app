@@ -8,7 +8,7 @@ import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common/constants/styles.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/common/v_space.dart';
