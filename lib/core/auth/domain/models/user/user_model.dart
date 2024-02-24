@@ -1,5 +1,6 @@
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 import '../file/file_model.dart';
 
@@ -21,6 +22,7 @@ class UserModel with _$UserModel {
     final String? actualBalance,
     final String? availableBalance,
     final List<FileModel>? files,
+    final String? createdAt,
   }) = _UserModel;
 
 
@@ -40,6 +42,7 @@ class UserModel with _$UserModel {
   bool get idCardBackUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-back');
   FileModel get idCardBackFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'ghana-card-back', orElse: () => const FileModel());
 
+  String get joinedAt => (createdAt?? '').isEmpty? '' : DateFormat("d MMMM y").format(DateTime.parse(createdAt?? '')).toString();
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

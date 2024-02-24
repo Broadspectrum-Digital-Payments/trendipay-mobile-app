@@ -79,10 +79,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const VSpace(
                     height: BDPSizes.spaceBtwInputFields,
                   ),
-                  const FormLabel(BDPTexts.emailAddress),
+                  const FormLabel('Phone number'),
                   const VSpace(height: 2),
-                  const BDPInput(
-                    labelText: 'example@gmail.com',
+                  BDPInput(
+                    labelText: user.phoneNumber?? '',
                     enabled: false,
                   ),
 
@@ -90,10 +90,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: BDPSizes.spaceBtwInputFields,
                   ),
 
-                  const FormLabel(BDPTexts.accountPin),
+                  const FormLabel('Registered at'),
                   const SizedBox(height: 2),
-                  const BDPInput(
-                    labelText: BDPTexts.userPin,
+                  BDPInput(
+                    labelText: user.joinedAt,
                     enabled: false,
                   ),
 

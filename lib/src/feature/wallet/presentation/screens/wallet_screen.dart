@@ -102,7 +102,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 AppDialogUtil.popUpModal(
                                   context,
                                   modalContent: const ErrorModalContent(
-                                    errorMessage: 'Be patience, we\'re reviewing your KYC',
+                                    errorMessage: 'Be patient, we are reviewing your KYC documents.',
                                   ),
                                 );
                                 return;

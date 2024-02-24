@@ -20,6 +20,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       files: (json['files'] as List<dynamic>?)
           ?.map((e) => FileModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      createdAt: json['createdAt'] as String?,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -34,4 +35,5 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'actualBalance': instance.actualBalance,
       'availableBalance': instance.availableBalance,
       'files': instance.files,
+      'createdAt': instance.createdAt,
     };
