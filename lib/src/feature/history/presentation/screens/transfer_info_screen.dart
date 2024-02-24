@@ -131,7 +131,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                             if (value == null || value.isEmpty) {
                               return "Account number field must not be empty";
                             }
-                            if(value.length != 10) return 'Phone number is invalid';
+                            if(value.length != 10) return 'Account number is invalid';
                             return null;
                           },
                           onTapOutside: (event){
