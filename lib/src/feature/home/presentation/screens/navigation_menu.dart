@@ -31,8 +31,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _handleKycNavigation();
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      await _handleKycNavigation();
     });
     super.initState();
   }
@@ -61,7 +61,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     );
   }
 
-  void _handleKycNavigation() async{
+  Future<void> _handleKycNavigation() async{
     await Future.delayed(const Duration(milliseconds: 100));
     if(!mounted) return;
     if([kQueuedStatus, kStartedStatus].contains(context.read<UserViewModel>().getUser.getKycStatus)){
