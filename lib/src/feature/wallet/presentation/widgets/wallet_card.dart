@@ -1,12 +1,9 @@
-import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
-import 'package:bdp_payment_app/core/services/local_storage_service.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
