@@ -48,40 +48,29 @@ class WalletCard extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 14.13,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+              Align(
+                alignment: Alignment.centerRight,
+                child: RichText(
+                  text: TextSpan(
+                    text: accountNumber,
+                    style: kBoldFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(12.0),
                       color: BDPColors.white,
                     ),
-                    child: Image.asset(BDPImages.visa),
-                  ),
-                  const HSpace(width: 16.0),
-                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        accountNumber,
-                        style: kBoldFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(12.0),
-                            color: BDPColors.white,
-                        ),
-                      ),
-                      Text(
-                        date,
+                      TextSpan(
+                        text: '\n$date',
                         style: kMediumFontStyle.copyWith(
                           fontSize: AppThemeUtil.fontSize(12.0),
                           color: BDPColors.white,
                         ),
                       ),
-                    ],
+                    ]
                   ),
-                ],
+                  textAlign: TextAlign.end,
+                ),
               ),
+
               const VSpace(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

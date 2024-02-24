@@ -119,6 +119,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                         onFocusChange: (focus) async{
                           if(!focus && (accountNumberCtrl.text.length == 10 && accountNetwork.value != null)){
                             await enquireAccountName(accountNumberCtrl.text);
+                            return;
                           }
                         },
                         child: BDPInput(

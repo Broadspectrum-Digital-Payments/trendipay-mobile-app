@@ -30,6 +30,7 @@ class BDPImages {
   static const String loanCollected = "assets/icons/loan_collected.png";
   static const String loanRepaid = "assets/icons/loan_repaid.png";
   static const String loanPending = "assets/icons/loan_pending.png";
+  static const String userProfile= "assets/icons/profile.png";
 
   // -- OnBoarding Texts
   static const String onBoardingImage1 = "assets/images/on_boarding_images/on-boarding-image1.png";
@@ -40,9 +41,6 @@ class BDPImages {
   static const String transactionSuccess = "assets/images/successcreenimage/transaction_success.png";
   static const String transactionConfirmed = "assets/images/successcreenimage/transaction_confirmed.png";
 
-  //Profile
-  static const String user = "assets/images/profile_image/profile.png";
-  static const String userProfile= "assets/images/profile_image/user_profile.png";
 
   //wallet screen images
  static const String airtimeData = "assets/images/banners/airtime_data.png";

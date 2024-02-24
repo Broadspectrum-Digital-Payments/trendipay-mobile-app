@@ -140,7 +140,7 @@ Widget _buildUserChat() {
         Align(
             alignment: Alignment.bottomCenter,
             child: Image.asset(
-              BDPImages.user,
+              BDPImages.userProfile,
               width: 24,
               height: 24,
             )),

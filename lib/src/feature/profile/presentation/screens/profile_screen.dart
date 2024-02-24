@@ -9,6 +9,7 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/utils/app_theme_util.dart';
 import '../../../../shared_widgets/buttons/bdp_text_button.dart';
 import '../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../core/constants/image_strings.dart';
@@ -45,6 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Image.asset(
                     BDPImages.userProfile,
+                    height: AppThemeUtil.radius(64),
+                    width: AppThemeUtil.radius(64),
                   ),
                   const VSpace(
                     height: 5,

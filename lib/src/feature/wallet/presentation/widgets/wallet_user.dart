@@ -23,7 +23,11 @@ class WalletUser extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Image.asset(BDPImages.user),
+              Image.asset(
+                BDPImages.userProfile,
+                height: AppThemeUtil.radius(24),
+                width: AppThemeUtil.radius(24),
+              ),
               Text(BDPTexts.walletAppbarTitle,style: kRegularFontStyle.copyWith(color: BDPColors.grey, fontSize: AppThemeUtil.fontSize(12)),),
               Text(userConsumer.getUser.greetingName,style: kBoldFontStyle.copyWith(color: BDPColors.primary, fontSize: AppThemeUtil.fontSize(12)),),
               const HSpace(width: 8.0),
