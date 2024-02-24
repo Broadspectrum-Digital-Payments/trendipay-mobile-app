@@ -17,4 +17,5 @@ class ApiRoutes{
   /// TRANSACTIONS
   static get walletTransaction => '$_baseUrl/v1/transactions';
   static get walletNameEnquiry => '$_baseUrl/v1/users/name-enquiry';
+  static get topUpWallet => '$_baseUrl/v1/users/';
 }

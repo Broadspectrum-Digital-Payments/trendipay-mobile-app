@@ -3,7 +3,7 @@ import '../../../../../../core/errors/error.dart';
 import '../../../../../../core/services/http_service_requester.dart';
 
 abstract class WalletRemoteDataSource{
-  // Future<List<WalletTransactionModel>> fetchTransactions({required Map<String, dynamic> queryParam});
+  Future<bool> topUpWallet({required Map<String, dynamic> requestBody});
 }
 
 class WalletRemoteDataSourceImpl extends WalletRemoteDataSource{
@@ -12,19 +12,19 @@ class WalletRemoteDataSourceImpl extends WalletRemoteDataSource{
 
   final HttpServiceRequester httpServiceRequester;
 
-  // @override
-  // Future<List<WalletTransactionModel>> fetchTransactions({required Map<String, dynamic> queryParam}) async{
-  //   final response = await httpServiceRequester.getRequest(
-  //     endpoint: ApiRoutes.walletTransaction,
-  //     queryParam: queryParam,
-  //   );
-  //
-  //   var body = response.data;
-  //   if(body['success'] == false){
-  //     throw ServerException(message: body['message']?? '');
-  //   }
-  //
-  //   return WalletTransactionList.fromJson(response.data['data']?? {}).list;
-  // }
+  @override
+  Future<bool> topUpWallet({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.topUpWallet,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return true;
+  }
 
 }

@@ -6,7 +6,7 @@ import '../datasources/local/wallet_local_datasource.dart';
 import '../datasources/remote/wallet_remote_datasource.dart';
 
 abstract class WalletRepository{
-  // Future<Either<Failure, List<WalletTransactionModel>>> fetchTransactions({required Map<String, dynamic> queryParam});
+  Future<Either<Failure, bool>> topUpWallet({required Map<String, dynamic> requestBody});
 }
 
 
@@ -19,13 +19,13 @@ class WalletRepositoryImpl extends WalletRepository{
   final WalletRemoteDataSource walletRemoteDataSource;
   final WalletLocalDataSource walletLocalDataSource;
 
-  // @override
-  // Future<Either<Failure, List<WalletTransactionModel>>> fetchTransactions({required Map<String, dynamic> queryParam}) async{
-  //   try{
-  //     final response = await walletRemoteDataSource.fetchTransactions(queryParam: queryParam);
-  //     return Right(response);
-  //   }catch(e, s){
-  //     return Left(FailureToMessage.returnLeftError(e, s));
-  //   }
-  // }
+  @override
+  Future<Either<Failure, bool>> topUpWallet({required Map<String, dynamic> requestBody}) async{
+    try{
+      final response = await walletRemoteDataSource.topUpWallet(requestBody: requestBody);
+      return Right(response);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
 }

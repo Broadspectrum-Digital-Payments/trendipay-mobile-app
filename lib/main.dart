@@ -57,5 +57,5 @@ class BDPApp extends StatelessWidget {
 
 
 Future<void> preLoaders() async{
-  // GlobalConstants().init();
+
 }
