@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/common/widgets/common_widgets.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,8 +31,8 @@ class Buttons extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
       ),
       child: isLoading! ?
-          Center(
-            child: loader(),
+          const Center(
+            child: ZLoader(),
           )
           : Row(
         children: [
