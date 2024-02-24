@@ -9,12 +9,14 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/routing/app_route.dart';
+import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/buttons/bdp_primary_button.dart';
 import '../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../shared_widgets/common/h_space.dart';
 import '../../../../shared_widgets/common/nav_bar_wrapper.dart';
+import '../widgets/add_wallet_modal_content.dart';
 
 
 class TopUpWalletScreen extends StatefulWidget {
@@ -28,6 +30,7 @@ class _TopUpWalletScreenState extends State<TopUpWalletScreen> {
   final formKey = GlobalKey<FormState>();
   final amountCtrl = TextEditingController();
   final amountFocusNode = FocusNode();
+  final paymentMethod = ValueNotifier<Map<String, dynamic>?>(null);
   
   @override
   void dispose() {
@@ -84,62 +87,103 @@ class _TopUpWalletScreenState extends State<TopUpWalletScreen> {
 
               const FormLabel(BDPTexts.paymentMethod),
               const VSpace(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Keren Gyamfi',
-                          style: kMediumFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(12),
-                            color: BDPColors.grey,
-                            height: AppThemeUtil.getLineHeight(16.0, 12),
-                          ),
-                        ),
-                        Text(
-                          'MTN',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(10),
-                            color: BDPColors.grey,
-                            height: AppThemeUtil.getLineHeight(14.0, 10)
-                          ),
-                        ),
-                        Text(
-                          '+233245678920',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(10),
-                            color: BDPColors.grey,
-                            height: AppThemeUtil.getLineHeight(14.0, 10),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
+
+              ValueListenableBuilder<Map<String, dynamic>?>(
+                valueListenable: paymentMethod,
+                builder: (context, paymentMethodValue, child){
+                  if(paymentMethodValue == null) {
+                    return Container(
+                      height: AppThemeUtil.height(40),
+                      width: AppThemeUtil.width(50),
+                      margin: EdgeInsets.only(right: AppThemeUtil.width(20)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(AppThemeUtil.radius(20)),
+                          color: BDPColors.primary
+                      ),
+                      child: Icon(
+                        Icons.add,
+                        color: BDPColors.white,
+                        size: AppThemeUtil.radius(16.0),
+                      ),
+                    ).onPressed(() async{
+                        final result = await AppDialogUtil.showScrollableBottomSheet(
+                          context: context,
+                          builder: (context) => const AddWalletModalContent(),
+                        );
+
+                        if(result != null){
+                          paymentMethod.value = result;
+                        }
+                    });
+                  }
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Change',
-                        style: kMediumFontStyle.copyWith(
-                          fontSize: AppThemeUtil.fontSize(12),
-                          color: BDPColors.brightPurple,
-                          height: AppThemeUtil.getLineHeight(16.0, 12),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              paymentMethodValue['accountName']?? '',
+                              style: kMediumFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(12),
+                                color: BDPColors.grey,
+                                height: AppThemeUtil.getLineHeight(16.0, 12),
+                              ),
+                            ),
+                            Text(
+                              paymentMethodValue['accountIssuer']?? '',
+                              style: kRegularFontStyle.copyWith(
+                                  fontSize: AppThemeUtil.fontSize(10),
+                                  color: BDPColors.grey,
+                                  height: AppThemeUtil.getLineHeight(14.0, 10)
+                              ),
+                            ),
+                            Text(
+                              paymentMethodValue['accountNumber']?? '',
+                              style: kRegularFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(10),
+                                color: BDPColors.grey,
+                                height: AppThemeUtil.getLineHeight(14.0, 10),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const HSpace(width: 4.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: AppThemeUtil.radius(14.0),
-                        color: BDPColors.brightPurple,
-                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Change',
+                            style: kMediumFontStyle.copyWith(
+                              fontSize: AppThemeUtil.fontSize(12),
+                              color: BDPColors.brightPurple,
+                              height: AppThemeUtil.getLineHeight(16.0, 12),
+                            ),
+                          ),
+                          const HSpace(width: 4.0),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: AppThemeUtil.radius(14.0),
+                            color: BDPColors.brightPurple,
+                          ),
+                        ],
+                      ).onPressed(() async{
+                        final result = await AppDialogUtil.showScrollableBottomSheet(
+                          context: context,
+                          builder: (context) => const AddWalletModalContent(),
+                        );
+
+                        if(result != null){
+                          paymentMethod.value = result;
+                        }
+                      }),
                     ],
-                  ).onPressed((){
-                    AppNavigator.pop(context);
-                  }),
-                ],
+                  );
+                },
               ),
+
+
             ],
           ),
         ),
@@ -153,7 +197,9 @@ class _TopUpWalletScreenState extends State<TopUpWalletScreen> {
             BDPPrimaryButton(
               buttonText: 'Continue',
               onPressed: (){
-                AppNavigator.pushNamed(context, AppRoute.confirmTopUpWalletScreen);
+                if(formKey.currentState!.validate()){
+                  AppNavigator.pushNamed(context, AppRoute.confirmTopUpWalletScreen);
+                }
               },
             ),
           ],

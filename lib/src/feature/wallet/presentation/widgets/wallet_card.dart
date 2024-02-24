@@ -118,7 +118,7 @@ class WalletCard extends StatelessWidget {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          AppNavigator.pushNamed(context, AppRoute.selectWalletScreen);
+                          AppNavigator.pushNamed(context, AppRoute.topUpWalletScreen);
                         },
                         style: ElevatedButton.styleFrom(
                           splashFactory: NoSplash.splashFactory,
@@ -126,7 +126,7 @@ class WalletCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           backgroundColor: BDPColors.white,
-                          padding: EdgeInsets.only(left: AppThemeUtil.width(8)),
+                          padding: EdgeInsets.zero,
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -151,7 +151,7 @@ class WalletCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],

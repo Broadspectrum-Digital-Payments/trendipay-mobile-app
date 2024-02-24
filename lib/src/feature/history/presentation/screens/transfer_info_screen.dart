@@ -41,6 +41,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if(!mounted) return;
       context.read<TransactionViewModel>().setEnquiryResult = null;
     });
     super.initState();
