@@ -166,6 +166,26 @@ class UserViewModel extends BaseViewModel{
     HelperUtil.onLogout(context);
   }
 
+  bool _hideCardBalance = false;
+  bool get hideCardBalance => _hideCardBalance;
+
+  void toggleHideCardBalance(){
+    _hideCardBalance = !_hideCardBalance;
+    notifyListeners();
+    _persistHideCardBalance();
+  }
+
+
+  /// USER LOCAL DB
+  Future<void> _persistHideCardBalance() async{
+    final result = await _userRepository.persistHideCardBalance(_hideCardBalance);
+    result.fold((l) => null, (user) => null);
+  }
+
+  Future<void> _retrieveHideCardBalance() async{
+    final result = await _userRepository.retrieveHideCardBalance();
+    result.fold((l) => null, (value) => _hideCardBalance = value);
+  }
 
   Future<void> _retrieveUser() async{
     final result = await _userRepository.retrieveUser();
@@ -181,6 +201,7 @@ class UserViewModel extends BaseViewModel{
 
   initState() async{
     await _retrieveUser();
+    await _retrieveHideCardBalance();
   }
 
 }

@@ -68,15 +68,15 @@ class BDPInput extends StatelessWidget {
           fontSize: AppThemeUtil.fontSize(16),
           color: Colors.grey,
         ),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
-        ),
-        disabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
-        ),
+        // enabledBorder: const UnderlineInputBorder(
+        //   borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+        // ),
+        // focusedBorder: const UnderlineInputBorder(
+        //   borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
+        // ),
+        // disabledBorder: const UnderlineInputBorder(
+        //   borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+        // ),
       ),
     );
   }

@@ -50,17 +50,17 @@ class BDPDropdown extends StatelessWidget {
           ),
         );
       }).toList(),
-      decoration: const InputDecoration(
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
-        ),
-        disabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
-        ),
-      ),
+      // decoration: const InputDecoration(
+      //   enabledBorder: UnderlineInputBorder(
+      //     borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+      //   ),
+      //   focusedBorder: UnderlineInputBorder(
+      //     borderSide: BorderSide(color: BDPColors.primary, width: 0.3),
+      //   ),
+      //   disabledBorder: UnderlineInputBorder(
+      //     borderSide: BorderSide(color: BDPColors.grey, width: 0.3),
+      //   ),
+      // ),
     );
   }
 }

@@ -1,9 +1,15 @@
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/constants/styles.dart';
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/services/local_storage_service.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
@@ -87,7 +93,7 @@ class WalletCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'GHS ${userConsumer.getUser.getAvailableBalance}',
+                        userConsumer.hideCardBalance? '******':'GHS ${userConsumer.getUser.getAvailableBalance}',
                         style: kMediumFontStyle.copyWith(
                           fontSize: AppThemeUtil.fontSize(30.0),
                           color: BDPColors.white,
@@ -102,12 +108,14 @@ class WalletCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 16.0),
-                  const Icon(
-                    Icons.remove_red_eye_outlined,
+                  const HSpace(width: 16.0),
+                  Icon(
+                    userConsumer.hideCardBalance? Iconsax.eye_slash : Iconsax.eye,
                     color: BDPColors.white,
-                    size: 24,
-                  ), // Example icon, replace with your icon
+                    size: AppThemeUtil.radius(24),
+                  ).onPressed((){
+                    context.read<UserViewModel>().toggleHideCardBalance();
+                  }), 
                 ],
             ),
               const VSpace(height: 16.0),
@@ -151,7 +159,7 @@ class WalletCard extends StatelessWidget {
                               BDPImages.rightArrow,
                               width: AppThemeUtil.width(8.75),
                               height: AppThemeUtil.height(7),
-                              color: BDPColors.primary,// Adjust height as needed
+                              color: BDPColors.primary,
                             ),
                           ],
                         ),

@@ -1,5 +1,6 @@
 
 const kOnboardingCompleted = "onboarding-completed";
+const kCardHideBalance = "hide-balance";
 
 const kAuthentication = 'Unauthenticated.';
 

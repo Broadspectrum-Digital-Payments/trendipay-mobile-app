@@ -20,6 +20,8 @@ abstract class UserRepository{
   ///LOCAL DB
   Future<Either<Failure, UserModel>> retrieveUser();
   Future<Either<Failure, bool>> persistUser(UserModel user);
+  Future<Either<Failure, bool>> retrieveHideCardBalance();
+  Future<Either<Failure, bool>> persistHideCardBalance(bool value);
 }
 
 
@@ -124,6 +126,26 @@ class UserRepositoryImpl extends UserRepository{
       return Right(response);
     } catch (e) {
       return Left(FailureToMessage.returnLeftError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> persistHideCardBalance(bool value) async{
+    try {
+      await userLocalDataSource.persistHideCardBalance(value);
+      return const Right(true);
+    } catch (e, s) {
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> retrieveHideCardBalance() async{
+    try {
+      final response = await userLocalDataSource.retrieveHideCardBalance();
+      return Right(response);
+    } catch (e, s) {
+      return Left(FailureToMessage.returnLeftError(e, s));
     }
   }
 }
