@@ -123,6 +123,7 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
 
                 const VSpace(height: 4.0),
                 Container(
+                  height: AppThemeUtil.height(120.0),
                   width: double.infinity,
                   padding: EdgeInsets.all(AppThemeUtil.radius(10.0)),
                   decoration: BoxDecoration(

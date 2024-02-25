@@ -68,6 +68,24 @@ class LoanViewModel extends BaseViewModel{
     });
   }
 
-  /// LOCAL DB
+  Future<void> fetchLoans(BuildContext context, {String loadingComponent = 'loans', required Map<String, dynamic> queryParams}) async{
+    setComponentErrorType = null;
+    setLoading(true, component: loadingComponent);
+
+    final result = await _loanRepository.fetchLoans(queryParams: queryParams);
+
+    result.fold((left) {
+      setComponentErrorType = {
+        'error': FailureToMessage.mapFailureToMessage(left),
+        'component': loadingComponent
+      };
+      setLoading(false, component: loadingComponent);
+    }, (history){
+      setLoading(false, component: loadingComponent, notify: false);
+    });
+  }
+
+
+/// LOCAL DB
 
 }
