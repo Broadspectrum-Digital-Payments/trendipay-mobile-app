@@ -101,7 +101,7 @@ class MediaFileUtil{
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         dialogTitle: title,
         type: FileType.custom,
-        allowedExtensions: ['jpg', 'jpeg', 'pdf'],
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'pdf'],
         withReadStream: true,
         allowMultiple: allowMultiple,
       );

@@ -7,6 +7,7 @@ import 'local_storage_service.dart';
 class ApiConfigService{
 
   static String get baseURL => Environment.getBaseUrl;
+  static String get loanBaseURL => Environment.getLoanBaseUrl;
 
   static Future<Map<String, String>> getHttpHeaders() async{
     Map<String, String> headers = {

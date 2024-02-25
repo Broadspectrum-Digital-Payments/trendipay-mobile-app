@@ -201,15 +201,16 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                             }
                             final loanProvider = context.read<LoanViewModel>();
                             loanProvider.setLoanRequestBody = {
-                              'principal': amountController.text,
+                              'principal': double.parse(amountController.text) * 100,
                               'time': durationController.text,
+                              'documentName': 'payslip',
                               'document': documentFilePath.value,
                               'purpose': purposeController.text,
                             };
                             await loanProvider.requestAmortization(
                               context,
                               queryParams: {
-                                'principal': amountController.text,
+                                'principal': double.parse(amountController.text) * 100,
                                 'time': durationController.text,
                               },
                             );

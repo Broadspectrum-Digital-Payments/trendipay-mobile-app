@@ -22,7 +22,7 @@ const kInitiatedStatus = 'initiated';
 const kFailedStatus = 'failed';
 const kPendingStatus = 'pending';
 
-const kPageSize = 20;
+const kPageSize = 40;
 
 const kMobileNetworks = ['MTN', 'G-Money', 'AirtelTigo', 'Vodafone'];
 const kTransactionNetworks = ['G-Money'];

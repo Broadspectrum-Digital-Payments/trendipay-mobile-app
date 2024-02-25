@@ -3,11 +3,14 @@ import '../../../../../core/constants/api_routes.dart';
 import '../../../../../core/errors/error.dart';
 import '../../../../../core/services/http_service_requester.dart';
 import '../../domain/models/amortize/amortize_model.dart';
+import '../../domain/models/document/loan_document_model.dart';
+import '../../domain/models/loan/loan_model.dart';
 
 abstract class LoanRemoteDataSource{
   Future<AmortizeModel> requestAmortization({required Map<String, dynamic> queryParams});
-  Future<bool> applyLoan({required Map<String, dynamic> requestBody});
-  Future<bool> fetchLoans({required Map<String, dynamic> queryParams});
+  Future<LoanModel> applyLoan({required String userExternalId, required Map<String, dynamic> requestBody});
+  Future<List<LoanModel>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams});
+  Future<LoanDocumentModel> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody});
 }
 
 class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
@@ -28,13 +31,13 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return AmortizeModel.fromJson(response.data['data']?? {});
+    return AmortizeModel.fromJson(body['data']?? {});
   }
 
   @override
-  Future<bool> applyLoan({required Map<String, dynamic> requestBody}) async{
+  Future<LoanModel> applyLoan({required String userExternalId, required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postRequest(
-      endpoint: ApiRoutes.amortization,
+      endpoint: ApiRoutes.loans(userExternalId),
       requestBody: requestBody,
     );
 
@@ -43,13 +46,13 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return true;
+    return LoanModel.fromJson(body['data']?? {});
   }
 
   @override
-  Future<bool> fetchLoans({required Map<String, dynamic> queryParams}) async{
+  Future<List<LoanModel>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams}) async{
     final response = await httpServiceRequester.getRequest(
-      endpoint: ApiRoutes.loans,
+      endpoint: ApiRoutes.loans(userExternalId),
       queryParam: queryParams,
     );
 
@@ -58,6 +61,21 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return true;
+    return LoanList.fromJson(body['data']['loans']?? []).list;
+  }
+
+  @override
+  Future<LoanDocumentModel> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.loanDocument(loanExternalId),
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return LoanDocumentModel.fromJson(body['data']['document']?? {});
   }
 }

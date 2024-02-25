@@ -1,11 +1,12 @@
 import 'package:bdp_payment_app/core/constants/common.dart';
-import 'package:bdp_payment_app/core/routing/app_navigator.dart';
-import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
+import 'package:bdp_payment_app/src/feature/loans/presentation/view_models/loan_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
@@ -28,8 +29,8 @@ class _LoanAgreementModalContentState extends State<LoanAgreementModalContent> {
   @override
   Widget build(BuildContext context) {
     return DraggableBottomSheet(
-      initialChildSize: 0.80,
-      minChildSize: 0.55,
+      initialChildSize: 0.90,
+      minChildSize: 0.60,
       builder: (context, scrollController){
         return DraggableBottomSheetContent(
           draggableKey: GlobalKey(),
@@ -142,11 +143,24 @@ class _LoanAgreementModalContentState extends State<LoanAgreementModalContent> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  BDPPrimaryButton(
-                    buttonText: 'Proceed',
-                    onPressed: (){
-                      AppNavigator.popAndPushNamed(context, AppRoute.loanReviewScreen);
-                    },
+                  ValueListenableBuilder<bool>(
+                    valueListenable: isAgreed,
+                    builder: (context, isAgreedValue, child) {
+                      return BDPPrimaryButton(
+                        buttonText: 'Proceed',
+                        onPressed: !isAgreedValue? null : () async{
+                          final loanProvider = context.read<LoanViewModel>();
+                          await loanProvider.applyLoan(
+                            context,
+                            userExternalId: context.read<UserViewModel>().getUser.externalId?? '',
+                            requestBody: {
+                              ...loanProvider.getLoanRequestBody,
+                              'isAgreed': isAgreed.value,
+                            },
+                          );
+                        },
+                      );
+                    }
                   ),
                 ],
               ),

@@ -4,6 +4,7 @@ import '../services/api_config_service.dart';
 
 class ApiRoutes{
   static final String _baseUrl = ApiConfigService.baseURL;
+  static final String _loanBaseUrl = ApiConfigService.loanBaseURL;
 
   /// USER
   static get signup => '$_baseUrl/v1/users/register';
@@ -20,6 +21,7 @@ class ApiRoutes{
   static get topUpWallet => '$_baseUrl/v1/users/';
 
   /// LOANS
-  static get amortization => '$_baseUrl/v1/amortization';
-  static get loans => '$_baseUrl/v1/loans';
+  static get amortization => '$_loanBaseUrl/v1/amortization';
+  static loans(userExternalId) => '$_loanBaseUrl/v1/borrowers/$userExternalId/loans';
+  static loanDocument(loanExternalId) => '$_loanBaseUrl/v1/loans/$loanExternalId/files';
 }

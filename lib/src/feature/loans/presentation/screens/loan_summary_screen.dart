@@ -26,7 +26,7 @@ class LoanSummaryScreen extends StatefulWidget {
 }
 
 class _LoanSummaryScreenState extends State<LoanSummaryScreen> {
-  String dateOfLoan = DateFormat('d MMM y jm').format(DateTime.now());
+  String dateOfLoan = DateFormat('d MMM y').add_jm().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
