@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
@@ -65,8 +66,6 @@ class MediaFileUtil{
     }
   }
 
-
-
   static Future<String?> getPickedSourceImage({bool camera = true, bool cropped = true, bool cameraFront = false}) async {
     try{
       final selectedFile = await pickImageFrom(camera? ImageSource.camera : ImageSource.gallery, cameraFront: cameraFront);
@@ -81,7 +80,6 @@ class MediaFileUtil{
     return null;
   }
 
-
   static Future<String?> cropSelectedImage(XFile source) async {
     String? cropped = await cropImage(
         source.path,
@@ -89,7 +87,6 @@ class MediaFileUtil{
     );
     return cropped;
   }
-
 
   static Future<MultipartFile?>? getMultipartFile(String filePath)async{
     try{
@@ -99,5 +96,20 @@ class MediaFileUtil{
     }
   }
 
+  static Future<String?> pickFile({bool allowMultiple = false, String title='Select a File'}) async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        dialogTitle: title,
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'pdf'],
+        withReadStream: true,
+        allowMultiple: allowMultiple,
+      );
+      return result?.files.single.path;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 
 }

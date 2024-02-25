@@ -2,19 +2,24 @@ import 'dart:io';
 
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
-import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/feature/loans/presentation/view_models/loan_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/styles.dart';
-import '../../../../../core/routing/app_route.dart';
+import '../../../../../core/utils/app_dialog_util.dart';
+import '../../../../../core/utils/media_file_util.dart';
+import '../../../../../core/utils/permission_util.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/forms/bdp_input.dart';
+import '../../../../shared_widgets/modals/error_modal_content.dart';
 
 
 class ApplyNewLoanScreen extends StatefulWidget {
@@ -117,69 +122,63 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                 const FormLabel('Proof of Income'),
 
                 const VSpace(height: 4.0),
-                GestureDetector(
-                  onTap: () async {
-                    // if(await PermissionUtil.getStoragePermission()){
-                    //   final croppedFile = await MediaFileUtil.getPickedSourceImage(
-                    //     cameraFront: true,
-                    //     cropped: false,
-                    //   );
-                    //   if(croppedFile != null){
-                    //     selfieFilePath.value = croppedFile;
-                    //   }
-                    // }
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(AppThemeUtil.radius(10.0)),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(AppThemeUtil.radius(10.0)),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
                     ),
-                    child: ValueListenableBuilder<String>(
-                        valueListenable: documentFilePath,
-                        builder: (context, documentFilePathValue, child) {
-                          return documentFilePathValue.isEmpty?
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.file_upload_outlined,
-                                color: Colors.grey,
-                              ), // Icon
-                              const VSpace(height: 8),
-                              Text(
-                                'Upload a proof of income document',
-                                textAlign: TextAlign.center,
-                                style: kRegularFontStyle.copyWith(
-                                  fontSize: AppThemeUtil.fontSize(16.0),
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const VSpace(height: 10.0),
-                              Text(
-                                'Document must be in pdf/jpg/jpeg format',
-                                textAlign: TextAlign.center,
-                                style: kMediumFontStyle.copyWith(
-                                  fontSize: AppThemeUtil.fontSize(12.0),
-                                  color: BDPColors.brightPurple,
-                                ),
-                              ),
-                            ],
-                          )
-                              :
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
-                            child: Image.file(File(documentFilePathValue),
-                              fit: BoxFit.cover,
-                            ),
-                          );
-                        }
-                    ),
+                    borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
                   ),
-                ),
+                  child: ValueListenableBuilder<String>(
+                      valueListenable: documentFilePath,
+                      builder: (context, documentFilePathValue, child) {
+                        return documentFilePathValue.isEmpty?
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.file_upload_outlined,
+                              color: Colors.grey,
+                            ), // Icon
+                            const VSpace(height: 8),
+                            Text(
+                              'Upload a proof of income document',
+                              textAlign: TextAlign.center,
+                              style: kRegularFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(16.0),
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const VSpace(height: 10.0),
+                            Text(
+                              'Document must be in pdf/jpg/jpeg format',
+                              textAlign: TextAlign.center,
+                              style: kMediumFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(12.0),
+                                color: BDPColors.brightPurple,
+                              ),
+                            ),
+                          ],
+                        )
+                            :
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
+                          child: Image.file(File(documentFilePathValue),
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      }
+                  ),
+                ).onPressed(() async{
+                  if(await PermissionUtil.getStoragePermission()){
+                    final filePath = await MediaFileUtil.pickFile();
+                    if(filePath != null){
+                      documentFilePath.value = filePath;
+                    }
+                  }
+                }),
                 const VSpace(height: 24.0),
                 Align(
                   alignment: Alignment.center,
@@ -188,8 +187,32 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                     children: [
                       BDPPrimaryButton(
                         buttonText: 'Proceed',
-                        onPressed: (){
-                          AppNavigator.pushNamed(context, AppRoute.loanSummaryScreen);
+                        onPressed: () async{
+                          if(formKey.currentState!.validate()){
+                            // if(documentFilePath.value.isEmpty){
+                            //   AppDialogUtil.popUpModal(
+                            //     context,
+                            //     modalContent: const ErrorModalContent(
+                            //       errorMessage: 'Please select proof of income',
+                            //     ),
+                            //   );
+                            //   return;
+                            // }
+                            final loanProvider = context.read<LoanViewModel>();
+                            loanProvider.setLoanRequestBody = {
+                              'principal': amountController.text,
+                              'time': durationController.text,
+                              'document': documentFilePath.value,
+                              'purpose': purposeController.text,
+                            };
+                            await loanProvider.requestAmortization(
+                              context,
+                              queryParams: {
+                                'principal': amountController.text,
+                                'time': durationController.text,
+                              },
+                            );
+                          }
                         },
                       ),
                     ],
