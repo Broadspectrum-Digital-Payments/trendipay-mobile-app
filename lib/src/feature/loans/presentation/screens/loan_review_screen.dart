@@ -1,19 +1,21 @@
 
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/feature/loans/presentation/view_models/loan_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
-import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/styles.dart';
-import '../../../../../core/routing/app_navigator.dart';
-import '../../../../../core/routing/app_route.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
+import '../../domain/models/loan/loan_model.dart';
 
 
 class LoanReviewScreen extends StatefulWidget {
-  const LoanReviewScreen({super.key});
+  const LoanReviewScreen({super.key, required this.loan,});
+
+  final LoanModel loan;
 
   @override
   State<LoanReviewScreen> createState() => _LoanReviewScreenState();
@@ -65,26 +67,31 @@ class _LoanReviewScreenState extends State<LoanReviewScreen> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                flex: 7,
-                child: BDPPrimaryButton(
-                  backgroundColor: BDPColors.white,
-                  textColor: BDPColors.primary,
-                  imageIconFile: BDPImages.home,
-                  buttonText: 'Go to Homepage',
-                  onPressed: (){
-                    AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
-                  },
-                ),
+              BDPPrimaryButton(
+                backgroundColor: BDPColors.white,
+                textColor: BDPColors.primary,
+                imageIconFile: BDPImages.home,
+                buttonText: 'Go to Homepage',
+                onPressed: () async{
+                  final loanProvider = context.read<LoanViewModel>();
+                  await loanProvider.uploadLoanDocument(
+                    context,
+                    loanExternalId: widget.loan.externalId?? '',
+                    requestBody: {
+                      'name': loanProvider.getLoanRequestBody['documentName'],
+                      'file': loanProvider.getLoanRequestBody['document']
+                    },
+                  );
+                },
               ),
-              const HSpace(width: 20.0),
-              Flexible(
-                flex: 4,
-                child: BDPPrimaryButton(
-                  buttonText: 'Wait',
-                  onPressed: (){},
-                ),
-              ),
+              // const HSpace(width: 20.0),
+              // Flexible(
+              //   flex: 4,
+              //   child: BDPPrimaryButton(
+              //     buttonText: 'Wait',
+              //     onPressed: (){},
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -67,9 +67,9 @@ class LoanViewModel extends BaseViewModel{
           ),
         );
       });
-    }, (right){
-      _loans.insert(0, right);
-      AppNavigator.popAndPushNamed(context, AppRoute.loanReviewScreen);
+    }, (loan){
+      _loans.insert(0, loan);
+      AppNavigator.popAndPushNamed(context, AppRoute.loanReviewScreen, arguments: loan);
     });
   }
 
@@ -96,9 +96,9 @@ class LoanViewModel extends BaseViewModel{
   Future<void> uploadLoanDocument(BuildContext context, {required String loanExternalId, required Map<String, dynamic> requestBody}) async{
     AppDialogUtil.loadingDialog(context);
 
-    if(requestBody['document'] != null){
-      final imagePath = await MediaFileUtil.getMultipartFile(requestBody['document']?? '');
-      requestBody['document'] = imagePath;
+    if(requestBody['file'] != null){
+      final imagePath = await MediaFileUtil.getMultipartFile(requestBody['file']?? '');
+      requestBody['file'] = imagePath;
     }
 
     final result = await _loanRepository.uploadLoanDocument(loanExternalId: loanExternalId, requestBody: requestBody);

@@ -1,4 +1,6 @@
 
+import 'package:dio/dio.dart';
+
 import '../../../../../core/constants/api_routes.dart';
 import '../../../../../core/errors/error.dart';
 import '../../../../../core/services/http_service_requester.dart';
@@ -46,7 +48,7 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
       throw ServerException(message: body['message']?? '');
     }
 
-    return LoanModel.fromJson(body['data']?? {});
+    return LoanModel.fromJson(body['loan']?? {});
   }
 
   @override
@@ -66,9 +68,9 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
 
   @override
   Future<LoanDocumentModel> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody}) async{
-    final response = await httpServiceRequester.postRequest(
+    final response = await httpServiceRequester.postFormDataRequest(
       endpoint: ApiRoutes.loanDocument(loanExternalId),
-      requestBody: requestBody,
+      requestBody: FormData.fromMap(requestBody),
     );
 
     var body = response.data;

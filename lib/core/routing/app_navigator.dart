@@ -5,6 +5,7 @@ import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_s
 import 'package:bdp_payment_app/src/feature/loans/domain/models/amortize/amortize_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../src/feature/loans/domain/models/loan/loan_model.dart';
 import '../../src/feature/transaction_history/presentation/screens/loan_transaction_detail_screen.dart';
 import '../../src/feature/loans/presentation/screens/apply_new_loan_screen.dart';
 import '../../src/feature/loans/presentation/screens/loan_review_screen.dart';
@@ -99,7 +100,7 @@ class AppNavigator {
         return MaterialPageRoute(builder: (context) => LoanSummaryScreen(amortize: args as AmortizeModel));
 
       case AppRoute.loanReviewScreen:
-        return MaterialPageRoute(builder: (context) => const LoanReviewScreen());
+        return MaterialPageRoute(builder: (context) => LoanReviewScreen(loan: args as LoanModel));
 
       case AppRoute.loanTransactionDetailScreen:
         return MaterialPageRoute(builder: (context) => const LoanTransactionDetailScreen());
