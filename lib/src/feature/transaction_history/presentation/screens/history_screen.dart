@@ -1,7 +1,7 @@
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transaction_list_view.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/widgets/transaction_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/styles.dart';

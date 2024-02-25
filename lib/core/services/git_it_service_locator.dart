@@ -3,7 +3,7 @@
 
 import 'package:get_it/get_it.dart';
 
-import '../../src/feature/history/transaction_injections.dart';
+import '../../src/feature/transaction_history/transaction_injections.dart';
 import '../../src/feature/wallet/wallet_injections.dart';
 import '../auth/auth_injections.dart';
 import 'http_service_requester.dart';

@@ -5,7 +5,6 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/routing/app_route.dart';
 import '../../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../../core/constants/colors.dart';
@@ -47,7 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          padding: EdgeInsets.zero,
           child: Form(
             key: formKey,
             child: Column(

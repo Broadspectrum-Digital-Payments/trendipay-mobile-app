@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/view_models/base_view2.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
@@ -54,7 +53,8 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          padding: EdgeInsets.zero,
           child: Column(
             children: [
               Text(BDPTexts.pinSetupText , textAlign: TextAlign.center, style: kMediumFontStyle.copyWith(

@@ -7,7 +7,6 @@ import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/otp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/view_models/base_view.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
@@ -70,7 +69,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          padding: EdgeInsets.zero,
           child: Padding(
             padding: EdgeInsets.only(top: AppThemeUtil.height(48.0)),
             child: Form(

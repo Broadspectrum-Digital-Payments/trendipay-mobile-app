@@ -4,7 +4,7 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin
 import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../src/feature/history/presentation/screens/loan_transaction_detail_screen.dart';
+import '../../src/feature/transaction_history/presentation/screens/loan_transaction_detail_screen.dart';
 import '../../src/feature/loans/presentation/screens/apply_new_loan_screen.dart';
 import '../../src/feature/loans/presentation/screens/loan_review_screen.dart';
 import '../../src/feature/loans/presentation/screens/loan_summary_screen.dart';
@@ -12,16 +12,16 @@ import '../../src/feature/profile/presentation/screens/settings_screen.dart';
 import '../../src/feature/auth/presentation/screens/login/login_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/account_registration_screen.dart';
 import '../../src/feature/auth/presentation/screens/signup/otp_verify_screen.dart';
-import '../../src/feature/history/presentation/screens/transfer_success_screen.dart';
+import '../../src/feature/transaction_history/presentation/screens/transfer_success_screen.dart';
 import '../../src/feature/home/presentation/view_models/bottom_nav_view_model.dart';
 import '../../src/feature/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../src/feature/onboarding/presentation/screens/splash_screen.dart';
 import '../../src/feature/home/presentation/screens/navigation_menu.dart';
-import '../../src/feature/history/presentation/screens/transfer_info_screen.dart';
+import '../../src/feature/transaction_history/presentation/screens/transfer_info_screen.dart';
 import '../../src/feature/wallet/presentation/screens/confirm_top_up_wallet_screen.dart';
 import '../../src/feature/wallet/presentation/screens/select_wallet_screen.dart';
 import '../../src/feature/wallet/presentation/screens/top-up_wallet_screen.dart';
-import '../../src/feature/wallet/presentation/screens/top_wallet_success_screen.dart';
+import '../../src/feature/wallet/presentation/screens/top_up_wallet_success_screen.dart';
 import '../constants/colors.dart';
 import 'app_route.dart';
 

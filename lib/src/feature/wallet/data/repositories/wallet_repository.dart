@@ -2,8 +2,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/failure.dart';
-import '../datasources/local/wallet_local_datasource.dart';
-import '../datasources/remote/wallet_remote_datasource.dart';
+import '../datasources/wallet_local_datasource.dart';
+import '../datasources/wallet_remote_datasource.dart';
 
 abstract class WalletRepository{
   Future<Either<Failure, bool>> topUpWallet({required Map<String, dynamic> requestBody});

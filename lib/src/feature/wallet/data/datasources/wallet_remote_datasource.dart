@@ -1,6 +1,6 @@
-import '../../../../../../core/constants/api_routes.dart';
-import '../../../../../../core/errors/error.dart';
-import '../../../../../../core/services/http_service_requester.dart';
+import '../../../../../core/constants/api_routes.dart';
+import '../../../../../core/errors/error.dart';
+import '../../../../../core/services/http_service_requester.dart';
 
 abstract class WalletRemoteDataSource{
   Future<bool> topUpWallet({required Map<String, dynamic> requestBody});

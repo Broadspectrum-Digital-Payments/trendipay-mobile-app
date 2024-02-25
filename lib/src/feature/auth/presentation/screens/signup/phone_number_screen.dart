@@ -6,7 +6,6 @@ import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
@@ -40,7 +39,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
+          padding: EdgeInsets.zero,
           child: BaseView<OtpViewModel>(
             builder: (context, otpConsumer, child) {
               return Form(

@@ -2,7 +2,7 @@ import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/sizes.dart';
-import '../../../../src/feature/history/presentation/screens/transfer_info_screen.dart';
+import '../../../../src/feature/transaction_history/presentation/screens/transfer_info_screen.dart';
 
 class SavedBeneficiaryScreen extends StatelessWidget {
   const SavedBeneficiaryScreen({Key? key});

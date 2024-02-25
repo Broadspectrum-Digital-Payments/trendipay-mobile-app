@@ -6,7 +6,7 @@ import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -5,10 +5,10 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transfer_amount_container.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/widgets/transfer_amount_container.dart';
 import 'package:bdp_payment_app/core/constants/text_strings.dart';
-import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transfer_summary_modal_content.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/widgets/transfer_summary_modal_content.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/zloader.dart';
@@ -73,7 +73,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+          padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.radius(BDPSizes.defaultSpace)),
           child: BaseView<TransactionViewModel>(
             builder: (context, transactionConsumer, child) {
               accNameCtrl.text = transactionConsumer.getEnquiryResult?.name?? '';
@@ -240,6 +240,8 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                         ],
                       ),
                     ),
+
+                    const VSpace(height: 24.0),
                   ],
                 ),
               );

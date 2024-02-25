@@ -5,8 +5,8 @@ import '../../../../../core/errors/failure.dart';
 import '../../../wallet/domain/models/wallet/wallet_model.dart';
 import '../../domain/models/history/transaction_history_model.dart';
 import '../../domain/models/transaction/transaction_model.dart';
-import '../datasources/local/transaction_local_datasource.dart';
-import '../datasources/remote/transaction_remote_datasource.dart';
+import '../datasources/transaction_local_datasource.dart';
+import '../datasources/transaction_remote_datasource.dart';
 
 abstract class TransactionRepository{
   Future<Either<Failure, TransactionHistoryModel>> fetchTransactions({required Map<String, dynamic> queryParam});

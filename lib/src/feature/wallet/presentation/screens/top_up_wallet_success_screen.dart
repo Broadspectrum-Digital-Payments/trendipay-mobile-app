@@ -2,7 +2,6 @@ import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/styles.dart';
-import '../../../../../common/styles/spacing_styles.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/utils/app_theme_util.dart';
@@ -29,7 +28,7 @@ class TopUpWalletSuccessScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: BDPSpacingStyle.paddingWithAppBarHeight,
+            padding: EdgeInsets.zero,
             child: Column(
               children: [
                 const VSpace(height: 70.0),
@@ -44,7 +43,9 @@ class TopUpWalletSuccessScreen extends StatelessWidget {
                 const VSpace(height: 22.0),
                 Image.asset(
                   BDPImages.transactionConfirmed,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.4,
                 ),
               ],
             ),

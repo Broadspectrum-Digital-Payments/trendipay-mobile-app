@@ -1,6 +1,5 @@
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
-import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
@@ -9,6 +8,7 @@ import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/constants/image_strings.dart';
+import '../../../../shared_widgets/common/nav_bar_wrapper.dart';
 
 class TransferSuccessScreen extends StatelessWidget {
   const TransferSuccessScreen({super.key});
@@ -42,12 +42,7 @@ class TransferSuccessScreen extends StatelessWidget {
             ],
           )
         ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-            left: AppThemeUtil.width(kWidthPadding),
-            right: AppThemeUtil.width(kWidthPadding),
-            bottom: AppThemeUtil.height(28),
-          ),
+        bottomNavigationBar: NavBarWrapper(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

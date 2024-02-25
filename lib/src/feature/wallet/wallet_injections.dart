@@ -3,8 +3,8 @@
 
 import 'package:get_it/get_it.dart';
 
-import 'data/datasources/local/wallet_local_datasource.dart';
-import 'data/datasources/remote/wallet_remote_datasource.dart';
+import 'data/datasources/wallet_local_datasource.dart';
+import 'data/datasources/wallet_remote_datasource.dart';
 import 'data/repositories/wallet_repository.dart';
 
 void initWallet(){

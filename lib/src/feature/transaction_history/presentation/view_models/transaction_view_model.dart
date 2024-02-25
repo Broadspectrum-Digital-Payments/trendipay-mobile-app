@@ -3,7 +3,7 @@
 import 'dart:collection';
 
 import 'package:bdp_payment_app/core/utils/helper_util.dart';
-import 'package:bdp_payment_app/src/feature/history/domain/models/pagination/pagination_model.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/domain/models/pagination/pagination_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/view_models/base_view_model.dart';

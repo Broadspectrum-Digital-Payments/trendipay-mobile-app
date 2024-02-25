@@ -25,7 +25,7 @@ class TransferSummaryModalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableBottomSheet(
-      initialChildSize: 0.70,
+      initialChildSize: MediaQuery.of(context).size.height < 550? 0.90 : 0.70,
       minChildSize: 0.50,
       builder: (context, scrollController){
         return DraggableBottomSheetContent(

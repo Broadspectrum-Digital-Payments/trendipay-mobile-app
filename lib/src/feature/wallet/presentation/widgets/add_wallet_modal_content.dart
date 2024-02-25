@@ -18,7 +18,7 @@ import '../../../../shared_widgets/base/draggable_bottom_sheet.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/common/zloader.dart';
 import '../../../../shared_widgets/modals/draggable_bottom_sheet_content.dart';
-import '../../../history/presentation/view_models/transaction_view_model.dart';
+import '../../../transaction_history/presentation/view_models/transaction_view_model.dart';
 
 class AddWalletModalContent extends StatefulWidget {
   const AddWalletModalContent({super.key});
@@ -53,9 +53,9 @@ class _AddWalletModalContentState extends State<AddWalletModalContent> {
   @override
   Widget build(BuildContext context) {
     return DraggableBottomSheet(
-      initialChildSize: 0.75,
+      initialChildSize: MediaQuery.of(context).size.height < 550 ? 0.90 : 0.75,
       minChildSize: 0.48,
-      maxChildSize: 0.75,
+      maxChildSize: MediaQuery.of(context).size.height < 550 ? 0.90 : 0.75,
       builder: (context, scrollController){
         return DraggableBottomSheetContent(
           draggableKey: GlobalKey(),
