@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/utils/media_file_util.dart';
+import '../../../../../core/utils/permission_util.dart';
 import '../../../../../core/view_models/user_view_model.dart';
 import '../../../../shared_widgets/common/network_image_view.dart';
 
@@ -29,7 +30,7 @@ class _CardInfoTabState extends State<CardInfoTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+        padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(BDPSizes.defaultSpace)),
         child: BaseView<UserViewModel>(
           builder: (context, userConsumer, child) {
             return Column(
@@ -52,11 +53,12 @@ class _CardInfoTabState extends State<CardInfoTab> {
                 //     height: BDPSizes.spaceBtwInputFields
                 // ),
                 //
-                const Text("Front of card",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    )),
+                Text("Front of card",
+                    style: kRegularFontStyle.copyWith(
+                        fontSize: AppThemeUtil.fontSize(16),
+                        color: BDPColors.dark90
+                    ),
+                ),
                 const SizedBox(height: BDPSizes.spaceBtwInputFields),
                 Container(
                   width: double.infinity,
@@ -107,26 +109,28 @@ class _CardInfoTabState extends State<CardInfoTab> {
                     }
                   ),
                 ).onPressed(userConsumer.getUser.idCardFrontUploaded? (){} : () async{
-                  final croppedFile = await MediaFileUtil.getPickedSourceImage(
-                    cropped: false,
-                  );
-                  if(croppedFile != null){
-                    frontCardFilePath.value = croppedFile;
-                    if(!context.mounted) return;
-                    await context.read<UserViewModel>().uploadKYCFile(
-                      context,
-                      requestBody: {
-                        'ghana-card-front': croppedFile,
-                      },
+                  if(await PermissionUtil.getStoragePermission()){
+                    final croppedFile = await MediaFileUtil.getPickedSourceImage(
+                      cropped: false,
                     );
+                    if(croppedFile != null){
+                      frontCardFilePath.value = croppedFile;
+                      if(!context.mounted) return;
+                      await context.read<UserViewModel>().uploadKYCFile(
+                        context,
+                        requestBody: {
+                          'ghana-card-front': croppedFile,
+                        },
+                      );
+                    }
                   }
                 }),
                 const SizedBox(height: BDPSizes.spaceBtwInputFields),
                 Text("Back of card",
-                    style: kRegularFontStyle.copyWith(
+                  style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
-                      color: BDPColors.dark90,
-                    ),
+                      color: BDPColors.dark90
+                  ),
                 ),
                 const SizedBox(height: BDPSizes.spaceBtwInputFields),
                 Container(
@@ -178,18 +182,20 @@ class _CardInfoTabState extends State<CardInfoTab> {
                     }
                   ),
                 ).onPressed(userConsumer.getUser.idCardBackUploaded? (){} : () async{
-                  final croppedFile = await MediaFileUtil.getPickedSourceImage(
-                    cropped: false,
-                  );
-                  if(croppedFile != null){
-                    backCardFilePath.value = croppedFile;
-                    if(!context.mounted) return;
-                    await context.read<UserViewModel>().uploadKYCFile(
-                      context,
-                      requestBody: {
-                        'ghana-card-back': croppedFile,
-                      },
+                  if(await PermissionUtil.getStoragePermission()){
+                    final croppedFile = await MediaFileUtil.getPickedSourceImage(
+                      cropped: false,
                     );
+                    if(croppedFile != null){
+                      backCardFilePath.value = croppedFile;
+                      if(!context.mounted) return;
+                      await context.read<UserViewModel>().uploadKYCFile(
+                        context,
+                        requestBody: {
+                          'ghana-card-back': croppedFile,
+                        },
+                      );
+                    }
                   }
                 }),
               ],

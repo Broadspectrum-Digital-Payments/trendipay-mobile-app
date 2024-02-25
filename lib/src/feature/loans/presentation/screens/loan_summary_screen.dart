@@ -10,10 +10,13 @@ import '../../../../../core/constants/styles.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
+import '../../domain/models/amortize/amortize_model.dart';
 
 
 class LoanSummaryScreen extends StatefulWidget {
-  const LoanSummaryScreen({super.key});
+  const LoanSummaryScreen({super.key, required this.amortize,});
+
+  final AmortizeModel amortize;
 
   @override
   State<LoanSummaryScreen> createState() => _LoanSummaryScreenState();

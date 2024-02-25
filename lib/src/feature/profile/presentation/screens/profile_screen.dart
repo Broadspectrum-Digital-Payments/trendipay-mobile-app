@@ -107,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   BDPPrimaryButton(
                     buttonText: BDPTexts.signOut,
                     onPressed: () async{
-                      await context.read<UserViewModel>().logout(context);
+                      await context.read<UserViewModel>().logout();
                     },
                   ),
                 ],

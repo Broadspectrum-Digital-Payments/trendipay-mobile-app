@@ -68,10 +68,6 @@ class UserViewModel extends BaseViewModel{
     if(context.mounted) AppNavigator.pop(context);
 
     result.fold((left) {
-      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
-        HelperUtil.onLogout(context);
-        return;
-      }
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -107,10 +103,6 @@ class UserViewModel extends BaseViewModel{
     if(context.mounted) {AppNavigator.pop(context);}
 
     result.fold((left) {
-      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
-        HelperUtil.onLogout(context);
-        return;
-      }
       WidgetsBinding.instance.addPostFrameCallback((_) async{
         AppDialogUtil.popUpModal(
           context,
@@ -146,10 +138,6 @@ class UserViewModel extends BaseViewModel{
     final result = await _userRepository.fetchUser();
 
     result.fold((left) {
-      if(FailureToMessage.mapFailureToMessage(left) == kAuthentication){
-        HelperUtil.onLogout(context);
-        return;
-      }
       setComponentErrorType = {
         'error': FailureToMessage.mapFailureToMessage(left),
         'component': 'fetchUser'
@@ -162,8 +150,8 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
-  Future<void> logout(BuildContext context) async{
-    HelperUtil.onLogout(context);
+  Future<void> logout() async{
+    HelperUtil.onLogout();
   }
 
   bool _hideCardBalance = false;

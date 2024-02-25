@@ -1,9 +1,11 @@
 
 import 'dart:io';
 
+import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/utils/permission_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
@@ -15,7 +17,6 @@ import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../../core/utils/media_file_util.dart';
-import '../../../../../core/utils/permission_util.dart';
 
 class PersonalInfoTab extends StatefulWidget {
   const PersonalInfoTab({super.key});
@@ -31,7 +32,7 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+        padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(BDPSizes.defaultSpace)),
         child: BaseView<UserViewModel>(
           builder: (context, userConsumer, child) {
             return Column(
@@ -47,10 +48,10 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                 //   enabled: false,
                 // ),
                 // const VSpace(height: BDPSizes.spaceBtwInputFields),
-                const Text("Picture",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
+                Text("Picture",
+                    style: kRegularFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(16),
+                      color: BDPColors.dark90
                     )),
                 const VSpace(height: BDPSizes.spaceBtwInputFields),
                 Container(
