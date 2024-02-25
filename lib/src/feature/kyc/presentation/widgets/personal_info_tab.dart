@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:bdp_payment_app/core/constants/styles.dart';
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -52,67 +53,64 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                       fontWeight: FontWeight.w400,
                     )),
                 const VSpace(height: BDPSizes.spaceBtwInputFields),
-                GestureDetector(
-                  onTap: userConsumer.getUser.selfieUploaded? null : () async {
-                    if(await PermissionUtil.getStoragePermission()){
-                      final croppedFile = await MediaFileUtil.getPickedSourceImage(
-                        cameraFront: true,
-                        cropped: false,
-                      );
-                      if(croppedFile != null){
-                        selfieFilePath.value = croppedFile;
-                      }
-                    }
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: AppThemeUtil.height(200.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
+                Container(
+                  width: double.infinity,
+                  height: AppThemeUtil.height(200.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
                     ),
-                    child: userConsumer.getUser.selfieUploaded?
-                     NetworkImageView(
-                       imageUrl: userConsumer.getUser.selfieFile.url?? '',
-                       radius: 12.0,
-                     )
-                    :
-                    ValueListenableBuilder<String>(
-                      valueListenable: selfieFilePath,
-                      builder: (context, selfieFilePathValue, child) {
-                        return selfieFilePathValue.isEmpty?
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.file_upload_outlined,
-                              color: Colors.grey,
-                            ), // Icon
-                            const VSpace(height: 8),
-                            Text(
-                              'Upload a clear selfie of yourself',
-                              textAlign: TextAlign.center,
-                              style: kRegularFontStyle.copyWith(
-                                  fontSize: AppThemeUtil.fontSize(16.0),
-                                  color: Colors.grey,
-                              ),
-                            )
-                          ],
-                        )
-                            :
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
-                          child: Image.file(File(selfieFilePathValue),
-                            fit: BoxFit.cover,
-                          ),
-                        );
-                      }
-                    ),
+                    borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
                   ),
-                ),
+                  child: userConsumer.getUser.selfieUploaded?
+                   NetworkImageView(
+                     imageUrl: userConsumer.getUser.selfieFile.url?? '',
+                     radius: 12.0,
+                   )
+                  :
+                  ValueListenableBuilder<String>(
+                    valueListenable: selfieFilePath,
+                    builder: (context, selfieFilePathValue, child) {
+                      return selfieFilePathValue.isEmpty?
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.file_upload_outlined,
+                            color: Colors.grey,
+                          ), // Icon
+                          const VSpace(height: 8),
+                          Text(
+                            'Upload a clear selfie of yourself',
+                            textAlign: TextAlign.center,
+                            style: kRegularFontStyle.copyWith(
+                                fontSize: AppThemeUtil.fontSize(16.0),
+                                color: Colors.grey,
+                            ),
+                          )
+                        ],
+                      )
+                          :
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(AppThemeUtil.radius(12)),
+                        child: Image.file(File(selfieFilePathValue),
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    }
+                  ),
+                ).onPressed(userConsumer.getUser.selfieUploaded? (){} : () async{
+                  if(await PermissionUtil.getStoragePermission()){
+                    final croppedFile = await MediaFileUtil.getPickedSourceImage(
+                      cameraFront: true,
+                      cropped: false,
+                    );
+                    if(croppedFile != null){
+                      selfieFilePath.value = croppedFile;
+                    }
+                  }
+                }),
                 const VSpace(
                   height: BDPSizes.spaceBtwSections,
                 ),
