@@ -46,31 +46,31 @@ class _LoanSummaryScreenState extends State<LoanSummaryScreen> {
 
               Table(
                 children: [
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'Purpose of Loan:',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.dark90,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          request['purpose']?? '',
-                          style: kMediumFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.brightMain,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // TableRow(
+                  //   children: [
+                  //     Padding(
+                  //       padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
+                  //       child: Text(
+                  //         'Purpose of Loan:',
+                  //         style: kRegularFontStyle.copyWith(
+                  //           fontSize: AppThemeUtil.fontSize(14.0),
+                  //           color: BDPColors.dark90,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //
+                  //     Padding(
+                  //       padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
+                  //       child: Text(
+                  //         request['purpose']?? '',
+                  //         style: kMediumFontStyle.copyWith(
+                  //           fontSize: AppThemeUtil.fontSize(14.0),
+                  //           color: BDPColors.brightMain,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   TableRow(
                     children: [
                       Padding(
