@@ -1,4 +1,5 @@
 
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
@@ -184,7 +185,16 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                           ZLoader(loaderColor: BDPColors.primary,),
                         ],
                       ) : null,
-                    ),
+                    ).onPressed((){
+                      if(accNameCtrl.text.isEmpty){
+                        AppDialogUtil.popUpModal(
+                          context,
+                          modalContent: const ErrorModalContent(
+                            errorMessage: 'Make sure account number is valid. So that we can verify the account.',
+                          ),
+                        );
+                      }
+                    }),
                     const VSpace(
                       height: BDPSizes.spaceBtwInputFields,
                     ),

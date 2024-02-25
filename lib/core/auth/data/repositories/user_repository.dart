@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../../errors/failure.dart';
 import '../../domain/models/file/file_model.dart';
-import '../datasources/local/user_local_datasource.dart';
-import '../datasources/remote/user_remote_datasource.dart';
+import '../datasources/user_local_datasource.dart';
+import '../datasources/user_remote_datasource.dart';
 import '../../domain/models/user/user_model.dart';
 
 abstract class UserRepository{

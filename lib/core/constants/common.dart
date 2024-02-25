@@ -24,5 +24,5 @@ const kPendingStatus = 'pending';
 
 const kPageSize = 20;
 
-const kMobileNetworks = ['MTN', 'GMO', 'ATM', 'VODAFONE'];
-const kTransactionNetworks = ['GMO'];
+const kMobileNetworks = ['MTN', 'G-Money', 'AirtelTigo', 'Vodafone'];
+const kTransactionNetworks = ['G-Money'];

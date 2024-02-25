@@ -2,9 +2,9 @@
 
 import 'package:bdp_payment_app/core/constants/common.dart';
 
-import '../../../../services/local_storage_service.dart';
-import '../../../../services/logger_service.dart';
-import '../../../domain/models/user/user_model.dart';
+import '../../../services/local_storage_service.dart';
+import '../../../services/logger_service.dart';
+import '../../domain/models/user/user_model.dart';
 
 abstract class UserLocalDataSource{
   Future<UserModel> retrieveUser();

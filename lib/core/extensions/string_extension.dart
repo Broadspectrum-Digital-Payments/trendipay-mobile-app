@@ -27,16 +27,16 @@ extension StringExtension on String{
 
   String toNetworkName(){
     if(toLowerCase() == 'vod') return 'Vodafone';
-
     if(toLowerCase() == 'atl') return 'AirtelTigo';
+    if(toLowerCase() == 'gmo') return 'G-Money';
 
     return this;
   }
 
   String toNetworkCode(){
     if(toLowerCase() == 'vodafone') return 'vod';
-
     if(toLowerCase() == 'airteltigo') return 'atl';
+    if(toLowerCase() == 'g-money') return 'gmo';
 
     return toLowerCase();
   }

@@ -13,6 +13,7 @@ class BDPInput extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.onChanged,
+    this.onTap,
     this.enabled = true,
     this.labelStyle,
     this.labelText,
@@ -37,6 +38,7 @@ class BDPInput extends StatelessWidget {
   final Widget? prefixIcon;
   final bool obscureText;
   final void Function(PointerDownEvent)? onTapOutside;
+  final void Function()? onTap;
   final FocusNode? focusNode;
   final TextCapitalization textCapitalization;
   final List<TextInputFormatter>? inputFormatters;
@@ -52,6 +54,7 @@ class BDPInput extends StatelessWidget {
       onChanged: onChanged,
       obscureText: obscureText,
       onTapOutside: onTapOutside,
+      onTap: onTap,
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
