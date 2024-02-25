@@ -123,7 +123,7 @@ class LoanViewModel extends BaseViewModel{
         context,
         modalContent: SuccessModalContent(
           title: 'Loan Document',
-          message: 'Loan document uploaded.',
+          message: 'Your loan document is uploaded.',
           onButtonPressed: (){
             AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
           },
