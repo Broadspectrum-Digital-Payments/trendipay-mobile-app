@@ -12,9 +12,9 @@ import '../services/local_storage_service.dart';
 
 class HelperUtil{
 
-  static void onLogout(BuildContext context){
+  static void onLogout(){
     sl.get<LocalStorageService>().clearOnLogout();
-    AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.loginScreen, (route) => false);
+    AppNavigator.pushNamedAndRemoveUntil(AppNavigator.navigatorKey.currentContext!, AppRoute.loginScreen, (route) => false);
   }
 
 

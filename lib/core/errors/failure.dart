@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
@@ -100,7 +101,8 @@ class FailureToMessage {
       ZLoggerService.logOnDebug('### ERROR RESPONSE: ${e.response} ###');
 
       if(e.response != null && e.response!.statusCode == HttpStatus.unauthorized){
-         return ServerFailure(message: e.response?.data?['message']??  kAuthentication);
+        if(e.response?.data?['message'] == kAuthentication) HelperUtil.onLogout();
+        return ServerFailure(message: e.response?.data?['message']??  kAuthentication);
       }
 
       if(e.response != null && e.response!.statusCode == HttpStatus.notFound){
