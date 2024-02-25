@@ -21,4 +21,5 @@ class ApiRoutes{
 
   /// LOANS
   static get amortization => '$_baseUrl/v1/amortization';
+  static get loans => '$_baseUrl/v1/loans';
 }

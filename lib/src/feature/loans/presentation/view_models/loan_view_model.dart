@@ -48,6 +48,26 @@ class LoanViewModel extends BaseViewModel{
     });
   }
 
+  Future<void> applyLoan(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    AppDialogUtil.loadingDialog(context);
+    final result = await _loanRepository.applyLoan(requestBody: requestBody);
+
+    if(context.mounted) AppNavigator.pop(context);
+
+    result.fold((failure){
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(failure),
+          ),
+        );
+      });
+    }, (amortize){
+      AppNavigator.pushNamed(context, AppRoute.loanSummaryScreen, arguments: amortize);
+    });
+  }
+
   /// LOCAL DB
 
 }

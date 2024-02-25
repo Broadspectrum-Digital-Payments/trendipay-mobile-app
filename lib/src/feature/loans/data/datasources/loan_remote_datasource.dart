@@ -6,6 +6,7 @@ import '../../domain/models/amortize/amortize_model.dart';
 
 abstract class LoanRemoteDataSource{
   Future<AmortizeModel> requestAmortization({required Map<String, dynamic> queryParams});
+  Future<bool> applyLoan({required Map<String, dynamic> requestBody});
 }
 
 class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
@@ -27,5 +28,20 @@ class LoanRemoteDataSourceImpl extends LoanRemoteDataSource{
     }
 
     return AmortizeModel.fromJson(response.data['data']?? {});
+  }
+
+  @override
+  Future<bool> applyLoan({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.amortization,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return true;
   }
 }
