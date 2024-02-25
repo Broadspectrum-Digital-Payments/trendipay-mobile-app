@@ -69,7 +69,8 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                     if (value == null || value.isEmpty) {
                       return "Amount field must not be empty";
                     }
-                    if(double.parse(value) == 0) return 'Amount field can not be 0';
+                    if(double.parse(value) < 100) return 'Amount must not be less than 100';
+                    if(double.parse(value) > 10000) return 'Amount must not be more than 10000';
                     return null;
                   },
                   keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: false),
@@ -85,7 +86,7 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                   height: BDPSizes.spaceBtwInputFields,
                 ),
                 BDPInput(
-                  labelText: 'Enter repayment duration in days',
+                  labelText: 'Enter repayment duration in months',
                   controller: durationController,
                   focusNode: durationFocusNode,
                   validator: (value){
@@ -106,19 +107,19 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                 const VSpace(
                   height: BDPSizes.spaceBtwInputFields,
                 ),
-                BDPInput(
-                  labelText: 'Enter purpose of loan',
-                  controller: purposeController,
-                  validator: (value){
-                    if (value == null || value.isEmpty) {
-                      return "Purpose field must not be empty";
-                    }
-                    return null;
-                  },
-                ),
-                const VSpace(
-                  height: 24.0,
-                ),
+                // BDPInput(
+                //   labelText: 'Enter purpose of loan',
+                //   controller: purposeController,
+                //   validator: (value){
+                //     if (value == null || value.isEmpty) {
+                //       return "Purpose field must not be empty";
+                //     }
+                //     return null;
+                //   },
+                // ),
+                // const VSpace(
+                //   height: 24.0,
+                // ),
                 const FormLabel('Proof of Income'),
 
                 const VSpace(height: 4.0),

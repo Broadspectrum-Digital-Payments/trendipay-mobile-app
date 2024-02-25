@@ -10,12 +10,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/loan/loan_model.dart';
+import '../../domain/models/stats/stats_model.dart';
 
 
 class LoanScreenWithLoans extends StatelessWidget {
-  const LoanScreenWithLoans({super.key, required this.loans,});
+  const LoanScreenWithLoans({super.key, required this.loans, this.stats,});
 
   final List<LoanModel> loans;
+  final StatsModel? stats;
 
   @override
   Widget build(BuildContext context) {
@@ -23,28 +25,31 @@ class LoanScreenWithLoans extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const VSpace(height: 12),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
               child: LoanStats(
                 text: 'Total Loan\nCollected',
+                amount: (stats?.totalCollected?? 0).toString(),
               ),
             ),
-            HSpace(width: 12),
+            const HSpace(width: 12),
             Flexible(
               child: LoanStats(
                 bgColor: BDPColors.brightMain,
                 imageFile: BDPImages.loanRepaid,
                 text: 'Total Loan\nRepayed',
+                amount: (stats?.paid?? 0).toString(),
               ),
             ),
-            HSpace(width: 12),
+            const HSpace(width: 12),
             Flexible(
               child: LoanStats(
                 bgColor: BDPColors.dark90,
                 imageFile: BDPImages.loanPending,
                 text: 'Total Pending\nRepayment',
+                amount: (stats?.submitted?? 0).toString(),
               ),
             ),
           ]

@@ -92,7 +92,7 @@ class _LoansScreenState extends State<LoansScreen> {
             child: loanConsumer.getLoans.isEmpty?
             const LoanScreenWithOutLoans()
                 :
-            LoanScreenWithLoans(loans: loanConsumer.getLoans,),
+            LoanScreenWithLoans(loans: loanConsumer.getLoans, stats: loanConsumer.getStats,),
           ),
         );
       }

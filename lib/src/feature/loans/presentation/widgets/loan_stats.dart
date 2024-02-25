@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/styles.dart';
@@ -12,11 +13,13 @@ class LoanStats extends StatelessWidget {
     this.bgColor,
     this.imageFile,
     required this.text,
+    required this.amount,
   });
 
   final Color? bgColor;
   final String? imageFile;
   final String text;
+  final String amount;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +60,9 @@ class LoanStats extends StatelessWidget {
           ),
           const VSpace(height: 10.0),
           Text(
-            'GHS3,000',
+            'GHS${amount.toCurrencyFormat}',
             style: kBoldFontStyle.copyWith(
-              fontSize: AppThemeUtil.fontSize(14.0),
+              fontSize: AppThemeUtil.fontSize(12.5),
               color: BDPColors.white,
             ),
           ),

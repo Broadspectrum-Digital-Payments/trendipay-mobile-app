@@ -46,13 +46,12 @@ class HelperUtil{
   }
 
   static String getLoanTransactionStatus(String status){
-    if([kCompletedStatus, kSuccessStatus, kApprovedStatus].contains(status.toLowerCase())) return kApprovedStatus;
     if([kQueuedStatus, kInitiatedStatus, kStartedStatus, kSubmittedStatus].contains(status.toLowerCase())) return kPendingStatus;
     return status;
   }
 
   static Color getLoanTransactionStatusTextColor(String status){
-    if(status.toLowerCase() == kApprovedStatus) return BDPColors.successColor;
+    if([kApprovedStatus, kPaidStatus, kDisbursedStatus].contains(status.toLowerCase())) return BDPColors.successColor;
     if(status.toLowerCase() == kPendingStatus) return Colors.orange;
     return BDPColors.secondary;
   }

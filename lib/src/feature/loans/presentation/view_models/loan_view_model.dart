@@ -13,13 +13,15 @@ import '../../../../../core/utils/media_file_util.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
 import '../../../../shared_widgets/modals/success_modal_content.dart';
 import '../../data/repositories/loan_repository.dart';
+import '../../domain/models/history/loan_history_model.dart';
 import '../../domain/models/loan/loan_model.dart';
+import '../../domain/models/stats/stats_model.dart';
 
 
 class LoanViewModel extends BaseViewModel{
   final _loanRepository = sl.get<LoanRepository>();
   Map<String, dynamic> _loanRequestBody = {};
-  List<LoanModel> _loans = [];
+  LoanHistoryModel _loanHistory = const LoanHistoryModel();
 
 
   set setLoanRequestBody(Map<String, dynamic> request){
@@ -68,12 +70,15 @@ class LoanViewModel extends BaseViewModel{
         );
       });
     }, (loan){
-      _loans.insert(0, loan);
+      _loanHistory = _loanHistory.copyWith(
+        loans: List.from(_loanHistory.loans?? [])..insert(0, loan),
+      );
       AppNavigator.popAndPushNamed(context, AppRoute.loanReviewScreen, arguments: loan);
     });
   }
 
-  UnmodifiableListView<LoanModel> get getLoans => UnmodifiableListView(_loans);
+  UnmodifiableListView<LoanModel> get getLoans => UnmodifiableListView(_loanHistory.loans?? []);
+  StatsModel? get getStats => _loanHistory.stats;
 
   Future<void> fetchLoans(BuildContext context, {String loadingComponent = 'loans', required String userExternalId, required Map<String, dynamic> queryParams}) async{
     setComponentErrorType = null;
@@ -87,10 +92,9 @@ class LoanViewModel extends BaseViewModel{
         'component': loadingComponent
       };
       setLoading(false, component: loadingComponent);
-    }, (loans){
-      _loans = loans;
-      notifyListeners();
-      setLoading(false, component: loadingComponent, notify: false);
+    }, (history){
+      _loanHistory = history;
+      setLoading(false, component: loadingComponent);
     });
   }
 

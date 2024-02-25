@@ -32,7 +32,7 @@ class LoanModel with _$LoanModel {
   }) = _LoanModel;
 
   String get getInterestRate => '${interestRate?? 0}%';
-  String get duration => (time?? 0) == 1? '$time day':'${time?? 0} days';
+  String get duration => (time?? 0) == 1? '$time month':'${time?? 0} months';
   String get getDate => (createdAt?? '').isEmpty? '' : DateFormat("d MMM y").format(DateTime.parse(createdAt?? '')).toString();
   String get getTime => (createdAt?? '').isEmpty? '' : DateFormat("jm").format(DateTime.parse(createdAt?? '')).toString();
 

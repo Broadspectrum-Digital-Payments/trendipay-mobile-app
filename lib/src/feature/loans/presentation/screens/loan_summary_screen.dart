@@ -137,7 +137,7 @@ class _LoanSummaryScreenState extends State<LoanSummaryScreen> {
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          '${amortize.time} Days',
+                          (amortize.time?? 0).toInt() == 1? '${amortize.time} month':'${amortize.time} months',
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,

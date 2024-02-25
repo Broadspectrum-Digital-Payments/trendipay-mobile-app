@@ -21,6 +21,9 @@ const kSuccessStatus = 'success';
 const kInitiatedStatus = 'initiated';
 const kFailedStatus = 'failed';
 const kPendingStatus = 'pending';
+const kPaidStatus = 'paid';
+const kDelayedStatus = 'delayed';
+const kDisbursedStatus = 'disbursed';
 
 const kPageSize = 40;
 

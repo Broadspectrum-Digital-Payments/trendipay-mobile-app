@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../domain/models/amortize/amortize_model.dart';
 import '../../domain/models/document/loan_document_model.dart';
+import '../../domain/models/history/loan_history_model.dart';
 import '../../domain/models/loan/loan_model.dart';
 import '../datasources/loan_local_datasource.dart';
 import '../datasources/loan_remote_datasource.dart';
@@ -11,7 +12,7 @@ import '../datasources/loan_remote_datasource.dart';
 abstract class LoanRepository{
   Future<Either<Failure, AmortizeModel>> requestAmortization({required Map<String, dynamic> queryParams});
   Future<Either<Failure, LoanModel>> applyLoan({required String userExternalId, required Map<String, dynamic> requestBody});
-  Future<Either<Failure, List<LoanModel>>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams});
+  Future<Either<Failure, LoanHistoryModel>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams});
   Future<Either<Failure, LoanDocumentModel>> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody});
 
   ///LOCAL DB
@@ -48,7 +49,7 @@ class LoanRepositoryImpl extends LoanRepository{
   }
 
   @override
-  Future<Either<Failure, List<LoanModel>>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams}) async{
+  Future<Either<Failure, LoanHistoryModel>> fetchLoans({required String userExternalId, required Map<String, dynamic> queryParams}) async{
     try{
       final response = await loanRemoteDataSource.fetchLoans(userExternalId: userExternalId, queryParams: queryParams);
       return Right(response);
