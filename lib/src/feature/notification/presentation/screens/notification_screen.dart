@@ -1,8 +1,8 @@
-import 'package:bdp_payment_app/features/mainscreens/screens/notification/widgets/notification_item.dart';
+import 'package:bdp_payment_app/src/feature/notification/presentation/widgets/notification_item.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/constants/sizes.dart';
-import '../../../../core/constants/text_strings.dart';
-import '../../../../src/shared_widgets/base/bdp_appbar.dart';
+import '../../../../../core/constants/sizes.dart';
+import '../../../../../core/constants/text_strings.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 
 
 class NotificationScreen extends StatelessWidget {

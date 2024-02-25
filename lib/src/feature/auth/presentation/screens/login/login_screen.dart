@@ -1,14 +1,16 @@
 
+import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/routing/app_route.dart';
-import '../../../../../shared_widgets/common/authheaders.dart';
+import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/colors.dart';
-import '../../../../../../core/constants/image_strings.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 import '../../../../../shared_widgets/buttons/bdp_primary_button.dart';
@@ -40,18 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  const AuthHeader(icon: BDPImages.bdpIcon, title: 'Login'),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: 'Login',
+        hasLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
           child: Form(
             key: formKey,
             child: Column(
               children: [
+                const VSpace(height: 48.0),
                 BDPInput(
                   controller: phoneCtrl,
                   focusNode: phoneFocusNode,
@@ -126,8 +129,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
                       },
-                      child: const Text(
+                      child: Text(
                         BDPTexts.forgetPassword,
+                        style: kRegularFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(16.0),
+                          color: BDPColors.brightPurple,
+                        ),
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -136,24 +143,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Don\'t have an account? ',
-                      style: TextStyle(
-                        color: Color(0xff332f2e),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
+                      style: kRegularFontStyle.copyWith(
+                        color: const Color(0xff332f2e),
+                        fontSize: AppThemeUtil.fontSize(16),
                       ),
                     ),
                     GestureDetector(
                       onTap: () {
                         AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen);
                       },
-                      child: const Text(
+                      child: Text(
                         BDPTexts.signup,
-                        style: TextStyle(
+                        style: kMediumFontStyle.copyWith(
                           color: BDPColors.primary,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                          fontSize: AppThemeUtil.fontSize(16.0),
                         ),
                       ),
                     ),

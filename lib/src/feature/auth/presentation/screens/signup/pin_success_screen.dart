@@ -1,9 +1,9 @@
-import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/nav_bar_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/constants/styles.dart';
@@ -29,11 +29,12 @@ class _PinSuccessScreenState extends State<PinSuccessScreen> {
           child: Column(
             children: [
               const Spacer(flex: 2),
-              Text('Your pin has been successfully created!',
+              Text('Your pin has been successfully \nchanged!',
                 style: kMediumFontStyle.copyWith(
                   fontSize: AppThemeUtil.fontSize(20.0),
                   color: BDPColors.primary,
                 ),
+                textAlign: TextAlign.center,
               ),
               const Spacer(flex: 2),
 
@@ -48,12 +49,7 @@ class _PinSuccessScreenState extends State<PinSuccessScreen> {
             ],
           )
         ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-            left: AppThemeUtil.width(kWidthPadding),
-            right: AppThemeUtil.width(kWidthPadding),
-            bottom: AppThemeUtil.height(28),
-          ),
+        bottomNavigationBar: NavBarWrapper(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

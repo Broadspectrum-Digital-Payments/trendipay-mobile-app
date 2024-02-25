@@ -1,4 +1,4 @@
-import 'package:bdp_payment_app/common/widgets/circular_navigation/circular_shape.dart';
+import 'package:bdp_payment_app/src/feature/notification/presentation/widgets/circular_shape.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/colors.dart';
@@ -11,6 +11,7 @@ class NotificationItem extends StatelessWidget {
   final String time;
 
   const NotificationItem({
+    super.key,
     required this.title,
     required this.description,
     required this.date,

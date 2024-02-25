@@ -53,10 +53,10 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
           child: Column(
             children: [
+              const VSpace(height: 28.0),
               Text(BDPTexts.pinSetupText , textAlign: TextAlign.center, style: kMediumFontStyle.copyWith(
                 fontSize: AppThemeUtil.fontSize(16.0),
                 color: BDPColors.grey,

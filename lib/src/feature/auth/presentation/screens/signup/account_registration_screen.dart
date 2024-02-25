@@ -1,3 +1,5 @@
+import 'package:bdp_payment_app/core/constants/colors.dart';
+import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -7,7 +9,9 @@ import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../../../core/constants/common.dart';
 import '../../../../../../core/constants/sizes.dart';
+import '../../../../../../core/utils/app_theme_util.dart';
 import '../../../../../../core/utils/input_formatter_util.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/text_strings.dart';
@@ -53,13 +57,14 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          // padding: BDPSpacingStyle.paddingWithAppBarHeight,
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(kWidthPadding)),
           child: Column(
             children: [
-              const Text(BDPTexts.accountRegistrationText, textAlign: TextAlign.center,style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
+              Text(BDPTexts.accountRegistrationText,
+                textAlign: TextAlign.center,
+                style: kRegularFontStyle.copyWith(
+                fontSize: AppThemeUtil.radius(16),
+                  color: BDPColors.dark90,
               ),),
 
               Form(
@@ -145,9 +150,7 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
                       //     ),
                       //   ],
                       // ),
-                      const VSpace(
-                        height: BDPSizes.spaceBtwItems,
-                      ),
+                      const VSpace(height: 24.0),
 
                       Row(
                         mainAxisSize: MainAxisSize.min,

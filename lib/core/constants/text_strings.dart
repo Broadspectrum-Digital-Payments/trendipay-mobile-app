@@ -92,11 +92,11 @@ static const selectCardTitle = "You have not added any cards yet. Your wallets w
   //Authentication Screen Texts
   static const String forgetPassword = "Forget Password";
   static const String signup= "Sign Up";
-  static const String phoneNumberSubTitle="Enter your phone number to receive a One-Time-Password";
+  static const String phoneNumberSubTitle="Enter your phone number to receive a \nOne-Time-Password";
   static const String noOtp= "Didn't receive OTP?";
-  static const String accountRegistrationText= "Setup your account with the following information";
+  static const String accountRegistrationText= "Setup your account with the following \ninformation";
   static const String mNmM= "Mobile number is same as mobile money number";
-  static const String pinSetupText = " Setup your pin for your transaction approvals";
+  static const String pinSetupText = " Setup your pin for your transaction \napprovals";
   static const String pinRequirements1 = " Pin should not be less than 6 characters";
   static const String pinRequirements2 = " Pin should not include special characters like %,&,* ";
   static const String pinRequirements3 = " Pin should not include special characters like %,&,* ";

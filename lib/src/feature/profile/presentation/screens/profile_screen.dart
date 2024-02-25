@@ -37,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(BDPSizes.defaultSpace),
+          padding: EdgeInsets.all(AppThemeUtil.radius(BDPSizes.defaultSpace)),
           child: Column(
             children: [
               Column(
