@@ -3,13 +3,19 @@ import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/feature/loans/presentation/widgets/loan_stats.dart';
+import 'package:bdp_payment_app/src/feature/transaction_history/presentation/widgets/loan_transaction_list_view.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../domain/models/loan/loan_model.dart';
 
 
 class LoanScreenWithLoans extends StatelessWidget {
-  const LoanScreenWithLoans({super.key});
+  const LoanScreenWithLoans({super.key, required this.loans,});
+
+  final List<LoanModel> loans;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +58,11 @@ class LoanScreenWithLoans extends StatelessWidget {
           ),
         ),
         const VSpace(height: 24),
-
+        Expanded(
+          child: LoanTransactionListView(
+            transactions: loans,
+          ),
+        ),
       ],
     );
   }

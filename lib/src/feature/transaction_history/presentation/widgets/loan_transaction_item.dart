@@ -6,11 +6,11 @@ import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/colors.dart';
-import '../../domain/models/transaction/transaction_model.dart';
+import '../../../loans/domain/models/loan/loan_model.dart';
 import 'transaction_item_icon.dart';
 
 class LoanTransactionItem extends StatelessWidget {
-  final TransactionModel transaction;
+  final LoanModel transaction;
 
   const LoanTransactionItem({
     super.key,
@@ -20,18 +20,74 @@ class LoanTransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const TransactionItemIcon(),
-        const HSpace(width: 16),
-
-        Expanded(
-          child: Column(
+        Flexible(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(transaction.getAmount, style: kBoldFontStyle.copyWith(fontSize: 16, color: Colors.black)),
-              Text(transaction.description?? '', style: kRegularFontStyle.copyWith(fontSize: 12, color: BDPColors.grey),),
-              Text('${transaction.getDate}, ${transaction.getTime}', style: kMediumFontStyle.copyWith(fontSize: 10,color: Colors.black),),
+              const TransactionItemIcon(),
+              const HSpace(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(transaction.principalInGHS?? '', style: kBoldFontStyle.copyWith(fontSize: 16, color: Colors.black)),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Interest Rate: ',
+                        style: kRegularFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(10),
+                          color: BDPColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: transaction.getInterestRate,
+                            style: kMediumFontStyle.copyWith(
+                              fontSize: AppThemeUtil.fontSize(10),
+                              color: BDPColors.brightMain,
+                            ),
+                          ),
+                        ]
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Repayment Duration: ',
+                        style: kRegularFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(10),
+                          color: BDPColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: transaction.duration,
+                            style: kMediumFontStyle.copyWith(
+                              fontSize: AppThemeUtil.fontSize(10),
+                              color: BDPColors.brightMain,
+                            ),
+                          ),
+                        ]
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Date of Application: ',
+                        style: kRegularFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(10),
+                          color: BDPColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: transaction.getDate,
+                            style: kMediumFontStyle.copyWith(
+                              fontSize: AppThemeUtil.fontSize(10),
+                              color: BDPColors.brightMain,
+                            ),
+                          ),
+                        ]
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

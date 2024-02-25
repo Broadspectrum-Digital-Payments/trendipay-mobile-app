@@ -73,6 +73,8 @@ class LoanViewModel extends BaseViewModel{
     });
   }
 
+  UnmodifiableListView<LoanModel> get getLoans => UnmodifiableListView(_loans);
+
   Future<void> fetchLoans(BuildContext context, {String loadingComponent = 'loans', required String userExternalId, required Map<String, dynamic> queryParams}) async{
     setComponentErrorType = null;
     setLoading(true, component: loadingComponent);

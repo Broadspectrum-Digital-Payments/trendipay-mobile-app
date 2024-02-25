@@ -8,10 +8,13 @@ import 'package:flutter/material.dart';
 import '../../../../../core/constants/styles.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
+import '../../../loans/domain/models/loan/loan_model.dart';
 
 
 class LoanTransactionDetailScreen extends StatefulWidget {
-  const LoanTransactionDetailScreen({super.key});
+  const LoanTransactionDetailScreen({super.key, required this.loan, });
+
+  final LoanModel loan;
 
   @override
   State<LoanTransactionDetailScreen> createState() => _LoanTransactionDetailScreenState();
@@ -21,6 +24,7 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
 
   @override
   Widget build(BuildContext context) {
+    final transaction = widget.loan;
     return Scaffold(
       appBar: BDPAppBar(
         appBar: AppBar(),
@@ -76,7 +80,7 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          '01 Jan 2024 4:30AM',
+                          '${transaction.getDate} ${transaction.getTime}',
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,
@@ -101,7 +105,7 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          'GHS3,000.00',
+                          transaction.principalInGHS?? '',
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,
@@ -126,7 +130,7 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          '100 Days',
+                          transaction.duration,
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,
@@ -151,7 +155,32 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          '4.6%',
+                          transaction.getInterestRate,
+                          style: kMediumFontStyle.copyWith(
+                            fontSize: AppThemeUtil.fontSize(14.0),
+                            color: BDPColors.brightMain,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
+                        child: Text(
+                          'Monthly Repayment Amount:',
+                          style: kRegularFontStyle.copyWith(
+                            fontSize: AppThemeUtil.fontSize(14.0),
+                            color: BDPColors.dark90,
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
+                        child: Text(
+                          transaction.monthlyInstallmentInGHS?? '',
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,
@@ -176,82 +205,7 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
                       Padding(
                         padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
                         child: Text(
-                          'GHS3,138.00',
-                          style: kMediumFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.brightMain,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'Total Amount Paid:',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.dark90,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'GH¢1,938.00',
-                          style: kMediumFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.brightMain,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'Repayment Balance:',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.dark90,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'GHS1,200.00',
-                          style: kMediumFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.brightMain,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          'Repayment Date:',
-                          style: kRegularFontStyle.copyWith(
-                            fontSize: AppThemeUtil.fontSize(14.0),
-                            color: BDPColors.dark90,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.only(bottom: AppThemeUtil.height(10.0)),
-                        child: Text(
-                          '16 Mar 2024 5:20PM',
+                          transaction.totalRepaymentAmountInGHS?? '',
                           style: kMediumFontStyle.copyWith(
                             fontSize: AppThemeUtil.fontSize(14.0),
                             color: BDPColors.brightMain,

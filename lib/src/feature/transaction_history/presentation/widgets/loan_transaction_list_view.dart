@@ -5,7 +5,7 @@ import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_divider.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/models/transaction/transaction_model.dart';
+import '../../../loans/domain/models/loan/loan_model.dart';
 import 'loan_transaction_item.dart';
 
 class LoanTransactionListView extends StatelessWidget {
@@ -16,7 +16,7 @@ class LoanTransactionListView extends StatelessWidget {
     this.padding,
   });
 
-  final List<TransactionModel> transactions;
+  final List<LoanModel> transactions;
   final bool? primary;
   final EdgeInsetsGeometry? padding;
 
@@ -30,7 +30,7 @@ class LoanTransactionListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final transaction = transactions[index];
         return LoanTransactionItem(transaction: transaction).onPressed((){
-          AppNavigator.pushNamed(context, AppRoute.loanTransactionDetailScreen);
+          AppNavigator.pushNamed(context, AppRoute.loanTransactionDetailScreen, arguments: transaction);
         });
       },
       separatorBuilder: (BuildContext context, int index) {

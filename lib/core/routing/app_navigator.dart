@@ -103,7 +103,7 @@ class AppNavigator {
         return MaterialPageRoute(builder: (context) => LoanReviewScreen(loan: args as LoanModel));
 
       case AppRoute.loanTransactionDetailScreen:
-        return MaterialPageRoute(builder: (context) => const LoanTransactionDetailScreen());
+        return MaterialPageRoute(builder: (context) => LoanTransactionDetailScreen(loan: args as LoanModel));
 
       case AppRoute.topUpWalletScreen:
         return MaterialPageRoute(builder: (context) => const TopUpWalletScreen());

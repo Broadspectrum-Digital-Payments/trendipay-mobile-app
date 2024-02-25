@@ -1,5 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'loan_model.freezed.dart';
 part 'loan_model.g.dart';
@@ -7,6 +8,7 @@ part 'loan_model.g.dart';
 
 @freezed
 class LoanModel with _$LoanModel {
+  const LoanModel._();
   const factory LoanModel({
     final String? externalId,
     final num? principal,
@@ -22,11 +24,18 @@ class LoanModel with _$LoanModel {
     final String? taxesInGHS,
     final num? fees,
     final String? feesInGHS,
+    final num? time,
     final String? status,
     final String? createdAt,
     final String? approvedAt,
     final String? disbursedAt,
   }) = _LoanModel;
+
+  String get getInterestRate => '${interestRate?? 0}%';
+  String get duration => (time?? 0) == 1? '$time day':'${time?? 0} days';
+  String get getDate => (createdAt?? '').isEmpty? '' : DateFormat("d MMM y").format(DateTime.parse(createdAt?? '')).toString();
+  String get getTime => (createdAt?? '').isEmpty? '' : DateFormat("jm").format(DateTime.parse(createdAt?? '')).toString();
+
 
   factory LoanModel.fromJson(Map<String, dynamic> json) =>
       _$LoanModelFromJson(json);

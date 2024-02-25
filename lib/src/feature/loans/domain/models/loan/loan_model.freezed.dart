@@ -34,6 +34,7 @@ mixin _$LoanModel {
   String? get taxesInGHS => throw _privateConstructorUsedError;
   num? get fees => throw _privateConstructorUsedError;
   String? get feesInGHS => throw _privateConstructorUsedError;
+  num? get time => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get approvedAt => throw _privateConstructorUsedError;
@@ -65,6 +66,7 @@ abstract class $LoanModelCopyWith<$Res> {
       String? taxesInGHS,
       num? fees,
       String? feesInGHS,
+      num? time,
       String? status,
       String? createdAt,
       String? approvedAt,
@@ -98,6 +100,7 @@ class _$LoanModelCopyWithImpl<$Res, $Val extends LoanModel>
     Object? taxesInGHS = freezed,
     Object? fees = freezed,
     Object? feesInGHS = freezed,
+    Object? time = freezed,
     Object? status = freezed,
     Object? createdAt = freezed,
     Object? approvedAt = freezed,
@@ -160,6 +163,10 @@ class _$LoanModelCopyWithImpl<$Res, $Val extends LoanModel>
           ? _value.feesInGHS
           : feesInGHS // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as num?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -203,6 +210,7 @@ abstract class _$$LoanModelImplCopyWith<$Res>
       String? taxesInGHS,
       num? fees,
       String? feesInGHS,
+      num? time,
       String? status,
       String? createdAt,
       String? approvedAt,
@@ -234,6 +242,7 @@ class __$$LoanModelImplCopyWithImpl<$Res>
     Object? taxesInGHS = freezed,
     Object? fees = freezed,
     Object? feesInGHS = freezed,
+    Object? time = freezed,
     Object? status = freezed,
     Object? createdAt = freezed,
     Object? approvedAt = freezed,
@@ -296,6 +305,10 @@ class __$$LoanModelImplCopyWithImpl<$Res>
           ? _value.feesInGHS
           : feesInGHS // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as num?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -318,7 +331,7 @@ class __$$LoanModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoanModelImpl implements _LoanModel {
+class _$LoanModelImpl extends _LoanModel {
   const _$LoanModelImpl(
       {this.externalId,
       this.principal,
@@ -334,10 +347,12 @@ class _$LoanModelImpl implements _LoanModel {
       this.taxesInGHS,
       this.fees,
       this.feesInGHS,
+      this.time,
       this.status,
       this.createdAt,
       this.approvedAt,
-      this.disbursedAt});
+      this.disbursedAt})
+      : super._();
 
   factory _$LoanModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoanModelImplFromJson(json);
@@ -371,6 +386,8 @@ class _$LoanModelImpl implements _LoanModel {
   @override
   final String? feesInGHS;
   @override
+  final num? time;
+  @override
   final String? status;
   @override
   final String? createdAt;
@@ -381,7 +398,7 @@ class _$LoanModelImpl implements _LoanModel {
 
   @override
   String toString() {
-    return 'LoanModel(externalId: $externalId, principal: $principal, principalInGHS: $principalInGHS, interest: $interest, interestInGHS: $interestInGHS, interestRate: $interestRate, monthlyInstallment: $monthlyInstallment, monthlyInstallmentInGHS: $monthlyInstallmentInGHS, totalRepaymentAmount: $totalRepaymentAmount, totalRepaymentAmountInGHS: $totalRepaymentAmountInGHS, taxes: $taxes, taxesInGHS: $taxesInGHS, fees: $fees, feesInGHS: $feesInGHS, status: $status, createdAt: $createdAt, approvedAt: $approvedAt, disbursedAt: $disbursedAt)';
+    return 'LoanModel(externalId: $externalId, principal: $principal, principalInGHS: $principalInGHS, interest: $interest, interestInGHS: $interestInGHS, interestRate: $interestRate, monthlyInstallment: $monthlyInstallment, monthlyInstallmentInGHS: $monthlyInstallmentInGHS, totalRepaymentAmount: $totalRepaymentAmount, totalRepaymentAmountInGHS: $totalRepaymentAmountInGHS, taxes: $taxes, taxesInGHS: $taxesInGHS, fees: $fees, feesInGHS: $feesInGHS, time: $time, status: $status, createdAt: $createdAt, approvedAt: $approvedAt, disbursedAt: $disbursedAt)';
   }
 
   @override
@@ -417,6 +434,7 @@ class _$LoanModelImpl implements _LoanModel {
             (identical(other.fees, fees) || other.fees == fees) &&
             (identical(other.feesInGHS, feesInGHS) ||
                 other.feesInGHS == feesInGHS) &&
+            (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -428,26 +446,28 @@ class _$LoanModelImpl implements _LoanModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      externalId,
-      principal,
-      principalInGHS,
-      interest,
-      interestInGHS,
-      interestRate,
-      monthlyInstallment,
-      monthlyInstallmentInGHS,
-      totalRepaymentAmount,
-      totalRepaymentAmountInGHS,
-      taxes,
-      taxesInGHS,
-      fees,
-      feesInGHS,
-      status,
-      createdAt,
-      approvedAt,
-      disbursedAt);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        externalId,
+        principal,
+        principalInGHS,
+        interest,
+        interestInGHS,
+        interestRate,
+        monthlyInstallment,
+        monthlyInstallmentInGHS,
+        totalRepaymentAmount,
+        totalRepaymentAmountInGHS,
+        taxes,
+        taxesInGHS,
+        fees,
+        feesInGHS,
+        time,
+        status,
+        createdAt,
+        approvedAt,
+        disbursedAt
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -463,7 +483,7 @@ class _$LoanModelImpl implements _LoanModel {
   }
 }
 
-abstract class _LoanModel implements LoanModel {
+abstract class _LoanModel extends LoanModel {
   const factory _LoanModel(
       {final String? externalId,
       final num? principal,
@@ -479,10 +499,12 @@ abstract class _LoanModel implements LoanModel {
       final String? taxesInGHS,
       final num? fees,
       final String? feesInGHS,
+      final num? time,
       final String? status,
       final String? createdAt,
       final String? approvedAt,
       final String? disbursedAt}) = _$LoanModelImpl;
+  const _LoanModel._() : super._();
 
   factory _LoanModel.fromJson(Map<String, dynamic> json) =
       _$LoanModelImpl.fromJson;
@@ -515,6 +537,8 @@ abstract class _LoanModel implements LoanModel {
   num? get fees;
   @override
   String? get feesInGHS;
+  @override
+  num? get time;
   @override
   String? get status;
   @override
