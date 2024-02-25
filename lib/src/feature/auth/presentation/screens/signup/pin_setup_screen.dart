@@ -14,8 +14,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/view_models/base_view2.dart';
-import '../../../../../shared_widgets/common/authheaders.dart';
-import '../../../../../../core/constants/image_strings.dart';
+import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 import '../../../../../shared_widgets/forms/bdp_input.dart';
@@ -49,9 +48,9 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: AuthHeader(icon: BDPImages.bdpIcon, title: widget.pinChange == true ? BDPTexts.pinChangeTitle : BDPTexts.pinSetupTitle,),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: widget.pinChange == true ? BDPTexts.pinChangeTitle : BDPTexts.pinSetupTitle,
       ),
       body: SingleChildScrollView(
         child: Padding(

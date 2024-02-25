@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/view_models/base_view.dart';
-import '../../../../../shared_widgets/common/authheaders.dart';
-import '../../../../../../core/constants/image_strings.dart';
+import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
@@ -65,9 +64,9 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: AuthHeader(icon: BDPImages.bdpIcon, title: '${widget.otpType?? ''}${BDPTexts.otpTitle}'),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: '${widget.otpType?? ''}${BDPTexts.otpTitle}'
       ),
       body: SingleChildScrollView(
         child: Padding(

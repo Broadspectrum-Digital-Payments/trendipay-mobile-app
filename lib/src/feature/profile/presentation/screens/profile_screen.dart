@@ -10,8 +10,8 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/utils/app_theme_util.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/buttons/bdp_text_button.dart';
-import '../../../../shared_widgets/common/authheaders.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/sizes.dart';
 import '../../../../../core/constants/text_strings.dart';
@@ -29,13 +29,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>().getUser;
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(
-          icon: BDPImages.bdpIcon,
-          title: BDPTexts.profile,
-          showSettings: true,
-        ),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: BDPTexts.profile,
+        hasLeading: false,
+        showSettings: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

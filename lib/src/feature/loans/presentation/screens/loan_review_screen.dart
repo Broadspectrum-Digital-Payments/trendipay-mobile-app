@@ -2,7 +2,6 @@
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
-import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/constants/styles.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/routing/app_route.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 
 
 class LoanReviewScreen extends StatefulWidget {
@@ -26,13 +26,10 @@ class _LoanReviewScreenState extends State<LoanReviewScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const AuthHeader(
-            icon: BDPImages.bdpIcon,
-            title: 'Loan Application Review',
-          ),
-          automaticallyImplyLeading: false,
+        appBar: BDPAppBar(
+          appBar: AppBar(),
+          title: 'Loan Application Review',
+          hasLeading: false,
         ),
         body: Padding(
             padding: EdgeInsets.only(top: AppThemeUtil.height(24.0)),

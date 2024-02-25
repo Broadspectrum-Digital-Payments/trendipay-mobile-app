@@ -46,13 +46,16 @@ class AuthHeader extends StatelessWidget {
             ],
           ),
         ),
-        if(showSettings) Icon(
-          Icons.settings_outlined,
-          size: AppThemeUtil.radius(24.0),
-          color: BDPColors.secondary2,
-        ).iconPressed((){
-          AppNavigator.pushNamed(context, AppRoute.accountSettingsScreen);
-        }),
+        if(showSettings) Padding(
+          padding: EdgeInsets.only(right: AppThemeUtil.width(6.0)),
+          child: Icon(
+            Icons.settings_outlined,
+            size: AppThemeUtil.radius(24.0),
+            color: BDPColors.secondary2,
+          ).iconPressed((){
+            AppNavigator.pushNamed(context, AppRoute.accountSettingsScreen);
+          }),
+        ),
       ],
     );
   }

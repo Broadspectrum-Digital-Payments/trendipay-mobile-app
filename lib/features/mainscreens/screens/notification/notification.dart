@@ -2,7 +2,7 @@ import 'package:bdp_payment_app/features/mainscreens/screens/notification/widget
 import 'package:flutter/material.dart';
 import '../../../../core/constants/sizes.dart';
 import '../../../../core/constants/text_strings.dart';
-import '../../../../common/widgets/custom_appbar/custom_appbar.dart';
+import '../../../../src/shared_widgets/base/bdp_appbar.dart';
 
 
 class NotificationScreen extends StatelessWidget {
@@ -10,9 +10,13 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(appBarTitle: BDPTexts.notifications,),
-      body:   SingleChildScrollView(
+    return Scaffold(
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: BDPTexts.notifications,
+        hasLeading: false,
+      ),
+      body:   const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(BDPSizes.defaultSpace),
           child: Column(

@@ -8,7 +8,7 @@ import 'package:bdp_payment_app/src/shared_widgets/common/nav_bar_wrapper.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/routing/app_route.dart';
-import '../../../../shared_widgets/common/authheaders.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/sizes.dart';
@@ -27,12 +27,9 @@ class _SelectWalletScreenState extends State<SelectWalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.selectWallet),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 24),
-          onPressed: () => AppNavigator.pop(context),
-        ),
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: BDPTexts.selectWallet,
         actions: [
           Container(
             height: AppThemeUtil.height(40),

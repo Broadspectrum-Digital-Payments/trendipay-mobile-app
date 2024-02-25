@@ -17,7 +17,7 @@ class WalletUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 18.0),
+      padding: EdgeInsets.only(top: AppThemeUtil.height(18.0)),
       child: BaseView<UserViewModel>(
         builder: (context, userConsumer, child) {
           return Row(

@@ -3,12 +3,10 @@ import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
-import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
-import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/styles.dart';
-import '../../../../../core/routing/app_navigator.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 
 
@@ -24,16 +22,9 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const AuthHeader(
-          icon: BDPImages.bdpIcon,
-          title: 'Loan Details',
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 24),
-          onPressed: () => AppNavigator.pop(context),
-        ),
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: 'Loan Details',
       ),
       body: SingleChildScrollView(
         child: Padding(

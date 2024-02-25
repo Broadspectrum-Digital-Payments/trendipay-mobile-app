@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/history/presentation/screens/history_screen.dart';
@@ -43,10 +44,11 @@ class _NavigationMenuState extends State<NavigationMenu> {
       builder: (context, bottomNavConsumer, child) {
         return Scaffold(
           bottomNavigationBar: NavigationBar(
-            height: 80,
+            height: AppThemeUtil.height(80),
             elevation: 0,
             selectedIndex: bottomNavConsumer.getSelectedNavTab,
             onDestinationSelected: (index) => bottomNavConsumer.selectNavTab = index,
+            labelBehavior: MediaQuery.of(context).size.height < 550 ? NavigationDestinationLabelBehavior.alwaysHide: null,
             destinations: const[
               NavigationDestination(icon: Icon(Icons.wallet), label: 'Wallet'),
               NavigationDestination(icon: Icon(Icons.history), label: 'History'),

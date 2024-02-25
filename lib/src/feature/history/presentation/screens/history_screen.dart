@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
-import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../../core/utils/app_theme_util.dart';
-import '../../../../shared_widgets/common/authheaders.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/zloader.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -38,9 +37,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: BDPTexts.transactionHistory),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: BDPTexts.transactionHistory,
+        hasLeading: false,
       ),
       body: BaseView<TransactionViewModel>(
         builder: (context, transactionConsumer, child) {

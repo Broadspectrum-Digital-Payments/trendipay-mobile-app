@@ -7,8 +7,7 @@ import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
-import '../../../../../shared_widgets/common/authheaders.dart';
-import '../../../../../../core/constants/image_strings.dart';
+import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
@@ -35,10 +34,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(
-            icon: BDPImages.bdpIcon, title: 'Phone Number'),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: 'Phone Number',
       ),
       body: SingleChildScrollView(
         child: Padding(

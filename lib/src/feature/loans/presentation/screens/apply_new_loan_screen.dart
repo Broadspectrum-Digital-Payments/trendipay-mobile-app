@@ -5,8 +5,6 @@ import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
-import 'package:bdp_payment_app/src/shared_widgets/common/authheaders.dart';
-import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +12,7 @@ import 'package:flutter/services.dart';
 
 import '../../../../../core/constants/styles.dart';
 import '../../../../../core/routing/app_route.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/forms/bdp_input.dart';
 
@@ -45,16 +44,9 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const AuthHeader(
-          icon: BDPImages.bdpIcon,
-          title: 'New Loan',
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 24),
-          onPressed: () => AppNavigator.pop(context),
-        ),
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: 'New Loan',
       ),
       body: SingleChildScrollView(
         child: Padding(

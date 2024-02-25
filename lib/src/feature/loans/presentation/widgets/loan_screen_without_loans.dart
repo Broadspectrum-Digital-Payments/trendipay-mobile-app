@@ -22,7 +22,9 @@ class LoanScreenWithOutLoans extends StatelessWidget {
           alignment: Alignment.center,
           child: Image.asset(
             BDPImages.loanWelcome,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.4,
           ),
         ),
         const Spacer(flex: 1),
@@ -65,7 +67,7 @@ class LoanScreenWithOutLoans extends StatelessWidget {
             ),
           ],
         ),
-        const VSpace(height: 18.0),
+        const Spacer(flex: 1)
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/constants/colors.dart';
 
@@ -23,7 +24,8 @@ class QuickTransactionContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: AppThemeUtil.width(110),
+        // width: AppThemeUtil.width(110),
+        width: double.infinity,
         padding: padding?? EdgeInsets.symmetric(
           horizontal: AppThemeUtil.width(12.5),
           vertical: AppThemeUtil.height(5.0),
@@ -45,12 +47,14 @@ class QuickTransactionContainer extends StatelessWidget {
               width: AppThemeUtil.radius(24.0),
             ),
             const VSpace(height: 8),
-            Text(
-              transactionName,
-              textAlign: TextAlign.center,
-              style: kSemiBoldFontStyle.copyWith(
-                fontSize: AppThemeUtil.fontSize(11.0),
+            RichText(
+              text: TextSpan(
+                text: transactionName,
+                style: kSemiBoldFontStyle.copyWith(
+                  fontSize: AppThemeUtil.fontSize(11.0),
+                ),
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

@@ -2,7 +2,9 @@
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
+import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/history/presentation/view_models/transaction_view_model.dart';
 import 'package:bdp_payment_app/src/feature/history/presentation/widgets/transfer_amount_container.dart';
 import 'package:bdp_payment_app/core/constants/text_strings.dart';
@@ -18,6 +20,7 @@ import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/common.dart';
 import '../../../../../core/constants/sizes.dart';
+import '../../../../shared_widgets/modals/error_modal_content.dart';
 
 class TransferInfoScreen extends StatefulWidget {
   const TransferInfoScreen({super.key});
@@ -61,7 +64,8 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0, // Removes the shadow
+        elevation: 0,
+        scrolledUnderElevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, size: AppThemeUtil.radius(24.0)),
           onPressed: () => AppNavigator.pop(context),
@@ -207,6 +211,16 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                             buttonText: BDPTexts.continueButtonText,
                             onPressed: transactionConsumer.getComponentLoading('nameEnquiry')? null : (){
                               if(formKey.currentState!.validate()){
+                                if(accountNumberCtrl.text == HelperUtil.getLocalPhoneNumber(context.read<UserViewModel>().getUser.phoneNumber?? '')){
+                                  AppDialogUtil.popUpModal(
+                                    context,
+                                    modalContent: const ErrorModalContent(
+                                      errorMessage: 'You can not send money to yourself',
+                                    ),
+                                  );
+                                  return;
+                                }
+                                
                                 AppDialogUtil.showScrollableBottomSheet(
                                   context: context,
                                   builder: (context) => TransferSummaryModalContent(

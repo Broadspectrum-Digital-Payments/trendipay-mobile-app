@@ -10,8 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../../../../common/styles/spacing_styles.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/utils/input_formatter_util.dart';
-import '../../../../../shared_widgets/common/authheaders.dart';
-import '../../../../../../core/constants/image_strings.dart';
+import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
 
@@ -49,9 +48,9 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(icon: BDPImages.bdpIcon, title: 'Account Registration',),
-        automaticallyImplyLeading: false,
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: 'Account Registration',
       ),
       body: SingleChildScrollView(
         child: Padding(

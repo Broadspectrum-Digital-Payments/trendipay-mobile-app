@@ -1,5 +1,7 @@
+import 'package:bdp_payment_app/core/constants/styles.dart';
+import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/sizes.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -14,27 +16,28 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Padding(
-        padding: const EdgeInsets.all(BDPSizes.defaultSpace),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image(
-              image: AssetImage(image),
-            ),
-            const SizedBox(
-              height: BDPSizes.onboardingSpace,
-            ),
-            Text(
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            image,
+            fit: BoxFit.contain,
+            width: double.infinity,
+          ),
+          const VSpace(
+            height: BDPSizes.onboardingSpace,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.radius(BDPSizes.defaultSpace)),
+            child: Text(
               title,
-              style: const TextStyle(
-                  color: BDPColors.primary,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
+              style: kMediumFontStyle.copyWith(
+                fontSize: AppThemeUtil.fontSize(20),
+              ),
               textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ]);
   }

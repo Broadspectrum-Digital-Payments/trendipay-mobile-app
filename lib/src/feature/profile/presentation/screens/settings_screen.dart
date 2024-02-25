@@ -4,8 +4,7 @@ import 'package:bdp_payment_app/src/feature/profile/presentation/widgets/setting
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/constants/text_strings.dart';
-import '../../../../../core/routing/app_navigator.dart';
-import '../../../../shared_widgets/common/authheaders.dart';
+import '../../../../shared_widgets/base/bdp_appbar.dart';
 
 
 
@@ -15,15 +14,9 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AuthHeader(
-          icon: BDPImages.bdpIcon,
-          title: BDPTexts.settings,
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 24),
-          onPressed: () => AppNavigator.pop(context),
-        ),
+      appBar: BDPAppBar(
+        appBar: AppBar(),
+        title: BDPTexts.settings,
       ),
       body:  SingleChildScrollView(
         child: Padding(

@@ -53,6 +53,8 @@ class _WalletScreenState extends State<WalletScreen> {
     final user = context.read<UserViewModel>().getUser;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
         title: const WalletUser(),
         automaticallyImplyLeading: false,
         backgroundColor: BDPColors.white,
