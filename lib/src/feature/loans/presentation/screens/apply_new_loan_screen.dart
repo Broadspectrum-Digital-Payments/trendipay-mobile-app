@@ -189,15 +189,15 @@ class _ApplyNewLoanScreenState extends State<ApplyNewLoanScreen> {
                         buttonText: 'Proceed',
                         onPressed: () async{
                           if(formKey.currentState!.validate()){
-                            // if(documentFilePath.value.isEmpty){
-                            //   AppDialogUtil.popUpModal(
-                            //     context,
-                            //     modalContent: const ErrorModalContent(
-                            //       errorMessage: 'Please select proof of income',
-                            //     ),
-                            //   );
-                            //   return;
-                            // }
+                            if(documentFilePath.value.isEmpty){
+                              AppDialogUtil.popUpModal(
+                                context,
+                                modalContent: const ErrorModalContent(
+                                  errorMessage: 'Please select proof of income',
+                                ),
+                              );
+                              return;
+                            }
                             final loanProvider = context.read<LoanViewModel>();
                             loanProvider.setLoanRequestBody = {
                               'principal': amountController.text,
