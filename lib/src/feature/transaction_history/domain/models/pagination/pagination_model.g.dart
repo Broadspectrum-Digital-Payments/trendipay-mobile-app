@@ -13,6 +13,8 @@ _$PaginationModelImpl _$$PaginationModelImplFromJson(
       nextPage: json['nextPage'] as String?,
       currentPage: json['currentPage'] as num?,
       pageSize: json['pageSize'] as num?,
+      onLastPage: json['onLastPage'] as bool?,
+      onFirstPage: json['onFirstPage'] as bool?,
     );
 
 Map<String, dynamic> _$$PaginationModelImplToJson(
@@ -22,4 +24,6 @@ Map<String, dynamic> _$$PaginationModelImplToJson(
       'nextPage': instance.nextPage,
       'currentPage': instance.currentPage,
       'pageSize': instance.pageSize,
+      'onLastPage': instance.onLastPage,
+      'onFirstPage': instance.onFirstPage,
     };

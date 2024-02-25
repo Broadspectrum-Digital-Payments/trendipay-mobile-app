@@ -12,6 +12,8 @@ class PaginationModel with _$PaginationModel {
     final String? nextPage,
     final num? currentPage,
     final num? pageSize,
+    final bool? onLastPage,
+    final bool? onFirstPage,
   }) = _PaginationModel;
 
   factory PaginationModel.fromJson(Map<String, dynamic> json) =>

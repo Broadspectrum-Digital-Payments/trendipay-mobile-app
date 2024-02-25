@@ -24,6 +24,8 @@ mixin _$PaginationModel {
   String? get nextPage => throw _privateConstructorUsedError;
   num? get currentPage => throw _privateConstructorUsedError;
   num? get pageSize => throw _privateConstructorUsedError;
+  bool? get onLastPage => throw _privateConstructorUsedError;
+  bool? get onFirstPage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $PaginationModelCopyWith<$Res> {
       {String? previousPage,
       String? nextPage,
       num? currentPage,
-      num? pageSize});
+      num? pageSize,
+      bool? onLastPage,
+      bool? onFirstPage});
 }
 
 /// @nodoc
@@ -61,6 +65,8 @@ class _$PaginationModelCopyWithImpl<$Res, $Val extends PaginationModel>
     Object? nextPage = freezed,
     Object? currentPage = freezed,
     Object? pageSize = freezed,
+    Object? onLastPage = freezed,
+    Object? onFirstPage = freezed,
   }) {
     return _then(_value.copyWith(
       previousPage: freezed == previousPage
@@ -79,6 +85,14 @@ class _$PaginationModelCopyWithImpl<$Res, $Val extends PaginationModel>
           ? _value.pageSize
           : pageSize // ignore: cast_nullable_to_non_nullable
               as num?,
+      onLastPage: freezed == onLastPage
+          ? _value.onLastPage
+          : onLastPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      onFirstPage: freezed == onFirstPage
+          ? _value.onFirstPage
+          : onFirstPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -95,7 +109,9 @@ abstract class _$$PaginationModelImplCopyWith<$Res>
       {String? previousPage,
       String? nextPage,
       num? currentPage,
-      num? pageSize});
+      num? pageSize,
+      bool? onLastPage,
+      bool? onFirstPage});
 }
 
 /// @nodoc
@@ -113,6 +129,8 @@ class __$$PaginationModelImplCopyWithImpl<$Res>
     Object? nextPage = freezed,
     Object? currentPage = freezed,
     Object? pageSize = freezed,
+    Object? onLastPage = freezed,
+    Object? onFirstPage = freezed,
   }) {
     return _then(_$PaginationModelImpl(
       previousPage: freezed == previousPage
@@ -131,6 +149,14 @@ class __$$PaginationModelImplCopyWithImpl<$Res>
           ? _value.pageSize
           : pageSize // ignore: cast_nullable_to_non_nullable
               as num?,
+      onLastPage: freezed == onLastPage
+          ? _value.onLastPage
+          : onLastPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      onFirstPage: freezed == onFirstPage
+          ? _value.onFirstPage
+          : onFirstPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -139,7 +165,12 @@ class __$$PaginationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaginationModelImpl implements _PaginationModel {
   const _$PaginationModelImpl(
-      {this.previousPage, this.nextPage, this.currentPage, this.pageSize});
+      {this.previousPage,
+      this.nextPage,
+      this.currentPage,
+      this.pageSize,
+      this.onLastPage,
+      this.onFirstPage});
 
   factory _$PaginationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaginationModelImplFromJson(json);
@@ -152,10 +183,14 @@ class _$PaginationModelImpl implements _PaginationModel {
   final num? currentPage;
   @override
   final num? pageSize;
+  @override
+  final bool? onLastPage;
+  @override
+  final bool? onFirstPage;
 
   @override
   String toString() {
-    return 'PaginationModel(previousPage: $previousPage, nextPage: $nextPage, currentPage: $currentPage, pageSize: $pageSize)';
+    return 'PaginationModel(previousPage: $previousPage, nextPage: $nextPage, currentPage: $currentPage, pageSize: $pageSize, onLastPage: $onLastPage, onFirstPage: $onFirstPage)';
   }
 
   @override
@@ -170,13 +205,17 @@ class _$PaginationModelImpl implements _PaginationModel {
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
             (identical(other.pageSize, pageSize) ||
-                other.pageSize == pageSize));
+                other.pageSize == pageSize) &&
+            (identical(other.onLastPage, onLastPage) ||
+                other.onLastPage == onLastPage) &&
+            (identical(other.onFirstPage, onFirstPage) ||
+                other.onFirstPage == onFirstPage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, previousPage, nextPage, currentPage, pageSize);
+  int get hashCode => Object.hash(runtimeType, previousPage, nextPage,
+      currentPage, pageSize, onLastPage, onFirstPage);
 
   @JsonKey(ignore: true)
   @override
@@ -198,7 +237,9 @@ abstract class _PaginationModel implements PaginationModel {
       {final String? previousPage,
       final String? nextPage,
       final num? currentPage,
-      final num? pageSize}) = _$PaginationModelImpl;
+      final num? pageSize,
+      final bool? onLastPage,
+      final bool? onFirstPage}) = _$PaginationModelImpl;
 
   factory _PaginationModel.fromJson(Map<String, dynamic> json) =
       _$PaginationModelImpl.fromJson;
@@ -211,6 +252,10 @@ abstract class _PaginationModel implements PaginationModel {
   num? get currentPage;
   @override
   num? get pageSize;
+  @override
+  bool? get onLastPage;
+  @override
+  bool? get onFirstPage;
   @override
   @JsonKey(ignore: true)
   _$$PaginationModelImplCopyWith<_$PaginationModelImpl> get copyWith =>
