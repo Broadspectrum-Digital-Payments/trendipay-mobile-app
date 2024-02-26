@@ -21,7 +21,7 @@ class UserLocalDataSourceImpl extends UserLocalDataSource{
 
   @override
   Future<UserModel> retrieveUser() async{
-    Map<String, dynamic> authUserData = await localStorageService.decodeAndReadMap('userModel');
+    final authUserData = await localStorageService.decodeAndReadMap('userModel');
     ZLoggerService.logOnInfo('RETRIEVING USER');
     return UserModel.fromJson(authUserData);
   }

@@ -45,6 +45,7 @@ class TransactionViewModel extends BaseViewModel{
     }, (history){
       setLoading(false, component: loadingComponent, notify: false);
       setTransactionHistory = history;
+      if(history.meta?.currentPage == 1) _persistHistory();
     });
   }
 
@@ -102,5 +103,19 @@ class TransactionViewModel extends BaseViewModel{
   }
 
 
+  /// LOCAL DB
+  Future<void> _retrieveHistory() async{
+    final result = await _transactionRepository.retrieveTransactions();
+    result.fold((l) => null, (history) => _transactionHistory = history );
+  }
+
+  Future<void> _persistHistory() async{
+    final result = await _transactionRepository.persistTransactions(_transactionHistory);
+    result.fold((l) => null, (r) => null);
+  }
+
+  initState() async{
+    await _retrieveHistory();
+  }
 
 }

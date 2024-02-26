@@ -95,6 +95,7 @@ class LoanViewModel extends BaseViewModel{
     }, (history){
       _loanHistory = history;
       setLoading(false, component: loadingComponent);
+      if(history.meta?.currentPage == 1) _persistLoans();
     });
   }
 
@@ -139,5 +140,18 @@ class LoanViewModel extends BaseViewModel{
 
 
 /// LOCAL DB
+  Future<void> _retrieveLoans() async{
+    final result = await _loanRepository.retrieveLoans();
+    result.fold((l) => null, (history) => _loanHistory = history );
+  }
+
+  Future<void> _persistLoans() async{
+    final result = await _loanRepository.persistLoans(_loanHistory);
+    result.fold((l) => null, (r) => null);
+  }
+
+  initState() async{
+    await _retrieveLoans();
+  }
 
 }

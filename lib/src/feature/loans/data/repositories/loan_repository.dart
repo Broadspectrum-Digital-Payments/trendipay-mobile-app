@@ -16,6 +16,8 @@ abstract class LoanRepository{
   Future<Either<Failure, LoanDocumentModel>> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody});
 
   ///LOCAL DB
+ Future<Either<Failure, bool>> persistLoans(LoanHistoryModel loanHistory);
+ Future<Either<Failure, LoanHistoryModel>> retrieveLoans();
 }
 
 
@@ -62,6 +64,26 @@ class LoanRepositoryImpl extends LoanRepository{
   Future<Either<Failure, LoanDocumentModel>> uploadLoanDocument({required String loanExternalId, required Map<String, dynamic> requestBody}) async{
     try{
       final response = await loanRemoteDataSource.uploadLoanDocument(loanExternalId: loanExternalId, requestBody: requestBody);
+      return Right(response);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> persistLoans(LoanHistoryModel loanHistory) async{
+    try{
+      await loanLocalDataSource.persistLoans(loanHistory);
+      return const Right(true);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoanHistoryModel>> retrieveLoans() async{
+    try{
+      final response = await loanLocalDataSource.retrieveLoans();
       return Right(response);
     }catch(e, s){
       return Left(FailureToMessage.returnLeftError(e, s));

@@ -11,6 +11,8 @@ import '../../../../../core/routing/app_route.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/constants/image_strings.dart';
 import '../../../../../core/view_models/user_view_model.dart';
+import '../../../loans/presentation/view_models/loan_view_model.dart';
+import '../../../transaction_history/presentation/view_models/transaction_view_model.dart';
 
 
 
@@ -60,8 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _handleSplashScreen() {
     Timer(const Duration(seconds: 3), () async{
       if(await context.read<UserViewModel>().isLoggedIn()){
-        if(!mounted) return;
-        await context.read<UserViewModel>().initState();
+        await _loadLocalData();
 
         if(!mounted) return;
         AppNavigator.pushReplacementNamed(context, AppRoute.homeScreen);
@@ -77,5 +78,14 @@ class _SplashScreenState extends State<SplashScreen> {
       if(!mounted) return;
       AppNavigator.pushReplacementNamed(context, AppRoute.onboardingScreen);
     });
+  }
+
+  Future<void> _loadLocalData() async{
+    if(!mounted) return;
+    await context.read<UserViewModel>().initState();
+    if(!mounted) return;
+    await context.read<LoanViewModel>().initState();
+    if(!mounted) return;
+    await context.read<TransactionViewModel>().initState();
   }
 }

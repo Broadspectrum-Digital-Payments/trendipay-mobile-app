@@ -12,6 +12,10 @@ abstract class TransactionRepository{
   Future<Either<Failure, TransactionHistoryModel>> fetchTransactions({required Map<String, dynamic> queryParam});
   Future<Either<Failure, WalletModel>> enquireWalletName({required Map<String, dynamic> queryParam});
   Future<Either<Failure, TransactionModel>> transferMoney({required Map<String, dynamic> requestBody});
+
+  /// LOCAL DB
+  Future<Either<Failure, bool>> persistTransactions(TransactionHistoryModel transactionHistory);
+  Future<Either<Failure, TransactionHistoryModel>> retrieveTransactions();
 }
 
 
@@ -48,6 +52,26 @@ class TransactionRepositoryImpl extends TransactionRepository{
   Future<Either<Failure, TransactionModel>> transferMoney({required Map<String, dynamic> requestBody}) async{
     try{
       final response = await transactionRemoteDataSource.transferMoney(requestBody: requestBody);
+      return Right(response);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> persistTransactions(TransactionHistoryModel transactionHistory) async{
+    try{
+      await transactionLocalDataSource.persistTransactions(transactionHistory);
+      return const Right(true);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TransactionHistoryModel>> retrieveTransactions() async{
+    try{
+      final response = await transactionLocalDataSource.retrieveTransactions();
       return Right(response);
     }catch(e, s){
       return Left(FailureToMessage.returnLeftError(e, s));
