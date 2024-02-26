@@ -93,56 +93,53 @@ class _WalletScreenState extends State<WalletScreen> {
                     const VSpace(
                       height: BDPSizes.spaceBtwInputFields,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(50)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: QuickTransactionContainer(
-                              transactionName: BDPTexts.moneyTransfer,
-                              image: BDPImages.moneyTransfer,
-                              onPressed: () {
-                                if([kQueuedStatus, kStartedStatus].contains(user.getKycStatus)){
-                                  AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
-                                  return;
-                                }
-                                if(user.getKycStatus == kSubmittedStatus){
-                                  AppDialogUtil.popUpModal(
-                                    context,
-                                    modalContent: const ErrorModalContent(
-                                      errorMessage: 'Be patient, we are reviewing your KYC documents.',
-                                    ),
-                                  );
-                                  return;
-                                }
-                                AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
-                              },
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: QuickTransactionContainer(
+                            transactionName: BDPTexts.moneyTransfer,
+                            image: BDPImages.moneyTransfer,
+                            onPressed: () {
+                              if([kQueuedStatus, kStartedStatus].contains(user.getKycStatus)){
+                                AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+                                return;
+                              }
+                              if(user.getKycStatus == kSubmittedStatus){
+                                AppDialogUtil.popUpModal(
+                                  context,
+                                  modalContent: const ErrorModalContent(
+                                    errorMessage: 'Be patient, we are reviewing your KYC documents.',
+                                  ),
+                                );
+                                return;
+                              }
+                              AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
+                            },
                           ),
-                          const HSpace(width: 20.0),
-                          Flexible(
-                            child: QuickTransactionContainer(
-                              transactionName: 'Top Up',
-                              image: BDPImages.airtimeData,
-                              onPressed: () {
-                                AppNavigator.pushNamed(context, AppRoute.topUpWalletScreen);
-                              },
-                            ),
+                        ),
+                        const HSpace(width: 20.0),
+                        Flexible(
+                          child: QuickTransactionContainer(
+                            transactionName: 'Top Up',
+                            image: BDPImages.airtimeData,
+                            onPressed: () {
+                              AppNavigator.pushNamed(context, AppRoute.topUpWalletScreen);
+                            },
                           ),
-                          // const HSpace(width: 20.0),
-                          //
-                          // Flexible(
-                          //   child: QuickTransactionContainer(
-                          //     transactionName: BDPTexts.billPayment,
-                          //     image: BDPImages.billPayment,
-                          //     onPressed: () {
-                          //
-                          //     },
-                          //   ),
-                          // ),
-                        ],
-                      ),
+                        ),
+                        // const HSpace(width: 20.0),
+                        //
+                        // Flexible(
+                        //   child: QuickTransactionContainer(
+                        //     transactionName: BDPTexts.billPayment,
+                        //     image: BDPImages.billPayment,
+                        //     onPressed: () {
+                        //
+                        //     },
+                        //   ),
+                        // ),
+                      ],
                     ),
                     const VSpace(
                       height: BDPSizes.spaceBtwSections,
