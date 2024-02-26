@@ -225,23 +225,23 @@ class _LoanTransactionDetailScreenState extends State<LoanTransactionDetailScree
       ),
 
 
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppThemeUtil.width(kWidthPadding),
-          vertical: AppThemeUtil.height(24),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BDPPrimaryButton(
-              buttonText: 'Pay Back',
-              onPressed: (){
-              },
-            ),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.symmetric(
+      //     horizontal: AppThemeUtil.width(kWidthPadding),
+      //     vertical: AppThemeUtil.height(24),
+      //   ),
+      //   child: Row(
+      //     mainAxisSize: MainAxisSize.min,
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       BDPPrimaryButton(
+      //         buttonText: 'Pay Back',
+      //         onPressed: (){
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

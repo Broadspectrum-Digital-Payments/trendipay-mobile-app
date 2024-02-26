@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
@@ -15,6 +16,8 @@ class TransferSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final otpProvider = context.read<OtpViewModel>();
+    final type = otpProvider.getOtpRequestBody['type']?? '';
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -23,7 +26,7 @@ class TransferSuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               const Spacer(flex: 2),
-              Text('Your payment was successful!',
+              Text(type == kRemittance? 'Processing your payment!':'Your payment was successful!',
                 style: kMediumFontStyle.copyWith(
                   fontSize: AppThemeUtil.fontSize(20.0),
                   color: BDPColors.primary,
@@ -50,7 +53,7 @@ class TransferSuccessScreen extends StatelessWidget {
               BDPPrimaryButton(
                 buttonText: 'Go to Homepage',
                 onPressed: (){
-                  context.read<OtpViewModel>().clearRequestBody();
+                  otpProvider.clearRequestBody();
                   AppNavigator.pushNamedAndRemoveUntil(context, AppRoute.homeScreen, (p0) => false);
                 },
               ),

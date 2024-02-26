@@ -33,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(),
         title: BDPTexts.profile,
         hasLeading: false,
-        showSettings: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
