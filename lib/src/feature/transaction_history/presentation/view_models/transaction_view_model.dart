@@ -1,5 +1,4 @@
-//
-// import 'package:flutter/material.dart';
+
 import 'dart:collection';
 import 'package:bdp_payment_app/src/feature/transaction_history/domain/models/pagination/pagination_model.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +78,7 @@ class TransactionViewModel extends BaseViewModel{
   }
 
 
-  Future<void> transferMoney(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+  Future<void> transfer(BuildContext context, {required Map<String, dynamic> requestBody}) async{
     final result = await _transactionRepository.transferMoney(requestBody: requestBody);
 
     if(context.mounted) AppNavigator.pop(context);

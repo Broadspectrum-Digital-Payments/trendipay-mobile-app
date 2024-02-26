@@ -84,7 +84,7 @@ class OtpViewModel extends BaseViewModel{
       }
       if(_otpRequestBody['action'] == kPerformTransferAction){
         if(context.mounted){
-          await context.read<TransactionViewModel>().transferMoney(context, requestBody: _otpRequestBody);
+          await context.read<TransactionViewModel>().transfer(context, requestBody: _otpRequestBody);
         }
         return;
       }

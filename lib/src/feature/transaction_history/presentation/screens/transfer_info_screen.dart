@@ -240,7 +240,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                                       "accountIssuer": accountNetwork.value,
                                       "accountName": accNameCtrl.text,
                                       "description": descCtrl.text,
-                                      "type": "transfer"
+                                      "type": kTransfer,
                                     },
                                   ),
                                 );

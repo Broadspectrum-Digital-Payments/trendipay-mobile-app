@@ -1,22 +1,24 @@
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
-import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/sizes.dart';
-import 'package:bdp_payment_app/src/feature/wallet/presentation/view_models/wallet_view_model.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/bdp_input.dart';
 import 'package:bdp_payment_app/src/shared_widgets/forms/form_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/constants/common.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
+import '../../../../../core/utils/helper_util.dart';
+import '../../../../../core/view_models/user_view_model.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/buttons/bdp_primary_button.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../shared_widgets/common/h_space.dart';
 import '../../../../shared_widgets/common/nav_bar_wrapper.dart';
 import '../../../../shared_widgets/modals/error_modal_content.dart';
+import '../../../auth/presentation/view_models/otp_view_model.dart';
 import '../widgets/add_wallet_modal_content.dart';
 
 
@@ -180,8 +182,6 @@ class _TopUpWalletScreenState extends State<TopUpWalletScreen> {
                   );
                 },
               ),
-
-
             ],
           ),
         ),
@@ -206,12 +206,16 @@ class _TopUpWalletScreenState extends State<TopUpWalletScreen> {
                     return;
                   }
 
-                  await context.read<WalletViewModel>().topUpWallet(
+                  await context.read<OtpViewModel>().sendOtp(
                     context,
                     requestBody: {
+                      'action': kPerformTransferAction,
+                      "phoneNumber": HelperUtil.getLocalPhoneNumber(context.read<UserViewModel>().getUser.phoneNumber?? ''),
                       ...?paymentMethod.value,
-                      'accountIssuer': (paymentMethod.value?['accountIssuer']?? '').toString().toNetworkCode(),
-                      'amount': amountCtrl.text,
+                      'amount': double.parse(amountCtrl.text)*100,
+                      'accountIssuer': (paymentMethod.value?['accountIssuer']?? '').toString().toLowerCase(),
+                      "description": "Top up balance",
+                      "type": kRemittance,
                     },
                   );
                 }

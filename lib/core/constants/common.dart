@@ -27,5 +27,8 @@ const kDisbursedStatus = 'disbursed';
 
 const kPageSize = 40;
 
-const kMobileNetworks = ['MTN', 'G-Money', 'AirtelTigo', 'Vodafone'];
+const kMobileNetworks = ['MTN', 'AirtelTigo', 'Vodafone'];
 const kTransactionNetworks = ['G-Money'];
+
+const kTransfer = 'transfer';
+const kRemittance = 'remittance';
