@@ -117,7 +117,7 @@ class UserViewModel extends BaseViewModel{
 
       if(right.isNotEmpty) {
         setUser = _user.copyWith(
-          kycStatus: (_user.selfieUploaded && _user.idCardFrontUploaded && _user.idCardFrontUploaded)? kSubmittedStatus : kStartedStatus,
+          kycStatus: (_user.files?? []).length >= 2 ? kSubmittedStatus : kStartedStatus,
           files: List.from(_user.files?? [])..add(right.first),
         );
       }

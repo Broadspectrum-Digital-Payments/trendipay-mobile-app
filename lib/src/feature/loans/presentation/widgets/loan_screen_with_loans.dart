@@ -2,12 +2,14 @@ import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/image_strings.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
+import 'package:bdp_payment_app/src/feature/loans/presentation/view_models/loan_view_model.dart';
 import 'package:bdp_payment_app/src/feature/loans/presentation/widgets/loan_stats.dart';
 import 'package:bdp_payment_app/src/feature/transaction_history/presentation/widgets/loan_transaction_list_view.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/h_space.dart';
 import 'package:bdp_payment_app/src/shared_widgets/common/v_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../domain/models/loan/loan_model.dart';
 import '../../domain/models/stats/stats_model.dart';
@@ -21,6 +23,19 @@ class LoanScreenWithLoans extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(context.read<LoanViewModel>().isComponentErrorType('loans')){
+      return Center(
+        child: Text(
+          context.read<LoanViewModel>().componentErrorType?['error']?? '',
+          style: kRegularFontStyle.copyWith(
+            fontSize: AppThemeUtil.fontSize(14.0),
+            color: BDPColors.dark90,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

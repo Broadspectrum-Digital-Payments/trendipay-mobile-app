@@ -9,7 +9,6 @@ import 'package:bdp_payment_app/src/feature/loans/presentation/widgets/loan_scre
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/constants/colors.dart';
-import '../../../../../core/constants/styles.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/routing/app_route.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
@@ -30,7 +29,9 @@ class _LoansScreenState extends State<LoansScreen> {
     await context.read<LoanViewModel>().fetchLoans(
       context,
       userExternalId: context.read<UserViewModel>().getUser.externalId?? '',
-      queryParams: {},
+      queryParams: {
+        'pageSize': kPageSize
+      },
     );
   }
 
@@ -49,17 +50,6 @@ class _LoansScreenState extends State<LoansScreen> {
         if(loanConsumer.getComponentLoading('loans') && loanConsumer.getLoans.isEmpty){
           return const Center(
             child: ZLoader(loaderColor: BDPColors.primary, size: 32),
-          );
-        }
-        if(loanConsumer.isComponentErrorType('loans')){
-          return Center(
-            child: Text(
-              loanConsumer.componentErrorType?['error']?? '',
-              style: kRegularFontStyle.copyWith(
-                fontSize: AppThemeUtil.fontSize(14.0),
-                color: BDPColors.dark90,
-              ),
-            ),
           );
         }
 

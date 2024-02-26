@@ -43,6 +43,8 @@ class UserModel with _$UserModel {
 
   String get joinedAt => (createdAt?? '').isEmpty? '' : DateFormat("d MMMM y").format(DateTime.parse(createdAt?? '')).toString();
 
+  bool get uploadedAllKycFiles => selfieUploaded && idCardFrontUploaded && idCardBackUploaded;
+
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
