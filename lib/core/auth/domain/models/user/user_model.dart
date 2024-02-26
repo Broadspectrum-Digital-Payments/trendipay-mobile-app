@@ -30,7 +30,7 @@ class UserModel with _$UserModel {
     final splitNameList = (name?? '').replaceAll('-', ' ').split(' ');
     return splitNameList.first;
   }
-  String get getAvailableBalance => double.parse((availableBalance?? '0')).toStringAsFixed(2);
+  String get getAvailableBalance => availableBalance?? '0';
   String get getKycStatus => (kycStatus?? '').toLowerCase();
   bool get selfieUploaded => (files?? []).any((obj) => (obj.name?? '').toLowerCase() == 'selfie');
   FileModel get selfieFile => (files?? []).firstWhere((obj) => (obj.name?? '').toLowerCase() == 'selfie', orElse: () => const FileModel());
