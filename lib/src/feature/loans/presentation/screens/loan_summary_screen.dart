@@ -6,14 +6,12 @@ import 'package:bdp_payment_app/src/feature/loans/presentation/widgets/loan_agre
 import 'package:bdp_payment_app/src/shared_widgets/buttons/bdp_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/styles.dart';
 import '../../../../../core/utils/app_dialog_util.dart';
 import '../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../domain/models/amortize/amortize_model.dart';
-import '../view_models/loan_view_model.dart';
 
 
 class LoanSummaryScreen extends StatefulWidget {
@@ -31,7 +29,6 @@ class _LoanSummaryScreenState extends State<LoanSummaryScreen> {
   @override
   Widget build(BuildContext context) {
     final amortize = widget.amortize;
-    final request = context.read<LoanViewModel>().getLoanRequestBody;
     return Scaffold(
       appBar: BDPAppBar(
         appBar: AppBar(),

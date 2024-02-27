@@ -1,5 +1,6 @@
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/styles.dart';
+import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -11,10 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/constants/common.dart';
 import '../../../../../../core/constants/sizes.dart';
+import '../../../../../../core/utils/app_dialog_util.dart';
 import '../../../../../../core/utils/app_theme_util.dart';
 import '../../../../../../core/utils/input_formatter_util.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/text_strings.dart';
+import '../../../../../shared_widgets/common/nav_bar_wrapper.dart';
+import '../../widgets/auth_agreement_modal_content.dart';
 
 
 class AccountRegistrationScreen extends StatefulWidget {
@@ -180,6 +184,58 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
             ],
           ),
         ),
+      ),
+
+      bottomNavigationBar: NavBarWrapper(
+        padding: EdgeInsets.only(
+          left: AppThemeUtil.width(kWidthPadding),
+          right: AppThemeUtil.width(kWidthPadding),
+          bottom: AppThemeUtil.height(MediaQuery.of(context).size.height < 500? 32 : 48),
+          top: AppThemeUtil.height(AppThemeUtil.height(MediaQuery.of(context).size.height < 500? 4 : 8)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RichText(
+              text: TextSpan(
+                  text: 'See ',
+                  style: kRegularFontStyle.copyWith(
+                    fontSize: AppThemeUtil.radius(14.0),
+                    color: const Color(0xff332f2e),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Terms and Conditions ',
+                      style: kMediumFontStyle.copyWith(
+                        fontSize: AppThemeUtil.radius(14.0),
+                        color: BDPColors.brightPurple,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'and ',
+                      style: kRegularFontStyle.copyWith(
+                        fontSize: AppThemeUtil.radius(14.0),
+                        color: const Color(0xff332f2e),
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Privacy Policy',
+                      style: kMediumFontStyle.copyWith(
+                        fontSize: AppThemeUtil.radius(14.0),
+                        color: BDPColors.brightPurple,
+                      ),
+                    ),
+                  ]
+              ),
+            ),
+          ],
+        ).onPressed((){
+          AppDialogUtil.showScrollableBottomSheet(
+            context: context,
+            builder: (context) => const AuthAgreementModalContent(),
+          );
+        }),
       ),
     );
   }

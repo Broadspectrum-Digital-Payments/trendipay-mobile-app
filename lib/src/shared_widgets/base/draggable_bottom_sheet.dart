@@ -9,7 +9,7 @@ class DraggableBottomSheet extends StatelessWidget {
     this.minChildSize = 0.85,
     this.maxChildSize = 1.0,
     this.snap = false,
-    this.clearAccountName = false,
+    this.closeModal = true,
     required this.builder,
   });
 
@@ -17,16 +17,16 @@ class DraggableBottomSheet extends StatelessWidget {
   final double minChildSize;
   final double maxChildSize;
   final bool snap;
-  final bool clearAccountName;
+  final bool closeModal;
   final Widget Function(BuildContext, ScrollController) builder;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: (){
+      onTap: closeModal ? (){
         Navigator.pop(context);
-      },
+      } : null,
       child: GestureDetector(
         onTap: (){},
         child: DraggableScrollableSheet(
