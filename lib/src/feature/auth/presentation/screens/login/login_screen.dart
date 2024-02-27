@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        AppNavigator.pushNamed(context, AppRoute.kycSetupScreen);
+
                       },
                       child: Text(
                         BDPTexts.forgetPassword,
