@@ -50,11 +50,11 @@ class TransactionSummaryModalContent extends StatelessWidget {
                       ),
                     ),
                     const VSpace(height: 20),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: TransactionSummaryItem(
                           title: 'Elevy',
-                          data: transaction.elevy,
+                          data: 'GHS 0',
                       ),
                     ),
                     const VSpace(height: 20),
@@ -62,7 +62,7 @@ class TransactionSummaryModalContent extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: TransactionSummaryItem(
                         title: 'Fees',
-                        data: transaction.feeInMajorUnits?? '0',
+                        data: 'GHS ${transaction.feeInMajorUnits?? '0'}',
                       ),
                     ),
                     const VSpace(height: 20),

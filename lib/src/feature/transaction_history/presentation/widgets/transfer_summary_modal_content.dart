@@ -132,7 +132,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'GHS ${(double.parse(transferInfo['amount']?? '0') * kElevy)}',
+                    'GHS 0',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,
