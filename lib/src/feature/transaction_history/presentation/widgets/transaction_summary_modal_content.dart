@@ -19,8 +19,8 @@ class TransactionSummaryModalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableBottomSheet(
-      initialChildSize: 0.70,
-      minChildSize: 0.50,
+      initialChildSize: 0.75,
+      minChildSize: 0.55,
       builder: (context, scrollController){
         return DraggableBottomSheetContent(
           draggableKey: GlobalKey(),
