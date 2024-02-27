@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
@@ -31,6 +32,7 @@ class TransactionModel with _$TransactionModel {
   String get getAmount => '$currency ${(amountInMajorUnits?? '0').toString().toCurrencyFormat}';
   String get getDate => (createdAt?? '').isEmpty? '' : DateFormat("d MMM y").format(DateTime.parse(createdAt?? '')).toString();
   String get getTime => (createdAt?? '').isEmpty? '' : DateFormat("jm").format(DateTime.parse(createdAt?? '')).toString();
+  String get elevy => (double.parse((amountInMajorUnits?? '0').replaceAll(',', ''))*kElevy).toStringAsFixed(2);
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) =>
       _$TransactionModelFromJson(json);

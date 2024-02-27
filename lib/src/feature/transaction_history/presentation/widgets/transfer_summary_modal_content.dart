@@ -25,7 +25,7 @@ class TransferSummaryModalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableBottomSheet(
-      initialChildSize: MediaQuery.of(context).size.height < 550? 0.90 : 0.70,
+      initialChildSize: MediaQuery.of(context).size.height < 550? 0.90 : 0.75,
       minChildSize: 0.50,
       builder: (context, scrollController){
         return DraggableBottomSheetContent(
@@ -118,6 +118,36 @@ class TransferSummaryModalContent extends StatelessWidget {
                   ),
                   Text(
                     transferInfo['accountIssuer']?? '',
+                    style: kRegularFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(16),
+                      color: BDPColors.grey,
+                    ),
+                  ),
+                  const VSpace(height: 20),
+                  Text(
+                    'Elevy',
+                    style: kRegularFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(16),
+                      color: BDPColors.grey,
+                    ),
+                  ),
+                  Text(
+                    'GHS ${(double.parse(transferInfo['amount']?? '0') * kElevy)}',
+                    style: kRegularFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(16),
+                      color: BDPColors.grey,
+                    ),
+                  ),
+                  const VSpace(height: 20),
+                  Text(
+                    'Fees',
+                    style: kRegularFontStyle.copyWith(
+                      fontSize: AppThemeUtil.fontSize(16),
+                      color: BDPColors.grey,
+                    ),
+                  ),
+                  Text(
+                    'GHS 0',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,

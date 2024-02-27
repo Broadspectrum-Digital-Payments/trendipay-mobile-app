@@ -32,3 +32,5 @@ const kTransactionNetworks = ['G-Money'];
 
 const kTransfer = 'transfer';
 const kRemittance = 'remittance';
+
+const kElevy = 0.01;
