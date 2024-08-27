@@ -47,5 +47,8 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+
+		<key>NFCReaderUsageDescription</key>
+        <string>Bdp Payment needs access to NFC Reader to perform payment</string>
 	</dict>
 </plist>
