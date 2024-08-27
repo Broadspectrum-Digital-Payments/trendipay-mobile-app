@@ -25,6 +25,7 @@ class BDPTexts {
   static const String notifications = "Notifications";
   static const String transactionHistory = "Transaction History";
   static const String systemSupport = "System Support";
+  static const String nfcPayment = "NFC Payment";
 
 
   //Label Text

@@ -48,7 +48,7 @@ class BDPApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemeUtil.lightTheme,
-            initialRoute: AppRoute.splashScreen,
+            initialRoute: AppRoute.nfcScreen,
             onGenerateRoute: AppNavigator.generateRoute,
             navigatorKey: AppNavigator.navigatorKey,
           );

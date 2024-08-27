@@ -25,6 +25,7 @@ class BDPInput extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.inputFormatters,
     this.helperText,
+    this.maxLines = 1,
   });
 
   final TextEditingController? controller;
@@ -43,6 +44,7 @@ class BDPInput extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final List<TextInputFormatter>? inputFormatters;
   final String? helperText;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class BDPInput extends StatelessWidget {
       onTap: onTap,
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
+      maxLines: maxLines,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
