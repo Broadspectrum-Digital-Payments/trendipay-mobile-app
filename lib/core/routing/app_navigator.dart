@@ -3,6 +3,7 @@ import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pho
 import 'package:bdp_payment_app/src/feature/auth/presentation/screens/signup/pin_setup_screen.dart';
 import 'package:bdp_payment_app/src/feature/kyc/presentation/screens/kyc_setup_screen.dart';
 import 'package:bdp_payment_app/src/feature/loans/domain/models/amortize/amortize_model.dart';
+import 'package:bdp_payment_app/src/feature/profile/presentation/screens/nfc_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../src/feature/loans/domain/models/loan/loan_model.dart';
@@ -116,6 +117,9 @@ class AppNavigator {
 
       case AppRoute.topUpWalletSuccessScreen:
         return MaterialPageRoute(builder: (context) => const TopUpWalletSuccessScreen());
+
+      case AppRoute.nfcScreen:
+        return MaterialPageRoute(builder: (context) => const NfcScreen());
 
       default:
         return _errorRoute();
