@@ -21,5 +21,6 @@ class AppRoute {
   static const selectWalletScreen = 'select_wallet_screen';
   static const confirmTopUpWalletScreen = 'confirm_top_up_wallet_screen';
   static const topUpWalletSuccessScreen = 'top_up_wallet_success_screen';
+  static const nfcScreen = 'nfc_screen';
 
 }

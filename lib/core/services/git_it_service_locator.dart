@@ -9,6 +9,7 @@ import '../../src/feature/wallet/wallet_injections.dart';
 import '../auth/auth_injections.dart';
 import 'http_service_requester.dart';
 import 'local_storage_service.dart';
+import 'nfc_service.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -18,6 +19,7 @@ void setUpGetItServiceLocator(){
   // sl.registerSingleton<LocalNotificationService>(LocalNotificationService());
   // sl.registerLazySingleton<PushNotificationService>(() => PushNotificationService());
   // sl.registerLazySingleton<RemoteConfigService>(() => RemoteConfigService());
+  sl.registerLazySingleton<NfcService>(() => NfcService());
   sl.registerLazySingleton(() => HttpServiceRequester());
 
   initAuth();
