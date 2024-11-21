@@ -8,6 +8,7 @@ const kWidthPadding = 24.0;
 
 const kSignupAction = 'sign-up';
 const kChangePinAction = 'change-pin';
+const kResetPinAction ='reset-pin';
 const kPerformTransferAction = 'perform-transfer';
 
 const kProcessedStatus = 'processed';

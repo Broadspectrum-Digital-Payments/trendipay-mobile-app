@@ -126,24 +126,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.end,
-                //   children: [
-                //     TextButton(
-                //       onPressed: () {
-                //
-                //       },
-                //       child: Text(
-                //         BDPTexts.forgetPassword,
-                //         style: kRegularFontStyle.copyWith(
-                //           fontSize: AppThemeUtil.fontSize(16.0),
-                //           color: BDPColors.brightPurple,
-                //         ),
-                //         textAlign: TextAlign.right,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen,  arguments: {'forgotPin': true},);
+                      },
+                      child: Text(
+                        BDPTexts.forgetPassword,
+                        style: kRegularFontStyle.copyWith(
+                          fontSize: AppThemeUtil.fontSize(16.0),
+                          color: BDPColors.brightPurple,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  ],
+                ),
                 const VSpace(height: 32.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen);
+                        AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen,);
                       },
                       child: Text(
                         BDPTexts.signup,

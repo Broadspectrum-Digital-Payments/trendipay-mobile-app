@@ -21,9 +21,10 @@ import '../../../../../shared_widgets/forms/bdp_input.dart';
 
 
 class PinSetupScreen extends StatefulWidget {
-  const PinSetupScreen({super.key, this.pinChange,});
+  const PinSetupScreen({super.key, this.pinChange, this.forgotPin,});
 
   final bool? pinChange;
+  final bool? forgotPin;
 
   @override
   State<PinSetupScreen> createState() => _PinSetupScreenState();
@@ -50,7 +51,11 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
     return Scaffold(
       appBar: BDPAppBar(
         appBar: AppBar(),
-        title: widget.pinChange == true ? BDPTexts.pinChangeTitle : BDPTexts.pinSetupTitle,
+        title:  widget.pinChange == true
+            ? 'Pin Change'
+            : widget.forgotPin == true
+            ? "Reset Pin"
+            : 'Pin Setup',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -196,10 +201,9 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                               isLoading: userConsumer.isSubmitted || otpConsumer.isSubmitted,
                               onPressed: () async{
                                 ZLoggerService.logOnInfo('Phone number: ${userConsumer.getUser.phoneNumber}');
-
                                 if (formKey.currentState!.validate()) {
                                   if(widget.pinChange == true){
-                                    await context.read<OtpViewModel>().sendOtp(
+                                    await context.read<UserViewModel>().changePin(
                                       context,
                                       requestBody: {
                                         'action': kChangePinAction,
@@ -207,6 +211,17 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                        "pin": pinCtrl.text,
                                        "pinConfirmation": confirmPinCtrl.text
                                       }
+                                    );
+                                    return;
+                                  }else if(widget.forgotPin == true){
+                                    await context.read<UserViewModel>().forgotPin(
+                                        context,
+                                        requestBody: {
+                                          'action': kChangePinAction,
+                                          "phoneNumber": HelperUtil.getLocalPhoneNumber(userConsumer.getUser.phoneNumber?? ''),
+                                          "pin": pinCtrl.text,
+                                          "pinConfirmation": confirmPinCtrl.text
+                                        }
                                     );
                                     return;
                                   }
