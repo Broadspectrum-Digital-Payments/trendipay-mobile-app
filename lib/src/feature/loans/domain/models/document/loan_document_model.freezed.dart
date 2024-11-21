@@ -25,8 +25,12 @@ mixin _$LoanDocumentModel {
   String? get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this LoanDocumentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoanDocumentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoanDocumentModelCopyWith<LoanDocumentModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$LoanDocumentModelCopyWithImpl<$Res, $Val extends LoanDocumentModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoanDocumentModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$LoanDocumentModelImplCopyWithImpl<$Res>
       $Res Function(_$LoanDocumentModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoanDocumentModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,12 +173,14 @@ class _$LoanDocumentModelImpl implements _LoanDocumentModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, externalId, url, status, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoanDocumentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoanDocumentModelImplCopyWith<_$LoanDocumentModelImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _LoanDocumentModel implements LoanDocumentModel {
   String? get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of LoanDocumentModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoanDocumentModelImplCopyWith<_$LoanDocumentModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -101,6 +101,54 @@ class TransactionViewModel extends BaseViewModel{
     });
   }
 
+  Future<void>  makePayment(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    AppDialogUtil.loadingDialog(context);
+    final result = await _transactionRepository.makePayment(requestBody: requestBody);
+
+    if(context.mounted) AppNavigator.pop(context);
+
+    result.fold((left) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (transaction) {
+      setTransactionHistory = _transactionHistory.copyWith(
+        data: List.from(_transactionHistory.data?? [])..add(transaction),
+      );
+      AppNavigator.pushReplacementNamed(context, AppRoute.transferSuccessScreen);
+    });
+  }
+
+  Future<void>makePurchase(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    AppDialogUtil.loadingDialog(context);
+    final result = await _transactionRepository.makePurchase(requestBody: requestBody);
+
+    if(context.mounted) AppNavigator.pop(context);
+
+    result.fold((left) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (transaction) {
+      setTransactionHistory = _transactionHistory.copyWith(
+        data: List.from(_transactionHistory.data?? [])..add(transaction),
+      );
+      AppNavigator.pushReplacementNamed(context, AppRoute.transferSuccessScreen);
+    });
+  }
+
 
   /// LOCAL DB
   Future<void> _retrieveHistory() async{

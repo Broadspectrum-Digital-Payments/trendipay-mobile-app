@@ -1,5 +1,7 @@
 
 
+import 'package:bdp_payment_app/core/services/logger_service.dart';
+
 import '../env/environment.dart';
 import 'git_it_service_locator.dart';
 import 'local_storage_service.dart';
@@ -17,6 +19,7 @@ class ApiConfigService{
     String token = await sl.get<LocalStorageService>().getToken();
     if(token.isNotEmpty){
       headers.addAll({'Authorization': 'Bearer $token'});
+      ZLoggerService.logOnInfo(headers.toString());
     }
     return headers;
   }

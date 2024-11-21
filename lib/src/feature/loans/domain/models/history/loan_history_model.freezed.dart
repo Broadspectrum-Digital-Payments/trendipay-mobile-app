@@ -24,8 +24,12 @@ mixin _$LoanHistoryModel {
   List<LoanModel>? get loans => throw _privateConstructorUsedError;
   PaginationModel? get meta => throw _privateConstructorUsedError;
 
+  /// Serializes this LoanHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoanHistoryModelCopyWith<LoanHistoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$LoanHistoryModelCopyWithImpl<$Res, $Val extends LoanHistoryModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +81,8 @@ class _$LoanHistoryModelCopyWithImpl<$Res, $Val extends LoanHistoryModel>
     ) as $Val);
   }
 
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StatsModelCopyWith<$Res>? get stats {
@@ -87,6 +95,8 @@ class _$LoanHistoryModelCopyWithImpl<$Res, $Val extends LoanHistoryModel>
     });
   }
 
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaginationModelCopyWith<$Res>? get meta {
@@ -124,6 +134,8 @@ class __$$LoanHistoryModelImplCopyWithImpl<$Res>
       $Res Function(_$LoanHistoryModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -188,12 +200,14 @@ class _$LoanHistoryModelImpl implements _LoanHistoryModel {
             (identical(other.meta, meta) || other.meta == meta));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, stats, const DeepCollectionEquality().hash(_loans), meta);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoanHistoryModelImplCopyWith<_$LoanHistoryModelImpl> get copyWith =>
@@ -223,8 +237,11 @@ abstract class _LoanHistoryModel implements LoanHistoryModel {
   List<LoanModel>? get loans;
   @override
   PaginationModel? get meta;
+
+  /// Create a copy of LoanHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoanHistoryModelImplCopyWith<_$LoanHistoryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -24,8 +24,12 @@ mixin _$TransactionHistoryModel {
   List<TransactionModel>? get data => throw _privateConstructorUsedError;
   PaginationModel? get meta => throw _privateConstructorUsedError;
 
+  /// Serializes this TransactionHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransactionHistoryModelCopyWith<TransactionHistoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$TransactionHistoryModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,6 +76,8 @@ class _$TransactionHistoryModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaginationModelCopyWith<$Res>? get meta {
@@ -108,6 +116,8 @@ class __$$TransactionHistoryModelImplCopyWithImpl<$Res>
       $Res Function(_$TransactionHistoryModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,12 +174,14 @@ class _$TransactionHistoryModelImpl implements _TransactionHistoryModel {
             (identical(other.meta, meta) || other.meta == meta));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_data), meta);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionHistoryModelImplCopyWith<_$TransactionHistoryModelImpl>
@@ -196,8 +208,11 @@ abstract class _TransactionHistoryModel implements TransactionHistoryModel {
   List<TransactionModel>? get data;
   @override
   PaginationModel? get meta;
+
+  /// Create a copy of TransactionHistoryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionHistoryModelImplCopyWith<_$TransactionHistoryModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

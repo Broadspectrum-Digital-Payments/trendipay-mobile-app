@@ -28,13 +28,13 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   Timer? _timer;
   int start = 150;
   int current = 150;
-  final inputOtpCode = ValueNotifier<String>('');
+  final inputOtpCode = ValueNotifier<String>('');  // Tracks OTP input
   final otpController = TextEditingController();
 
   @override
   void initState() {
-    startTimer();
     super.initState();
+    startTimer();
   }
 
   @override
@@ -50,15 +50,14 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       }  else {
         _timer?.cancel();
       }
-      setState(() {
-      });
+      setState(() {});
     });
   }
 
-  void resetAndAddTime(){
-    start+=30;
+  void resetAndAddTime() {
+    start += 30;  // Increase the time by 30 seconds on resend
     current = start;
-    startTimer();
+    startTimer();  // Restart the timer
   }
 
   @override
@@ -66,7 +65,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     return Scaffold(
       appBar: BDPAppBar(
         appBar: AppBar(),
-        title: '${widget.otpType?? ''}${BDPTexts.otpTitle}'
+        title: '${widget.otpType ?? ''} ${BDPTexts.otpTitle}',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -81,7 +80,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     children: [
                       Center(
                         child: SizedBox(
-                          height: AppThemeUtil.height(MediaQuery.of(context).size.height < 550? 100:80),
+                          height: AppThemeUtil.height(MediaQuery.of(context).size.height < 550 ? 100 : 80),
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: AppThemeUtil.width(20.0)),
                             child: OTPInput(
@@ -89,21 +88,19 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                               enabled: !otpConsumer.isSubmitted,
                               onCompleted: (code) {
                                 inputOtpCode.value = code;
-                              }
+                              },
                             ),
                           ),
                         ),
                       ),
-                      const VSpace(
-                        height: BDPSizes.spaceBtwSections,
-                      ),
+                      const VSpace(height: BDPSizes.spaceBtwSections),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           BDPPrimaryButton(
                             isLoading: otpConsumer.isSubmitted,
                             buttonText: 'Verify OTP',
-                            onPressed: () async{
+                            onPressed: () async {
                               if (formKey.currentState!.validate()) {
                                 await context.read<OtpViewModel>().verifyOtp(
                                   context,
@@ -117,24 +114,22 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                           ),
                         ],
                       ),
-                      const VSpace(
-                        height: BDPSizes.spaceBtwItems,
-                      ),
+                      const VSpace(height: BDPSizes.spaceBtwItems),
                       ResendOTPText(
                         currentTime: current,
-                        resendOtp: () async{
-                          otpController.clear();
+                        resendOtp: () async {
+                          otpController.clear();  // Clear the OTP input field
                           await context.read<OtpViewModel>().sendOtp(
                             context,
                             resend: true,
-                            requestBody: otpConsumer.getOtpRequestBody,
+                            phoneNumber: otpConsumer.getOtpRequestBody['phoneNumber'],
                           );
-                          resetAndAddTime();
+                          resetAndAddTime();  // Reset the timer for resend
                         },
-                      )
+                      ),
                     ],
                   );
-                }
+                },
               ),
             ),
           ),
@@ -143,3 +138,4 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     );
   }
 }
+

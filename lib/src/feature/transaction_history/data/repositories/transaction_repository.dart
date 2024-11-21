@@ -12,6 +12,8 @@ abstract class TransactionRepository{
   Future<Either<Failure, TransactionHistoryModel>> fetchTransactions({required Map<String, dynamic> queryParam});
   Future<Either<Failure, WalletModel>> enquireWalletName({required Map<String, dynamic> queryParam});
   Future<Either<Failure, TransactionModel>> transferMoney({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, TransactionModel>> makePurchase({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, TransactionModel>>makePayment({required Map<String, dynamic> requestBody});
 
   /// LOCAL DB
   Future<Either<Failure, bool>> persistTransactions(TransactionHistoryModel transactionHistory);
@@ -74,6 +76,27 @@ class TransactionRepositoryImpl extends TransactionRepository{
       final response = await transactionLocalDataSource.retrieveTransactions();
       return Right(response);
     }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TransactionModel>> makePurchase({required Map<String, dynamic> requestBody}) async {
+    try{
+      final response = await transactionRemoteDataSource.makePurchase(requestBody: requestBody);
+      return Right(response);
+    }catch(e, s){
+      return Left(FailureToMessage.returnLeftError(e, s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TransactionModel>> makePayment({required Map<String, dynamic> requestBody}) async {
+    try {
+      final response = await transactionRemoteDataSource.makePurchase(
+          requestBody: requestBody);
+      return Right(response);
+    } catch (e, s) {
       return Left(FailureToMessage.returnLeftError(e, s));
     }
   }

@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../../../../core/constants/common.dart';
 import '../../../../../core/routing/app_navigator.dart';
 import '../../../../../core/routing/app_route.dart';
-import '../../../loans/presentation/screens/loans_screen.dart';
 import '../../../profile/presentation/screens/profile_screen.dart';
 import '../view_models/bottom_nav_view_model.dart';
 
@@ -26,7 +25,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
     WalletScreen(),
     HistoryScreen(),
     NotificationScreen(),
-    LoansScreen(),
     ProfileScreen(),
   ];
 
@@ -53,7 +51,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
               NavigationDestination(icon: Icon(Icons.wallet), label: 'Wallet'),
               NavigationDestination(icon: Icon(Icons.history), label: 'History'),
               NavigationDestination(icon: Icon(Icons.notifications_none), label: 'Notification'),
-              NavigationDestination(icon: Icon(Icons.money), label: 'Loans'),
               NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile')
             ],
           ),

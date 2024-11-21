@@ -35,8 +35,12 @@ mixin _$AmortizeModel {
   num? get monthlyInstallment => throw _privateConstructorUsedError;
   String? get monthlyInstallmentInGHS => throw _privateConstructorUsedError;
 
+  /// Serializes this AmortizeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AmortizeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AmortizeModelCopyWith<AmortizeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +78,8 @@ class _$AmortizeModelCopyWithImpl<$Res, $Val extends AmortizeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AmortizeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,6 +192,8 @@ class __$$AmortizeModelImplCopyWithImpl<$Res>
       _$AmortizeModelImpl _value, $Res Function(_$AmortizeModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AmortizeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -356,7 +364,7 @@ class _$AmortizeModelImpl implements _AmortizeModel {
                 other.monthlyInstallmentInGHS == monthlyInstallmentInGHS));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -375,7 +383,9 @@ class _$AmortizeModelImpl implements _AmortizeModel {
       monthlyInstallment,
       monthlyInstallmentInGHS);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AmortizeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AmortizeModelImplCopyWith<_$AmortizeModelImpl> get copyWith =>
@@ -437,8 +447,11 @@ abstract class _AmortizeModel implements AmortizeModel {
   num? get monthlyInstallment;
   @override
   String? get monthlyInstallmentInGHS;
+
+  /// Create a copy of AmortizeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AmortizeModelImplCopyWith<_$AmortizeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

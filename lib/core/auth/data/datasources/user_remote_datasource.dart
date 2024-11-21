@@ -1,3 +1,4 @@
+import 'package:bdp_payment_app/core/services/logger_service.dart';
 import 'package:dio/dio.dart';
 
 import '../../../constants/api_routes.dart';
@@ -11,7 +12,7 @@ import '../../domain/models/user/user_model.dart';
 abstract class UserRemoteDataSource{
   Future<UserModel> signup({required Map<String, dynamic> requestBody});
   Future<UserModel> login({required Map<String, dynamic> requestBody});
-  Future<String> sendOtp({required Map<String, dynamic> requestBody});
+  Future<String> sendOtp({String? phoneNumber});
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> changePin({required Map<String, dynamic> requestBody});
   Future<List<FileModel>> uploadKYCFile({required Map<String, dynamic> requestBody});
@@ -43,34 +44,52 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   }
 
   @override
-  Future<UserModel> login({required Map<String, dynamic> requestBody}) async{
+  Future<UserModel> login({required Map<String, dynamic> requestBody}) async {
     final response = await httpServiceRequester.postRequest(
       endpoint: ApiRoutes.login,
       requestBody: requestBody,
     );
 
     var body = response.data;
-    if(body['success'] == false){
-      throw ServerException(message: body['message']?? '');
+    if (body['success'] == false) {
+      throw ServerException(message: body['message'] ?? '');
     }
 
-    await sl.get<LocalStorageService>().writeToken(body['data']['bearerToken']??'');
-    return UserModel.fromJson(response.data['data']?? {});
+    // Check if the user type is 'customer'
+    if (body['data']['type'] != 'customer') {
+      throw const ServerException(message: 'Access denied: You are not allowed to use this service.');
+    }
+
+    await sl.get<LocalStorageService>().writeToken(body['data']['bearerToken'] ?? '');
+    return UserModel.fromJson(response.data['data'] ?? {});
   }
 
+
   @override
-  Future<String> sendOtp({required Map<String, dynamic> requestBody}) async{
-    final response = await httpServiceRequester.postRequest(
-      endpoint: ApiRoutes.sendOtp,
-      requestBody: requestBody,
-    );
+  Future<String> sendOtp({String? phoneNumber}) async {
+    final queryParams = {
+      'phoneNumber': phoneNumber,
+    };
 
-    var body = response.data;
-    if(body['success'] == false){
-      throw ServerException(message: body['message']?? '');
+    try {
+      final response = await httpServiceRequester.getRequest(
+        endpoint: ApiRoutes.sendOtp,
+        queryParam: queryParams,
+      );
+
+      ZLoggerService.logOnInfo("Response status code: ${response.statusCode}");
+
+      ZLoggerService.logOnInfo("Response data: ${response.data}");
+      var body = response.data;
+
+      if (body == null || body['success'] == false) {
+        throw ServerException(message: body?['message'] ?? 'Unknown error');
+      }
+
+      return (body['message'] ?? '').toString();
+    } catch (e) {
+      throw const ServerException(message: 'Failed to send OTP');
     }
-
-    return (body['message']?? '').toString();
   }
 
   @override
@@ -91,7 +110,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   @override
   Future<String> changePin({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.putRequest(
-      endpoint: ApiRoutes.changePin,
+      endpoint: ApiRoutes.forgetPin,
       requestBody: requestBody,
     );
 
@@ -122,6 +141,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
   Future<UserModel> fetchUser() async{
     final response = await httpServiceRequester.getRequest(
       endpoint: ApiRoutes.getUser,
+
     );
 
     var body = response.data;

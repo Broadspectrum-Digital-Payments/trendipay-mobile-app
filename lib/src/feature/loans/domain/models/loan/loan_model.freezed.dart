@@ -40,8 +40,12 @@ mixin _$LoanModel {
   String? get approvedAt => throw _privateConstructorUsedError;
   String? get disbursedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this LoanModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoanModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoanModelCopyWith<LoanModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -83,6 +87,8 @@ class _$LoanModelCopyWithImpl<$Res, $Val extends LoanModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoanModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -225,6 +231,8 @@ class __$$LoanModelImplCopyWithImpl<$Res>
       _$LoanModelImpl _value, $Res Function(_$LoanModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoanModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -444,7 +452,7 @@ class _$LoanModelImpl extends _LoanModel {
                 other.disbursedAt == disbursedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -469,7 +477,9 @@ class _$LoanModelImpl extends _LoanModel {
         disbursedAt
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoanModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoanModelImplCopyWith<_$LoanModelImpl> get copyWith =>
@@ -547,8 +557,11 @@ abstract class _LoanModel extends LoanModel {
   String? get approvedAt;
   @override
   String? get disbursedAt;
+
+  /// Create a copy of LoanModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoanModelImplCopyWith<_$LoanModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

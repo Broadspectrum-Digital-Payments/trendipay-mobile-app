@@ -2,6 +2,7 @@ import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/services/logger_service.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/view_models/base_view.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -30,20 +31,16 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
-
-
-
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async{
-      if(!mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
       context.read<UserViewModel>().fetchUser(context);
-      await context.read<TransactionViewModel>().fetchTransactions(
-        context,
-        queryParam: {
-          'pageSize': 10,
-        }
-      );
+      await context
+          .read<TransactionViewModel>()
+          .fetchTransactions(context, queryParam: {
+        'pageSize': 10,
+      });
     });
     super.initState();
   }
@@ -60,7 +57,7 @@ class _WalletScreenState extends State<WalletScreen> {
         backgroundColor: BDPColors.white,
       ),
       body: RefreshIndicator(
-        onRefresh: () async{
+        onRefresh: () async {
           await context.read<UserViewModel>().fetchUser(context);
         },
         child: SingleChildScrollView(
@@ -68,11 +65,14 @@ class _WalletScreenState extends State<WalletScreen> {
             padding: const EdgeInsets.all(BDPSizes.defaultSpace),
             child: Column(
               children: [
-                const WalletCard(
-                  accountNumber: BDPTexts.accountNumber,
-                  date: BDPTexts.date,
-                  accountBalance: BDPTexts.accountBalance,
-                  gradients: [BDPColors.primary, BDPColors.secondary],
+                WalletCard(
+                  accountNumber:
+                      user.name ?? 'Name not available', // Display user's name
+                  date: user.phoneNumber ??
+                      'Phone number not available', // Display user's phone number
+                  accountBalance:
+                      BDPTexts.accountBalance, // Keep the balance as is
+                  gradients: const [BDPColors.primary, BDPColors.secondary],
                 ),
                 const VSpace(
                   height: BDPSizes.spaceBtwItems,
@@ -114,31 +114,39 @@ class _WalletScreenState extends State<WalletScreen> {
                                 );
                                 return;
                               }
-                              AppNavigator.pushNamed(context, AppRoute.transactionInfoScreen);
+                              AppNavigator.pushNamed(
+                                  context, AppRoute.transactionInfoScreen);
                             },
                           ),
                         ),
                         const HSpace(width: 20.0),
                         Flexible(
                           child: QuickTransactionContainer(
-                            transactionName: 'Top Up',
+                            transactionName: 'Services',
                             image: BDPImages.airtimeData,
                             onPressed: () {
-                              AppNavigator.pushNamed(context, AppRoute.topUpWalletScreen);
+                              AppNavigator.pushNamed(
+                                context,
+                                AppRoute.topUpWalletScreen,
+                                arguments:  'payments',
+                              );
                             },
                           ),
                         ),
-                        // const HSpace(width: 20.0),
-                        //
-                        // Flexible(
-                        //   child: QuickTransactionContainer(
-                        //     transactionName: BDPTexts.billPayment,
-                        //     image: BDPImages.billPayment,
-                        //     onPressed: () {
-                        //
-                        //     },
-                        //   ),
-                        // ),
+                        const HSpace(width: 20.0),
+                        Flexible(
+                          child: QuickTransactionContainer(
+                            transactionName:'DSTV',
+                            image: BDPImages.billPayment,
+                            onPressed: () {
+                              AppNavigator.pushNamed(
+                                context,
+                                AppRoute.topUpWalletScreen,
+                                arguments: 'purchases',
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     const VSpace(
@@ -160,16 +168,23 @@ class _WalletScreenState extends State<WalletScreen> {
                           height: BDPSizes.spaceBtwItems,
                         ),
                         BaseView<TransactionViewModel>(
-                          builder: (context, transactionConsumer, child){
-                            if(transactionConsumer.getComponentLoading('walletRecent') && transactionConsumer.getTransactions.isEmpty){
+                          builder: (context, transactionConsumer, child) {
+                            if (transactionConsumer
+                                    .getComponentLoading('walletRecent') &&
+                                transactionConsumer.getTransactions.isEmpty) {
                               return Padding(
-                                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
-                                child: const ZLoader(loaderColor: BDPColors.primary, size: 24),
+                                padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.1),
+                                child: const ZLoader(
+                                    loaderColor: BDPColors.primary, size: 24),
                               );
                             }
-                            if(transactionConsumer.getTransactions.isEmpty){
+                            if (transactionConsumer.getTransactions.isEmpty) {
                               return Padding(
-                                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
+                                padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.1),
                                 child: Text(
                                   "You have no recent transactions",
                                   style: kRegularFontStyle.copyWith(

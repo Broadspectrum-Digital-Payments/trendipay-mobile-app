@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
 import 'package:bdp_payment_app/core/routing/app_route.dart';
+import 'package:bdp_payment_app/core/services/logger_service.dart';
 import 'package:bdp_payment_app/core/view_models/base_view_model.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
 import 'package:bdp_payment_app/src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
@@ -21,7 +22,6 @@ class OtpViewModel extends BaseViewModel{
 
   Map<String, dynamic> _otpRequestBody = {};
 
-
   set setOtpRequestBody(Map<String, dynamic> request){
     _otpRequestBody = {..._otpRequestBody, ...request};
   }
@@ -32,16 +32,19 @@ class OtpViewModel extends BaseViewModel{
     _otpRequestBody.clear();
   }
 
-  Future<void> sendOtp(BuildContext context, {bool resend = false, required Map<String, dynamic> requestBody}) async{
-    if(!resend) AppDialogUtil.loadingDialog(context);
-    if(resend) setIsSubmitted(false);
+  Future<void> sendOtp(BuildContext context, {bool resend = false, String? phoneNumber, Map<String, dynamic>? requestBody}) async {
+    if (!resend) AppDialogUtil.loadingDialog(context);
+    if (resend) setIsSubmitted(false);
 
-    final result = await _userRepository.sendOtp(requestBody: requestBody);
-    if(context.mounted && !resend) AppNavigator.pop(context);
+    ZLoggerService.logOnInfo('this is the $requestBody');
+    final result = await _userRepository.sendOtp(phoneNumber: requestBody?['phoneNumber']);
 
-    result.fold((failure){
-      if(resend) setIsSubmitted(false);
-      WidgetsBinding.instance.addPostFrameCallback((_) async{
+
+    if (context.mounted && !resend) AppNavigator.pop(context);
+
+    result.fold((failure) {
+      if (resend) setIsSubmitted(false);
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
         AppDialogUtil.popUpModal(
           context,
           modalContent: ErrorModalContent(
@@ -49,21 +52,24 @@ class OtpViewModel extends BaseViewModel{
           ),
         );
       });
-    }, (response){
-      if(resend) setIsSubmitted(false);
-      if(!resend){
-        setOtpRequestBody = requestBody;
+    }, (response) {
+      if (resend) setIsSubmitted(false);
+      if (!resend) {
+        setOtpRequestBody = {'phoneNumber': phoneNumber};
         String otpTitle = '';
-        if(requestBody['action'] == kChangePinAction) otpTitle = 'Change Pin ';
-        if(requestBody['action'] == kPerformTransferAction) otpTitle = 'Transaction ';
+        if (_otpRequestBody['action'] == kChangePinAction) otpTitle = 'Change Pin ';
+        if (_otpRequestBody['action'] == kPerformTransferAction) otpTitle = 'Transaction ';
         AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen, arguments: otpTitle);
       }
     });
   }
 
-  Future<void> verifyOtp(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+  Future<void> verifyOtp(BuildContext context, {required Map<String, dynamic> requestBody}) async {
     AppDialogUtil.loadingDialog(context);
     final result = await _userRepository.verifyOtp(requestBody: requestBody);
+
+    ZLoggerService.logOnInfo('this is the first request body $requestBody.toString()');
+    ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody.toString()');
 
     result.fold((failure){
       if(context.mounted) AppNavigator.pop(context);
@@ -76,6 +82,8 @@ class OtpViewModel extends BaseViewModel{
         );
       });
     }, (response) async{
+      AppNavigator.pushReplacementNamed(context, AppRoute.accountRegistrationScreen);
+
       if(_otpRequestBody['action'] == kSignupAction){
         if(context.mounted) AppNavigator.pop(context);
         setOtpRequestBody = {...requestBody, 'otp': requestBody['otp']};
@@ -90,12 +98,13 @@ class OtpViewModel extends BaseViewModel{
       }
       if(_otpRequestBody['action'] == kChangePinAction){
         if(context.mounted){
+          ZLoggerService.logOnInfo('this is the first request body $requestBody.toString()');
+          ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody.toString()');
           await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
         }
         return;
       }
     });
   }
-
-
 }
+

@@ -94,11 +94,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                           onPressed: () async{
                             if (formKey.currentState!.validate()) {
                               await context.read<OtpViewModel>().sendOtp(
-                                context,
-                                requestBody: {
-                                  "phoneNumber": phoneCtrl.text,
-                                  'action':'sign-up',
-                                },
+              context,
+              phoneNumber:  phoneCtrl.text,
                               );
                             }
                           },

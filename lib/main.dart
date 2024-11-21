@@ -11,8 +11,18 @@ import 'src/feature/auth/presentation/view_models/otp_view_model.dart';
 import 'src/feature/loans/presentation/view_models/loan_view_model.dart';
 import 'src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
 import 'src/feature/wallet/presentation/view_models/wallet_view_model.dart';
+import 'dart:io';
+
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
 
 void main() async{
+  HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   setUpGetItServiceLocator();
@@ -48,7 +58,7 @@ class BDPApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemeUtil.lightTheme,
-            initialRoute: AppRoute.nfcScreen,
+            initialRoute: AppRoute.splashScreen,
             onGenerateRoute: AppNavigator.generateRoute,
             navigatorKey: AppNavigator.navigatorKey,
           );
