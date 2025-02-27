@@ -68,7 +68,15 @@ class AppNavigator {
         );
 
       case AppRoute.phoneNumberScreen:
-        return MaterialPageRoute(builder: (context) => const PhoneNumberScreen());
+        final args = settings.arguments as Map<String, dynamic>?;
+
+        return MaterialPageRoute(
+          builder: (context) => PhoneNumberScreen(
+            pinChange: args?['pinChange'] ?? false,
+            forgotPin: args?['forgotPin'] ?? false,
+          ),
+        );
+
 
       case AppRoute.otpVerificationScreen:
         return MaterialPageRoute(builder: (context) => VerifyOTPScreen(otpType: args as String?,));
@@ -80,7 +88,12 @@ class AppNavigator {
         return MaterialPageRoute(builder: (context) => const AccountRegistrationScreen());
 
       case AppRoute.pinSetupScreen:
-        return MaterialPageRoute(builder: (context) => PinSetupScreen(pinChange: args as bool?,));
+        final args = settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(builder: (context) => PinSetupScreen(
+          pinChange: args?['pinChange'] ?? false,
+          forgotPin: args?['forgotPin'] ?? false,
+        ),
+        );
 
       case AppRoute.kycSetupScreen:
         return MaterialPageRoute(builder: (context) => const KYCSetupScreen());

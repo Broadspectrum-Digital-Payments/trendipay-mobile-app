@@ -15,6 +15,7 @@ abstract class UserRemoteDataSource{
   Future<String> sendOtp({String? phoneNumber});
   Future<String> verifyOtp({required Map<String, dynamic> requestBody});
   Future<String> changePin({required Map<String, dynamic> requestBody});
+  Future<String> forgotPin({required Map<String, dynamic> requestBody});
   Future<List<FileModel>> uploadKYCFile({required Map<String, dynamic> requestBody});
   Future<UserModel> fetchUser();
 }
@@ -109,6 +110,21 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource{
 
   @override
   Future<String> changePin({required Map<String, dynamic> requestBody}) async{
+    final response = await httpServiceRequester.putRequest(
+      endpoint: ApiRoutes.changePin,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return (body['message']?? '').toString();
+  }
+
+  @override
+  Future<String> forgotPin({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.putRequest(
       endpoint: ApiRoutes.forgetPin,
       requestBody: requestBody,

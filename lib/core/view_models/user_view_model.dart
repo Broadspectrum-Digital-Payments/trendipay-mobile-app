@@ -83,6 +83,28 @@ class UserViewModel extends BaseViewModel{
     });
   }
 
+  Future<void> forgotPin(BuildContext context, {required Map<String, dynamic> requestBody}) async{
+    final result = await _userRepository.forgotPin(requestBody: requestBody);
+
+    if(context.mounted) AppNavigator.pop(context);
+
+    result.fold((left) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async{
+        AppDialogUtil.popUpModal(
+          context,
+          modalContent: ErrorModalContent(
+            errorMessage: FailureToMessage.mapFailureToMessage(left),
+          ),
+        );
+      });
+
+    }, (right) {
+      AppNavigator.pushReplacementNamed(context, AppRoute.pinSuccessScreen);
+    });
+  }
+
+
+
   Future<void> uploadKYCFile(BuildContext context, {required Map<String, dynamic> requestBody}) async{
     AppDialogUtil.loadingDialog(context);
 

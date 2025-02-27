@@ -14,6 +14,7 @@ abstract class UserRepository{
   Future<Either<Failure, String>> sendOtp({String? phoneNumber});
   Future<Either<Failure, String>> verifyOtp({required Map<String, dynamic> requestBody});
   Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody});
+  Future<Either<Failure, String>> forgotPin({required Map<String, dynamic> requestBody});
   Future<Either<Failure, List<FileModel>>> uploadKYCFile({required Map<String, dynamic> requestBody});
   Future<Either<Failure, UserModel>> fetchUser();
 
@@ -101,6 +102,16 @@ class UserRepositoryImpl extends UserRepository{
 
   @override
   Future<Either<Failure, String>> changePin({required Map<String, dynamic> requestBody}) async{
+    try {
+      final response = await userRemoteDataSource.changePin(requestBody: requestBody);
+      return Right(response);
+    } catch (e) {
+      return Left(FailureToMessage.returnLeftError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> forgotPin({required Map<String, dynamic> requestBody}) async{
     try {
       final response = await userRemoteDataSource.changePin(requestBody: requestBody);
       return Right(response);

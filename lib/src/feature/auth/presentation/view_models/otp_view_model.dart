@@ -55,10 +55,12 @@ class OtpViewModel extends BaseViewModel{
     }, (response) {
       if (resend) setIsSubmitted(false);
       if (!resend) {
-        setOtpRequestBody = {'phoneNumber': phoneNumber};
+        setOtpRequestBody = {'phoneNumber': phoneNumber, ...?requestBody};
+        ZLoggerService.logOnInfo('this is the phoneeee $getOtpRequestBody');
         String otpTitle = '';
         if (_otpRequestBody['action'] == kChangePinAction) otpTitle = 'Change Pin ';
         if (_otpRequestBody['action'] == kPerformTransferAction) otpTitle = 'Transaction ';
+        if (_otpRequestBody['action'] == kSignupAction) otpTitle = 'Signup ';
         AppNavigator.pushNamed(context, AppRoute.otpVerificationScreen, arguments: otpTitle);
       }
     });
@@ -69,7 +71,7 @@ class OtpViewModel extends BaseViewModel{
     final result = await _userRepository.verifyOtp(requestBody: requestBody);
 
     ZLoggerService.logOnInfo('this is the first request body $requestBody.toString()');
-    ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody.toString()');
+    ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody');
 
     result.fold((failure){
       if(context.mounted) AppNavigator.pop(context);
@@ -100,7 +102,17 @@ class OtpViewModel extends BaseViewModel{
         if(context.mounted){
           ZLoggerService.logOnInfo('this is the first request body $requestBody.toString()');
           ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody.toString()');
-          await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
+          AppNavigator.pushReplacementNamed(context, AppRoute.pinSetupScreen, arguments: {'pinChange': true});
+          //await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
+        }
+        return;
+      }
+      if(_otpRequestBody['action'] == kResetPinAction){
+        if(context.mounted){
+          ZLoggerService.logOnInfo('this is the first request body $requestBody.toString()');
+          ZLoggerService.logOnInfo('this is the otp request body $_otpRequestBody.toString()');
+          AppNavigator.pushReplacementNamed(context, AppRoute.pinSetupScreen, arguments: {'forgotPin': true});
+          //await context.read<UserViewModel>().changePin(context, requestBody: {..._otpRequestBody, 'otp': requestBody['otp']});
         }
         return;
       }
