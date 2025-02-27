@@ -1,6 +1,7 @@
 
 import 'package:bdp_payment_app/core/extensions/gesture_extension.dart';
 import 'package:bdp_payment_app/core/routing/app_navigator.dart';
+import 'package:bdp_payment_app/core/services/logger_service.dart';
 import 'package:bdp_payment_app/core/utils/app_dialog_util.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/utils/helper_util.dart';
@@ -150,7 +151,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                       height: BDPSizes.spaceBtwInputFields,
                     ),
                     BDPDropdown(
-                      labelText: 'Account Network*',
+                      labelText: 'Account Issuer*',
                       value: accountNetwork.value,
                       onChanged: (value) async{
                         accountNetwork.value = value;
@@ -230,7 +231,6 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                                   );
                                   return;
                                 }
-                                
                                 AppDialogUtil.showScrollableBottomSheet(
                                   context: context,
                                   builder: (context) => TransferSummaryModalContent(
@@ -240,7 +240,7 @@ class _TransferInfoScreenState extends State<TransferInfoScreen> {
                                       "accountIssuer": accountNetwork.value,
                                       "accountName": accNameCtrl.text,
                                       "description": descCtrl.text,
-                                      "type": kTransfer,
+                                      // "type": kTransfer,
                                     },
                                   ),
                                 );

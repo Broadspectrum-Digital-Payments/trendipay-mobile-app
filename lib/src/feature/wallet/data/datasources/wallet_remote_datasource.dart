@@ -1,3 +1,5 @@
+import 'package:bdp_payment_app/core/services/logger_service.dart';
+
 import '../../../../../core/constants/api_routes.dart';
 import '../../../../../core/errors/error.dart';
 import '../../../../../core/services/http_service_requester.dart';
@@ -18,6 +20,8 @@ class WalletRemoteDataSourceImpl extends WalletRemoteDataSource{
       endpoint: ApiRoutes.topUpWallet,
       requestBody: requestBody,
     );
+
+    ZLoggerService.logOnInfo(ApiRoutes.topUpWallet);
 
     var body = response.data;
     if(body['success'] == false){

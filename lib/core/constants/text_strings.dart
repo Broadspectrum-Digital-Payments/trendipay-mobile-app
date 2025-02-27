@@ -128,7 +128,7 @@ static const selectCardTitle = "You have not added any cards yet. Your wallets w
 
   static const String moneyTransfer = "Money Transfer";
   static const String airtimeData = "Airtime/Data";
-  static const String billPayment = "Bill Payment";
+  static const String purchase = "Make Purchase";
 
   static const String creditDebitCard = "Credit/Debit Card";
   static const String bankTransferCard = "Bank Transfer";

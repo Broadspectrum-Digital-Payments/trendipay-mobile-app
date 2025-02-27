@@ -1,0 +1,19 @@
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">testtrendipayapi.bsl.com.gh</domain>
+        <trust-anchors>
+            <certificates src="@raw/bsl_com_gh"/>
+        </trust-anchors>
+    </domain-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">test-trendipay-api.bsl.com.gh</domain>
+        <trust-anchors>
+            <certificates src="@raw/trendi_bsl_com_gh"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

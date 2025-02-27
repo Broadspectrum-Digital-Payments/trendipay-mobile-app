@@ -7,18 +7,21 @@ class ApiRoutes{
   static final String _loanBaseUrl = ApiConfigService.loanBaseURL;
 
   /// USER
-  static get signup => '$_baseUrl/v1/users/register';
-  static get login => '$_baseUrl/v1/users/login';
-  static get sendOtp => '$_baseUrl/v1/users/otp';
-  static get verifyOtp => '$_baseUrl/v1/users/otp/verify';
-  static get changePin => '$_baseUrl/v1/users/change-pin';
-  static get uploadKYCFile => '$_baseUrl/v1/users/kyc';
-  static get getUser => '$_baseUrl/v1/users/me';
+  static get signup => '$_baseUrl/v1/register';
+  static get login => '$_baseUrl/v1/login';
+  static get sendOtp => '$_baseUrl/v1/otp';
+  static get verifyOtp => '$_baseUrl/v1/otp';
+  static get forgetPin => '$_baseUrl/v1/users/pin';
+  static get changePin => '$_baseUrl/v1/pin';
+  static get uploadKYCFile => '$_baseUrl/v1/kyc';
+  static get getUser => '$_baseUrl/v1/me';
 
   /// TRANSACTIONS
   static get walletTransaction => '$_baseUrl/v1/transactions';
+  static get transferMoney => '$_baseUrl/v1/transfers';
+  static get topUpWallet => '$_baseUrl/v1/payments';
+  static get makePurchase => '$_baseUrl/v1/purchases';
   static get walletNameEnquiry => '$_baseUrl/v1/users/name-enquiry';
-  static get topUpWallet => '$_baseUrl/v1/users/';
 
   /// LOANS
   static get amortization => '$_loanBaseUrl/v1/amortization';

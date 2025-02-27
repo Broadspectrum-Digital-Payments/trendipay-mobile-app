@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:retry/retry.dart';
 
 import '../env/environment.dart';
@@ -17,7 +18,6 @@ class HttpServiceRequester{
   HttpServiceRequester._internal();
 
   final dio = Dio();
-
   Future<Response> postRequest({
     required String endpoint,
     Map<String, dynamic>? requestBody,
@@ -46,7 +46,7 @@ class HttpServiceRequester{
           body: requestBody,
           queryParam: queryParam,
           statusCode: response.statusCode.toString(),
-          response: response.data
+          response: response.data,
         );
       }
 
@@ -96,46 +96,45 @@ class HttpServiceRequester{
     }
   }
 
-
   Future<Response> getRequest({
     required String endpoint,
     Map<String, dynamic>? queryParam,
   }) async {
-    if(await NetworkConnectionService.isConnected){
-      final headers = await ApiConfigService.getHttpHeaders();
-      final response = await retry(() => dio.get<dynamic>(
-        endpoint,
-        options: Options(
-          headers: headers,
-        ),
-        queryParameters: queryParam,
-      ).timeout(const Duration(seconds: 60)),
-        retryIf: (e) =>
-        e is SocketException ||
-            e is TimeoutException ||
-            (e is DioException &&
-                (e.type == DioExceptionType.connectionTimeout ||
-                    e.type == DioExceptionType.sendTimeout ||
-                    e.type == DioExceptionType.receiveTimeout)),
-      );
+    if (await NetworkConnectionService.isConnected) {
+      try {
+        final headers = await ApiConfigService.getHttpHeaders();
+        final response = await retry(() => dio.get<dynamic>(
+          endpoint,
+          options: Options(
+            headers: headers,
+          ),
+          queryParameters: queryParam,
+        ).timeout(const Duration(seconds: 60)),
+          retryIf: (e) =>
+          e is SocketException ||
+              e is TimeoutException ||
+              (e is DioException &&
+                  (e.type == DioExceptionType.connectionTimeout ||
+                      e.type == DioExceptionType.sendTimeout ||
+                      e.type == DioExceptionType.receiveTimeout)),
+        );
 
-      if(Environment.inDevMode) {
-        ZLoggerService.logRequests(
-        endpoint: endpoint,
-        method: 'GET',
-        realUri: response.realUri.toString(),
-        queryParam: queryParam,
-        statusCode: response.statusCode.toString(),
-        response: response.data
-      );
+        ZLoggerService.logOnInfo("Response: ${response.statusCode} ${response.data}");
+
+        if (response.statusCode != 200) {
+          throw DioError(requestOptions: response.requestOptions, error: 'Unexpected status code');
+        }
+        return response;
+      } catch (e, stackTrace) {
+        ZLoggerService.logOnError("Error in getRequest: $e");
+        ZLoggerService.logOnError("Stack trace: $stackTrace");
+        rethrow;
       }
-
-      return response;
-
     } else {
       throw NoInternetException();
     }
   }
+
 
 
   Future<Response> deleteRequest({

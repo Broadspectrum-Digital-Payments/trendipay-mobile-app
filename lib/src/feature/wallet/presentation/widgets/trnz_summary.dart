@@ -1,27 +1,26 @@
-import 'package:bdp_payment_app/core/constants/common.dart';
 import 'package:bdp_payment_app/core/extensions/string_extension.dart';
-import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
-import 'package:bdp_payment_app/src/feature/auth/presentation/view_models/otp_view_model.dart';
-import 'package:bdp_payment_app/src/feature/transaction_history/presentation/view_models/transaction_view_model.dart';
+import 'package:bdp_payment_app/core/services/logger_service.dart';
+import 'package:bdp_payment_app/src/shared_widgets/modals/error_modal_content.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/colors.dart';
+import '../../../../../core/constants/common.dart';
 import '../../../../../core/constants/sizes.dart';
+import '../../../../../core/constants/styles.dart';
 import '../../../../../core/constants/text_strings.dart';
 import '../../../../../core/utils/app_theme_util.dart';
-import '../../../../../core/utils/helper_util.dart';
 import '../../../../shared_widgets/base/draggable_bottom_sheet.dart';
 import '../../../../shared_widgets/buttons/bdp_primary_button.dart';
 import '../../../../shared_widgets/common/v_space.dart';
 import '../../../../shared_widgets/modals/draggable_bottom_sheet_content.dart';
+import '../../../transaction_history/presentation/view_models/transaction_view_model.dart';
 
-class TransferSummaryModalContent extends StatelessWidget {
-  const TransferSummaryModalContent({super.key, required this.transferInfo,});
+class TrnzSummary extends StatelessWidget {
+  const TrnzSummary({super.key, required this.purchaseInfo, required this.transactionType});
 
-  final Map<String, dynamic> transferInfo;
+  final Map<String, dynamic> purchaseInfo;
+  final String transactionType;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class TransferSummaryModalContent extends StatelessWidget {
         return DraggableBottomSheetContent(
           draggableKey: GlobalKey(),
           scrollController: scrollController,
-          title: 'Transaction Summary',
+          title: 'Purchase Summary',
           content: SingleChildScrollView(
             controller: scrollController,
             child: Padding(
@@ -59,7 +58,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'GHS ${(transferInfo['amount']?? '0').toString().toCurrencyFormat}',
+                      'GHS ${(purchaseInfo['amount']?? '0').toString().toCurrencyFormat}',
                       style: kBoldFontStyle.copyWith(
                         fontSize: AppThemeUtil.fontSize(20),
                         foreground: Paint()
@@ -79,31 +78,31 @@ class TransferSummaryModalContent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const VSpace(height: 20.0),
-                  Text(
-                    'To',
-                    style: kRegularFontStyle.copyWith(
-                      fontSize: AppThemeUtil.fontSize(16),
-                      color: BDPColors.grey,
-                    ),
-                  ),
-                  Text(
-                    transferInfo['accountName']?? '',
-                    style: kMediumFontStyle.copyWith(
-                      fontSize: AppThemeUtil.fontSize(16),
-                      color: BDPColors.grey,
-                    ),
-                  ),
+                  // const VSpace(height: 20.0),
+                  // Text(
+                  //   'To',
+                  //   style: kRegularFontStyle.copyWith(
+                  //     fontSize: AppThemeUtil.fontSize(16),
+                  //     color: BDPColors.grey,
+                  //   ),
+                  // ),
+                  // Text(
+                  //   purchaseInfo['accountName']?? '',
+                  //   style: kMediumFontStyle.copyWith(
+                  //     fontSize: AppThemeUtil.fontSize(16),
+                  //     color: BDPColors.grey,
+                  //   ),
+                  // ),
                   const VSpace(height: 20),
                   Text(
-                    'With account number',
+                    'To account number',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,
                     ),
                   ),
                   Text(
-                    transferInfo['accountNumber']?? '',
+                    purchaseInfo['accountNumber']?? '',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,
@@ -118,7 +117,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    transferInfo['accountIssuer']?? '',
+                    purchaseInfo['accountIssuer']?? '',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,
@@ -163,7 +162,7 @@ class TransferSummaryModalContent extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    transferInfo['description']?? '',
+                    purchaseInfo['description']?? '',
                     style: kRegularFontStyle.copyWith(
                       fontSize: AppThemeUtil.fontSize(16),
                       color: BDPColors.grey,
@@ -176,22 +175,32 @@ class TransferSummaryModalContent extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         BDPPrimaryButton(
-                          buttonText: BDPTexts.confirm,
-                          onPressed: () async{
-                            await context.read<TransactionViewModel>().transfer(
-                              context,
-                              requestBody: {
-                                // 'action': kPerformTransferAction,
-                                // "phoneNumber": HelperUtil.getLocalPhoneNumber(context.read<UserViewModel>().getUser.phoneNumber?? ''),
-                                "amount": double.parse(transferInfo['amount']?? '0') * 100,
-                                "accountNumber": transferInfo['accountNumber'],
-                                "accountIssuer": (transferInfo['accountIssuer']?? '').toString().toNetworkCode(),
-                                // "accountName": transferInfo['accountName'],
-                                "description": transferInfo['description'],
-                                // "type": transferInfo['type']
-                              },
-                            );
-                          }
+                            buttonText: BDPTexts.continueButtonText,
+                            onPressed: () async{
+                              ZLoggerService.logOnInfo(transactionType);
+                              if (transactionType == 'payments') {
+                                await context.read<TransactionViewModel>().makePayment(
+                                  context,
+                                  requestBody: {
+                                    'amount': purchaseInfo['amount'] ?? 0 * 100,
+                                    'accountNumber': purchaseInfo['accountNumber'],
+                                    'accountIssuer': (purchaseInfo['accountIssuer'] ?? '').toString().toNetworkCode(),
+                                    'description': purchaseInfo['description'],
+                                  },
+                                );
+                              } else if (transactionType == 'purchases') {
+                                await context.read<TransactionViewModel>().makePurchase(
+                                  context,
+                                  requestBody: {
+                                    'amount': purchaseInfo['amount'] ?? 0 * 100,
+                                    'accountNumber': purchaseInfo['accountNumber'],
+                                    'accountIssuer': (purchaseInfo['accountIssuer'] ?? '').toString().toNetworkCode(),
+                                    'description': purchaseInfo['description'],
+                                  },
+                                );
+                              }
+                               const ErrorModalContent(errorMessage: '"no type specified", ');
+                            },
                         ),
                       ],
                     ),

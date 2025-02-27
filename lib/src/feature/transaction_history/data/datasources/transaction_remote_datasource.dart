@@ -10,6 +10,8 @@ abstract class TransactionRemoteDataSource{
   Future<TransactionHistoryModel> fetchTransactions({required Map<String, dynamic> queryParam});
   Future<WalletModel> enquireWalletName({required Map<String, dynamic> queryParam});
   Future<TransactionModel> transferMoney({required Map<String, dynamic> requestBody});
+  Future<TransactionModel> makePurchase({required Map<String, dynamic> requestBody});
+  Future<TransactionModel> makePayment({required Map<String, dynamic> requestBody});
 }
 
 class TransactionRemoteDataSourceImpl extends TransactionRemoteDataSource{
@@ -55,7 +57,37 @@ class TransactionRemoteDataSourceImpl extends TransactionRemoteDataSource{
   @override
   Future<TransactionModel> transferMoney({required Map<String, dynamic> requestBody}) async{
     final response = await httpServiceRequester.postRequest(
-      endpoint: ApiRoutes.walletTransaction,
+      endpoint: ApiRoutes.transferMoney,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return TransactionModel.fromJson(response.data['data']?? {});
+  }
+
+  @override
+  Future<TransactionModel> makePurchase({required Map<String, dynamic> requestBody}) async {
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.makePurchase,
+      requestBody: requestBody,
+    );
+
+    var body = response.data;
+    if(body['success'] == false){
+      throw ServerException(message: body['message']?? '');
+    }
+
+    return TransactionModel.fromJson(response.data['data']?? {});
+  }
+
+  @override
+  Future<TransactionModel> makePayment({required Map<String, dynamic> requestBody}) async {
+    final response = await httpServiceRequester.postRequest(
+      endpoint: ApiRoutes.topUpWallet,
       requestBody: requestBody,
     );
 

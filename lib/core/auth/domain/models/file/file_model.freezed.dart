@@ -24,8 +24,12 @@ mixin _$FileModel {
   String? get name => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
+  /// Serializes this FileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FileModelCopyWith<FileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$FileModelCopyWithImpl<$Res, $Val extends FileModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$FileModelImplCopyWithImpl<$Res>
       _$FileModelImpl _value, $Res Function(_$FileModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,11 +154,13 @@ class _$FileModelImpl implements _FileModel {
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, externalId, name, url);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FileModelImplCopyWith<_$FileModelImpl> get copyWith =>
@@ -179,8 +189,11 @@ abstract class _FileModel implements FileModel {
   String? get name;
   @override
   String? get url;
+
+  /// Create a copy of FileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FileModelImplCopyWith<_$FileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

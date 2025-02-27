@@ -35,6 +35,7 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
   final phoneCtrl = TextEditingController();
   final phoneFocusNode = FocusNode();
   final isPhoneMobileMoney = ValueNotifier<bool>(false);
+  String? selectedGender;
 
   @override
   void initState() {
@@ -154,6 +155,37 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
                       //     ),
                       //   ],
                       // ),
+                      const VSpace(
+                        height: BDPSizes.spaceBtwInputFields,
+                      ),
+
+                      DropdownButtonFormField<String>(
+                        value: selectedGender,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedGender = newValue;
+                          });
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please select your gender";
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Gender",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        items: ['Male', 'Female']
+                            .map((gender) => DropdownMenuItem<String>(
+                          value: gender,
+                          child: Text(gender),
+                        ))
+                            .toList(),
+                      ),
+
                       const VSpace(height: 24.0),
 
                       Row(
@@ -167,8 +199,10 @@ class _AccountRegistrationScreenState extends State<AccountRegistrationScreen> {
                                   "phoneNumber": phoneCtrl.text,
                                   "name": nameCtrl.text,
                                   "ghanaCardNumber": ghanaCardCtrl.text,
+                                  "type": "customer",
                                   "otp": context.read<OtpViewModel>().getOtpRequestBody['otp']?? '',
                                   'isPhoneMobileMoney': isPhoneMobileMoney.value,
+                                  'gender': selectedGender?.toLowerCase().toString(),
                                 };
                                 AppNavigator.pushNamed(context, AppRoute.pinSetupScreen);
                               }

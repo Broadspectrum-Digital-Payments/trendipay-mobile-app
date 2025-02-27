@@ -2,6 +2,7 @@
 import 'package:bdp_payment_app/core/constants/styles.dart';
 import 'package:bdp_payment_app/core/constants/colors.dart';
 import 'package:bdp_payment_app/core/constants/common.dart';
+import 'package:bdp_payment_app/core/services/logger_service.dart';
 import 'package:bdp_payment_app/core/utils/app_theme_util.dart';
 import 'package:bdp_payment_app/core/utils/helper_util.dart';
 import 'package:bdp_payment_app/core/view_models/user_view_model.dart';
@@ -194,6 +195,8 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                               buttonText: widget.pinChange == true ? BDPTexts.changePinBtn : BDPTexts.setPin,
                               isLoading: userConsumer.isSubmitted || otpConsumer.isSubmitted,
                               onPressed: () async{
+                                ZLoggerService.logOnInfo('Phone number: ${userConsumer.getUser.phoneNumber}');
+
                                 if (formKey.currentState!.validate()) {
                                   if(widget.pinChange == true){
                                     await context.read<OtpViewModel>().sendOtp(
@@ -201,13 +204,12 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                                       requestBody: {
                                         'action': kChangePinAction,
                                         "phoneNumber": HelperUtil.getLocalPhoneNumber(userConsumer.getUser.phoneNumber?? ''),
-                                        "pin": pinCtrl.text,
-                                        "pinConfirmation": confirmPinCtrl.text
+                                       "pin": pinCtrl.text,
+                                       "pinConfirmation": confirmPinCtrl.text
                                       }
                                     );
                                     return;
                                   }
-
                                   await context.read<UserViewModel>().authentication(
                                     context,
                                     type: 'sign-up',

@@ -24,8 +24,12 @@ mixin _$StatsModel {
   num? get submitted => throw _privateConstructorUsedError;
   num? get totalCollected => throw _privateConstructorUsedError;
 
+  /// Serializes this StatsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StatsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatsModelCopyWith<StatsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$StatsModelCopyWithImpl<$Res, $Val extends StatsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$StatsModelImplCopyWithImpl<$Res>
       _$StatsModelImpl _value, $Res Function(_$StatsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$StatsModelImpl implements _StatsModel {
                 other.totalCollected == totalCollected));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, paid, submitted, totalCollected);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatsModelImplCopyWith<_$StatsModelImpl> get copyWith =>
@@ -181,8 +191,11 @@ abstract class _StatsModel implements StatsModel {
   num? get submitted;
   @override
   num? get totalCollected;
+
+  /// Create a copy of StatsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatsModelImplCopyWith<_$StatsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
