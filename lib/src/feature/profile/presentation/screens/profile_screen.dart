@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   BDPTextButton(
                     text: BDPTexts.changePin,
                     onPressed: () {
-                      AppNavigator.pushNamed(context, AppRoute.pinSetupScreen, arguments: true);
+                      AppNavigator.pushNamed(context, AppRoute.phoneNumberScreen, arguments: {'pinChange': true},);
                     },
                   ),
                 ],

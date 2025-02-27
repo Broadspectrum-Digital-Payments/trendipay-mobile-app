@@ -10,12 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/constants/common.dart';
 import '../../../../../../core/utils/app_theme_util.dart';
+import '../../../../../../core/utils/helper_util.dart';
 import '../../../../../shared_widgets/base/bdp_appbar.dart';
 import '../../../../../../core/constants/sizes.dart';
 import '../../../../../../core/constants/text_strings.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
-  const PhoneNumberScreen({super.key});
+  const PhoneNumberScreen({super.key, this.pinChange, this.forgotPin, });
+
+  final bool? pinChange;
+  final bool? forgotPin;
+
 
   @override
   State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
@@ -39,7 +44,11 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     return Scaffold(
       appBar: BDPAppBar(
         appBar: AppBar(),
-        title: 'Phone Number',
+        title:  widget.pinChange == true
+            ? 'Pin Change'
+            : widget.forgotPin == true
+            ? "Reset Pin"
+            : 'Phone Number',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -93,10 +102,35 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                           isLoading: otpConsumer.isSubmitted,
                           onPressed: () async{
                             if (formKey.currentState!.validate()) {
-                              await context.read<OtpViewModel>().sendOtp(
-              context,
-              phoneNumber:  phoneCtrl.text,
-                              );
+                              if(widget.pinChange == true){
+                                await context.read<OtpViewModel>().sendOtp(
+                                    context,
+                                    requestBody: {
+                                      'action': kChangePinAction,
+                                      "phoneNumber":phoneCtrl.text,
+
+                                    }
+                                );
+                                return;
+                              } else if(widget.forgotPin == true){
+                                await context.read<OtpViewModel>().sendOtp(
+                                    context,
+                                    requestBody: {
+                                      'action': kResetPinAction,
+                                      "phoneNumber":phoneCtrl.text,
+                                    }
+                                );
+                                return;
+                              }else {
+                                await context.read<OtpViewModel>().sendOtp(
+                                  context,
+                                    requestBody: {
+                                      'action': kSignupAction,
+                                      "phoneNumber":phoneCtrl.text,
+                                    }
+                                );
+                              }
+
                             }
                           },
                         ),
